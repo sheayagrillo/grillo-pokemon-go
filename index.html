@@ -84,7 +84,7 @@
         max-width: 1060px; margin: 0 auto; padding: 18px 16px 14px;
         display: flex; align-items: center; gap: 14px;
       }
-      .ball { flex: 0 0 auto; width: 46px; height: 46px; }
+      .ball { flex: 0 0 auto; width: 46px; height: 46px; border-radius: 12px; object-fit: cover; }
       .banner h2 { font-size: clamp(24px, 6vw, 36px); font-weight: 800; letter-spacing: 0.5px; color: var(--ink); }
       .banner p { margin: 2px 0 0; font-size: 16px; font-weight: 600; color: var(--muted); }
 
@@ -508,14 +508,7 @@
 
     <header class="banner">
       <div class="banner-in">
-        <svg class="ball" viewBox="0 0 100 100" aria-hidden="true">
-          <circle cx="50" cy="50" r="47" fill="#fff"/>
-          <path d="M3 50a47 47 0 0 1 94 0z" fill="#fff"/>
-          <path d="M3.8 50a46.2 46.2 0 0 1 92.4 0z" fill="#e3350d"/>
-          <rect x="3" y="46" width="94" height="8" fill="#222"/>
-          <circle cx="50" cy="50" r="13" fill="#222"/>
-          <circle cx="50" cy="50" r="8.5" fill="#fff"/>
-        </svg>
+        <img class="ball" src="icon.png" alt="Grillo Ball" />
         <div>
           <h2>TODAY IN POKÉMON GO</h2>
           <p>Saturday, November 7, 2026</p>
