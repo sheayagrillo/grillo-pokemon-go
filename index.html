@@ -1128,18 +1128,27 @@
           }
 
           var grid = document.getElementById("tb-grid");
-          grid.innerHTML = TRADE_BOARD.people.map(function (p) {
-            var wants = p.wants.length
-              ? '<ul class="tb-entries">' + p.wants.map(function (w) { return entryHTML(w, true, m.wantMatch, p.name); }).join("") + '</ul>'
-              : '<div class="tb-empty">Nothing listed yet.</div>';
-            var gives = p.giveaways.length
-              ? '<ul class="tb-entries">' + p.giveaways.map(function (g) { return entryHTML(g, false, m.giveMatch, p.name); }).join("") + '</ul>'
-              : '<div class="tb-empty">Nothing listed yet.</div>';
-            return '<div class="tb-person"><h3>' + esc(p.name) + '</h3>' +
-              '<span class="tb-col-label">Wants</span>' + wants +
-              '<span class="tb-col-label">Give Aways</span>' + gives +
-              '</div>';
-          }).join("");
+          // Only show a person's card once they have at least one thing
+          // on the board (a want or a give away). Empty cards stay hidden.
+          var shown = TRADE_BOARD.people.filter(function (p) {
+            return p.wants.length > 0 || p.giveaways.length > 0;
+          });
+          if (!shown.length) {
+            grid.innerHTML = '<div class="tb-empty">Nothing on the board yet. Tap a Pok\u00e9mon above to add a want or a give away.</div>';
+          } else {
+            grid.innerHTML = shown.map(function (p) {
+              var wants = p.wants.length
+                ? '<ul class="tb-entries">' + p.wants.map(function (w) { return entryHTML(w, true, m.wantMatch, p.name); }).join("") + '</ul>'
+                : '<div class="tb-empty">Nothing listed yet.</div>';
+              var gives = p.giveaways.length
+                ? '<ul class="tb-entries">' + p.giveaways.map(function (g) { return entryHTML(g, false, m.giveMatch, p.name); }).join("") + '</ul>'
+                : '<div class="tb-empty">Nothing listed yet.</div>';
+              return '<div class="tb-person"><h3>' + esc(p.name) + '</h3>' +
+                '<span class="tb-col-label">Wants</span>' + wants +
+                '<span class="tb-col-label">Give Aways</span>' + gives +
+                '</div>';
+            }).join("");
+          }
         }
 
         /* ---- Copy helper (same pattern as the search strings) ---- */
