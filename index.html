@@ -357,35 +357,75 @@
       }
       .tb-picker h3 { font-size: 19px; font-weight: 800; margin-bottom: 12px; }
       .tb-picker input[type="search"] {
-        width: 100%; min-height: 48px; font: inherit; font-weight: 700; font-size: 16px;
+        width: 100%; min-height: 56px; font: inherit; font-weight: 700; font-size: 18px;
         color: var(--ink); background: var(--surface-2); border: 1.5px solid var(--line);
-        border-radius: 12px; padding: 10px 14px; -webkit-appearance: none; appearance: none;
+        border-radius: 14px; padding: 12px 16px; -webkit-appearance: none; appearance: none;
       }
       .tb-picker input[type="search"]:focus { outline: 2px solid var(--blue); outline-offset: 1px; border-color: var(--blue); }
-      .tb-picker-hint { margin: 8px 0 0; font-size: 13.5px; font-weight: 600; color: var(--muted); }
+      .tb-chips { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px; }
+      .tb-chip {
+        min-height: 44px; padding: 10px 16px; border-radius: 999px; border: 1.5px solid var(--line);
+        background: var(--surface-2); color: var(--ink); font: inherit; font-weight: 800; font-size: 15px;
+        cursor: pointer;
+      }
+      .tb-chip.on { background: var(--blue); border-color: var(--blue); color: #fff; }
+      .tb-picker-hint { margin: 10px 0 0; font-size: 14px; font-weight: 600; color: var(--muted); }
       .tb-list {
-        margin-top: 12px; max-height: 320px; overflow-y: auto; -webkit-overflow-scrolling: touch;
+        margin-top: 12px; max-height: 360px; overflow-y: auto; -webkit-overflow-scrolling: touch;
         border: 1px solid var(--line); border-radius: 14px; background: var(--surface-2);
       }
       .tb-row {
-        display: flex; align-items: center; gap: 12px; width: 100%; min-height: 48px;
-        padding: 4px 12px 4px 6px; background: transparent; border: none; border-bottom: 1px solid var(--line);
+        display: flex; align-items: center; gap: 14px; width: 100%; min-height: 56px;
+        padding: 6px 14px 6px 8px; background: transparent; border: none; border-bottom: 1px solid var(--line);
         font: inherit; color: inherit; text-align: left; cursor: pointer;
       }
       .tb-row:last-child { border-bottom: none; }
       .tb-row:hover, .tb-row:focus-visible { background: color-mix(in srgb, var(--blue) 8%, var(--surface)); outline: none; }
       .tb-row img {
-        width: 44px; height: 44px; object-fit: contain; flex: 0 0 auto;
+        width: 64px; height: 64px; object-fit: contain; flex: 0 0 auto;
         filter: brightness(1.14) saturate(1.18);
       }
-      .tb-row .tb-pname { font-weight: 800; font-size: 16px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-      .tb-row .tb-dex { margin-left: auto; font-weight: 700; font-size: 13px; color: var(--muted); flex: 0 0 auto; }
-      .tb-row .tb-copied { color: var(--green); }
+      .tb-row .tb-pname { font-weight: 800; font-size: 18px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+      .tb-row .tb-dex { margin-left: auto; font-weight: 700; font-size: 14px; color: var(--muted); flex: 0 0 auto; }
       .tb-picker-status { margin: 10px 0 0; font-size: 14px; font-weight: 600; color: var(--muted); }
       .tb-picker-status button {
         font: inherit; font-weight: 800; color: var(--blue); background: none; border: none; padding: 0;
         cursor: pointer; text-decoration: underline; min-height: 44px;
       }
+      .tb-sheet[hidden] { display: none; }
+      .tb-sheet-backdrop { position: fixed; inset: 0; background: rgba(10, 20, 35, 0.45); z-index: 50; }
+      .tb-sheet-card {
+        position: fixed; left: 16px; right: 16px; bottom: 16px; z-index: 51;
+        max-width: 560px; margin: 0 auto; background: var(--surface); color: var(--ink);
+        border: 1px solid var(--line); border-radius: 20px; padding: 20px; box-shadow: var(--shadow);
+      }
+      .tb-sheet-close {
+        position: absolute; top: 10px; right: 10px; width: 44px; height: 44px; border-radius: 50%;
+        border: none; background: var(--surface-2); color: var(--ink); font-size: 20px; font-weight: 800;
+        cursor: pointer; display: grid; place-items: center;
+      }
+      .tb-sheet-poke { display: flex; align-items: center; gap: 14px; padding-right: 44px; }
+      .tb-sheet-poke img { width: 96px; height: 96px; object-fit: contain; flex: 0 0 auto; filter: brightness(1.14) saturate(1.18); }
+      .tb-sheet-name { font-size: 24px; font-weight: 800; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+      .tb-sheet-dex { font-size: 15px; font-weight: 700; color: var(--muted); margin-top: 2px; }
+      .tb-sheet-options { margin-top: 16px; display: grid; gap: 10px; }
+      .tb-opt {
+        width: 100%; min-height: 56px; border-radius: 14px; border: 1.5px solid var(--line);
+        background: var(--surface-2); color: var(--ink); font: inherit; font-weight: 800; font-size: 17px;
+        cursor: pointer; padding: 12px 16px;
+      }
+      .tb-opt:hover, .tb-opt:focus-visible { border-color: var(--blue); outline: none; }
+      .tb-sheet-done { margin-top: 16px; }
+      .tb-sheet-msg {
+        font-size: 20px; font-weight: 800; text-align: center; background: var(--surface-2);
+        border: 1px solid var(--line); border-radius: 14px; padding: 16px;
+      }
+      .tb-copy-msg {
+        width: 100%; min-height: 56px; margin-top: 12px; border-radius: 14px; border: none;
+        background: var(--blue); color: #fff; font: inherit; font-weight: 800; font-size: 18px; cursor: pointer;
+      }
+      .tb-copy-msg.done { background: var(--green); }
+      .tb-sheet-note { margin: 10px 0 0; font-size: 14px; font-weight: 600; color: var(--muted); text-align: center; }
       .tb-grid { display: grid; gap: 14px; }
       @media (min-width: 640px) { .tb-grid { grid-template-columns: repeat(2, 1fr); } }
       @media (min-width: 960px) { .tb-grid { grid-template-columns: repeat(3, 1fr); } }
@@ -812,10 +852,41 @@
 
         <div class="tb-picker">
           <h3>Find a Pok&eacute;mon</h3>
-          <input id="tb-search" type="search" placeholder="Search all 1,025 Pok&eacute;mon&hellip;" aria-label="Search all Pokémon" autocomplete="off" />
-          <p class="tb-picker-hint">Tap a Pok&eacute;mon to copy its name.</p>
+          <input id="tb-search" type="search" placeholder="Search Pok&eacute;mon by name or number" aria-label="Search Pokémon by name or number" autocomplete="off" />
+          <div class="tb-chips" id="tb-chips" role="group" aria-label="Filter Pokémon">
+            <button type="button" class="tb-chip on" data-chip="popular" aria-pressed="true">Popular</button>
+            <button type="button" class="tb-chip" data-chip="all" aria-pressed="false">All</button>
+            <button type="button" class="tb-chip" data-chip="legendary" aria-pressed="false">Legendary</button>
+            <button type="button" class="tb-chip" data-chip="mythical" aria-pressed="false">Mythical</button>
+            <button type="button" class="tb-chip" data-chip="starters" aria-pressed="false">Starters</button>
+          </div>
+          <p class="tb-picker-hint">Tap a Pok&eacute;mon to tell the family what you want.</p>
           <div class="tb-list" id="tb-list" role="listbox" aria-label="Pokédex"></div>
           <p class="tb-picker-status" id="tb-status">Loading the Pok&eacute;dex&hellip;</p>
+        </div>
+
+        <div class="tb-sheet" id="tb-sheet" hidden>
+          <div class="tb-sheet-backdrop" id="tb-sheet-backdrop"></div>
+          <div class="tb-sheet-card" role="dialog" aria-modal="true" aria-labelledby="tb-sheet-name">
+            <button type="button" class="tb-sheet-close" id="tb-sheet-close" aria-label="Close">✕</button>
+            <div class="tb-sheet-poke">
+              <img id="tb-sheet-img" src="" alt="" />
+              <div>
+                <div class="tb-sheet-name" id="tb-sheet-name"></div>
+                <div class="tb-sheet-dex" id="tb-sheet-dex"></div>
+              </div>
+            </div>
+            <div class="tb-sheet-options" id="tb-sheet-options">
+              <button type="button" class="tb-opt" data-opt="want">I want this</button>
+              <button type="button" class="tb-opt" data-opt="lucky">I want a Lucky trade</button>
+              <button type="button" class="tb-opt" data-opt="give">I can give this away</button>
+            </div>
+            <div class="tb-sheet-done" id="tb-sheet-done" hidden>
+              <div class="tb-sheet-msg" id="tb-sheet-msg"></div>
+              <button type="button" class="tb-copy-msg" id="tb-copy-msg">Copy message</button>
+              <p class="tb-sheet-note">Tell Sheaya and she&rsquo;ll add it to the Trade Board.</p>
+            </div>
+          </div>
         </div>
 
         <div class="tb-grid" id="tb-grid"></div>
@@ -968,6 +1039,7 @@
             { name: "Brandon", wants: [], giveaways: [] },
             { name: "Sheaya", wants: [], giveaways: [] },
             { name: "Donovan", wants: [], giveaways: [] },
+            { name: "Bentley", wants: [], giveaways: [] },
             { name: "Anna", wants: [], giveaways: [] },
             { name: "Billy", wants: [], giveaways: [] },
             { name: "Sophia", wants: [], giveaways: [] }
@@ -1111,11 +1183,55 @@
         var listEl = document.getElementById("tb-list");
         var statusEl = document.getElementById("tb-status");
         var searchEl = document.getElementById("tb-search");
+        var chipsEl = document.getElementById("tb-chips");
         var rows = [];
+        var activeChip = "popular";
 
-        function renderPicker() {
+        /* Quick-filter sets, by species id. Popular is the short starter set
+           shown by default so nobody has to scroll all 1,025. */
+        var FILTER_SETS = {
+          popular: [487, 68, 888, 889, 646, 884, 483, 484, 216, 92, 147, 149, 246, 248, 443, 445, 371, 373, 374, 376, 133, 25, 6, 150, 143, 131, 94, 448, 468, 635, 612, 706, 784, 887, 901, 700],
+          legendary: [144, 145, 146, 243, 244, 245, 249, 250, 377, 378, 379, 380, 381, 382, 383, 384, 480, 481, 482, 483, 484, 485, 486, 487, 488, 638, 639, 640, 641, 642, 643, 644, 645, 646, 716, 717, 718, 772, 773, 785, 786, 787, 788, 789, 790, 791, 792, 793, 794, 795, 796, 797, 798, 799, 800, 888, 889, 890, 891, 892, 894, 895, 896, 897, 898, 905, 1007, 1008, 1017],
+          mythical: [151, 251, 385, 386, 489, 490, 491, 492, 493, 494, 647, 648, 649, 719, 720, 721, 801, 802, 807, 808, 809, 893, 1025],
+          starters: [1, 2, 3, 4, 5, 6, 7, 8, 9, 152, 153, 154, 155, 156, 157, 158, 159, 160, 252, 253, 254, 255, 256, 257, 258, 259, 260, 387, 388, 389, 390, 391, 392, 393, 394, 395, 495, 496, 497, 498, 499, 500, 501, 502, 503, 650, 651, 652, 653, 654, 655, 656, 657, 658, 722, 723, 724, 725, 726, 727, 728, 729, 730, 810, 811, 812, 813, 814, 815, 816, 817, 818, 906, 907, 908, 909, 910, 911, 912, 913, 914]
+        };
+
+        function setChip(chip) {
+          activeChip = chip;
+          chipsEl.querySelectorAll(".tb-chip").forEach(function (c) {
+            var on = c.getAttribute("data-chip") === chip;
+            c.classList.toggle("on", on);
+            c.setAttribute("aria-pressed", on ? "true" : "false");
+          });
+          renderPickerList();
+        }
+
+        function visibleDex() {
+          var q = searchEl.value.trim().toLowerCase();
+          if (q) {
+            var qKey = q.replace(/[\s_]+/g, "-");
+            return dexList.filter(function (e) {
+              return e.display.toLowerCase().indexOf(q) !== -1 ||
+                e.key.indexOf(qKey) !== -1 ||
+                String(e.id) === q;
+            }).slice(0, 100);
+          }
+          if (activeChip === "all") return dexList;
+          var set = FILTER_SETS[activeChip] || FILTER_SETS.popular;
+          var byId = {};
+          dexList.forEach(function (e) { byId[e.id] = e; });
+          return set.map(function (id) { return byId[id]; }).filter(Boolean);
+        }
+
+        function renderPickerList() {
+          if (!dexList.length) {
+            listEl.innerHTML = "";
+            statusEl.textContent = "Loading the Pok\u00e9dex\u2026";
+            return;
+          }
+          var items = visibleDex();
           var frag = document.createDocumentFragment();
-          rows = dexList.map(function (e) {
+          rows = items.map(function (e) {
             var b = document.createElement("button");
             b.type = "button";
             b.className = "tb-row";
@@ -1123,39 +1239,96 @@
             b.innerHTML = '<img src="' + SPRITE(e.id) + '" alt="" loading="lazy" />' +
               '<span class="tb-pname">' + esc(e.display) + '</span>' +
               '<span class="tb-dex">#' + e.id + '</span>';
-            b.addEventListener("click", function () {
-              var dex = b.querySelector(".tb-dex");
-              copyText(e.display, function () {
-                dex.textContent = "COPIED \u2713";
-                dex.classList.add("tb-copied");
-                setTimeout(function () { dex.textContent = "#" + e.id; dex.classList.remove("tb-copied"); }, 1600);
-              });
-            });
+            b.addEventListener("click", function () { openSheet(e); });
             frag.appendChild(b);
             return b;
           });
           listEl.innerHTML = "";
           listEl.appendChild(frag);
-          statusEl.textContent = "Showing " + dexList.length + " Pok\u00e9mon. Tap one to copy its name.";
+          var q = searchEl.value.trim();
+          if (q) {
+            statusEl.textContent = items.length
+              ? ("Showing " + items.length + " match" + (items.length === 1 ? "" : "es") + " for \u201c" + q + "\u201d. Tap one to tell the family.")
+              : ("No Pok\u00e9mon match \u201c" + q + "\u201d. Try another name or number.");
+          } else if (activeChip === "all") {
+            statusEl.textContent = "Showing all " + dexList.length + " Pok\u00e9mon. Tap one to tell the family.";
+          } else {
+            var label = activeChip.charAt(0).toUpperCase() + activeChip.slice(1);
+            statusEl.textContent = "Showing " + label + " (" + items.length + "). Tap one to tell the family.";
+          }
         }
 
-        function filterPicker() {
-          var q = searchEl.value.trim().toLowerCase();
-          var qKey = q.replace(/[\s_]+/g, "-");
-          var shown = 0;
-          dexList.forEach(function (e, i) {
-            var hit = !q ||
-              e.display.toLowerCase().indexOf(q) !== -1 ||
-              e.key.indexOf(qKey) !== -1 ||
-              String(e.id) === q;
-            rows[i].style.display = hit ? "" : "none";
-            if (hit) shown++;
-          });
-          statusEl.textContent = q
-            ? "Showing " + shown + " of " + dexList.length + " Pok\u00e9mon."
-            : "Showing " + dexList.length + " Pok\u00e9mon. Tap one to copy its name.";
+        chipsEl.addEventListener("click", function (ev) {
+          var chip = ev.target.closest(".tb-chip");
+          if (!chip) return;
+          searchEl.value = "";
+          setChip(chip.getAttribute("data-chip"));
+        });
+        searchEl.addEventListener("input", renderPickerList);
+
+        /* ---- Tap a Pok\u00e9mon: choose what to tell the family ----
+           The board itself is static (entries live in TRADE_BOARD_DATA and
+           Sheaya updates them), so tapping does NOT save anything. It
+           produces a ready-to-send message to copy to the family chat. */
+        var sheetEl = document.getElementById("tb-sheet");
+        var sheetImg = document.getElementById("tb-sheet-img");
+        var sheetName = document.getElementById("tb-sheet-name");
+        var sheetDex = document.getElementById("tb-sheet-dex");
+        var sheetOptions = document.getElementById("tb-sheet-options");
+        var sheetDone = document.getElementById("tb-sheet-done");
+        var sheetMsg = document.getElementById("tb-sheet-msg");
+        var copyMsgBtn = document.getElementById("tb-copy-msg");
+        var currentPick = null;
+        var currentMsg = "";
+
+        function openSheet(e) {
+          currentPick = e;
+          currentMsg = "";
+          sheetImg.src = SPRITE(e.id);
+          sheetImg.alt = e.display;
+          sheetName.textContent = e.display;
+          sheetDex.textContent = "#" + e.id;
+          sheetOptions.hidden = false;
+          sheetDone.hidden = true;
+          sheetEl.hidden = false;
+          document.body.style.overflow = "hidden";
         }
-        searchEl.addEventListener("input", filterPicker);
+
+        function closeSheet() {
+          sheetEl.hidden = true;
+          document.body.style.overflow = "";
+          currentPick = null;
+          currentMsg = "";
+        }
+
+        function messageFor(opt, name) {
+          if (opt === "lucky") return "I want a Lucky " + name + "!";
+          if (opt === "give") return "I can give away a " + name + "!";
+          return "I want a " + name + "!";
+        }
+
+        sheetOptions.addEventListener("click", function (ev) {
+          var btn = ev.target.closest(".tb-opt");
+          if (!btn || !currentPick) return;
+          currentMsg = messageFor(btn.getAttribute("data-opt"), currentPick.display);
+          sheetMsg.textContent = currentMsg;
+          copyMsgBtn.textContent = "Copy message";
+          copyMsgBtn.classList.remove("done");
+          sheetOptions.hidden = true;
+          sheetDone.hidden = false;
+        });
+
+        copyMsgBtn.addEventListener("click", function () {
+          if (!currentMsg) return;
+          copyText(currentMsg, function () {
+            copyMsgBtn.textContent = "Copied \u2713";
+            copyMsgBtn.classList.add("done");
+            setTimeout(function () { copyMsgBtn.textContent = "Copy message"; copyMsgBtn.classList.remove("done"); }, 1600);
+          });
+        });
+
+        document.getElementById("tb-sheet-close").addEventListener("click", closeSheet);
+        document.getElementById("tb-sheet-backdrop").addEventListener("click", closeSheet);
 
         function loadDex() {
           statusEl.textContent = "Loading the Pok\u00e9dex\u2026";
@@ -1169,7 +1342,7 @@
             }).filter(function (e) { return e.id > 0; });
             dexByKey = {};
             dexList.forEach(function (e) { dexByKey[e.key] = e; });
-            renderPicker();
+            renderPickerList();
             renderBoard(); /* add sprites to any board entries */
           }).catch(function () {
             statusEl.innerHTML = "Couldn\u2019t load the Pok\u00e9dex. Check your connection and <button type=\"button\" id=\"tb-retry\">try again</button>.";
@@ -1180,6 +1353,7 @@
 
         renderBoard(); /* board + matches work from names alone, even offline */
         loadDex();
+
       })();
     </script>
   </body>
