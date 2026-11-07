@@ -459,7 +459,16 @@
         box-shadow: var(--shadow);
       }
       .tb-copy-msg.done { background: linear-gradient(90deg, #22c55e, #0d9488); }
-      .tb-sheet-note { margin: 10px 0 0; font-size: 14px; font-weight: 600; color: var(--muted); text-align: center; }
+      .tb-queue{display:flex;flex-direction:column;gap:8px;margin:0 0 12px;}
+.tb-queue-item{display:flex;align-items:center;gap:10px;background:#f3fbf3;border:1px solid #d7ecd7;border-radius:10px;padding:8px 10px;font-size:15px;}
+.tb-queue-item img{width:40px;height:40px;flex:0 0 auto;}
+.tb-queue-item .tb-q-msg{flex:1;min-width:0;}
+.tb-queue-item .tb-q-remove{border:0;background:none;color:#b91c1c;font-size:18px;line-height:1;padding:4px 6px;cursor:pointer;}
+.tb-queue-line{margin:0 0 10px;font-size:14px;color:#166534;background:#f0fdf4;border:1px solid #bbf7d0;border-radius:8px;padding:6px 10px;}
+.tb-sheet-actions{display:flex;gap:10px;}
+.tb-sheet-actions .tb-copy-msg{flex:1;}
+.tb-add-another{flex:1;border:1px solid #86efac;background:#fff;color:#166534;border-radius:10px;padding:12px 10px;font-size:16px;font-weight:700;cursor:pointer;}
+.tb-sheet-note { margin: 10px 0 0; font-size: 14px; font-weight: 600; color: var(--muted); text-align: center; }
       .tb-grid { display: grid; gap: 14px; }
       @media (min-width: 640px) { .tb-grid { grid-template-columns: repeat(2, 1fr); } }
       @media (min-width: 960px) { .tb-grid { grid-template-columns: repeat(3, 1fr); } }
@@ -928,6 +937,7 @@
                 <div class="tb-sheet-dex" id="tb-sheet-dex"></div>
               </div>
             </div>
+            <p class="tb-queue-line" id="tb-queue-line" hidden></p>
             <label class="tb-sheet-who" for="tb-sheet-person">Who is this for?</label>
             <select class="tb-sheet-person" id="tb-sheet-person">
               <option value="" selected>Choose who&hellip;</option>
@@ -945,9 +955,12 @@
               <button type="button" class="tb-opt" data-opt="give">I can give this away</button>
             </div>
             <div class="tb-sheet-done" id="tb-sheet-done" hidden>
-              <div class="tb-sheet-msg" id="tb-sheet-msg"></div>
-              <button type="button" class="tb-copy-msg" id="tb-send-msg">Send</button>
-              <p class="tb-sheet-note" id="tb-sheet-note">Tap Send and it goes to Muse — it will be added to the shared Trade Board.</p>
+              <div class="tb-queue" id="tb-queue"></div>
+              <div class="tb-sheet-actions">
+                <button type="button" class="tb-add-another" id="tb-add-another">Add another</button>
+                <button type="button" class="tb-copy-msg" id="tb-send-msg">Send all</button>
+              </div>
+              <p class="tb-sheet-note" id="tb-sheet-note">Tap Send all and it goes to Muse in one email — all of these will be added to the shared Trade Board.</p>
             </div>
           </div>
         </div>
@@ -1263,19 +1276,47 @@
         var sheetPerson = document.getElementById("tb-sheet-person");
         var sheetOptions = document.getElementById("tb-sheet-options");
         var sheetDone = document.getElementById("tb-sheet-done");
-        var sheetMsg = document.getElementById("tb-sheet-msg");
         var sheetNote = document.getElementById("tb-sheet-note");
         var sendMsgBtn = document.getElementById("tb-send-msg");
+        var queueEl = document.getElementById("tb-queue");
+        var queueLineEl = document.getElementById("tb-queue-line");
+        var addAnotherBtn = document.getElementById("tb-add-another");
         var currentPick = null;
-        var currentMsg = "";
-        var currentWho = "";
-        var currentOpt = "";
+        var queue = []; /* queued entries: { who, name, id, opt, msg } */
 
+        function renderQueueLine() {
+          if (queue.length) {
+            queueLineEl.textContent = queue.length + (queue.length === 1 ? " entry" : " entries") + " queued — add this one, then Send all.";
+            queueLineEl.hidden = false;
+          } else {
+            queueLineEl.hidden = true;
+          }
+        }
+        function renderQueue() {
+          queueEl.innerHTML = "";
+          queue.forEach(function (entry, idx) {
+            var row = document.createElement("div");
+            row.className = "tb-queue-item";
+            row.innerHTML = '<img src="' + SPRITE(entry.id) + '" alt="" />' +
+              '<span class="tb-q-msg">' + esc(entry.msg) + '</span>';
+            var rm = document.createElement("button");
+            rm.type = "button";
+            rm.className = "tb-q-remove";
+            rm.setAttribute("aria-label", "Remove " + entry.name);
+            rm.textContent = "\u00d7";
+            rm.addEventListener("click", function () {
+              queue.splice(idx, 1);
+              renderQueue();
+              renderQueueLine();
+              if (!queue.length) { sheetDone.hidden = true; sheetOptions.hidden = false; }
+            });
+            row.appendChild(rm);
+            queueEl.appendChild(row);
+          });
+          sendMsgBtn.textContent = "Send all (" + queue.length + ")";
+        }
         function openSheet(e) {
           currentPick = e;
-          currentMsg = "";
-          currentWho = "";
-          currentOpt = "";
           sheetImg.src = SPRITE(e.id);
           sheetImg.alt = e.display;
           sheetName.textContent = e.display;
@@ -1283,6 +1324,7 @@
           sheetPerson.value = "";
           sheetOptions.hidden = false;
           sheetDone.hidden = true;
+          renderQueueLine();
           sheetEl.hidden = false;
           document.body.style.overflow = "hidden";
         }
@@ -1291,9 +1333,6 @@
           sheetEl.hidden = true;
           document.body.style.overflow = "";
           currentPick = null;
-          currentMsg = "";
-          currentWho = "";
-          currentOpt = "";
         }
 
         function messageFor(opt, who, name) {
@@ -1313,25 +1352,32 @@
             return;
           }
           var opt = btn.getAttribute("data-opt");
-          currentOpt = opt;
-          currentWho = who;
-          currentMsg = messageFor(opt, who, currentPick.display);
-          sheetMsg.textContent = currentMsg;
-          sheetNote.textContent = "Tap Send and it goes to Muse — it will be added to the shared Trade Board.";
-          sendMsgBtn.textContent = "Send";
+          queue.push({ who: who, name: currentPick.display, id: currentPick.id, opt: opt, msg: messageFor(opt, who, currentPick.display) });
+          renderQueue();
+          renderQueueLine();
+          sheetNote.textContent = "Tap Send all and it goes to Muse in one email — all of these will be added to the shared Trade Board.";
           sendMsgBtn.classList.remove("done");
           sheetOptions.hidden = true;
           sheetDone.hidden = false;
         });
 
         sendMsgBtn.addEventListener("click", function () {
-          if (!currentMsg || !currentPick) return;
-          var subject = "Trade Board: " + currentMsg;
-          var body = "Trade Board entry\nWho: " + currentWho + "\nPok\u00e9mon: " + currentPick.display + "\nDex: " + currentPick.id + "\nType: " + currentOpt;
+          if (!queue.length) return;
+          var subject = queue.length === 1
+            ? "Trade Board: " + queue[0].msg
+            : "Trade Board: " + queue.length + " new entries";
+          var body = "Trade Board entries\n" + queue.map(function (entry) {
+            return "Who: " + entry.who + "\nPok\u00e9mon: " + entry.name + "\nDex: " + entry.id + "\nType: " + entry.opt;
+          }).join("\n---\n");
           window.location.href = "mailto:sheayagrillo@gmail.com?subject=" + encodeURIComponent(subject) + "&body=" + encodeURIComponent(body);
           sendMsgBtn.textContent = "Sent \u2713";
           sendMsgBtn.classList.add("done");
-          setTimeout(function () { sendMsgBtn.textContent = "Send"; sendMsgBtn.classList.remove("done"); }, 1600);
+          queue = [];
+          setTimeout(function () { closeSheet(); }, 900);
+        });
+
+        addAnotherBtn.addEventListener("click", function () {
+          closeSheet();
         });
 
         document.getElementById("tb-sheet-close").addEventListener("click", closeSheet);
