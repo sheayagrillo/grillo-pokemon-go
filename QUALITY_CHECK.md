@@ -41,6 +41,13 @@ publish — not after she finds the mistake.
    ("Steel-type PokéStops") without explaining what it means — and if it
    cannot be explained simply, it probably does not belong on the app.
 
+7. **Every resource has a HOW?**
+   If the app tells the family to stockpile or use something (Max Particles,
+   Pinap berries, raid passes), the app must also say HOW to get it — where
+   it comes from, what it looks like on the map, and what button to tap.
+   Never assume they already know the mechanic. (Lesson Nov 7: the app said
+   "stockpile Max Particles" but never explained Power Spots.)
+
 ## What happened when this was skipped (Nov 7)
 
 - "A Wild Pursuit" Dragon/Steel cards: in-person only in Sendai + Mexico
