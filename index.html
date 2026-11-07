@@ -91,6 +91,8 @@
       /* ---------- Headline + how-to ---------- */
       .headline { font-size: clamp(26px, 5.4vw, 38px); font-weight: 800; margin: 24px 0 12px; }
       .today-guide { font-size: 17px; font-weight: 600; margin: 0 0 12px; }
+      .today-guide .tg-line { margin: 8px 0; line-height: 1.45; }
+      .today-guide .tg-ico { margin-right: 6px; }
       .howto { background: var(--surface); border: 1px solid var(--line); border-radius: 20px; padding: 14px 16px; box-shadow: var(--shadow); margin: 0 0 16px; font-size: 15px; line-height: 1.55; }
       .howto p { margin: 4px 0; }
       .howto b { font-weight: 800; color: var(--green-deep); }
@@ -508,7 +510,7 @@
 
     <header class="banner">
       <div class="banner-in">
-        <img class="ball" src="icon.png" alt="Grillo Ball" />
+        <img class="ball" src="ball.png" alt="Grillo Ball" />
         <div>
           <h2>TODAY IN POKÉMON GO</h2>
           <p>Saturday, November 7, 2026</p>
@@ -518,7 +520,11 @@
 
     <div class="wrap">
       <h1 class="headline">What&rsquo;s going on in Pokémon today?</h1>
-      <p class="today-guide">Today is the last weekend for Giratina and Mega Sableye — both leave Sunday night, so get in raids while they&rsquo;re here. Giratina is a strong catch worth grabbing, and Mega Sableye earns Mega Energy for your own Sableye. There&rsquo;s also a free Machamp research task to claim by Sunday (finish it by Nov 15) and two spin challenges, Dragon and Steel, running through Sunday. Tap any card below for the details.</p>
+      <div class="today-guide">
+        <div class="tg-line"><span class="tg-ico">🐉</span> Giratina + Mega Sableye raids — last weekend, gone Sunday night.</div>
+        <div class="tg-line"><span class="tg-ico">💪</span> Free Gigantamax Machamp — claim by Sunday, finish by Nov 15.</div>
+        <div class="tg-line"><span class="tg-ico">🌀</span> Dragon + Steel spin challenges — through Sunday.</div>
+      </div>
 
 
       <!-- ============ LIVE CAROUSEL ============ -->
