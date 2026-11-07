@@ -448,6 +448,13 @@
       .tb-sheet-poke img { width: 96px; height: 96px; object-fit: contain; flex: 0 0 auto; filter: brightness(1.14) saturate(1.18); }
       .tb-sheet-name { font-size: 24px; font-weight: 800; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
       .tb-sheet-dex { font-size: 15px; font-weight: 700; color: var(--muted); margin-top: 2px; }
+      .tb-sheet-who { display: block; margin-top: 16px; font-size: 14px; font-weight: 800; color: var(--muted); text-transform: uppercase; letter-spacing: 0.08em; }
+      .tb-sheet-person {
+        width: 100%; min-height: 52px; margin-top: 6px; border-radius: 14px; border: 1.5px solid var(--line);
+        background: var(--surface); color: var(--ink); font: inherit; font-weight: 800; font-size: 17px;
+        padding: 12px 14px; cursor: pointer; box-shadow: var(--shadow);
+      }
+      .tb-sheet-person:focus-visible { border-color: var(--green); outline: none; }
       .tb-sheet-options { margin-top: 16px; display: grid; gap: 10px; }
       .tb-opt {
         width: 100%; min-height: 56px; border-radius: 14px; border: 1.5px solid var(--line);
@@ -869,6 +876,17 @@
                 <div class="tb-sheet-dex" id="tb-sheet-dex"></div>
               </div>
             </div>
+            <label class="tb-sheet-who" for="tb-sheet-person">Who is this for?</label>
+            <select class="tb-sheet-person" id="tb-sheet-person">
+              <option value="" selected>Choose who&hellip;</option>
+              <option>Brandon</option>
+              <option>Sheaya</option>
+              <option>Donovan</option>
+              <option>Bentley</option>
+              <option>Anna</option>
+              <option>Billy</option>
+              <option>Sophia</option>
+            </select>
             <div class="tb-sheet-options" id="tb-sheet-options">
               <button type="button" class="tb-opt" data-opt="want">I want this</button>
               <button type="button" class="tb-opt" data-opt="lucky">I want a Lucky trade</button>
@@ -877,7 +895,7 @@
             <div class="tb-sheet-done" id="tb-sheet-done" hidden>
               <div class="tb-sheet-msg" id="tb-sheet-msg"></div>
               <button type="button" class="tb-copy-msg" id="tb-copy-msg">Copy message</button>
-              <p class="tb-sheet-note">Tell Sheaya and she&rsquo;ll add it to the Trade Board.</p>
+              <p class="tb-sheet-note" id="tb-sheet-note">Saved on this device. Copy the message to tell the family.</p>
             </div>
           </div>
         </div>
@@ -1036,7 +1054,9 @@
              giveaways: [ { name: "Dratini" }, { name: "Larvitar" } ]
          Matching is automatic: when one person's want is another
          person's give away (same Pokémon name), both get a TRADE MATCH.
-         Entries are managed by Sheaya — nothing is saved from the browser. */
+         Entries added in the picker are saved on this device (localStorage)
+         and merged into the board below; Sheaya's master list above stays
+         the shared starting point. */
       (function () {
         var TRADE_BOARD = {
           people: [
@@ -1049,6 +1069,58 @@
             { name: "Sophia", wants: [], giveaways: [] }
           ]
         };
+
+        /* ---- Saved entries (this device) ---- */
+        var STORE_KEY = "grillo-trade-board-v1";
+        function personByName(name) {
+          for (var i = 0; i < TRADE_BOARD.people.length; i++) {
+            if (TRADE_BOARD.people[i].name === name) return TRADE_BOARD.people[i];
+          }
+          return null;
+        }
+        function loadSavedEntries() {
+          var raw = null;
+          try { raw = window.localStorage.getItem(STORE_KEY); } catch (e) { raw = null; }
+          if (!raw) return;
+          var list = null;
+          try { list = JSON.parse(raw); } catch (e) { list = null; }
+          if (!Array.isArray(list)) return;
+          list.forEach(function (en) {
+            if (!en || !en.person || !en.name) return;
+            addEntry(en.person, en.type, en.name, !!en.lucky, false);
+          });
+        }
+        function readSavedEntries() {
+          var raw = null;
+          try { raw = window.localStorage.getItem(STORE_KEY); } catch (e) { raw = null; }
+          if (!raw) return [];
+          try { var l = JSON.parse(raw); return Array.isArray(l) ? l : []; } catch (e) { return []; }
+        }
+        function writeSavedEntries(list) {
+          try { window.localStorage.setItem(STORE_KEY, JSON.stringify(list)); } catch (e) { /* storage unavailable */ }
+        }
+        /* Add an entry to the board (and, unless loading, persist it). */
+        function addEntry(personName, type, pokeName, lucky, persist) {
+          var p = personByName(personName);
+          if (!p || !pokeName) return false;
+          var list = (type === "give") ? p.giveaways : p.wants;
+          var key = norm(pokeName);
+          for (var i = 0; i < list.length; i++) {
+            if (norm(list[i].name) === key) {
+              if (type !== "give" && lucky) list[i].lucky = true;
+              return false; /* already listed */
+            }
+          }
+          if (type === "give") list.push({ name: pokeName });
+          else list.push({ name: pokeName, lucky: !!lucky });
+          if (persist !== false) {
+            var saved = readSavedEntries();
+            saved.push({ person: personName, type: type, name: pokeName, lucky: !!lucky });
+            writeSavedEntries(saved);
+          }
+          return true;
+        }
+        loadSavedEntries();
 
         var DEX_URL = "https://pokeapi.co/api/v2/pokemon-species?limit=1025";
         var SPRITE = function (id) { return "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/" + id + ".png"; };
@@ -1278,9 +1350,11 @@
         var sheetImg = document.getElementById("tb-sheet-img");
         var sheetName = document.getElementById("tb-sheet-name");
         var sheetDex = document.getElementById("tb-sheet-dex");
+        var sheetPerson = document.getElementById("tb-sheet-person");
         var sheetOptions = document.getElementById("tb-sheet-options");
         var sheetDone = document.getElementById("tb-sheet-done");
         var sheetMsg = document.getElementById("tb-sheet-msg");
+        var sheetNote = document.getElementById("tb-sheet-note");
         var copyMsgBtn = document.getElementById("tb-copy-msg");
         var currentPick = null;
         var currentMsg = "";
@@ -1292,6 +1366,7 @@
           sheetImg.alt = e.display;
           sheetName.textContent = e.display;
           sheetDex.textContent = "#" + e.id;
+          sheetPerson.value = "";
           sheetOptions.hidden = false;
           sheetDone.hidden = true;
           sheetEl.hidden = false;
@@ -1314,8 +1389,22 @@
         sheetOptions.addEventListener("click", function (ev) {
           var btn = ev.target.closest(".tb-opt");
           if (!btn || !currentPick) return;
-          currentMsg = messageFor(btn.getAttribute("data-opt"), currentPick.display);
+          var who = sheetPerson.value;
+          if (!who) {
+            sheetPerson.focus();
+            sheetPerson.style.borderColor = "#dc2626";
+            setTimeout(function () { sheetPerson.style.borderColor = ""; }, 1600);
+            return;
+          }
+          var opt = btn.getAttribute("data-opt");
+          var added = addEntry(who, opt, currentPick.display, opt === "lucky", true);
+          if (added) renderBoard();
+          var where = (opt === "give") ? "Give Aways" : "Wants";
+          currentMsg = messageFor(opt, currentPick.display);
           sheetMsg.textContent = currentMsg;
+          sheetNote.textContent = added
+            ? "Added to " + who + "\u2019s " + where + " on this device. Copy the message to tell the family."
+            : "Already on " + who + "\u2019s " + where + ". Copy the message to tell the family.";
           copyMsgBtn.textContent = "Copy message";
           copyMsgBtn.classList.remove("done");
           sheetOptions.hidden = true;
