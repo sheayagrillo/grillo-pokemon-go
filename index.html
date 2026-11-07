@@ -1469,6 +1469,29 @@
           btn.textContent = label + (opening ? " \u25B2" : " \u25BC");
         });
       });
+      // Search strings: tap-to-copy for the static .ss buttons.
+      // (The Vivillon codes list has its own handler; this one covers the
+      // Search Strings section, whose buttons carry the text in <code>.)
+      document.addEventListener("click", function (ev) {
+        var btn = ev.target.closest(".ss");
+        if (!btn || btn.hasAttribute("data-code")) return;
+        var codeEl = btn.querySelector("code");
+        if (!codeEl) return;
+        var text = codeEl.textContent;
+        // Append the Dynamax/Gigantamax exclusion, unless this IS the
+        // Dynamax / Gigantamax string.
+        if (text.indexOf("dynamax") === -1 && text.indexOf("gigantamax") === -1) {
+          text += " &!dynamax &!gigantamax";
+        }
+        var hint = btn.querySelector(".copy-hint");
+        copyText(text, function () {
+          if (hint) {
+            hint.textContent = "Copied \u2713";
+            hint.classList.add("done");
+            setTimeout(function () { hint.textContent = "TAP TO COPY"; hint.classList.remove("done"); }, 1600);
+          }
+        });
+      });
       // Upcoming feed: each card's header expands its details.
       document.querySelectorAll(".feed-item").forEach(function (item) {
         var btn = item.querySelector(".feed-head");
