@@ -1350,7 +1350,10 @@
       /* ================= VIVILLON =================
          All 18 postcard patterns, so anyone in the family can use it.
          Friend codes are filled in from public Vivillon code boards
-         (PoGO Guide + pokemon-friends.eu), refreshed Nov 7, 2026 — add codes to a region's `codes` list below
+         (PoGO Guide + pokemon-friends.eu), refreshed Nov 7, 2026.
+         Freshness rule: common regions < 6 months old; rare regions
+         (Icy Snow, Jungle, Monsoon, River, Savanna, Tundra, Ocean,
+         Meadow, Sun, Sandstorm, High Plains, Archipelago) up to 1 year. — add codes to a region's `codes` list below
          (12-digit codes, e.g. "1234 5678 9012"). */
       (function () {
         var VIVILLON = [
@@ -1359,19 +1362,19 @@
           { region: "Elegant", sprite: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/666-elegant.png", codes: ["8772 8675 7506", "7621 3772 5830", "5437 8554 0278", "5189 8460 4109", "6922 0601 9288"] },
           { region: "Garden", sprite: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/666-garden.png", codes: ["4555 6954 1541", "2175 2008 2184", "1730 9000 6840", "7987 3302 3579", "9687 8153 4121"] },
           { region: "High Plains", sprite: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/666-high-plains.png", codes: ["7705 9929 5533", "9768 4733 7942", "7826 5702 1119", "6075 9054 4835", "5477 4093 3611"] },
-          { region: "Icy Snow", sprite: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/666-icy-snow.png", codes: ["5092 9706 8783"] },
-          { region: "Jungle", sprite: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/666-jungle.png", codes: ["2650 9813 1149", "8029 0752 7215"] },
+          { region: "Icy Snow", sprite: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/666-icy-snow.png", codes: ["5092 9706 8783", "9795 1217 6089", "2386 1241 2553", "5182 0935 4893", "9813 7311 4513"] },
+          { region: "Jungle", sprite: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/666-jungle.png", codes: ["2650 9813 1149", "8029 0752 7215", "2815 0130 8856", "4763 9402 3961", "4050 7560 5566"] },
           { region: "Marine", sprite: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/666-marine.png", codes: ["1565 5465 6262", "8972 7609 9893", "5950 6127 9930", "6053 5755 0605", "2576 5288 2044"] },
-          { region: "Meadow", sprite: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/666.png", codes: ["6765 4840 1203", "1947 8304 1213", "5521 3246 6356"] },
+          { region: "Meadow", sprite: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/666.png", codes: ["6765 4840 1203", "1947 8304 1213", "5521 3246 6356", "2634 1571 0292", "6699 2142 2141"] },
           { region: "Modern", sprite: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/666-modern.png", codes: ["3790 8735 6559", "7755 6897 3190", "8650 7710 3630", "0680 2396 2481", "4563 3788 8857"] },
-          { region: "Monsoon", sprite: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/666-monsoon.png", codes: ["0537 6835 8561", "2385 8431 3793"] },
-          { region: "Ocean", sprite: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/666-ocean.png", codes: ["9304 6872 2974", "6204 1527 0245", "1934 2844 9650"] },
+          { region: "Monsoon", sprite: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/666-monsoon.png", codes: ["0537 6835 8561", "2385 8431 3793", "6498 7572 9725", "6393 1995 1328", "2777 7871 6064"] },
+          { region: "Ocean", sprite: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/666-ocean.png", codes: ["9304 6872 2974", "6204 1527 0245", "1934 2844 9650", "8949 4442 0089", "4915 5812 1373"] },
           { region: "Polar", sprite: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/666-polar.png", codes: ["5277 2596 3770", "0220 0240 3012", "0655 5897 9090", "6940 4749 3161", "0286 1089 9208"] },
-          { region: "River", sprite: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/666-river.png", codes: ["7351 0772 9313", "7424 3674 6930"] },
+          { region: "River", sprite: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/666-river.png", codes: ["7424 3674 6930", "1946 0443 5128", "3777 4464 7905", "3802 9107 1027", "8571 2401 7640"] },
           { region: "Sandstorm", sprite: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/666-sandstorm.png", codes: ["9666 4621 1213", "3278 7778 6988", "1971 3932 9032", "3096 1693 9763", "3181 5894 9843"] },
-          { region: "Savanna", sprite: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/666-savanna.png", codes: ["4577 4210 7044", "6460 6181 9811"] },
+          { region: "Savanna", sprite: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/666-savanna.png", codes: ["4577 4210 7044", "6460 6181 9811", "3006 6987 1708", "1015 3248 7859", "4264 0892 0235"] },
           { region: "Sun", sprite: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/666-sun.png", codes: ["1711 0648 6271", "4472 1771 1791", "5426 8025 4504", "3590 8881 9666", "6203 6838 8487"] },
-          { region: "Tundra", sprite: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/666-tundra.png", codes: ["8145 0092 1362", "7252 3406 8362"] }
+          { region: "Tundra", sprite: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/666-tundra.png", codes: ["8145 0092 1362", "7252 3406 8362", "0743 3161 5236", "7536 5525 8383", "0479 8547 4520"] }
         ];
         var grid = document.getElementById("viv-grid");
         var codesBox = document.getElementById("viv-codes");
