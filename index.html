@@ -372,6 +372,22 @@
         display: block; margin-top: 7px; font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
         font-size: 13px; font-weight: 600; color: var(--muted); word-break: break-all; line-height: 1.5;
       }
+
+      /* ---------- Vivillon ---------- */
+      .viv-grid { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 10px; }
+      @media (max-width: 560px) { .viv-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+      .viv-region {
+        border: 1.5px solid var(--line); background: var(--surface); border-radius: 16px;
+        padding: 12px 6px 10px; cursor: pointer; font: inherit; color: inherit;
+        display: flex; flex-direction: column; align-items: center; gap: 6px; box-shadow: var(--shadow);
+      }
+      .viv-region img { width: 72px; height: 72px; object-fit: contain; filter: brightness(1.08) saturate(1.12); }
+      .viv-region span { font-weight: 800; font-size: 14.5px; text-align: center; line-height: 1.25; }
+      .viv-region:hover, .viv-region:focus-visible { border-color: var(--green); outline: none; }
+      .viv-region.active { border-color: var(--green); background: var(--green-bg); }
+      .viv-codes { margin-top: 16px; }
+      .viv-codes h3 { font-size: 17px; font-weight: 800; margin: 0 0 10px; }
+      .viv-codes .viv-empty { font-weight: 600; font-size: 14.5px; color: var(--muted); }
       footer { margin-top: 44px; color: var(--muted); font-size: 13px; font-weight: 600; text-align: center; }
 
       /* ---------- Trade board ---------- */
@@ -903,6 +919,17 @@
         <div class="tb-grid" id="tb-grid"></div>
       </section>
 
+      <!-- ============ VIVILLON ============ -->
+      <section aria-label="Vivillon">
+        <div class="sec-head"><h2>Vivillon</h2><span class="sub">5 patterns to go</span></div>
+        <p class="sec-note">Pin postcards from these regions to collect their Vivillon. Tap a region to see friend codes from there.</p>
+        <div class="viv-grid" id="viv-grid"></div>
+        <div class="viv-codes" id="viv-codes" hidden>
+          <h3 id="viv-codes-title"></h3>
+          <div class="ss-list" id="viv-codes-list"></div>
+        </div>
+      </section>
+
       <!-- ============ SEARCH STRINGS ============ -->
       <section aria-label="Search strings">
         <div class="sec-head"><h2>Search Strings</h2><span class="sub">Tap to copy</span></div>
@@ -1391,6 +1418,88 @@
         renderBoard(); /* board + matches work from names alone, even offline */
         loadDex();
 
+      })();
+    </script>
+    <script>
+      /* ================= VIVILLON =================
+         Missing patterns (5 of 18). Friend codes are filled in from the
+         public Facebook group Sheaya shares — add codes to a region's
+         `codes` list below (12-digit codes, e.g. "1234 5678 9012"). */
+      (function () {
+        var VIVILLON = [
+          { region: "Sandstorm", sprite: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/666-sandstorm.png", codes: [] },
+          { region: "Ocean", sprite: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/666-ocean.png", codes: [] },
+          { region: "Savanna", sprite: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/666-savanna.png", codes: [] },
+          { region: "Meadow", sprite: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/666.png", codes: [] },
+          { region: "Sun", sprite: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/666-sun.png", codes: [] }
+        ];
+        var grid = document.getElementById("viv-grid");
+        var codesBox = document.getElementById("viv-codes");
+        var codesTitle = document.getElementById("viv-codes-title");
+        var codesList = document.getElementById("viv-codes-list");
+        var activeRegion = null;
+
+        function esc(s) {
+          return String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
+        }
+        function copyText(text, done) {
+          if (navigator.clipboard && navigator.clipboard.writeText) {
+            navigator.clipboard.writeText(text).then(done, function () { fallbackCopy(text, done); });
+          } else { fallbackCopy(text, done); }
+        }
+        function fallbackCopy(text, done) {
+          var ta = document.createElement("textarea");
+          ta.value = text; ta.style.position = "fixed"; ta.style.opacity = "0";
+          document.body.appendChild(ta); ta.select();
+          try { document.execCommand("copy"); } catch (e) {}
+          document.body.removeChild(ta);
+          if (done) done();
+        }
+
+        grid.innerHTML = VIVILLON.map(function (v, i) {
+          return '<button type="button" class="viv-region" data-i="' + i + '">' +
+            '<img src="' + v.sprite + '" alt="' + esc(v.region) + ' Vivillon" loading="lazy" />' +
+            '<span>' + esc(v.region) + '</span></button>';
+        }).join("");
+
+        function showCodes(i) {
+          var v = VIVILLON[i];
+          activeRegion = i;
+          grid.querySelectorAll(".viv-region").forEach(function (b, j) {
+            b.classList.toggle("active", j === i);
+          });
+          codesTitle.textContent = v.region + " — friend codes";
+          if (!v.codes.length) {
+            codesList.innerHTML = '<p class="viv-empty">No friend codes for ' + esc(v.region) + ' yet. Send Sheaya the Facebook group link and she\u2019ll add them here.</p>';
+          } else {
+            codesList.innerHTML = v.codes.map(function (c) {
+              return '<button type="button" class="ss" data-code="' + esc(c) + '">' +
+                '<span class="ss-top"><span class="ss-label">' + esc(c) + '</span>' +
+                '<span class="copy-hint">TAP TO COPY</span></span></button>';
+            }).join("");
+          }
+          codesBox.hidden = false;
+          codesBox.scrollIntoView({ behavior: "smooth", block: "nearest" });
+        }
+
+        grid.addEventListener("click", function (ev) {
+          var btn = ev.target.closest(".viv-region");
+          if (!btn) return;
+          showCodes(parseInt(btn.getAttribute("data-i"), 10));
+        });
+        codesList.addEventListener("click", function (ev) {
+          var btn = ev.target.closest(".ss");
+          if (!btn) return;
+          var code = btn.getAttribute("data-code");
+          var hint = btn.querySelector(".copy-hint");
+          copyText(code, function () {
+            if (hint) {
+              hint.textContent = "Copied \u2713";
+              hint.classList.add("done");
+              setTimeout(function () { hint.textContent = "TAP TO COPY"; hint.classList.remove("done"); }, 1600);
+            }
+          });
+        });
       })();
     </script>
   </body>
