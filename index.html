@@ -921,7 +921,7 @@
 
       <!-- ============ VIVILLON ============ -->
       <section aria-label="Vivillon">
-        <div class="sec-head"><h2>Vivillon</h2><span class="sub">5 patterns to go</span></div>
+        <div class="sec-head"><h2>Vivillon</h2><span class="sub">All 18 patterns</span></div>
         <p class="sec-note">Pin postcards from these regions to collect their Vivillon. Tap a region to see friend codes from there.</p>
         <div class="viv-grid" id="viv-grid"></div>
         <div class="viv-codes" id="viv-codes" hidden>
@@ -1422,16 +1422,30 @@
     </script>
     <script>
       /* ================= VIVILLON =================
-         Missing patterns (5 of 18). Friend codes are filled in from the
-         public Facebook group Sheaya shares — add codes to a region's
-         `codes` list below (12-digit codes, e.g. "1234 5678 9012"). */
+         All 18 postcard patterns, so anyone in the family can use it.
+         Friend codes are filled in from the public Facebook group
+         Sheaya shares — add codes to a region's `codes` list below
+         (12-digit codes, e.g. "1234 5678 9012"). */
       (function () {
         var VIVILLON = [
-          { region: "Sandstorm", sprite: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/666-sandstorm.png", codes: [] },
-          { region: "Ocean", sprite: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/666-ocean.png", codes: [] },
-          { region: "Savanna", sprite: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/666-savanna.png", codes: [] },
+          { region: "Archipelago", sprite: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/666-archipelago.png", codes: [] },
+          { region: "Continental", sprite: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/666-continental.png", codes: [] },
+          { region: "Elegant", sprite: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/666-elegant.png", codes: [] },
+          { region: "Garden", sprite: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/666-garden.png", codes: [] },
+          { region: "High Plains", sprite: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/666-high-plains.png", codes: [] },
+          { region: "Icy Snow", sprite: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/666-icy-snow.png", codes: [] },
+          { region: "Jungle", sprite: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/666-jungle.png", codes: [] },
+          { region: "Marine", sprite: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/666-marine.png", codes: [] },
           { region: "Meadow", sprite: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/666.png", codes: [] },
-          { region: "Sun", sprite: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/666-sun.png", codes: [] }
+          { region: "Modern", sprite: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/666-modern.png", codes: [] },
+          { region: "Monsoon", sprite: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/666-monsoon.png", codes: [] },
+          { region: "Ocean", sprite: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/666-ocean.png", codes: [] },
+          { region: "Polar", sprite: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/666-polar.png", codes: [] },
+          { region: "River", sprite: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/666-river.png", codes: [] },
+          { region: "Sandstorm", sprite: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/666-sandstorm.png", codes: [] },
+          { region: "Savanna", sprite: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/666-savanna.png", codes: [] },
+          { region: "Sun", sprite: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/666-sun.png", codes: [] },
+          { region: "Tundra", sprite: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/666-tundra.png", codes: [] }
         ];
         var grid = document.getElementById("viv-grid");
         var codesBox = document.getElementById("viv-codes");
