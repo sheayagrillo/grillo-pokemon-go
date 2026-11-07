@@ -895,7 +895,7 @@
             <div class="tb-sheet-done" id="tb-sheet-done" hidden>
               <div class="tb-sheet-msg" id="tb-sheet-msg"></div>
               <button type="button" class="tb-copy-msg" id="tb-copy-msg">Copy message</button>
-              <p class="tb-sheet-note" id="tb-sheet-note">Saved on this device. Copy the message to tell the family.</p>
+              <p class="tb-sheet-note" id="tb-sheet-note">Copy it and send it in the family chat — Sheaya will add it to the shared Trade Board.</p>
             </div>
           </div>
         </div>
@@ -924,7 +924,7 @@
           <h3>Sheaya</h3>
           <div class="ss-list">
             <button type="button" class="ss"><span class="ss-top"><span class="ss-label">Box cleanup</span><span class="copy-hint">TAP TO COPY</span></span><code>0*,1*,2*&amp;!shiny&amp;!legendary&amp;!mythical&amp;!favorite&amp;!shadow&amp;!costume&amp;!BG&amp;!DG&amp;!WG&amp;!dynamax&amp;!gigantamax</code></button>
-            <button type="button" class="ss"><span class="ss-top"><span class="ss-label">Duplicates</span><span class="copy-hint">TAP TO COPY</span></span><code>!4*&amp;!favorite&amp;!shiny&amp;!legendary&amp;!mythical&amp;!shadow&amp;!costume&amp;!lucky&amp;!background&amp;!BG&amp;!DG&amp;!WG</code></button>
+            <button type="button" class="ss"><span class="ss-top"><span class="ss-label">Duplicates</span><span class="copy-hint">TAP TO COPY</span></span><code>!4*&amp;!favorite&amp;!shiny&amp;!legendary&amp;!mythical&amp;!shadow&amp;!costume&amp;!lucky&amp;!background&amp;!BG&amp;!DG&amp;!WG&amp;!dynamax&amp;!gigantamax</code></button>
           </div>
         </div>
       </section>
@@ -1054,9 +1054,9 @@
              giveaways: [ { name: "Dratini" }, { name: "Larvitar" } ]
          Matching is automatic: when one person's want is another
          person's give away (same Pokémon name), both get a TRADE MATCH.
-         Entries added in the picker are saved on this device (localStorage)
-         and merged into the board below; Sheaya's master list above stays
-         the shared starting point. */
+         The board is shared — it lives in GitHub, so everyone sees the
+         same list. The picker builds the exact entry (with who it is for);
+         send it in the family chat and Sheaya adds it to the shared board. */
       (function () {
         var TRADE_BOARD = {
           people: [
@@ -1069,58 +1069,6 @@
             { name: "Sophia", wants: [], giveaways: [] }
           ]
         };
-
-        /* ---- Saved entries (this device) ---- */
-        var STORE_KEY = "grillo-trade-board-v1";
-        function personByName(name) {
-          for (var i = 0; i < TRADE_BOARD.people.length; i++) {
-            if (TRADE_BOARD.people[i].name === name) return TRADE_BOARD.people[i];
-          }
-          return null;
-        }
-        function loadSavedEntries() {
-          var raw = null;
-          try { raw = window.localStorage.getItem(STORE_KEY); } catch (e) { raw = null; }
-          if (!raw) return;
-          var list = null;
-          try { list = JSON.parse(raw); } catch (e) { list = null; }
-          if (!Array.isArray(list)) return;
-          list.forEach(function (en) {
-            if (!en || !en.person || !en.name) return;
-            addEntry(en.person, en.type, en.name, !!en.lucky, false);
-          });
-        }
-        function readSavedEntries() {
-          var raw = null;
-          try { raw = window.localStorage.getItem(STORE_KEY); } catch (e) { raw = null; }
-          if (!raw) return [];
-          try { var l = JSON.parse(raw); return Array.isArray(l) ? l : []; } catch (e) { return []; }
-        }
-        function writeSavedEntries(list) {
-          try { window.localStorage.setItem(STORE_KEY, JSON.stringify(list)); } catch (e) { /* storage unavailable */ }
-        }
-        /* Add an entry to the board (and, unless loading, persist it). */
-        function addEntry(personName, type, pokeName, lucky, persist) {
-          var p = personByName(personName);
-          if (!p || !pokeName) return false;
-          var list = (type === "give") ? p.giveaways : p.wants;
-          var key = norm(pokeName);
-          for (var i = 0; i < list.length; i++) {
-            if (norm(list[i].name) === key) {
-              if (type !== "give" && lucky) list[i].lucky = true;
-              return false; /* already listed */
-            }
-          }
-          if (type === "give") list.push({ name: pokeName });
-          else list.push({ name: pokeName, lucky: !!lucky });
-          if (persist !== false) {
-            var saved = readSavedEntries();
-            saved.push({ person: personName, type: type, name: pokeName, lucky: !!lucky });
-            writeSavedEntries(saved);
-          }
-          return true;
-        }
-        loadSavedEntries();
 
         var DEX_URL = "https://pokeapi.co/api/v2/pokemon-species?limit=1025";
         var SPRITE = function (id) { return "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/" + id + ".png"; };
@@ -1380,10 +1328,10 @@
           currentMsg = "";
         }
 
-        function messageFor(opt, name) {
-          if (opt === "lucky") return "I want a Lucky " + name + "!";
-          if (opt === "give") return "I can give away a " + name + "!";
-          return "I want a " + name + "!";
+        function messageFor(opt, who, name) {
+          if (opt === "lucky") return who + " wants a Lucky " + name + "!";
+          if (opt === "give") return who + " can give away a " + name + "!";
+          return who + " wants a " + name + "!";
         }
 
         sheetOptions.addEventListener("click", function (ev) {
@@ -1397,14 +1345,9 @@
             return;
           }
           var opt = btn.getAttribute("data-opt");
-          var added = addEntry(who, opt, currentPick.display, opt === "lucky", true);
-          if (added) renderBoard();
-          var where = (opt === "give") ? "Give Aways" : "Wants";
-          currentMsg = messageFor(opt, currentPick.display);
+          currentMsg = messageFor(opt, who, currentPick.display);
           sheetMsg.textContent = currentMsg;
-          sheetNote.textContent = added
-            ? "Added to " + who + "\u2019s " + where + " on this device. Copy the message to tell the family."
-            : "Already on " + who + "\u2019s " + where + ". Copy the message to tell the family.";
+          sheetNote.textContent = "Copy it and send it in the family chat — Sheaya will add it to the shared Trade Board.";
           copyMsgBtn.textContent = "Copy message";
           copyMsgBtn.classList.remove("done");
           sheetOptions.hidden = true;
@@ -1433,6 +1376,7 @@
               var id = parseInt(r.url.replace(/\/$/, "").split("/").pop(), 10);
               return { id: id, name: r.name, display: displayName(r.name), key: norm(r.name) };
             }).filter(function (e) { return e.id > 0; });
+            dexList.sort(function (a, b) { return a.display.localeCompare(b.display); });
             dexByKey = {};
             dexList.forEach(function (e) { dexByKey[e.key] = e; });
             renderPickerList();
