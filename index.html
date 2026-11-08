@@ -486,17 +486,17 @@
       .tb-col-label::after { content: ""; flex: 1; height: 1px; background: var(--line); }
       .tb-entries { list-style: none; margin: 8px 0 0; padding: 0; display: grid; gap: 8px; }
       .tb-entry {
-        display: flex; align-items: center; gap: 10px; min-height: 48px;
+        display: flex; align-items: center; gap: 10px; min-height: 72px;
         background: var(--surface-2); border: 1px solid var(--line); border-radius: 12px; padding: 4px 10px 4px 4px;
         min-width: 0;
       }
       .tb-entry.has-match { border-color: color-mix(in srgb, var(--green) 45%, var(--line)); background: var(--green-bg); }
       .tb-entry img {
-        width: 44px; height: 44px; object-fit: contain; flex: 0 0 auto;
+        width: 64px; height: 64px; object-fit: contain; flex: 0 0 auto;
         filter: brightness(1.14) saturate(1.18);
       }
-      .tb-entry .tb-ball { width: 44px; height: 44px; flex: 0 0 auto; display: grid; place-items: center; }
-      .tb-entry .tb-ball svg { width: 30px; height: 30px; }
+      .tb-entry .tb-ball { width: 64px; height: 64px; flex: 0 0 auto; display: grid; place-items: center; }
+      .tb-entry .tb-ball svg { width: 44px; height: 44px; }
       .tb-etxt { min-width: 0; flex: 1 1 auto; display: flex; flex-direction: column; gap: 1px; }
       .tb-ename { font-weight: 800; font-size: 15.5px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
       .tb-ematch { font-weight: 700; font-size: 13px; color: var(--green-deep); overflow-wrap: break-word; }
@@ -1035,9 +1035,9 @@
         var TRADE_BOARD = {
           people: [
             { name: "Brandon", wants: [], giveaways: [] },
-            { name: "Sheaya", wants: [{ name: "Misdreavus", lucky: true }, { name: "Pichu" }], giveaways: [] },
+            { name: "Sheaya", wants: [{ name: "Misdreavus", lucky: true }], giveaways: [] },
             { name: "Donovan", wants: [], giveaways: [] },
-            { name: "Bentley", wants: [], giveaways: [] },
+            { name: "Bentley", wants: [{ name: "Pichu" }], giveaways: [] },
             { name: "Anna", wants: [], giveaways: [] },
             { name: "Billy", wants: [], giveaways: [] },
             { name: "Sophia", wants: [], giveaways: [] }
