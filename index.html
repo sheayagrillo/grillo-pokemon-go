@@ -109,6 +109,47 @@
       .sec-note { font-size: 15px; font-weight: 600; line-height: 1.5; margin: 0 0 14px; color: var(--ink); }
       .sec-head .sub { color: var(--green-deep); background: var(--green-bg); font-weight: 800; font-size: 13px; padding: 4px 12px; border-radius: 999px; white-space: nowrap; }
 
+      /* ---------- Tabs ---------- */
+      .tabbar {
+        position: sticky; top: 0; z-index: 100;
+        background: var(--surface);
+        border-bottom: 1px solid var(--line);
+        box-shadow: var(--shadow);
+      }
+      .tabbar-in {
+        max-width: 1060px; margin: 0 auto; padding: 8px 16px;
+        display: flex; gap: 8px; overflow-x: auto;
+        scrollbar-width: none;
+      }
+      .tabbar-in::-webkit-scrollbar { display: none; }
+      .tab {
+        flex: 0 0 auto; min-height: 44px;
+        display: inline-flex; align-items: center; justify-content: center;
+        padding: 10px 16px;
+        border: 1px solid var(--line); border-radius: 999px;
+        background: var(--surface-2); color: var(--ink);
+        font-family: inherit; font-size: 15px; font-weight: 800;
+        cursor: pointer; white-space: nowrap;
+      }
+      .tab[aria-selected="true"] {
+        background: var(--grad); color: #fff; border-color: transparent;
+        box-shadow: var(--shadow);
+      }
+      .tab-panel[hidden] { display: none; }
+
+      /* ---------- Poké Prep event cards ---------- */
+      .prep-card {
+        background: var(--surface); border: 1px solid var(--line); border-radius: 20px;
+        box-shadow: var(--shadow); padding: 18px; margin-bottom: 14px;
+      }
+      .prep-card h3 { font-size: 19px; font-weight: 800; }
+      .prep-card .prep-dates { color: var(--green-deep); font-weight: 800; font-size: 14.5px; margin-top: 2px; }
+      .prep-card ul { margin: 12px 0 0 20px; font-size: 15.5px; line-height: 1.55; }
+      .prep-card li { margin: 6px 0; }
+      .prep-card b { font-weight: 800; color: var(--green-deep); }
+      .prep-note { color: var(--muted); font-size: 14.5px; font-weight: 600; line-height: 1.55; margin: 4px 0 0; }
+
+
       /* ---------- Carousel ---------- */
       /* ---------- Today — stacked sections (no carousel, no panels) ---------- */
       .today-list { display: flex; flex-direction: column; gap: 14px; margin-top: 14px; }
@@ -566,6 +607,17 @@
   </head>
   <body>
 
+    <nav class="tabbar" role="tablist" aria-label="Sections">
+      <div class="tabbar-in">
+        <button type="button" class="tab" id="tab-home" role="tab" aria-selected="true" aria-controls="panel-home" data-tab="home">Home</button>
+        <button type="button" class="tab" id="tab-upcoming" role="tab" aria-selected="false" aria-controls="panel-upcoming" data-tab="upcoming">Upcoming</button>
+        <button type="button" class="tab" id="tab-pokeprep" role="tab" aria-selected="false" aria-controls="panel-pokeprep" data-tab="pokeprep">Pok&eacute; Prep</button>
+        <button type="button" class="tab" id="tab-tradeboard" role="tab" aria-selected="false" aria-controls="panel-tradeboard" data-tab="tradeboard">Trade Board</button>
+        <button type="button" class="tab" id="tab-vivillon" role="tab" aria-selected="false" aria-controls="panel-vivillon" data-tab="vivillon">Vivillon</button>
+        <button type="button" class="tab" id="tab-searchstrings" role="tab" aria-selected="false" aria-controls="panel-searchstrings" data-tab="searchstrings">Search Strings</button>
+      </div>
+    </nav>
+    <div class="tab-panel" id="panel-home" role="tabpanel" aria-labelledby="tab-home">
     <header class="banner">
       <div class="banner-in">
         <img class="ball" src="ball.png" alt="Grillo Ball" />
@@ -575,7 +627,6 @@
         </div>
       </div>
     </header>
-
     <div class="wrap">
       <h1 class="headline">What&rsquo;s going on in Pok&eacute;mon today?</h1>
 
@@ -687,7 +738,11 @@
           </article>
         </div>
       </section>
-
+      <footer>Pokémon sprites © Nintendo / Creatures Inc. / GAME FREAK inc.</footer>
+    </div>
+    </div>
+    <div class="tab-panel" id="panel-upcoming" role="tabpanel" aria-labelledby="tab-upcoming" hidden>
+    <div class="wrap">
       <!-- ============ UPCOMING ============ -->
       <section aria-label="Upcoming, November 14 to 30">
         <div class="sec-head"><h2>Upcoming</h2><span class="sub">Coming up &middot; Nov 14&ndash;30</span></div>
@@ -882,21 +937,63 @@
             </div>
           </article>
         </div>
+      </section>
+    </div>
+    </div>
+    <div class="tab-panel" id="panel-pokeprep" role="tabpanel" aria-labelledby="tab-pokeprep" hidden>
+    <div class="wrap">
+      <!-- ============ POKÉ PREP ============ -->
+      <section aria-label="Poké Prep">
+        <div class="sec-head"><h2>Poké Prep</h2><span class="sub">Next 3 events</span></div>
+        <p class="sec-note">What to have ready for the next three events on the Upcoming list.</p>
 
-        <div class="prep" style="margin-top:14px">
+        <div class="prep-card">
+          <h3 class="ellipsis">GO Wild Area: Global</h3>
+          <p class="prep-dates">Sat Nov 14 + Sun Nov 15 &middot; 10 AM&ndash;6 PM local &middot; Free (optional ticket $11.99)</p>
+          <ul>
+            <li><b>Max Particles &mdash; a full 1,500 banked before the weekend.</b> Each 5&starf;/6&starf; Max Battle costs 800 per attempt, only taken if the battle is won. The daily collect cap is 800 normally, but during Wild Area it is 1,600 free (3,200 with the ticket); the hold cap stays 1,500. Collect all week and walk in Saturday holding 1,500 &mdash; that covers one Dialga/Duraludon win Saturday + one Palkia/Duraludon win Sunday, with the raised daily cap refilling in between. How to get them: tap the bubbles at Power Spots and walk &mdash; no purchase needed.</li>
+            <li><b>Raid Passes &mdash; spin Gyms, no need to buy yet.</b> Up to 3 free Raid Passes per day from spinning Gym discs during the event (6/day with the $11.99 ticket). That is 6 free passes across the weekend per player &mdash; enough for the Kyurem/Zekrom/Reshiram rotation when playing in person. Remote Raid Passes (195 Pok&eacute;Coins each, 3 for 525 in the shop) are only needed to join raids from home or across town &mdash; the daily remote cap is unlimited Nov 14&ndash;15 (normally 10/day). Planning number: one 3-pack (525 coins) per player is a sensible stash; in-person play needs none.</li>
+            <li><b>Kyurem fusion &mdash; the big must-do BEFORE fusing.</b> One fusion costs 1,000 Fusion Energy + 30 Kyurem Candy + 30 Zekrom Candy (Black) or 30 Reshiram Candy (White). Roughly 80&ndash;170 Fusion Energy comes from each Black/White Kyurem raid win, so one fusion takes about 6&ndash;12 wins. Critical: Kyurem must know Glaciate BEFORE fusing &mdash; it becomes Freeze Shock (Black) or Ice Burn (White), and it cannot be added to the fused form with a TM afterward. Raid-caught Kyurem may know Glaciate; check the move before fusing. Cross-day catch: White Kyurem is Saturday but its fusion partner Reshiram is Sunday; Black Kyurem is Sunday but its partner Zekrom is Saturday &mdash; so both days are needed (or a Zekrom/Reshiram already in the box).</li>
+            <li><b>Gigantamax Duraludon counters &mdash; Fighting + Ground, and a big lobby.</b> Duraludon is Steel/Dragon, weak only to Fighting and Ground. Best attackers: Gigantamax Machamp, Dynamax Excadrill (Mud Shot &rarr; Max Quake), Urshifu, Dynamax Machamp. Best defender: Crowned Shield Zamazenta (train Max Guard). Best healer: Dynamax Blissey (train Max Spirit). It takes 10&ndash;40 players &mdash; three players alone cannot beat it, so plan to join a big lobby at a busy Power Spot. Catch CP 1,674&ndash;1,753.</li>
+            <li><b>Dynamax Dialga (Sat) / Palkia (Sun) &mdash; same 800 MP, different counters.</b> Both are 5&starf; Max Battles (800 MP per win). Dialga is Steel/Dragon, weak to Fighting/Ground &mdash; Excadrill, Crowned Sword Zacian, Crowned Shield Zamazenta, Gallade, Gigantamax Machamp. Palkia is Water/Dragon, weak to Dragon/Fairy &mdash; a Dragon Breath Latios/Latias handles it. Also grab GO Safari Balls (free from spinning Pok&eacute;Stops/Gyms during event hours) &mdash; mighty Pok&eacute;mon flee fast, and Safari Balls only work 10 AM&ndash;6 PM and vanish after the event.</li>
+          </ul>
+        </div>
 
-            <h3 class="ellipsis">Poké Prep</h3>
-            <div class="max-tiles">
-              <div class="max-tile"><span class="ic">🎟️</span><span><span class="mt">Remote Raid Passes — ≈40 for the week</span><br /><span class="ms">Zacian, Zamazenta, Kyurem + Duraludon</span></span></div>
-              <div class="max-tile"><span class="ic">✨</span><span><span class="mt">800 Max Particles per attempt</span><br /><span class="ms">stockpile now for Duraludon</span></span></div>
-              <div class="max-tile"><span class="ic">🚫</span><span><span class="mt">Save your particles</span><br /><span class="ms">don&rsquo;t spend on Machop / Chansey</span></span></div>
-            </div>
-            <div class="howto">
-              <p><b>How to get Max Particles:</b> Power Spots are the purple glowing spots on the map — not the blue Pok&eacute;Stops. Walk up to one, tap it, and tap to collect: <b>100 particles per spot</b> (120 the first time you visit a new one).</p>
-              <p>Walk <b>2 km</b>, then claim <b>300 more</b> from the Power Spot tab in the Nearby screen. You can collect up to <b>800 a day</b> (resets 5 AM) and hold up to <b>1,500</b>. They don&rsquo;t take up bag space, and you only lose them if you win a Max Battle.</p>
-            </div>
-          </div>      </section>
+        <div class="prep-card">
+          <h3 class="ellipsis">Pawniard Community Day</h3>
+          <p class="prep-dates">Sat Nov 21 &middot; 2&ndash;5 PM local</p>
+          <ul>
+            <li><b>Pok&eacute; Balls + Pinap Berries &mdash; stocked up before 2 PM.</b> No published exact ball count (it depends on how hard the catching is), so the rule of thumb: spin stops the week before and walk in with a few hundred balls across the three players for 3 hours of catching, plus Ultra Balls for high-CP Pawniard. Use a Pinap Berry on every Pawniard &mdash; it doubles the candy, and a lot of it is needed. How to get them: spin Pok&eacute;Stops/Gyms, open gifts, and the event Field Research hands out Ultra Balls.</li>
+            <li><b>150 Pawniard Candy per Kingambit &mdash; the real goal of the day.</b> Pawniard &rarr; Bisharp costs 50 candy; Bisharp &rarr; Kingambit costs 100 more. Evolve Bisharp between 2 PM and 9 PM and Kingambit learns the exclusive Charged Attack Kowtow Cleave (85 power in raids/Gyms, 75 in Trainer Battles). With 2&times; Catch Candy + Pinaps, one Kingambit per player is very doable in the 3 hours.</li>
+            <li><b>Set a Bisharp as Buddy BEFORE the raid &mdash; the 1-raid shortcut.</b> Normally evolving Bisharp needs 15 Dark- or Steel-type raid wins with Bisharp as Buddy. On Nov 21, 2&ndash;9 PM only, that drops to 1 win. Bisharp must be the Buddy Pok&eacute;mon during that raid (official correction Oct 28, 2026 &mdash; some guides say it applies to every Bisharp regardless, but the official correction says buddy-only, so set the Bisharp as buddy first and don&rsquo;t risk it). Any Dark- or Steel-type raid boss counts (a 1&starf; or 3&starf; is easiest).</li>
+            <li><b>Same morning: Eternamax Eternatus, 11 AM&ndash;2 PM &mdash; don&rsquo;t miss it, it ends as Community Day starts.</b> Eternamax takes over most Power Spots; it cannot be caught, but each win gives a large amount of Eternatus Candy + Candy XL (about 100&ndash;140 Candy and 45&ndash;54 XL per win) to power up the Eternatus from the GO Pass: Dynamax Trails. During those 3 hours, Power Spots give 8&times; Max Particles and the collect cap rises to 2,400, so it is also the best morning of the month to refill particles. Eternamax is Poison/Dragon, weak to Ground, Psychic, Ice, Dragon &mdash; bring Dynamax Excadrill, Eternatus (Dragon Tail/Dynamax Cannon), Dynamax Latios/Metagross; defender Crowned Shield Zamazenta, healer Dynamax Blissey. It also needs a big lobby (up to 100 in the lobby, 20&ndash;40 skilled trainers for a comfortable win). Its exact MP entry cost is not published &mdash; check the lobby screen; plan on 800 MP per win (the standard 5&starf;/6&starf; cost) as the rule of thumb.</li>
+            <li><b>Incense + Lures &mdash; popped at 2 PM.</b> Incense activated during the event lasts 3 hours; Lures last 1 hour and Pawniard has a very high chance of appearing at lured stops 2&ndash;9 PM. One Incense each at 2 PM covers the whole event.</li>
+          </ul>
+        </div>
 
+        <div class="prep-card">
+          <h3 class="ellipsis">Twilight Wishes</h3>
+          <p class="prep-dates">Tue Nov 24, 10 AM &ndash; Mon Nov 30, 8 PM local &middot; Season finale</p>
+          <ul>
+            <li><b>Save Lucky-trade candidates for this week.</b> The free GO Pass: Twilight Wishes (auto-issued Nov 24) gives at Rank 1: increased chance of Lucky Pok&eacute;mon in trades + Lucky Friends, and at Rank 10: 2&times; Stardust for catching (3&times; with Deluxe). Trade bonuses all week: up to 2 Special Trades per day, increased Lucky chance, up to 10% less Stardust on trades, and level 31+ get 2 guaranteed Candy XL from trades. So hold the best trade candidates (shinies, legendaries, the Trade Board wants) until Nov 24 rather than trading them now. Deluxe pass is $4.99 ($6.99 with 6 extra ranks) &mdash; optional. Claim all GO Pass rewards by Wed Dec 2, 8 PM.</li>
+            <li><b>Star Pieces &mdash; save them for Rank 10.</b> Once GO Pass Rank 10 is reached, catches give 2&times; Stardust (3&times; Deluxe). A Star Piece on top of that is the best Stardust farming of the month. Don&rsquo;t burn Star Pieces the week before; save at least one per player for Nov 24&ndash;30.</li>
+            <li><b>Mega Energy &mdash; don&rsquo;t buy it, earn it.</b> The four featured Megas (Beedrill, Houndoom, Sableye, Manectric) are in Mega Raids all week, and Field Research tasks + the GO Pass hand out their Mega Energy for free. Two Field Research rotations: Nov 24, 10 AM&ndash;Nov 26, 10 AM (Applin, Maschiff encounters) and Nov 26, 10 AM&ndash;Nov 30, 8 PM. Just spin stops and do the tasks; no prep purchase needed.</li>
+            <li><b>Raid Passes &mdash; a few for the costumed 3&starf;s.</b> Espeon (sun scarf) and Umbreon (moon scarf) are 3&starf; raids &mdash; very doable for 3 experienced players, and both can be shiny. One free daily Raid Pass from spinning a Gym disc covers one a day; a Premium Battle Pass (100 coins) covers extras. Mega raids are 4&starf;-ish difficulty, so bring the same. No Remote Raid Passes needed when raiding in person.</li>
+            <li><b>Same-week note: Mega Clefable Raid Day, Sat Nov 28, 2&ndash;5 PM.</b> This is a separate item on the Upcoming list but it falls inside Twilight Wishes week. It is a raid-day format (2&ndash;5 PM, Mega Clefable in raids) &mdash; same prep as any raid day: free daily pass + a couple of Premium passes for multiple Clefable.</li>
+          </ul>
+        </div>
+
+        <p class="prep-note">All three events are global/local-time and fully available in Rockledge &mdash; no travel needed. The only constraint is group size: Gigantamax Duraludon (10&ndash;40 players) and Eternamax Eternatus (big lobby) cannot be beaten by three players alone &mdash; plan to join a busy Power Spot lobby or a local group for those two.</p>
+
+        <div class="howto" style="margin-top:14px">
+          <p><b>How to get Max Particles:</b> Power Spots are the purple glowing spots on the map &mdash; not the blue Pok&eacute;Stops. Walk up to one, tap it, and tap to collect: <b>100 particles per spot</b> (120 the first time you visit a new one).</p>
+          <p>Walk <b>2 km</b>, then claim <b>300 more</b> from the Power Spot tab in the Nearby screen. You can collect up to <b>800 a day</b> (resets 5 AM) and hold up to <b>1,500</b>. They don&rsquo;t take up bag space, and you only lose them if you win a Max Battle.</p>
+        </div>
+      </section>
+    </div>
+    </div>
+    <div class="tab-panel" id="panel-tradeboard" role="tabpanel" aria-labelledby="tab-tradeboard" hidden>
+    <div class="wrap">
       <!-- ============ TRADE BOARD ============ -->
       <section aria-label="Trade board">
         <div class="sec-head"><h2>Trade Board</h2><span class="sub">Wants &amp; give aways</span></div>
@@ -961,7 +1058,10 @@
 
         <div class="tb-grid" id="tb-grid"></div>
       </section>
-
+    </div>
+    </div>
+    <div class="tab-panel" id="panel-vivillon" role="tabpanel" aria-labelledby="tab-vivillon" hidden>
+    <div class="wrap">
       <!-- ============ VIVILLON ============ -->
       <section aria-label="Vivillon">
         <div class="sec-head"><h2>Vivillon</h2><span class="sub">All 18 patterns</span></div>
@@ -972,7 +1072,10 @@
           <div class="ss-list" id="viv-codes-list"></div>
         </div>
       </section>
-
+    </div>
+    </div>
+    <div class="tab-panel" id="panel-searchstrings" role="tabpanel" aria-labelledby="tab-searchstrings" hidden>
+    <div class="wrap">
       <!-- ============ SEARCH STRINGS ============ -->
       <section aria-label="Search strings">
         <div class="sec-head"><h2>Search Strings</h2><span class="sub">Tap to copy</span></div>
@@ -1000,8 +1103,7 @@
           </div>
         </div>
       </section>
-
-      <footer>Pokémon sprites © Nintendo / Creatures Inc. / GAME FREAK inc.</footer>
+    </div>
     </div>
 
 
@@ -1862,6 +1964,37 @@
         // Re-check every minute so a page left open flips the badge on its
         // own at 5 AM and 9 PM without needing a reload.
         setInterval(updateRaidStatus, 60000);
+      })();
+    </script>
+    <script>
+      /* ================= TABS =================
+         Six tabs: Home | Upcoming | Poké Prep | Trade Board | Vivillon | Search Strings.
+         Panels stay in the DOM (display:none when inactive) so the Trade Board,
+         party builder, Vivillon, search strings, and RAID HOURS scripts keep working. */
+      (function () {
+        var TABS = ["home", "upcoming", "pokeprep", "tradeboard", "vivillon", "searchstrings"];
+        function showTab(name) {
+          if (TABS.indexOf(name) === -1) name = "home";
+          TABS.forEach(function (t) {
+            var tab = document.getElementById("tab-" + t);
+            var panel = document.getElementById("panel-" + t);
+            var on = (t === name);
+            if (tab) tab.setAttribute("aria-selected", on ? "true" : "false");
+            if (panel) panel.hidden = !on;
+          });
+          if (window.location.hash !== "#" + name) {
+            history.replaceState(null, "", "#" + name);
+          }
+          window.scrollTo(0, 0);
+        }
+        TABS.forEach(function (t) {
+          var tab = document.getElementById("tab-" + t);
+          if (tab) tab.addEventListener("click", function () { showTab(t); });
+        });
+        window.addEventListener("hashchange", function () {
+          showTab(window.location.hash.replace("#", ""));
+        });
+        showTab(window.location.hash.replace("#", "") || "home");
       })();
     </script>
   </body>
