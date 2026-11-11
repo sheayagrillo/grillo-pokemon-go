@@ -1936,7 +1936,7 @@
           var party = getParty(bossKey);
           var inParty = {};
           party.forEach(function (e) { if (e) inParty[e.name] = true; });
-          var rows = list.map(function (m, i) {
+          var rows = list.map(function (m) {
             var added = !!inParty[m.name];
             var full = party.filter(Boolean).length >= 6;
             return '<div class="pk-row">' +
@@ -2173,7 +2173,7 @@
           var team = getTeam(league);
           var inTeam = {};
           team.forEach(function (e) { if (e) inTeam[e.name] = true; });
-          var rows = list.map(function (m) {
+          var rows = list.map(function (m, i) {
             var added = !!inTeam[m.name];
             var full = team.filter(Boolean).length >= 3;
             return '<div class="pk-row">' +
