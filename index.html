@@ -508,6 +508,58 @@
       @media (prefers-color-scheme: dark) { .tb-tag.lucky { color: var(--yellow); } }
       .tb-tag.match { background: var(--green-bg); color: var(--green-deep); }
       .tb-empty { color: var(--muted); font-weight: 600; font-size: 14.5px; padding: 10px 2px; }
+    
+      /* ---- My Raid Party builder ---- */
+      .weak-chips { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; margin: 10px 0 0; font-size: 14px; font-weight: 700; color: var(--green-deep); }
+      .weak-chip { font-family: inherit; font-size: 14px; font-weight: 800; padding: 6px 14px; border-radius: 999px; border: 2px solid transparent; cursor: pointer; color: #fff; }
+      .weak-chip[data-type="Fire"] { background: #e86a1c; }
+      .weak-chip[data-type="Ground"] { background: #a97e2f; }
+      .weak-chip[data-type="Fighting"] { background: #b03a34; }
+      .weak-chip[aria-expanded="true"] { outline: 3px solid rgba(20,35,55,.4); outline-offset: 2px; }
+      .cp-note { font-size: 13.5px; line-height: 1.55; color: var(--muted); margin: 10px 0 0; }
+      .cp-note b { color: var(--ink); }
+      .catch-gauge { margin: 12px 0 0; }
+      .catch-gauge .cg-label { font-size: 13px; font-weight: 700; color: var(--ink); }
+      .catch-gauge .cg-bar { position: relative; height: 10px; border-radius: 999px; background: #e2e8e2; margin-top: 6px; overflow: hidden; }
+      .catch-gauge .cg-fill { position: absolute; left: 0; top: 0; bottom: 0; width: 100%; background: linear-gradient(90deg, #4ade80, #14b8a6); }
+      .catch-gauge .cg-cap { display: flex; justify-content: space-between; font-size: 12px; color: var(--muted); margin-top: 4px; }
+      .party-title { font-size: 13px; font-weight: 800; letter-spacing: .12em; text-transform: uppercase; color: var(--muted); margin: 16px 0 8px; }
+      .party-grid { display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: 10px; }
+      @media (min-width: 560px) { .party-grid { grid-template-columns: repeat(3, minmax(0,1fr)); } }
+      .party-slot { background: var(--surface); border: 1px solid var(--line); border-radius: 16px; padding: 12px 10px; text-align: center; position: relative; }
+      .party-slot.empty { border-style: dashed; color: var(--muted); display: grid; place-items: center; min-height: 132px; font-weight: 700; font-size: 14px; line-height: 1.4; }
+      .party-slot img { width: 64px; height: 64px; object-fit: contain; }
+      .party-slot .ps-name { font-weight: 800; font-size: 15px; }
+      .party-slot .ps-moves { font-size: 12.5px; color: var(--muted); line-height: 1.5; margin-top: 4px; }
+      .party-slot .ps-tm { font-size: 12px; color: #b45309; font-weight: 700; line-height: 1.4; margin-top: 4px; }
+      .party-slot .ps-cp { margin-top: 8px; }
+      .party-slot .ps-cp input { width: 96px; font: inherit; font-size: 14px; text-align: center; padding: 5px 6px; border: 1px solid var(--line); border-radius: 10px; background: #fff; }
+      .party-slot .ps-cp .ps-status { display: block; font-size: 12px; font-weight: 700; margin-top: 4px; min-height: 15px; }
+      .party-slot .ps-cp .ps-status.ok { color: var(--green-deep); }
+      .party-slot .ps-cp .ps-status.low { color: #b45309; }
+      .party-slot .ps-actions { margin-top: 8px; display: flex; gap: 6px; justify-content: center; flex-wrap: wrap; }
+      .party-slot .ps-actions button { font: inherit; font-size: 12px; font-weight: 800; padding: 5px 10px; border-radius: 999px; border: 1px solid var(--line); background: #fff; cursor: pointer; }
+      .party-slot .ps-edit { margin-top: 8px; text-align: left; font-size: 13px; }
+      .party-slot .ps-edit label { display: block; font-weight: 700; font-size: 12px; color: var(--muted); margin: 6px 0 2px; }
+      .party-slot .ps-edit select { width: 100%; font: inherit; font-size: 13px; padding: 5px 6px; border: 1px solid var(--line); border-radius: 10px; background: #fff; }
+      .party-slot .ps-edit .ps-hint { font-size: 12px; font-weight: 700; color: #b45309; margin-top: 4px; line-height: 1.4; }
+      .picker { margin-top: 12px; border: 1px solid var(--line); border-radius: 16px; background: var(--surface); padding: 12px; }
+      .picker[hidden] { display: none; }
+      .picker h3 { font-size: 15px; margin: 0 0 4px; }
+      .picker .pk-sub { font-size: 13px; color: var(--muted); margin: 0 0 6px; line-height: 1.5; }
+      .picker .pk-legend { font-size: 12px; color: var(--muted); margin: 0 0 8px; }
+      .pk-row { display: flex; align-items: center; gap: 10px; padding: 9px 0; border-top: 1px solid var(--line); }
+      .pk-row img { width: 52px; height: 52px; object-fit: contain; flex: 0 0 auto; }
+      .pk-row .pk-info { flex: 1; min-width: 0; }
+      .pk-row .pk-name { font-weight: 800; font-size: 15px; }
+      .pk-row .pk-moves { font-size: 12.5px; color: var(--muted); line-height: 1.45; }
+      .pk-row .pk-tm { font-size: 12px; color: #b45309; font-weight: 700; line-height: 1.4; }
+      .pk-add { font: inherit; font-size: 13px; font-weight: 800; padding: 7px 12px; border-radius: 999px; border: 0; background: #22c55e; color: #fff; cursor: pointer; flex: 0 0 auto; }
+      .pk-add[disabled] { background: #cbd5cb; cursor: default; }
+      .rarity-dot { display: inline-block; width: 9px; height: 9px; border-radius: 50%; margin-left: 6px; vertical-align: 1px; }
+      .rarity-dot.common { background: #22c55e; }
+      .rarity-dot.plausible { background: #eab308; }
+      .rarity-dot.rare { background: #ef4444; }
     </style>
   </head>
   <body>
@@ -590,13 +642,14 @@
             <span class="ti-live">LIVE</span>
           </div>
           <p class="ti-why">A legendary wolf is in raids all week &mdash; beat it to earn Crowned Sword Energy and catch its Hero form!</p>
-          <p class="ti-weak">Weak to: Fire, Ground</p>
-          <p class="ti-detail">You catch the Hero form &mdash; it needs Iron Head and 1,000 Crowned Sword Energy to become Crowned.</p>
-          <button type="button" class="ti-counters-btn" aria-expanded="false">Bring these to the raid ▼</button>
-          <div class="counters">
-                <span class="counter"><img src="data:image/png;base64,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" alt="" / decoding="async" loading="lazy"><span>Groudon</span><span class="ctr-moves">Fast: Mud Shot<br>Charged: Earthquake</span></span><span class="counter"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGAAAABgBAMAAAAQtmoLAAAAIVBMVEUAAAAQEBAxMTFBKbRaWlpzUuZ7i4uspPbF1dX/5iD///8PDqonAAAAAXRSTlMAQObYZgAAAmNJREFUWMPtlb9v4jAUx+2kt/tZ4sTYZx2i7ZQbsvdQJRiPRtXtpxtuLaJyVxASVkc2dib+ynsvDgFaB0ilSDfkSSgJ9sfv+37YFqK11lo7a0nN+fHPpoE0aRzImgbip6QukNUFarr4DFBPU9o0QIoaBtLPAMl/AiT7oGsDlwWd1S1cFgwiri7YDoh/1QZeDjR9CSUgPtqZeyC5DEiPgDiUgPRwK8dPtgDyIzAMJHlyCqBjO96ZBwJV9P8VAEh8xjGU65wC8odGHKOBA8dJoN38SI8f0pCheu84AOjHHBCaABBngCyfiPzxMJra4fS+TNs54GHhhnb6OlMl0MsqDi7JwJUbLRlwP3brdMy4EqBVR5utHVo7dAtVpK1QGjoaAcTV22a7sTkwK4B8nWOL0g57BWPU17e7HOi/utF9+lgByO894AEA03V328kOoDxzevVHwLBMjQMBfwc3SwbMiDRRQXiy/th7mrySZyPkn9sVA5P1N7fQDNBKWAmgkr/Xq/nE9m/XqwKgkQAgDf2QRDHArcTAzFBUMgywTJqNuST2wJJmyOGSpiBw7QHT3QeN6NeJQoBkIKKadp0HKK1oFAERRkoEg9BoJCjpbpwH5gvNSY2MDgFcZbzml+7U2T4Bbq4kAKrIYPgUo0Hva+CWfTshRXlsqI2qOPd2LQNAmiYzyL+krnKwB7ilAHQxT+pKQOyGoDwERLBVD1zAPgHq3SphFwVB2YEyeeoEwBFy4tmDNn4+nryBJMtH4O1Br0j7CdWZS4vEKN/tAqi5QV12UftiyTKSC4EaJlE0DAglWmuttXP2D4I/qkNbLn3YAAAAAElFTkSuQmCC" alt="" / decoding="async" loading="lazy"><span>Chandelure</span><span class="ctr-moves">Fast: Fire Spin<br>Charged: Overheat</span></span><span class="counter"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGAAAABgBAMAAAAQtmoLAAAAMFBMVEUAAAAAaqQAxf8YGCAYUmIxMTk5c4NSlJxiYmJ7IACUzdWkKQi0tLTFSkHm5ubucxgPDG9MAAAAAXRSTlMAQObYZgAAA9hJREFUWMPtl89rG0cUxwU6iZBL8xeU0vuCMMhQyYdeSiAEahat1ChX/QF2ukG3YBYGsZFVVB+WZOpTLLMng+nBCNGDKWxhES1rQwYx0aEXGZS5iFKLIKbv7eqHo65mnXP8DjpI389839t583aUSt3FXXzO0el0Tj5Jzvkn6O+BnLP11v/Td0HPm2uADOcrRCbUs7X+dJWgXA2AxUdEJtSvzWgmaK4aKIBQwVYNkoDl7/SWQGThLAyYYptov8touGKGzQwcNXBZYWehgjYRYPSylACUGMOkM7yJGR1ULn9QAhkAOOZE+3OgqwYg5VcMJGddLQISikYRhSKghzQ6kJINbgP0abDJ+9qhDCPhsSLAD4xz1s3NAKkGfuWsc2pYm5R/sz8DZBLAc4TscX46nAMTZUoDGhAI2m+N0OI6CRjIVzkLgIoTiH055WQ/AZATbhgAlHggvOm79wj8qQDuy3E/BCoADN+JAdbQVO2DHDNikBdfVVhLDMX7pJpTaTn+CYAvH5ToayEa4irBIJXaGv/1HXnxxQblBdFrXA0SDMBi6nxNvn9Q4i0xEkMfdhs2XzUXO07+QN/eoKwghBj+AduMzbHuOXW6Uk5PA13f7qJeiK1QD1/GD+NO1Gv5DX0zQLkv8s6sOz7EEfdQDasFre2ryEAs+k9+iNkz3CQCH4VfCn+jetQT2H/TcPPkSaxeQieMCZZLenOLt/uxZfBonWsEngpB4AMRL1wjNilnkS7mr+thUiN/L8wyjP4KEZ3I69/GpCHmYZ/LG3Gy2ndzwMKUerDTI8/fugFM+3EWsqE/hZqxkIYPGb1cAk4q1sITsxpgfTBYABMn5rhB2PYQiYLwfc/3ljVMYro8jcTUtnsj4T/xIexlCZPYU4HEW5DB4kYE5OfTbM0pSmc3X3soJTpi5FxOol1orR8bxeeeb3sWAt7xHpwftT7zT/2N5T8hln7s26T9rUSLcVYxZv51DeN3i+jFtm3X249x9aymONKHD9u6rhuWXnPt524IqIfGofkMxphl6a77rOyaycBF7Q2OYr1Yc/X6kfkY2l05ZjIXrhECbrvmutVdOAxTpgbKCFhlF4gjE4CX/FaAe1x2j0zzEdd5EuDCQyJF16q71epu4k0jRS/a4GBARkdVc/dRCJypgRpmZN7Qc+VjpbwMQNH9sWru5FF9oAbgtf4QgHK9be5otwFgsv+MDxX1qXR0WVIUncZrALxzrbYZ9lt+cYG7v54ItBzRd6J2Ts8I1gzWesDKObKt3bTE0JTvLGv5c8YJkUD9ktv7eOQ62WzC/V+7+4N1F59x/AeLHO9486NA5QAAAABJRU5ErkJggg==" alt="" / decoding="async" loading="lazy"><span>Volcarona</span><span class="ctr-moves">Fast: Fire Spin<br>Charged: Overheat</span></span><span class="counter"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGAAAABgCAMAAADVRocKAAAAMFBMVEUAAAD///8AQZQHIUUQEBBoVRlzGg19dnmvJxS+trfZkTfeSB34+Pj8/Pz+4lr+7qDz17aYAAAAAnRSTlMAAHaTzTgAAAL3SURBVHja7dXRbuM4DIXhtXgsmhKrvP/bro4ZR4uFOwO0zF0OipnYF/9XQQH6zx/22Wefbd9M59YD5j+JAOvujtej5wJn3Q2rnwpE3k3XcyoQeTfDymcC7D0IPPvmuYDO/Hg8D7A43XKA6I/nAeqLcyQCg0UCtVcLLg9YB0CtvSufHsnAOIGZnzM+RT8TeER+HSARAAFnPoDVTwFUwTuofbTO2SP6lgY4zL32J6B+9XUuBzDYBBr7BKKv6u4pANyb8QCdmw7zFsiWBbTa24j8mIA5p5pyBxTamOHRmGd/5VMAhbE7iLz6qpjLAeAUYt3U4wrOIQlwPQbXjv6lxfw5IO0OcPAWWv/qX8XiAMp8ErABbq2Z2/Flxd2BqKcBG9x797nCfsRTAQrqbutms4ENqrr62QAH2PXNEXkHIAWAKfhJNkE2IKUIzAznJynZgEoR4z07CJTkE7Bf4JxJ4ZB6B6ouBeXsFwJmqYC6n0CZ+ULAJqR5gPoFcDYB5zQLUA+giLHPjx5CDsB+CHBj+l0AyvXJxC4hAwCTptjwAoBswBVxlBi2S0gAQrAFRBeZgJ3C6pNTWBoQvy3EXn0RmGkICUAIkBKClXIC8ERA3aWsUQgAKYCqm02gR53/HQeFJEDdzWrvpfdnv/d+QOFuOYCqoXaO/WuAW9a3CNGn0BfgZsgAuNrXFqBpQO33ALZ3Ah3IBo5aj77WRhIQfQJHBeoSRkM2cGDDzRFSgf8KyUD0NxzrCAAygL2+gFN4ARUtA9hH2/foRw8nON9VPmcAo4199uuOeAPUg2/3NIAxrl1C2wfXku6gsRW5CxjnKCYAInEIxpZwngpbDiD7HrElzBcikgZcqTWIlJIFlLKAJZS5NICl/0/eDSATkO1mkgjgDgDhBOC+H0DBWwH5LVBrFZHyJ0B+A5x/4mvhvrmDOfwcYP+g8D1Q5/Ab4DqC4L7PX6HWnwKovZ4AcH+AOvP8wU/vANxdfQH8+TnwtyEAZANr4P5+yZ999tm/Z+0+V1TFo8MAAAAASUVORK5CYII=" alt="" / decoding="async" loading="lazy"><span>Cinderace</span><span class="ctr-moves">Fast: Fire Spin<br>Charged: Pyro Ball</span></span><span class="counter"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGAAAABgBAMAAAAQtmoLAAAAMFBMVEUAAAAQEBApKVJBQYtaEABaYqxqOVpze4N7e829OUG9c3vFlBDFzdXmSjH/1Rj///9+tnY+AAAAAXRSTlMAQObYZgAABGtJREFUWMPtl71r5EYUwLWjhC3SSDGXKpfIMwzXGBzPZCAQOKcwARcurMmrzh9NuCKVOQLXBLYIB+7jFFvkH3ATSHBlCMRhUzmYfLgwYcurDgS243MjUN6b0fq8u/pYt8nNgmBX76f3rfc2CF6f//UJ9R2Bj3ZnJQ5/4IkDnn0wk/xbWXZgETGwm84EPMwOAMByjpdkFl+3shdARwGY9TZprQKxlTkVAFxDGxDufs3lowxujolaAPTTQAYGrNZLMXBoAZhGWflTapfeizUPYt2mIRAcUvZI6/jFnNYREm0A01okKOsOCsetQRVKJx0dxxcIzJKEgAmUizuOuBVTUlhHcLq+8/ixfpW10GCEG8uk++v+939AGdNQu5Q0Ar0v9v8ZlgCXPoeNHn25//K3s2/UPMmj9e0WvdzPh3vfYiUxXoa4OWTdTz8fnu31NedCzwQEayi/2gdYH4lz3pyNN1ZWVvv9PxX3SVe8PYEo3z8Fq5xNKmAPdtqB7zCwsB4TIXhx3Uzozwg4pfiTVQqK4rpRHhDoD0kFkAqJQLHT1KmwudrfGzoVi6hCptvNwDMY/tVfGzoVxVysIOUn9TZ1dxjA0B9UcRKfKxB6oQG4lrBZAqjiePFcpuj3cT5l09MnHsjlSMEKhXbDAXrheBLoFVeU0afdYrA5XHNAf2XtFDaOAOUhnQS6RQG7SPQe5LB5tueAM/3hClY2Anhd2JlUcDwgoneBLu/F9z2gE+wfSx2RskmL8iNqLr6YA/weBZ0RwAio6KBukSdC4ZMWBwCf4A/3SyCQGNRK4CgQvht9+66NAFYD5Il7+5jRLUs2UWkHnFU29RG9Jx0RvQIsAUE1sEMA3rEeYPbvw8Mh+kv2yerXBvMe+BdwaLMMZ5dRqgFw8uuu/gLzMQEWQCQ0aCpfZAxugPMQHiKQ/bht0jYgwud3i3tAGrKD7Uvg7cA51h8YlH8ut3NDxpt6YJ1yeC/HYOH4Bbl9aUjUA1MjwoyAAUUXsucgN5YNxcddwrQGYDk4YAtA2uXLG8DUAW4gWPpiJSznZBNDIIRKICp9t5YWAQR+MRgnAgyo6UXgFkDrAEinKcWmoL5IqoFyRBlChB9vuAolYRsgQTvXCcAFAVvVTmfCeMA9N3UXV14gFGD7pjUA09Rh8dulHg+kKdrFK9Yfagbs1HmscdJjlSSzUpViwCrWLQ8wPwKZ25qUtCa1XAihVVRlE/0o9JJbVPyAM6l2gBvbdYDbkzp+gip6OE4tsVQBvOmAsNQelzMXIaVKtVMVHrmNRnhzPaFoTnO/cU0dGfm9rLQ3nvNjHatI2kqg4zXwkXpcteIYfUgwgjZq2vxu38SdIxkFpPKQxbdvCpeYsHZPZmLCQe5NrNvEGVbDeAixxNz3+Ur5r66ohsbMBWjY2rtFb2Avx/wLG4EgLvJePmZR92oDTup36t7x0/znaHzW9AZFPdCJOvHkuOxdFG1b+xhwhJ87AUkvevcuwJPg/aRztz+NdxR/ff4r51+UwwMFoEzlqwAAAABJRU5ErkJggg==" alt="" / decoding="async" loading="lazy"><span>Garchomp</span><span class="ctr-moves">Fast: Mud Shot<br>Charged: Earth Power</span></span><span class="counter"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGAAAABgBAMAAAAQtmoLAAAAMFBMVEUAAAAQEBBSKQBqamqDUkqcAACsrKy0g0rFlADNpGLV1dXmKQD/eyn/zQD/5pT///8TnC8uAAAAAXRSTlMAQObYZgAABKpJREFUWMPtlr9rI0cUx3clI670SIuOUwSOhGKhO9uxWLKBTUCWGBCuQjjuD5AXpnBjvBgGlec0qgxaDLopNwoOTArhpFw355QWhOvcOMVV5yICsyHFNpM3K9lnsmt5XV7wK4zFfD/7fux7b0dRHu3R/h/2+QP1T94rCsYbifUbT94vYOYkd4APzmuMJQ9rY/OgV2PUTkzgN3/1atRuo4T6hcGbD7192rbflRPpewsMgNfUXn1HExEH+/TgvFcur168bici1j6UD3r7FxcX5xpuJfGwOpkc9EDf6yENJylU6s/JRMp7yDtuZhMAEP1EPh55npZEr6x4pbXzH9AfL7wSThASqafOlt6em8Xiyvi0jJv36jmvr3y5pAd62TsZj8uL9+gzQnB+ctoQIvjG87zx+L6QdkD5y/g3ATb0Tj3v5DQBcHLWELoQ/xTPXnhoTpnS60qGSCA7bvhlXQLHc9s17Wd2gpHMYQWAV+YRAHNrlBaQaggUzasvXr0EoILnFqnhgzzgEnC/elknxTNtLpApCHM0Aj3Z+t0dfv+3UfS0ue9tpzDyuQ560nnb2UVa/lsvO6+9M2LIhdkwjwhBY/SU7uU/+7WP58SUES4f+Q0fgKcrx02E+v3jwzuzTuvrEgAXwgCgqGHcYv1jdmcSqvB10+U50x9dEePZLpYAy7K7ZzQ3AoQv+SYXuT5jgxBgrIVpfEwZXuBC6IbwC9ztS+lei00uWZ/eATSEa3JwwiVRkgBzJpPJHQBkvCM4EFxsS+LHG+ASgJiBaARDaAkd4pc28jdDoDYDdmOaTkBT+0Eo5z/hw1oIrEmAVWMAMwSEHjrA8PiPwCQWKEggEOIqx3E7DOYWUKF2BMiPAi74KHCZRsNs2XUOlxKIlknls+inQgkMQj8T55Jp7Wq0TNPq8GczAKSH8q8jUQ1XY8oU6o9ugEPW+ghUmvFAPU822U1MVdZlznINGK3URJHlkhZ8qKidUCyjdxy6uckcAoCj5f67adJDaCS+rihoGk6XHdoOrVWYw7e2nGVkrEdqBEuOQ+nUELDbdI9WqV2tORDoMskZVgSQq2VRSX8dRmTD6LQppVXbloUgOd2KvGg4cOH1/dwFPa0AUKXS8nybGx1dj2xL1eTDRUUlQ9pltIyAyEKLIpQbbvN6R69Hv0EqkhkQDg+25a8K0nWDk3qHDHNI13D8jSNFtofV6bCodQjS0uuLhgsBQUqxxELe4i6qTwGdWLpeVwwk9RjH3mqqu5ZOyBRAsJokoCqhHqoWXU6p7iCnS5EEcA48yMTg39Aq0UWQYoMmEOGB1oIaadPBqYRAMw6gFNapMgXC9xACsDIruJTvRHNmdEBni1drdQfXQArjEs5bUWCTgWg2vRpMQ5dOF5LaauW1eICxa0CVS2AwA1Bz27U6i9GIYGqul5wEoEtmfH77KNZB7XnFmUlS0lu3ujf9pKsG6cQUyfF3gufV6QEMZs2xt3Zvt1qk/74TQ+G705NU1kH9AjfmfqKXAiuwyEySQtwcicCdewsgHdK5GRV1JCzYznNd1NGtUAEIGkfGfXer27swIAbJPwBQDStvIeUBpiK0qDzao3269i8okYiIL+b1qwAAAABJRU5ErkJggg==" alt="" / decoding="async" loading="lazy"><span>Entei</span><span class="ctr-moves">Fast: Fire Fang<br>Charged: Overheat</span></span>
-          </div>
-        </article>
+          <p class="ti-weak">Weak to:</p>
+          <div class="weak-chips" role="group" aria-label="Weaknesses — tap a type to see Pokémon you likely have"><button type="button" class="weak-chip" data-boss="zacian" data-type="Fire" aria-expanded="false">Fire</button><button type="button" class="weak-chip" data-boss="zacian" data-type="Ground" aria-expanded="false">Ground</button></div>
+          <p class="cp-note"><b>What CP means:</b> CP is a Pok&eacute;mon&rsquo;s power level &mdash; higher hits harder and lasts longer. But type matters more: a 2,000 CP Fire-type with Fire moves beats a 3,500 CP Pok&eacute;mon of the wrong type. Aim for level 30+ (around 2,000+ CP) with the right moves.</p>
+          <div class="catch-gauge" aria-label="Catch CP"><div class="cg-label">Catch CP: 2,100&ndash;2,188 &middot; <b>2,188 is perfect</b> (2,735 weather-boosted)</div><div class="cg-bar"><div class="cg-fill"></div></div><div class="cg-cap"><span>2,100</span><span>2,188 = perfect</span></div></div>
+          <p class="party-title">Your raid party &mdash; tap a type above, add the ones you have</p>
+          <div class="party-grid" data-party="zacian"></div>
+          <div class="picker" data-picker="zacian" hidden></div>
+          <p class="ti-detail">You catch the Hero form &mdash; it needs Iron Head and 1,000 Crowned Sword Energy to become Crowned.</p></article>
 
         <article class="today-item">
           <div class="ti-head">
@@ -609,13 +662,14 @@
             <span class="ti-live">LIVE</span>
           </div>
           <p class="ti-why">A legendary shield is in raids all week &mdash; beat it to earn Crowned Shield Energy and catch its Hero form!</p>
-          <p class="ti-weak">Weak to: Fire, Fighting, Ground</p>
-          <p class="ti-detail">You catch the Hero form &mdash; it needs Iron Head and 1,000 Crowned Shield Energy to become Crowned.</p>
-          <button type="button" class="ti-counters-btn" aria-expanded="false">Bring these to the raid ▼</button>
-          <div class="counters">
-                <span class="counter"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGAAAABgBAMAAAAQtmoLAAAAKlBMVEUAAAAQEBAQSnspc5w5OTlKnO5aWlqDg4OkMTG0tGLV1dXeQUHm5pz///8VBgWrAAAAAXRSTlMAQObYZgAAArJJREFUWMPtlj1P21AUht8bLOZ7iePQjyEfZK9zCLMjjCMkFrAOXXExJ1I7UQXfH9JIVSTGSpUq9Sd0YETyzNb/0gFos9S+ltotZ7N0Hp97z9d7gY1tbGP/3noN/Vtn/xMYAGixdgc6PWDSCDgDRtzg1p20hwGHDYBDjb2jBoCKw4ZAvhcPD5sA40RG1ABAZ37FfNAgr4FlZvGd/b23BfO5ZJHzHeY3fC6Sxa6EsjeFBCJ+7Hoka2X3QcR3DTGzxe6rBwnjeOoc4MMPuQz9RJxSm1gRkUvyfXEDApFLIiJ/KpI5JckQ7R9SP3YFPDGmTX3tx4FjhESSwVBDxVOpTdO2ADCx+UR3GkYbXTs6NgKgyuOT+0ff7YtKoFvMcgDBcVne3mkAXndRCfg2y4Fta27LpWQAkkURVXZdnmnAu/75tZwVfQBdG1QC8yKIAE9efik/f9wHVDGrLnZiJAKGQfa6TN5RBGWv8+o2EsmBYeiXZZKNIi/pFvlFdZFFolbaU+X9UnfODhOR91FN412loxDqdhlB8bmIfH+orlxwxazxYrUEMDoQyeJvFzUEh3gCOnxgNOrmVJke1Gq10oCaGtdFdnufZA0Wny8nJyL9R2LrTa3/+ExykZxPAQCTWnXcYo5F8iNm/fhVp10T5tT4xJyeAq0R07hGoJk5JZowc4jWiMkFICJmTtOdIZEhqj7T8BGYMKfUJgph6oF0bGjCTNSmUAPtGoCYqLdDzEThoAdAVZewRUTUQ3tC5KiLbaIBoIbOgDJGA1BEfcd2ehIesyOOAqSehCdpCigR1yPp5wF3CuHlz0PpSe7y/9lvUfBcbuFb+2f9BvPiotY/t9drjxRbVMdQi8LabF2x7aLmLZbbtXWh7Lyw1eU2Zl3WvPnCJg3WDRDkMm3iD2VMhI1tbGN/s18skLK6BJB3WQAAAABJRU5ErkJggg==" alt="" / decoding="async" loading="lazy"><span>Lucario</span><span class="ctr-moves">Fast: Force Palm<br>Charged: Aura Sphere</span></span><span class="counter"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGAAAABgBAMAAAAQtmoLAAAAMFBMVEUAAAAAaqQAxf8YGCAYUmIxMTk5c4NSlJxiYmJ7IACUzdWkKQi0tLTFSkHm5ubucxgPDG9MAAAAAXRSTlMAQObYZgAAA9hJREFUWMPtl89rG0cUxwU6iZBL8xeU0vuCMMhQyYdeSiAEahat1ChX/QF2ukG3YBYGsZFVVB+WZOpTLLMng+nBCNGDKWxhES1rQwYx0aEXGZS5iFKLIKbv7eqHo65mnXP8DjpI389839t583aUSt3FXXzO0el0Tj5Jzvkn6O+BnLP11v/Td0HPm2uADOcrRCbUs7X+dJWgXA2AxUdEJtSvzWgmaK4aKIBQwVYNkoDl7/SWQGThLAyYYptov8touGKGzQwcNXBZYWehgjYRYPSylACUGMOkM7yJGR1ULn9QAhkAOOZE+3OgqwYg5VcMJGddLQISikYRhSKghzQ6kJINbgP0abDJ+9qhDCPhsSLAD4xz1s3NAKkGfuWsc2pYm5R/sz8DZBLAc4TscX46nAMTZUoDGhAI2m+N0OI6CRjIVzkLgIoTiH055WQ/AZATbhgAlHggvOm79wj8qQDuy3E/BCoADN+JAdbQVO2DHDNikBdfVVhLDMX7pJpTaTn+CYAvH5ToayEa4irBIJXaGv/1HXnxxQblBdFrXA0SDMBi6nxNvn9Q4i0xEkMfdhs2XzUXO07+QN/eoKwghBj+AduMzbHuOXW6Uk5PA13f7qJeiK1QD1/GD+NO1Gv5DX0zQLkv8s6sOz7EEfdQDasFre2ryEAs+k9+iNkz3CQCH4VfCn+jetQT2H/TcPPkSaxeQieMCZZLenOLt/uxZfBonWsEngpB4AMRL1wjNilnkS7mr+thUiN/L8wyjP4KEZ3I69/GpCHmYZ/LG3Gy2ndzwMKUerDTI8/fugFM+3EWsqE/hZqxkIYPGb1cAk4q1sITsxpgfTBYABMn5rhB2PYQiYLwfc/3ljVMYro8jcTUtnsj4T/xIexlCZPYU4HEW5DB4kYE5OfTbM0pSmc3X3soJTpi5FxOol1orR8bxeeeb3sWAt7xHpwftT7zT/2N5T8hln7s26T9rUSLcVYxZv51DeN3i+jFtm3X249x9aymONKHD9u6rhuWXnPt524IqIfGofkMxphl6a77rOyaycBF7Q2OYr1Yc/X6kfkY2l05ZjIXrhECbrvmutVdOAxTpgbKCFhlF4gjE4CX/FaAe1x2j0zzEdd5EuDCQyJF16q71epu4k0jRS/a4GBARkdVc/dRCJypgRpmZN7Qc+VjpbwMQNH9sWru5FF9oAbgtf4QgHK9be5otwFgsv+MDxX1qXR0WVIUncZrALxzrbYZ9lt+cYG7v54ItBzRd6J2Ts8I1gzWesDKObKt3bTE0JTvLGv5c8YJkUD9ktv7eOQ62WzC/V+7+4N1F59x/AeLHO9486NA5QAAAABJRU5ErkJggg==" alt="" / decoding="async" loading="lazy"><span>Volcarona</span><span class="ctr-moves">Fast: Fire Spin<br>Charged: Overheat</span></span><span class="counter"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGAAAABgBAMAAAAQtmoLAAAAIVBMVEUAAAAQEBAxMTFBKbRaWlpzUuZ7i4uspPbF1dX/5iD///8PDqonAAAAAXRSTlMAQObYZgAAAmNJREFUWMPtlb9v4jAUx+2kt/tZ4sTYZx2i7ZQbsvdQJRiPRtXtpxtuLaJyVxASVkc2dib+ynsvDgFaB0ilSDfkSSgJ9sfv+37YFqK11lo7a0nN+fHPpoE0aRzImgbip6QukNUFarr4DFBPU9o0QIoaBtLPAMl/AiT7oGsDlwWd1S1cFgwiri7YDoh/1QZeDjR9CSUgPtqZeyC5DEiPgDiUgPRwK8dPtgDyIzAMJHlyCqBjO96ZBwJV9P8VAEh8xjGU65wC8odGHKOBA8dJoN38SI8f0pCheu84AOjHHBCaABBngCyfiPzxMJra4fS+TNs54GHhhnb6OlMl0MsqDi7JwJUbLRlwP3brdMy4EqBVR5utHVo7dAtVpK1QGjoaAcTV22a7sTkwK4B8nWOL0g57BWPU17e7HOi/utF9+lgByO894AEA03V328kOoDxzevVHwLBMjQMBfwc3SwbMiDRRQXiy/th7mrySZyPkn9sVA5P1N7fQDNBKWAmgkr/Xq/nE9m/XqwKgkQAgDf2QRDHArcTAzFBUMgywTJqNuST2wJJmyOGSpiBw7QHT3QeN6NeJQoBkIKKadp0HKK1oFAERRkoEg9BoJCjpbpwH5gvNSY2MDgFcZbzml+7U2T4Bbq4kAKrIYPgUo0Hva+CWfTshRXlsqI2qOPd2LQNAmiYzyL+krnKwB7ilAHQxT+pKQOyGoDwERLBVD1zAPgHq3SphFwVB2YEyeeoEwBFy4tmDNn4+nryBJMtH4O1Br0j7CdWZS4vEKN/tAqi5QV12UftiyTKSC4EaJlE0DAglWmuttXP2D4I/qkNbLn3YAAAAAElFTkSuQmCC" alt="" / decoding="async" loading="lazy"><span>Chandelure</span><span class="ctr-moves">Fast: Fire Spin<br>Charged: Overheat</span></span><span class="counter"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGAAAABgCAMAAADVRocKAAAAMFBMVEUAAAD///8AQZQHIUUQEBBoVRlzGg19dnmvJxS+trfZkTfeSB34+Pj8/Pz+4lr+7qDz17aYAAAAAnRSTlMAAHaTzTgAAAL3SURBVHja7dXRbuM4DIXhtXgsmhKrvP/bro4ZR4uFOwO0zF0OipnYF/9XQQH6zx/22Wefbd9M59YD5j+JAOvujtej5wJn3Q2rnwpE3k3XcyoQeTfDymcC7D0IPPvmuYDO/Hg8D7A43XKA6I/nAeqLcyQCg0UCtVcLLg9YB0CtvSufHsnAOIGZnzM+RT8TeER+HSARAAFnPoDVTwFUwTuofbTO2SP6lgY4zL32J6B+9XUuBzDYBBr7BKKv6u4pANyb8QCdmw7zFsiWBbTa24j8mIA5p5pyBxTamOHRmGd/5VMAhbE7iLz6qpjLAeAUYt3U4wrOIQlwPQbXjv6lxfw5IO0OcPAWWv/qX8XiAMp8ErABbq2Z2/Flxd2BqKcBG9x797nCfsRTAQrqbutms4ENqrr62QAH2PXNEXkHIAWAKfhJNkE2IKUIzAznJynZgEoR4z07CJTkE7Bf4JxJ4ZB6B6ouBeXsFwJmqYC6n0CZ+ULAJqR5gPoFcDYB5zQLUA+giLHPjx5CDsB+CHBj+l0AyvXJxC4hAwCTptjwAoBswBVxlBi2S0gAQrAFRBeZgJ3C6pNTWBoQvy3EXn0RmGkICUAIkBKClXIC8ERA3aWsUQgAKYCqm02gR53/HQeFJEDdzWrvpfdnv/d+QOFuOYCqoXaO/WuAW9a3CNGn0BfgZsgAuNrXFqBpQO33ALZ3Ah3IBo5aj77WRhIQfQJHBeoSRkM2cGDDzRFSgf8KyUD0NxzrCAAygL2+gFN4ARUtA9hH2/foRw8nON9VPmcAo4199uuOeAPUg2/3NIAxrl1C2wfXku6gsRW5CxjnKCYAInEIxpZwngpbDiD7HrElzBcikgZcqTWIlJIFlLKAJZS5NICl/0/eDSATkO1mkgjgDgDhBOC+H0DBWwH5LVBrFZHyJ0B+A5x/4mvhvrmDOfwcYP+g8D1Q5/Ab4DqC4L7PX6HWnwKovZ4AcH+AOvP8wU/vANxdfQH8+TnwtyEAZANr4P5+yZ999tm/Z+0+V1TFo8MAAAAASUVORK5CYII=" alt="" / decoding="async" loading="lazy"><span>Cinderace</span><span class="ctr-moves">Fast: Fire Spin<br>Charged: Pyro Ball</span></span><span class="counter"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGAAAABgBAMAAAAQtmoLAAAAKlBMVEUAAAAQEBA5OTFaOSBqamJzKUFzMVKLalqLi4OcSoOsKUHFarTFnHP////hI5OHAAAAAXRSTlMAQObYZgAAA9RJREFUWMPt1r2P4kYUAHCzK21aBjgMwUXWoqC4AmIp29DATeEmxRXbXHVcsQhxRQzSTkMDcjEtWyBZV12xDR27ElI0aQgRLvKqVPlz7g3+Zs0tltKFkfDK9vw87z3PzFpRzu3c/neNNbP1/wG22UA7O4B8lv6X8N8D9lsCTMDNZ6rKDbP8G+xokrHC54gagAk0U6NBEA1xqQFYXr8cwBj/GAfRNGWSUZaaPFP3WSFwDTwayYqMsUsb/CCUnuwPG3DvPl7JscaGlggYXyrDKypsvPO7/QAA2p2zqKngWowlgQYbowiETbyY7lYMe+Nv82XdEypjmD+LZ4ghVfiUlPQJFPHsSqyAMWk268+1ZwQF/ZoxKwauCec2pebb/bhD0fYiYqBB7bnFLM47CXDBGyHYNq+EUCey//gtaBuhNkgFb6qsECURAAO2KH4RovXhsWhY/6oYlChwvGvTDuHaIXg3kZWFoVj/uFx+3fz6D4LhauQBSrm2jcBMgo4spAS9D8vlsli6lrp4FHAJXA9g/0etVQQXekC8px0AWwLaBgKwE2sc4fFWvrvtTgO3kga4KUGHsD1Y3WLD7poEEAGWj4Atganiu96ItXhze/seSLvd3gNv+COAMQlWb94XDQxpsltp24rpAzUdWAie3Yn3rjdiRfhxwCVgtbUQGtD99Eb9lA7MCFTX4vfeXxxFWQ73wPlrwBk4fZyNlAz6lliEwFStWFl5BCwJBhXe6iNwFg8y2ldB2alMq/37BQ73yQ5HaL0ARQnG1YVTnveqDj6/j8AMQfMFyBs3bNzMLZz5nN07+PxFz/nkJ0jNovISKJcGPqY6mC8wsrn8OQ9+zamZjwEzAN7WVXYwG3koO1W/SnoC2LMEUHLVOSYvD2TugS6tp4DoktxZmTWXJSikjcDrBwB3HgQLBK2L8MXlk0nbSYC7/b3TZywf3HwVqAyGGcDVR9wyBLjMCAFPANvEa43o0mDuLQiX/ZwOZnYC5MRnD8DuKR1w3aZdMwUMjgGeAJe1tQ+GT368CWCbh2D3hw/+lpPPTB+hFIEbCNufcv2kARoHKgvBKC0HGRLt1ONgEpR1dCxpWkoAnHaEyBU4CneN74Gc7O9N2hGmkAq6iSqpjHhSHdn2CQCXdkBHtr+mZwegTjshyG1dEtARb3ggNtNyEhBCohFI0F/Bf1mzxiFQKthf16+7aR9U/hKl3VgOSq4yvdB/UkjaZ1SwHjpxgPU7+qEWgBI/8ZPRB4RmA3o3GyD0dIA1nxK9VDoZYF0LWPISnZ78jUwUXVfqGYBf+Lxybud2bi/bN3va5IUO3LsJAAAAAElFTkSuQmCC" alt="" / decoding="async" loading="lazy"><span>Conkeldurr</span><span class="ctr-moves">Fast: Force Palm<br>Charged: Dynamic Punch</span></span><span class="counter"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGAAAABgBAMAAAAQtmoLAAAAMFBMVEUAAAAAAAApICApKSk5OUFBOTFSSkFiUkqDg4OLe1qkajm0pIO0rKzezaz/iwD///84ZDZtAAAAAXRSTlMAQObYZgAABBxJREFUWMPtls9r22YYxyUnNeTmt3Uit/ZKkjJ0yQpGvo3BFL+HHnSxQew6X0SL1oNczHscLsG8B19yGYTSf2CMgmkxFJFDShlaeS9ZR6CY95DzwDDYH7DneSU5NHodvMtg4OeQyPLzeb7PL8mvYaxtbWv7f5lJ/qX/to9EiVRWBGzf9yvGvs06qxFfDgDo7jPGBisRJYYA+sNFZ5WEGITvMmWY2o1WQQHWPRB2DtwgAY0pRSgwOBDvWA4slzDhq1IfANIXKNDfv00sP5egReA2AqxSYlYNBfoHJBJDkknQpCi0DbHsFEhs8D/7btAQCVHApigCpq+A3QdNFj1Hf4sBIATBnMYiOSoKQCyLPWu5LNpn6M98BATZrmxSmgyLAiBhsRZ1GbP66J8BUIgnhKsFutYzSg/BNbLYFZAa0exbZ9tqUQpz2LNYATjTAHuR1XKpxXLLgA+/qH+ft+kW7FnXZA+oXUWgY6nNU8DPry6XANDVSAFdUnuudlv5z+fzhhhfz+kWJLAHwCGLGKlxvgA+zBFICkXAisJE7T60qHv2hqvl8xF4Bf6XIinkBMAAd++QdR/+Jb0UaOQCmNH1ImwFMLv/8P7fANhZzamAHojU369+/FPKPxTQWQikwPUiELC6L6WUpwrwO2MlQC61o1PA1u+nKfBOZTQW98FfSWhmbcPDtnVxIRUwRAFozdn8Xt7VIsB2jbJ8ioB8Y6HAe3BCfyK0gKmAnwLIKQYAhoAA5jTWA4a1axh3pbx4EscTaFFDeOgE8T1xpID3158I6LMJ4eMwdpkP6+Gpx0AIj6dA8q3mXVOP0axBh3OePw21mwATiGlgdep0ASQgpgbHK/qfEhIeR3fjmFI3B+gjbzlgPOLhpB6/gMQmKcCr8aSKID/SApt8BO5vr4BhHFcMD4HhEoCH4H4ChCoiGcY90AV/rs8JgFEIGZ28yIHekbq7DIAi+BCKjt+eHCuA13JgNNEC0EU+JGoejRSA/oePOQ9CPbCDwahLsrKBRmDagxtaoCyDgOxAY3pkp4cCqjmhUuzpATmLsZNoHgCjEK7L6D+takctcQFTwLwIeiTE63IQT8lj7SC8L1Cht4BnCi6PTidcPznv6ScIm2bUXKiVR/J8KTD7IRvRBlVq+MtQDuVMn9JmIGUjyQB3JD8Rgh/wZRJPn2hGDW+BWSNTaLm/yvNEfXj50XEWvfvMnG/kbEqCSQr8Js8FAlsfW23a1AEObWOkdKbOTqiA742tFm3RNikCGxS+IDlg1CG/AHfOxPtt5+sCAHcpdeoZYMY4BxJmgOMUT4KoTJ1m3EsH/dohd1KakDuEaE6OG1VUdrK5bbRotd2s65f06qVxFSlNsFk/XvU0CscIAJzmqodR6LELCa58eEWCaCtd29rW9l/aPwDo1Yb+M9CxAAAAAElFTkSuQmCC" alt="" / decoding="async" loading="lazy"><span>Terrakion</span><span class="ctr-moves">Fast: Double Kick<br>Charged: Sacred Sword</span></span>
-          </div>
-        </article>
+          <p class="ti-weak">Weak to:</p>
+          <div class="weak-chips" role="group" aria-label="Weaknesses — tap a type to see Pokémon you likely have"><button type="button" class="weak-chip" data-boss="zamazenta" data-type="Fire" aria-expanded="false">Fire</button><button type="button" class="weak-chip" data-boss="zamazenta" data-type="Fighting" aria-expanded="false">Fighting</button><button type="button" class="weak-chip" data-boss="zamazenta" data-type="Ground" aria-expanded="false">Ground</button></div>
+          <p class="cp-note"><b>What CP means:</b> CP is a Pok&eacute;mon&rsquo;s power level &mdash; higher hits harder and lasts longer. But type matters more: a 2,000 CP Fire-type with Fire moves beats a 3,500 CP Pok&eacute;mon of the wrong type. Aim for level 30+ (around 2,000+ CP) with the right moves.</p>
+          <div class="catch-gauge" aria-label="Catch CP"><div class="cg-label">Catch CP: 2,100&ndash;2,188 &middot; <b>2,188 is perfect</b> (2,735 weather-boosted)</div><div class="cg-bar"><div class="cg-fill"></div></div><div class="cg-cap"><span>2,100</span><span>2,188 = perfect</span></div></div>
+          <p class="party-title">Your raid party &mdash; tap a type above, add the ones you have</p>
+          <div class="party-grid" data-party="zamazenta"></div>
+          <div class="picker" data-picker="zamazenta" hidden></div>
+          <p class="ti-detail">You catch the Hero form &mdash; it needs Iron Head and 1,000 Crowned Shield Energy to become Crowned.</p></article>
 
 
       </section>
@@ -1568,6 +1622,251 @@
           item.classList.toggle("open", opening);
         });
       });
+      })();
+    </script>
+  
+    <script>
+      /* ================= MY RAID PARTY =================
+         Build a raid party from the Pokemon you actually own.
+         Tap a weakness chip (Fire / Ground / Fighting) to see the Pokemon
+         of that type the family is most likely to have, best first.
+         Tap ADD on the ones you have — they join your 6-slot party, saved
+         on this phone (localStorage, per raid boss). For each one, enter
+         your CP to check it against the level-30 guideline (around
+         2,000+ CP with the right moves) and edit its moves to see which
+         TM would fix it. Movesets verified Nov 10-11, 2026 from GO Hub
+         best-per-type tables + raid guides. CP is a guideline, not a
+         precise per-Pokemon threshold — no source publishes one. */
+      (function () {
+        var PARTY_DATA = {"zacian": {"boss": "Crowned Zacian", "weaknesses": ["Fire", "Ground"], "catchMin": 2100, "catchHundo": 2188, "catchBoost": 2735, "types": {"Fire": [{"id": 643, "name": "Reshiram", "f": "Fire Fang", "c": "Fusion Flare", "r": "rare"}, {"id": 485, "name": "Heatran", "f": "Fire Spin", "c": "Magma Storm", "r": "rare", "cAlt": "Flamethrower", "tm": "Magma Storm needs an Elite TM \u2014 Flamethrower works with a regular TM."}, {"id": 637, "name": "Volcarona", "f": "Fire Spin", "c": "Overheat", "r": "plausible"}, {"id": 609, "name": "Chandelure", "f": "Fire Spin", "c": "Overheat", "r": "common"}, {"id": 815, "name": "Cinderace", "f": "Fire Spin", "c": "Blast Burn", "r": "common", "cAlt": "Pyro Ball", "tm": "Blast Burn needs an Elite TM \u2014 Pyro Ball works with a regular TM."}, {"id": 146, "name": "Moltres", "f": "Fire Spin", "c": "Overheat", "r": "rare"}, {"id": 257, "name": "Blaziken", "f": "Fire Spin", "c": "Blast Burn", "r": "common", "cAlt": "Blaze Kick", "tm": "Blast Burn needs an Elite TM \u2014 Blaze Kick works with a regular TM."}, {"id": 655, "name": "Delphox", "f": "Fire Spin", "c": "Blast Burn", "r": "common", "cAlt": "Fire Blast", "tm": "Blast Burn needs an Elite TM \u2014 Fire Blast works with a regular TM."}, {"id": 555, "name": "Darmanitan", "f": "Fire Fang", "c": "Overheat", "r": "common"}, {"id": 6, "name": "Charizard", "f": "Fire Spin", "c": "Blast Burn", "r": "common", "cAlt": "Overheat", "tm": "Blast Burn needs an Elite TM \u2014 Overheat works with a regular TM."}, {"id": 244, "name": "Entei", "f": "Fire Spin", "c": "Overheat", "r": "rare"}, {"id": 136, "name": "Flareon", "f": "Fire Spin", "c": "Overheat", "r": "common"}, {"id": 59, "name": "Arcanine", "f": "Fire Fang", "c": "Flamethrower", "r": "common"}, {"id": 229, "name": "Houndoom", "f": "Fire Fang", "c": "Flamethrower", "r": "common"}], "Ground": [{"id": 645, "name": "Landorus (Therian)", "f": "Mud Shot", "c": "Sandsear Storm", "r": "rare", "cAlt": "Earth Power", "tm": "Sandsear Storm needs an Elite TM \u2014 Earth Power works with a regular TM."}, {"id": 383, "name": "Groudon", "f": "Mud Shot", "c": "Precipice Blades", "r": "rare", "cAlt": "Earthquake", "tm": "Precipice Blades needs an Elite TM \u2014 Earthquake works with a regular TM."}, {"id": 445, "name": "Garchomp", "f": "Mud Shot", "c": "Earth Power", "r": "plausible", "cAlt": "Earthquake", "tm": "Earth Power needs an Elite TM \u2014 Earthquake works with a regular TM."}, {"id": 530, "name": "Excadrill", "f": "Mud-Slap", "c": "Scorching Sands", "r": "common"}, {"id": 464, "name": "Rhyperior", "f": "Mud-Slap", "c": "Earthquake", "r": "common"}, {"id": 473, "name": "Mamoswine", "f": "Mud-Slap", "c": "High Horsepower", "r": "common"}, {"id": 623, "name": "Golurk", "f": "Mud-Slap", "c": "Earth Power", "r": "common"}, {"id": 553, "name": "Krookodile", "f": "Mud-Slap", "c": "Earthquake", "r": "common"}, {"id": 450, "name": "Hippowdon", "f": "Sand Attack", "c": "Earth Power", "r": "common"}, {"id": 232, "name": "Donphan", "f": "Mud-Slap", "c": "Earthquake", "r": "common"}, {"id": 76, "name": "Golem", "f": "Mud-Slap", "c": "Earthquake", "r": "common"}, {"id": 260, "name": "Swampert", "f": "Mud Shot", "c": "Earthquake", "r": "common"}, {"id": 28, "name": "Sandslash", "f": "Sand Attack", "c": "Scorching Sands", "r": "common"}, {"id": 423, "name": "Gastrodon", "f": "Mud-Slap", "c": "Earth Power", "r": "common"}]}, "prefill": ["Chandelure", "Flareon", "Arcanine", "Garchomp", "Rhyperior", "Excadrill"]}, "zamazenta": {"boss": "Crowned Zamazenta", "weaknesses": ["Fire", "Fighting", "Ground"], "catchMin": 2100, "catchHundo": 2188, "catchBoost": 2735, "types": {"Fire": [{"id": 643, "name": "Reshiram", "f": "Fire Fang", "c": "Fusion Flare", "r": "rare"}, {"id": 485, "name": "Heatran", "f": "Fire Spin", "c": "Magma Storm", "r": "rare", "cAlt": "Flamethrower", "tm": "Magma Storm needs an Elite TM \u2014 Flamethrower works with a regular TM."}, {"id": 637, "name": "Volcarona", "f": "Fire Spin", "c": "Overheat", "r": "plausible"}, {"id": 609, "name": "Chandelure", "f": "Fire Spin", "c": "Overheat", "r": "common"}, {"id": 815, "name": "Cinderace", "f": "Fire Spin", "c": "Blast Burn", "r": "common", "cAlt": "Pyro Ball", "tm": "Blast Burn needs an Elite TM \u2014 Pyro Ball works with a regular TM."}, {"id": 146, "name": "Moltres", "f": "Fire Spin", "c": "Overheat", "r": "rare"}, {"id": 257, "name": "Blaziken", "f": "Fire Spin", "c": "Blast Burn", "r": "common", "cAlt": "Blaze Kick", "tm": "Blast Burn needs an Elite TM \u2014 Blaze Kick works with a regular TM."}, {"id": 655, "name": "Delphox", "f": "Fire Spin", "c": "Blast Burn", "r": "common", "cAlt": "Fire Blast", "tm": "Blast Burn needs an Elite TM \u2014 Fire Blast works with a regular TM."}, {"id": 555, "name": "Darmanitan", "f": "Fire Fang", "c": "Overheat", "r": "common"}, {"id": 6, "name": "Charizard", "f": "Fire Spin", "c": "Blast Burn", "r": "common", "cAlt": "Overheat", "tm": "Blast Burn needs an Elite TM \u2014 Overheat works with a regular TM."}, {"id": 244, "name": "Entei", "f": "Fire Spin", "c": "Overheat", "r": "rare"}, {"id": 136, "name": "Flareon", "f": "Fire Spin", "c": "Overheat", "r": "common"}, {"id": 59, "name": "Arcanine", "f": "Fire Fang", "c": "Flamethrower", "r": "common"}, {"id": 229, "name": "Houndoom", "f": "Fire Fang", "c": "Flamethrower", "r": "common"}], "Fighting": [{"id": 647, "name": "Keldeo", "f": "Low Kick", "c": "Sacred Sword", "r": "rare"}, {"id": 639, "name": "Terrakion", "f": "Double Kick", "c": "Sacred Sword", "r": "rare"}, {"id": 448, "name": "Lucario", "f": "Force Palm", "c": "Aura Sphere", "r": "plausible", "fAlt": "Counter"}, {"id": 257, "name": "Blaziken", "f": "Counter", "c": "Aura Sphere", "r": "common", "cAlt": "Focus Blast", "tm": "Aura Sphere is best \u2014 Focus Blast is the regular alternative."}, {"id": 534, "name": "Conkeldurr", "f": "Force Palm", "c": "Dynamic Punch", "r": "common"}, {"id": 475, "name": "Gallade", "f": "Low Kick", "c": "Sacred Sword", "r": "common", "cAlt": "Close Combat", "tm": "Sacred Sword is best \u2014 Close Combat is the regular alternative."}, {"id": 68, "name": "Machamp", "f": "Counter", "c": "Dynamic Punch", "r": "common"}, {"id": 297, "name": "Hariyama", "f": "Force Palm", "c": "Dynamic Punch", "r": "common"}, {"id": 286, "name": "Breloom", "f": "Force Palm", "c": "Dynamic Punch", "r": "common", "cp": 1500}, {"id": 979, "name": "Annihilape", "f": "Counter", "c": "Close Combat", "r": "common"}, {"id": 214, "name": "Heracross", "f": "Counter", "c": "Close Combat", "r": "plausible"}, {"id": 454, "name": "Toxicroak", "f": "Counter", "c": "Dynamic Punch", "r": "common", "cp": 1500}, {"id": 865, "name": "Sirfetch'd", "f": "Counter", "c": "Close Combat", "r": "plausible"}, {"id": 62, "name": "Poliwrath", "f": "Counter", "c": "Dynamic Punch", "r": "common"}], "Ground": [{"id": 645, "name": "Landorus (Therian)", "f": "Mud Shot", "c": "Sandsear Storm", "r": "rare", "cAlt": "Earth Power", "tm": "Sandsear Storm needs an Elite TM \u2014 Earth Power works with a regular TM."}, {"id": 383, "name": "Groudon", "f": "Mud Shot", "c": "Precipice Blades", "r": "rare", "cAlt": "Earthquake", "tm": "Precipice Blades needs an Elite TM \u2014 Earthquake works with a regular TM."}, {"id": 445, "name": "Garchomp", "f": "Mud Shot", "c": "Earth Power", "r": "plausible", "cAlt": "Earthquake", "tm": "Earth Power needs an Elite TM \u2014 Earthquake works with a regular TM."}, {"id": 530, "name": "Excadrill", "f": "Mud-Slap", "c": "Scorching Sands", "r": "common"}, {"id": 464, "name": "Rhyperior", "f": "Mud-Slap", "c": "Earthquake", "r": "common"}, {"id": 473, "name": "Mamoswine", "f": "Mud-Slap", "c": "High Horsepower", "r": "common"}, {"id": 623, "name": "Golurk", "f": "Mud-Slap", "c": "Earth Power", "r": "common"}, {"id": 553, "name": "Krookodile", "f": "Mud-Slap", "c": "Earthquake", "r": "common"}, {"id": 450, "name": "Hippowdon", "f": "Sand Attack", "c": "Earth Power", "r": "common"}, {"id": 232, "name": "Donphan", "f": "Mud-Slap", "c": "Earthquake", "r": "common"}, {"id": 76, "name": "Golem", "f": "Mud-Slap", "c": "Earthquake", "r": "common"}, {"id": 260, "name": "Swampert", "f": "Mud Shot", "c": "Earthquake", "r": "common"}, {"id": 28, "name": "Sandslash", "f": "Sand Attack", "c": "Scorching Sands", "r": "common"}, {"id": 423, "name": "Gastrodon", "f": "Mud-Slap", "c": "Earth Power", "r": "common"}]}, "prefill": ["Machamp", "Conkeldurr", "Lucario", "Chandelure", "Flareon", "Garchomp"]}};
+        var SPRITE = function (id) { return "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/" + id + ".png"; };
+        var CP_GUIDE = 2000;
+
+        function esc(s) {
+          return String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
+        }
+        function findMon(bossKey, type, name) {
+          var list = (PARTY_DATA[bossKey] && PARTY_DATA[bossKey].types[type]) || [];
+          for (var i = 0; i < list.length; i++) if (list[i].name === name) return list[i];
+          return null;
+        }
+        function findMonAny(bossKey, name) {
+          var types = PARTY_DATA[bossKey].types;
+          for (var t in types) { var m = findMon(bossKey, t, name); if (m) return m; }
+          return null;
+        }
+        function keyFor(bossKey) { return "grillo-party-" + bossKey; }
+        function loadParty(bossKey) {
+          try {
+            var raw = localStorage.getItem(keyFor(bossKey));
+            if (raw) { var p = JSON.parse(raw); if (Array.isArray(p)) return p; }
+          } catch (e) {}
+          return null;
+        }
+        function saveParty(bossKey, party) {
+          try { localStorage.setItem(keyFor(bossKey), JSON.stringify(party)); } catch (e) {}
+        }
+        function defaultParty(bossKey) {
+          return PARTY_DATA[bossKey].prefill.map(function (name) {
+            var m = findMonAny(bossKey, name);
+            return m ? { id: m.id, name: m.name, f: m.f, c: m.c, cp: "" } : null;
+          }).filter(Boolean);
+        }
+        function getParty(bossKey) {
+          var p = loadParty(bossKey);
+          if (!p) { p = defaultParty(bossKey); saveParty(bossKey, p); }
+          return p;
+        }
+        function cpMinFor(mon) { return mon.cp || CP_GUIDE; }
+
+        function tmHint(mon, f, c) {
+          var hints = [];
+          if (f && f !== mon.f) hints.push("Use a Fast TM to get " + mon.f + ".");
+          if (c && c !== mon.c) {
+            if (mon.cAlt && c === mon.cAlt) hints.push(mon.c + " needs an Elite TM — " + mon.cAlt + " works with a regular TM.");
+            else hints.push("Use a Charged TM to get " + mon.c + ".");
+          }
+          return hints.join(" ");
+        }
+
+        function renderParty(bossKey) {
+          var grid = document.querySelector('[data-party="' + bossKey + '"]');
+          if (!grid) return;
+          var party = getParty(bossKey);
+          var out = "";
+          for (var s = 0; s < 6; s++) {
+            var e = party[s];
+            if (!e) {
+              out += '<div class="party-slot empty">Empty slot<br>Tap a type above<br>and add one you have</div>';
+              continue;
+            }
+            var mon = findMonAny(bossKey, e.name) || { id: e.id, name: e.name, f: e.f, c: e.c };
+            var hint = tmHint(mon, e.f, e.c);
+            var cpNum = parseInt(e.cp, 10);
+            var status = "", statusCls = "";
+            if (e.cp !== "" && !isNaN(cpNum)) {
+              if (cpNum >= cpMinFor(mon)) { status = "\u2713 Looks ready"; statusCls = "ok"; }
+              else { status = "A bit low — power it up toward " + cpMinFor(mon).toLocaleString() + " CP"; statusCls = "low"; }
+            } else { status = "Enter your CP to check it"; }
+            out += '<div class="party-slot" data-slot="' + s + '">' +
+              '<img src="' + SPRITE(e.id) + '" alt="' + esc(e.name) + '" loading="lazy" />' +
+              '<div class="ps-name">' + esc(e.name) + '</div>' +
+              '<div class="ps-moves">Fast: ' + esc(e.f) + '<br>Charged: ' + esc(e.c) + '</div>' +
+              (mon.tm ? '<div class="ps-tm">' + esc(mon.tm) + '</div>' : '') +
+              (hint ? '<div class="ps-tm">' + esc(hint) + '</div>' : '') +
+              '<div class="ps-cp"><input type="number" inputmode="numeric" min="0" max="9999" placeholder="Your CP" value="' + esc(e.cp) + '" aria-label="Your ' + esc(e.name) + ' CP" data-cp="' + s + '" />' +
+              '<span class="ps-status ' + statusCls + '">' + esc(status) + '</span></div>' +
+              '<div class="ps-actions"><button type="button" data-edit="' + s + '">Edit moves</button>' +
+              '<button type="button" data-remove="' + s + '">Remove</button></div>' +
+              '<div class="ps-edit" data-editbox="' + s + '" hidden></div>' +
+              '</div>';
+          }
+          grid.innerHTML = out;
+        }
+
+        function moveOptions(mon, kind) {
+          // kind: 'f' or 'c'. Returns [{v, label}] with best first, then the
+          // regular alternative (where one exists), then "Other move".
+          var opts = [];
+          if (kind === 'f') {
+            opts.push(mon.f);
+            if (mon.fAlt && mon.fAlt !== mon.f) opts.push(mon.fAlt);
+          } else {
+            opts.push(mon.c);
+            if (mon.cAlt && mon.cAlt !== mon.c) opts.push(mon.cAlt);
+          }
+          opts.push("Other move");
+          return opts;
+        }
+
+        function openEdit(bossKey, slotIdx) {
+          var grid = document.querySelector('[data-party="' + bossKey + '"]');
+          var party = getParty(bossKey);
+          var e = party[slotIdx];
+          if (!e) return;
+          var mon = findMonAny(bossKey, e.name);
+          if (!mon) return;
+          var box = grid.querySelector('[data-editbox="' + slotIdx + '"]');
+          if (!box) return;
+          if (!box.hidden) { box.hidden = true; box.innerHTML = ""; return; }
+          function sel(kind, cur) {
+            var opts = moveOptions(mon, kind);
+            var o = '<select data-movekind="' + kind + '" data-slot="' + slotIdx + '">';
+            opts.forEach(function (v) {
+              o += '<option value="' + esc(v) + '"' + (v === cur ? ' selected' : '') + '>' + esc(v) + '</option>';
+            });
+            return o + '</select>';
+          }
+          box.innerHTML =
+            '<label>Fast move</label>' + sel('f', e.f) +
+            '<label>Charged move</label>' + sel('c', e.c) +
+            '<div class="ps-hint">' + esc(tmHint(mon, e.f, e.c) || "Best moves — no TM needed.") + '</div>';
+          box.hidden = false;
+        }
+
+        function renderPicker(bossKey, type) {
+          var box = document.querySelector('[data-picker="' + bossKey + '"]');
+          if (!box) return;
+          var list = PARTY_DATA[bossKey].types[type] || [];
+          var party = getParty(bossKey);
+          var inParty = {};
+          party.forEach(function (e) { if (e) inParty[e.name] = true; });
+          var rows = list.map(function (m) {
+            var added = !!inParty[m.name];
+            var full = party.filter(Boolean).length >= 6;
+            return '<div class="pk-row">' +
+              '<img src="' + SPRITE(m.id) + '" alt="' + esc(m.name) + '" loading="lazy" />' +
+              '<div class="pk-info"><div class="pk-name">' + esc(m.name) +
+              '<span class="rarity-dot ' + esc(m.r) + '" title="' + (m.r === 'common' ? 'Likely have' : m.r === 'plausible' ? 'Maybe have' : 'Rarer') + '"></span></div>' +
+              '<div class="pk-moves">Fast: ' + esc(m.f) + ' &middot; Charged: ' + esc(m.c) + '<br>Aim for ' + (m.cp || CP_GUIDE).toLocaleString() + '+ CP (level 30+)</div>' +
+              (m.tm ? '<div class="pk-tm">' + esc(m.tm) + '</div>' : '') +
+              '</div>' +
+              '<button type="button" class="pk-add" data-add="' + esc(m.name) + '" data-type="' + esc(type) + '"' + ((added || full) ? ' disabled' : '') + '>' + (added ? 'Added \u2713' : 'Add') + '</button>' +
+              '</div>';
+          }).join("");
+          box.innerHTML = '<h3>' + esc(type) + '-type Pok&eacute;mon you likely have</h3>' +
+            '<p class="pk-sub">Best first. Tap <b>Add</b> on the ones you actually own — they join your party below. ' +
+            'CP is a guideline: aim for level 30+ (around 2,000+ CP) with the right moves.</p>' +
+            '<p class="pk-legend"><span class="rarity-dot common"></span> likely have &nbsp;<span class="rarity-dot plausible"></span> maybe &nbsp;<span class="rarity-dot rare"></span> rarer</p>' +
+            rows;
+          box.hidden = false;
+        }
+
+        // Wire up each raid card.
+        Object.keys(PARTY_DATA).forEach(function (bossKey) {
+          renderParty(bossKey);
+          var card = document.querySelector('[data-party="' + bossKey + '"]').closest('.today-item');
+          if (!card) return;
+          // Weakness chips open the picker for that type.
+          card.querySelectorAll('.weak-chip').forEach(function (chip) {
+            chip.addEventListener('click', function () {
+              var type = chip.getAttribute('data-type');
+              var box = document.querySelector('[data-picker="' + bossKey + '"]');
+              var wasOpen = box && !box.hidden && box.getAttribute('data-open-type') === type;
+              card.querySelectorAll('.weak-chip').forEach(function (c) { c.setAttribute('aria-expanded', 'false'); });
+              if (wasOpen) { box.hidden = true; box.removeAttribute('data-open-type'); return; }
+              chip.setAttribute('aria-expanded', 'true');
+              renderPicker(bossKey, type);
+              box.setAttribute('data-open-type', type);
+              box.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+            });
+          });
+          // Picker Add buttons (delegated).
+          var pickerBox = document.querySelector('[data-picker="' + bossKey + '"]');
+          pickerBox.addEventListener('click', function (ev) {
+            var btn = ev.target.closest('[data-add]');
+            if (!btn || btn.disabled) return;
+            var name = btn.getAttribute('data-add');
+            var type = btn.getAttribute('data-type');
+            var mon = findMon(bossKey, type, name) || findMonAny(bossKey, name);
+            if (!mon) return;
+            var party = getParty(bossKey);
+            if (party.filter(Boolean).length >= 6) return;
+            var slot = party.indexOf(null);
+            if (slot === -1) slot = party.length;
+            party[slot] = { id: mon.id, name: mon.name, f: mon.f, c: mon.c, cp: '' };
+            while (party.length < 6) party.push(null);
+            saveParty(bossKey, party);
+            renderParty(bossKey);
+            renderPicker(bossKey, type);
+          });
+          // Party grid: CP input, Edit, Remove (delegated).
+          var grid = document.querySelector('[data-party="' + bossKey + '"]');
+          grid.addEventListener('change', function (ev) {
+            var inp = ev.target.closest('[data-cp]');
+            if (inp) {
+              var party = getParty(bossKey);
+              var idx = parseInt(inp.getAttribute('data-cp'), 10);
+              if (party[idx]) { party[idx].cp = inp.value; saveParty(bossKey, party); renderParty(bossKey); }
+              return;
+            }
+            var sel = ev.target.closest('select[data-movekind]');
+            if (sel) {
+              var party2 = getParty(bossKey);
+              var idx2 = parseInt(sel.getAttribute('data-slot'), 10);
+              var kind = sel.getAttribute('data-movekind');
+              if (party2[idx2]) {
+                if (kind === 'f') party2[idx2].f = sel.value; else party2[idx2].c = sel.value;
+                saveParty(bossKey, party2);
+                renderParty(bossKey);
+                openEdit(bossKey, idx2);
+              }
+            }
+          });
+          grid.addEventListener('click', function (ev) {
+            var rm = ev.target.closest('[data-remove]');
+            if (rm) {
+              var party = getParty(bossKey);
+              var idx = parseInt(rm.getAttribute('data-remove'), 10);
+              party[idx] = null;
+              saveParty(bossKey, party);
+              renderParty(bossKey);
+              return;
+            }
+            var ed = ev.target.closest('[data-edit]');
+            if (ed) { openEdit(bossKey, parseInt(ed.getAttribute('data-edit'), 10)); }
+          });
+        });
       })();
     </script>
   </body>
