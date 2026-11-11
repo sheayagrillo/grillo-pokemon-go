@@ -1861,6 +1861,12 @@
               party[idx] = null;
               saveParty(bossKey, party);
               renderParty(bossKey);
+              // If the type picker is open, refresh it so its Add buttons
+              // reflect the freed slot right away.
+              var pk = document.querySelector('[data-picker="' + bossKey + '"]');
+              if (pk && !pk.hidden && pk.getAttribute('data-open-type')) {
+                renderPicker(bossKey, pk.getAttribute('data-open-type'));
+              }
               return;
             }
             var ed = ev.target.closest('[data-edit]');
