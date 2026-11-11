@@ -507,6 +507,8 @@
       .tb-queue{display:flex;flex-direction:column;gap:8px;margin:0 0 12px;}
 .tb-queue-item{display:flex;align-items:center;gap:10px;background:#f3fbf3;border:1px solid #d7ecd7;border-radius:10px;padding:8px 10px;font-size:15px;}
 .tb-queue-item img{width:40px;height:40px;flex:0 0 auto;}
+.tb-queue-item .tb-ball{width:40px;height:40px;flex:0 0 auto;display:grid;place-items:center;}
+.tb-queue-item .tb-ball svg{width:30px;height:30px;}
 .tb-queue-item .tb-q-msg{flex:1;min-width:0;}
 .tb-queue-item .tb-q-remove{border:0;background:none;color:#b91c1c;font-size:18px;line-height:1;padding:4px 6px;cursor:pointer;}
 .tb-queue-line{margin:0 0 10px;font-size:14px;color:#166534;background:#f0fdf4;border:1px solid #bbf7d0;border-radius:8px;padding:6px 10px;}
@@ -540,6 +542,7 @@
       }
       .tb-entry .tb-ball { width: 64px; height: 64px; flex: 0 0 auto; display: grid; place-items: center; }
       .tb-entry .tb-ball svg { width: 44px; height: 44px; }
+      .tb-entry .tb-remove { border: 0; background: none; color: #b91c1c; font-size: 20px; font-weight: 800; line-height: 1; padding: 8px 6px; cursor: pointer; flex: 0 0 auto; }
       .tb-etxt { min-width: 0; flex: 1 1 auto; display: flex; flex-direction: column; gap: 1px; }
       .tb-ename { font-weight: 800; font-size: 15.5px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
       .tb-ematch { font-weight: 700; font-size: 13px; color: var(--green-deep); overflow-wrap: break-word; }
@@ -608,6 +611,7 @@
     <nav class="tabbar" role="tablist" aria-label="Sections">
       <div class="tabbar-in">
         <button type="button" class="tab" id="tab-raids" role="tab" aria-selected="true" aria-controls="panel-raids" data-tab="raids">Raids</button>
+        <button type="button" class="tab" id="tab-pvp" role="tab" aria-selected="false" aria-controls="panel-pvp" data-tab="pvp">PvP</button>
         <button type="button" class="tab" id="tab-upcoming" role="tab" aria-selected="false" aria-controls="panel-upcoming" data-tab="upcoming">Upcoming</button>
         <button type="button" class="tab" id="tab-pokeprep" role="tab" aria-selected="false" aria-controls="panel-pokeprep" data-tab="pokeprep">Pok&eacute; Prep</button>
         <button type="button" class="tab" id="tab-tradeboard" role="tab" aria-selected="false" aria-controls="panel-tradeboard" data-tab="tradeboard">Trade Board</button>
@@ -749,6 +753,43 @@
         </div>
       </section>
       <footer>Pokémon sprites © Nintendo / Creatures Inc. / GAME FREAK inc.</footer>
+    </div>
+    </div>
+    <div class="tab-panel" id="panel-pvp" role="tabpanel" aria-labelledby="tab-pvp" hidden>
+    <div class="wrap">
+      <!-- ============ PVP ============ -->
+      <section aria-label="PvP — Go Battle League">
+        <div class="sec-head"><h2>PvP</h2><span class="sub">Go Battle League &middot; Nov 10&ndash;17</span></div>
+        <p class="sec-note">Great League, Ultra League: Mega Edition, and the 2026 GO LAIC Cup are live this week. Master League returns Nov 17.</p>
+        <p class="sec-note">No GO Battle Thursday Nov 12 &mdash; paused for Wild Area week. Next: Thu Nov 19 + Nov 26 (4&times; Stardust, up to 10 sets).</p>
+
+        <div class="prep-card">
+          <h3 class="ellipsis">Great League</h3>
+          <p class="prep-dates">1,500 CP max &middot; Nov 10&ndash;17</p>
+          <div class="party-grid" data-pvp-team="great"></div>
+          <div style="margin-top:12px"><button type="button" class="pk-add" data-pvp-open="great">Add a Pok&eacute;mon</button></div>
+          <div class="picker" data-pvp-picker="great" hidden></div>
+        </div>
+
+        <div class="prep-card">
+          <h3 class="ellipsis">Ultra League: Mega Edition</h3>
+          <p class="prep-dates">2,500 CP max &middot; Megas allowed &middot; Nov 10&ndash;17</p>
+          <p class="sec-note">Megas allowed this week &mdash; the only Mega near the top is Mega Malamar.</p>
+          <div class="party-grid" data-pvp-team="ultra-mega"></div>
+          <div style="margin-top:12px"><button type="button" class="pk-add" data-pvp-open="ultra-mega">Add a Pok&eacute;mon</button></div>
+          <div class="picker" data-pvp-picker="ultra-mega" hidden></div>
+        </div>
+
+        <div class="prep-card">
+          <h3 class="ellipsis">2026 GO LAIC Cup</h3>
+          <p class="prep-dates">1,500 CP max &middot; Nov 10&ndash;24</p>
+          <p class="sec-note">Fire, Dark, Steel, and Fairy types are not eligible. Legendary, Mythical, and Ultra Beasts are not eligible. Megas are not eligible. 14 species are banned: Chansey, Snorlax, Furret, Wobbuffet, Galarian Corsola, Kingdra, Medicham, Altaria, Dusclops, Jellicent, Araquanid, Oranguru, Annihilape, Clodsire.</p>
+          <p class="sec-note">Best team: Cetitan + Swalot + Crustle.</p>
+          <div class="party-grid" data-pvp-team="laic"></div>
+          <div style="margin-top:12px"><button type="button" class="pk-add" data-pvp-open="laic">Add a Pok&eacute;mon</button></div>
+          <div class="picker" data-pvp-picker="laic" hidden></div>
+        </div>
+      </section>
     </div>
     </div>
     <div class="tab-panel" id="panel-upcoming" role="tabpanel" aria-labelledby="tab-upcoming" hidden>
@@ -1226,10 +1267,16 @@
           var sub = hasMatch
             ? '<span class="tb-ematch">Trade match: ' + esc(partners.join(", ")) + '</span>'
             : "";
+          /* Removal flows through the same form + hook as additions, so the
+             shared board stays the single source of truth — tapping ×
+             queues a removal, it is only removed after Send all + Submit. */
+          var dexId = (dexByKey[k] && dexByKey[k].id) || "";
+          var rmType = isWant ? (item.lucky ? "remove-lucky" : "remove-want") : "remove-give";
           return '<li class="tb-entry' + (hasMatch ? ' has-match' : '') + '">' +
             spriteFor(item.name) +
             '<span class="tb-etxt"><span class="tb-ename">' + esc(item.name) + '</span>' + sub + '</span>' +
             (tags ? '<span class="tb-tags">' + tags + '</span>' : '') +
+            '<button type="button" class="tb-remove" data-tb-remove data-who="' + esc(personName) + '" data-name="' + esc(item.name) + '" data-id="' + dexId + '" data-opt="' + rmType + '" aria-label="Remove ' + esc(item.name) + ' from ' + esc(personName) + '’s board">\u00d7</button>' +
             '</li>';
         }
 
@@ -1404,7 +1451,9 @@
           queue.forEach(function (entry, idx) {
             var row = document.createElement("div");
             row.className = "tb-queue-item";
-            row.innerHTML = '<img src="' + SPRITE(entry.id) + '" alt="" />' +
+            row.innerHTML = (entry.id
+              ? '<img src="' + SPRITE(entry.id) + '" alt="" />'
+              : '<span class="tb-ball">' + BALL_SVG + '</span>') +
               '<span class="tb-q-msg">' + esc(entry.msg) + '</span>';
             var rm = document.createElement("button");
             rm.type = "button";
@@ -1415,6 +1464,7 @@
               queue.splice(idx, 1);
               renderQueue();
               renderQueueLine();
+              updateSheetNote();
               if (!queue.length) { sheetDone.hidden = true; sheetOptions.hidden = false; }
             });
             row.appendChild(rm);
@@ -1445,7 +1495,19 @@
         function messageFor(opt, who, name) {
           if (opt === "lucky") return who + " wants a Lucky " + name + "!";
           if (opt === "give") return who + " can give away a " + name + "!";
+          if (opt === "remove-lucky") return "Remove " + who + "’s Lucky " + name + " want";
+          if (opt === "remove-want") return "Remove " + who + "’s " + name + " want";
+          if (opt === "remove-give") return "Remove " + who + "’s " + name + " give away";
           return who + " wants a " + name + "!";
+        }
+
+        /* The sheet note says whether the queued entries will be added
+           to or removed from the shared Trade Board after Submit. */
+        function updateSheetNote() {
+          var hasRemove = queue.some(function (e) { return e.opt.indexOf("remove-") === 0; });
+          sheetNote.textContent = hasRemove
+            ? "Tap Send all to open the form with these filled in — tap Submit there and they will be added to or removed from the shared Trade Board."
+            : "Tap Send all to open the form with these filled in — tap Submit there and they will be added to the shared Trade Board.";
         }
 
         sheetOptions.addEventListener("click", function (ev) {
@@ -1462,7 +1524,7 @@
           queue.push({ who: who, name: currentPick.display, id: currentPick.id, opt: opt, msg: messageFor(opt, who, currentPick.display) });
           renderQueue();
           renderQueueLine();
-          sheetNote.textContent = "Tap Send all to open the form with these filled in — tap Submit there and they will be added to the shared Trade Board.";
+          updateSheetNote();
           sendMsgBtn.classList.remove("done");
           sheetOptions.hidden = true;
           sheetDone.hidden = false;
@@ -1480,7 +1542,39 @@
           sendMsgBtn.textContent = "Sent \u2713";
           sendMsgBtn.classList.add("done");
           queue = [];
+          updateSheetNote();
           setTimeout(function () { closeSheet(); }, 900);
+        });
+
+        /* ---- Remove a board entry: queue a removal, same form flow ----
+           The × on a board entry does NOT remove it on this phone only —
+           it queues a remove-want / remove-lucky / remove-give line, and
+           Send all opens the form pre-filled with it. After Submit the
+           hook deletes exactly that entry from the shared board. */
+        document.getElementById("tb-grid").addEventListener("click", function (ev) {
+          var btn = ev.target.closest("[data-tb-remove]");
+          if (!btn) return;
+          var opt = btn.getAttribute("data-opt");
+          var who = btn.getAttribute("data-who");
+          var name = btn.getAttribute("data-name");
+          var id = btn.getAttribute("data-id");
+          queue.push({ who: who, name: name, id: id ? parseInt(id, 10) : "", opt: opt, msg: messageFor(opt, who, name) });
+          renderQueue();
+          renderQueueLine();
+          updateSheetNote();
+          /* Open the sheet on the queued removal so Send all is one tap
+             away. The sheet header shows what is being removed. */
+          if (id) {
+            sheetImg.src = SPRITE(parseInt(id, 10));
+            sheetImg.alt = name;
+          }
+          sheetName.textContent = name;
+          sheetDex.textContent = id ? ("#" + id) : "";
+          sheetOptions.hidden = true;
+          sheetDone.hidden = false;
+          sendMsgBtn.classList.remove("done");
+          sheetEl.hidden = false;
+          document.body.style.overflow = "hidden";
         });
 
         addAnotherBtn.addEventListener("click", function () {
@@ -1688,15 +1782,20 @@
          of that type the family is most likely to have, best first.
          Tap ADD on the ones you have — they join your 6-slot party, saved
          on this phone (localStorage, per raid boss). For each one, enter
-         your CP to check it against the level-30 guideline (around
-         2,000+ CP with the right moves) and edit its moves to see which
+         your CP to check it against that Pokémon's own level-30 CP
+         (each species has its own target — a Garchomp needs ~3,400 CP,
+         a Gastrodon ~2,000) and edit its moves to see which
          TM would fix it. Movesets verified Nov 10-11, 2026 from GO Hub
-         best-per-type tables + raid guides. CP is a guideline, not a
-         precise per-Pokemon threshold — no source publishes one. */
+         best-per-type tables + raid guides. Level-30 CPs from GO Hub
+         IV charts, Nov 11, 2026. */
       (function () {
-        var PARTY_DATA = {"zacian": {"boss": "Crowned Zacian", "weaknesses": ["Fire", "Ground"], "catchMin": 2100, "catchHundo": 2188, "catchBoost": 2735, "types": {"Fire": [{"id": 643, "name": "Reshiram", "f": "Fire Fang", "c": "Fusion Flare", "r": "rare"}, {"id": 485, "name": "Heatran", "f": "Fire Spin", "c": "Magma Storm", "r": "rare", "cAlt": "Flamethrower", "tm": "Magma Storm needs an Elite TM \u2014 Flamethrower works with a regular TM."}, {"id": 637, "name": "Volcarona", "f": "Fire Spin", "c": "Overheat", "r": "plausible"}, {"id": 609, "name": "Chandelure", "f": "Fire Spin", "c": "Overheat", "r": "common"}, {"id": 815, "name": "Cinderace", "f": "Fire Spin", "c": "Blast Burn", "r": "common", "cAlt": "Pyro Ball", "tm": "Blast Burn needs an Elite TM \u2014 Pyro Ball works with a regular TM."}, {"id": 146, "name": "Moltres", "f": "Fire Spin", "c": "Overheat", "r": "rare"}, {"id": 257, "name": "Blaziken", "f": "Fire Spin", "c": "Blast Burn", "r": "common", "cAlt": "Blaze Kick", "tm": "Blast Burn needs an Elite TM \u2014 Blaze Kick works with a regular TM."}, {"id": 655, "name": "Delphox", "f": "Fire Spin", "c": "Blast Burn", "r": "common", "cAlt": "Fire Blast", "tm": "Blast Burn needs an Elite TM \u2014 Fire Blast works with a regular TM."}, {"id": 555, "name": "Darmanitan", "f": "Fire Fang", "c": "Overheat", "r": "common"}, {"id": 6, "name": "Charizard", "f": "Fire Spin", "c": "Blast Burn", "r": "common", "cAlt": "Overheat", "tm": "Blast Burn needs an Elite TM \u2014 Overheat works with a regular TM."}, {"id": 244, "name": "Entei", "f": "Fire Spin", "c": "Overheat", "r": "rare"}, {"id": 136, "name": "Flareon", "f": "Fire Spin", "c": "Overheat", "r": "common"}, {"id": 59, "name": "Arcanine", "f": "Fire Fang", "c": "Flamethrower", "r": "common"}, {"id": 229, "name": "Houndoom", "f": "Fire Fang", "c": "Flamethrower", "r": "common"}], "Ground": [{"id": 645, "name": "Landorus (Therian)", "f": "Mud Shot", "c": "Sandsear Storm", "r": "rare", "cAlt": "Earth Power", "tm": "Sandsear Storm needs an Elite TM \u2014 Earth Power works with a regular TM."}, {"id": 383, "name": "Groudon", "f": "Mud Shot", "c": "Precipice Blades", "r": "rare", "cAlt": "Earthquake", "tm": "Precipice Blades needs an Elite TM \u2014 Earthquake works with a regular TM."}, {"id": 445, "name": "Garchomp", "f": "Mud Shot", "c": "Earth Power", "r": "plausible", "cAlt": "Earthquake", "tm": "Earth Power needs an Elite TM \u2014 Earthquake works with a regular TM."}, {"id": 530, "name": "Excadrill", "f": "Mud-Slap", "c": "Scorching Sands", "r": "common"}, {"id": 464, "name": "Rhyperior", "f": "Mud-Slap", "c": "Earthquake", "r": "common"}, {"id": 473, "name": "Mamoswine", "f": "Mud-Slap", "c": "High Horsepower", "r": "common"}, {"id": 623, "name": "Golurk", "f": "Mud-Slap", "c": "Earth Power", "r": "common"}, {"id": 553, "name": "Krookodile", "f": "Mud-Slap", "c": "Earthquake", "r": "common"}, {"id": 450, "name": "Hippowdon", "f": "Sand Attack", "c": "Earth Power", "r": "common"}, {"id": 232, "name": "Donphan", "f": "Mud-Slap", "c": "Earthquake", "r": "common"}, {"id": 76, "name": "Golem", "f": "Mud-Slap", "c": "Earthquake", "r": "common"}, {"id": 260, "name": "Swampert", "f": "Mud Shot", "c": "Earthquake", "r": "common"}, {"id": 28, "name": "Sandslash", "f": "Sand Attack", "c": "Scorching Sands", "r": "common"}, {"id": 423, "name": "Gastrodon", "f": "Mud-Slap", "c": "Earth Power", "r": "common"}]}, "prefill": ["Chandelure", "Flareon", "Arcanine", "Garchomp", "Rhyperior", "Excadrill"]}, "zamazenta": {"boss": "Crowned Zamazenta", "weaknesses": ["Fire", "Fighting", "Ground"], "catchMin": 2100, "catchHundo": 2188, "catchBoost": 2735, "types": {"Fire": [{"id": 643, "name": "Reshiram", "f": "Fire Fang", "c": "Fusion Flare", "r": "rare"}, {"id": 485, "name": "Heatran", "f": "Fire Spin", "c": "Magma Storm", "r": "rare", "cAlt": "Flamethrower", "tm": "Magma Storm needs an Elite TM \u2014 Flamethrower works with a regular TM."}, {"id": 637, "name": "Volcarona", "f": "Fire Spin", "c": "Overheat", "r": "plausible"}, {"id": 609, "name": "Chandelure", "f": "Fire Spin", "c": "Overheat", "r": "common"}, {"id": 815, "name": "Cinderace", "f": "Fire Spin", "c": "Blast Burn", "r": "common", "cAlt": "Pyro Ball", "tm": "Blast Burn needs an Elite TM \u2014 Pyro Ball works with a regular TM."}, {"id": 146, "name": "Moltres", "f": "Fire Spin", "c": "Overheat", "r": "rare"}, {"id": 257, "name": "Blaziken", "f": "Fire Spin", "c": "Blast Burn", "r": "common", "cAlt": "Blaze Kick", "tm": "Blast Burn needs an Elite TM \u2014 Blaze Kick works with a regular TM."}, {"id": 655, "name": "Delphox", "f": "Fire Spin", "c": "Blast Burn", "r": "common", "cAlt": "Fire Blast", "tm": "Blast Burn needs an Elite TM \u2014 Fire Blast works with a regular TM."}, {"id": 555, "name": "Darmanitan", "f": "Fire Fang", "c": "Overheat", "r": "common"}, {"id": 6, "name": "Charizard", "f": "Fire Spin", "c": "Blast Burn", "r": "common", "cAlt": "Overheat", "tm": "Blast Burn needs an Elite TM \u2014 Overheat works with a regular TM."}, {"id": 244, "name": "Entei", "f": "Fire Spin", "c": "Overheat", "r": "rare"}, {"id": 136, "name": "Flareon", "f": "Fire Spin", "c": "Overheat", "r": "common"}, {"id": 59, "name": "Arcanine", "f": "Fire Fang", "c": "Flamethrower", "r": "common"}, {"id": 229, "name": "Houndoom", "f": "Fire Fang", "c": "Flamethrower", "r": "common"}], "Fighting": [{"id": 647, "name": "Keldeo", "f": "Low Kick", "c": "Sacred Sword", "r": "rare"}, {"id": 639, "name": "Terrakion", "f": "Double Kick", "c": "Sacred Sword", "r": "rare"}, {"id": 448, "name": "Lucario", "f": "Force Palm", "c": "Aura Sphere", "r": "plausible", "fAlt": "Counter"}, {"id": 257, "name": "Blaziken", "f": "Counter", "c": "Aura Sphere", "r": "common", "cAlt": "Focus Blast", "tm": "Aura Sphere is best \u2014 Focus Blast is the regular alternative."}, {"id": 534, "name": "Conkeldurr", "f": "Force Palm", "c": "Dynamic Punch", "r": "common"}, {"id": 475, "name": "Gallade", "f": "Low Kick", "c": "Sacred Sword", "r": "common", "cAlt": "Close Combat", "tm": "Sacred Sword is best \u2014 Close Combat is the regular alternative."}, {"id": 68, "name": "Machamp", "f": "Counter", "c": "Dynamic Punch", "r": "common"}, {"id": 297, "name": "Hariyama", "f": "Force Palm", "c": "Dynamic Punch", "r": "common"}, {"id": 286, "name": "Breloom", "f": "Force Palm", "c": "Dynamic Punch", "r": "common", "cp": 1500}, {"id": 979, "name": "Annihilape", "f": "Counter", "c": "Close Combat", "r": "common"}, {"id": 214, "name": "Heracross", "f": "Counter", "c": "Close Combat", "r": "plausible"}, {"id": 454, "name": "Toxicroak", "f": "Counter", "c": "Dynamic Punch", "r": "common", "cp": 1500}, {"id": 865, "name": "Sirfetch'd", "f": "Counter", "c": "Close Combat", "r": "plausible"}, {"id": 62, "name": "Poliwrath", "f": "Counter", "c": "Dynamic Punch", "r": "common"}], "Ground": [{"id": 645, "name": "Landorus (Therian)", "f": "Mud Shot", "c": "Sandsear Storm", "r": "rare", "cAlt": "Earth Power", "tm": "Sandsear Storm needs an Elite TM \u2014 Earth Power works with a regular TM."}, {"id": 383, "name": "Groudon", "f": "Mud Shot", "c": "Precipice Blades", "r": "rare", "cAlt": "Earthquake", "tm": "Precipice Blades needs an Elite TM \u2014 Earthquake works with a regular TM."}, {"id": 445, "name": "Garchomp", "f": "Mud Shot", "c": "Earth Power", "r": "plausible", "cAlt": "Earthquake", "tm": "Earth Power needs an Elite TM \u2014 Earthquake works with a regular TM."}, {"id": 530, "name": "Excadrill", "f": "Mud-Slap", "c": "Scorching Sands", "r": "common"}, {"id": 464, "name": "Rhyperior", "f": "Mud-Slap", "c": "Earthquake", "r": "common"}, {"id": 473, "name": "Mamoswine", "f": "Mud-Slap", "c": "High Horsepower", "r": "common"}, {"id": 623, "name": "Golurk", "f": "Mud-Slap", "c": "Earth Power", "r": "common"}, {"id": 553, "name": "Krookodile", "f": "Mud-Slap", "c": "Earthquake", "r": "common"}, {"id": 450, "name": "Hippowdon", "f": "Sand Attack", "c": "Earth Power", "r": "common"}, {"id": 232, "name": "Donphan", "f": "Mud-Slap", "c": "Earthquake", "r": "common"}, {"id": 76, "name": "Golem", "f": "Mud-Slap", "c": "Earthquake", "r": "common"}, {"id": 260, "name": "Swampert", "f": "Mud Shot", "c": "Earthquake", "r": "common"}, {"id": 28, "name": "Sandslash", "f": "Sand Attack", "c": "Scorching Sands", "r": "common"}, {"id": 423, "name": "Gastrodon", "f": "Mud-Slap", "c": "Earth Power", "r": "common"}]}, "prefill": ["Machamp", "Conkeldurr", "Lucario", "Chandelure", "Flareon", "Garchomp"]}};
+        var PARTY_DATA = {"zacian": {"boss": "Crowned Zacian", "weaknesses": ["Fire", "Ground"], "catchMin": 2100, "catchHundo": 2188, "catchBoost": 2735, "types": {"Fire": [{"id": 643, "name": "Reshiram", "f": "Fire Fang", "c": "Fusion Flare", "r": "rare", "cpMin": 3062, "cpTarget": 3462}, {"id": 485, "name": "Heatran", "f": "Fire Spin", "c": "Magma Storm", "r": "rare", "cpMin": 2835, "cpTarget": 3218, "cAlt": "Flamethrower", "tm": "Magma Storm needs an Elite TM \u2014 Flamethrower works with a regular TM."}, {"id": 637, "name": "Volcarona", "f": "Fire Spin", "c": "Overheat", "r": "plausible", "cpMin": 2734, "cpTarget": 3113}, {"id": 609, "name": "Chandelure", "f": "Fire Spin", "c": "Overheat", "r": "common", "cpMin": 2436, "cpTarget": 2802}, {"id": 815, "name": "Cinderace", "f": "Fire Spin", "c": "Blast Burn", "r": "common", "cpMin": 2242, "cpTarget": 2587, "cAlt": "Pyro Ball", "tm": "Blast Burn needs an Elite TM \u2014 Pyro Ball works with a regular TM."}, {"id": 146, "name": "Moltres", "f": "Fire Spin", "c": "Overheat", "r": "rare", "cpMin": 2601, "cpTarget": 2970}, {"id": 257, "name": "Blaziken", "f": "Fire Spin", "c": "Blast Burn", "r": "common", "cpMin": 2103, "cpTarget": 2441, "cAlt": "Blaze Kick", "tm": "Blast Burn needs an Elite TM \u2014 Blaze Kick works with a regular TM."}, {"id": 655, "name": "Delphox", "f": "Fire Spin", "c": "Blast Burn", "r": "common", "cpMin": 2277, "cpTarget": 2622, "cAlt": "Fire Blast", "tm": "Blast Burn needs an Elite TM \u2014 Fire Blast works with a regular TM."}, {"id": 555, "name": "Darmanitan", "f": "Fire Fang", "c": "Overheat", "r": "common", "cpMin": 2294, "cpTarget": 2662}, {"id": 6, "name": "Charizard", "f": "Fire Spin", "c": "Blast Burn", "r": "common", "cpMin": 2141, "cpTarget": 2476, "cAlt": "Overheat", "tm": "Blast Burn needs an Elite TM \u2014 Overheat works with a regular TM."}, {"id": 244, "name": "Entei", "f": "Fire Spin", "c": "Overheat", "r": "rare", "cpMin": 2606, "cpTarget": 2977}, {"id": 136, "name": "Flareon", "f": "Fire Spin", "c": "Overheat", "r": "common", "cpMin": 2249, "cpTarget": 2596}, {"id": 59, "name": "Arcanine", "f": "Fire Fang", "c": "Flamethrower", "r": "common", "cpMin": 2252, "cpTarget": 2597}, {"id": 229, "name": "Houndoom", "f": "Fire Fang", "c": "Flamethrower", "r": "common", "cpMin": 1936, "cpTarget": 2258}], "Ground": [{"id": 645, "name": "Landorus (Therian)", "f": "Mud Shot", "c": "Sandsear Storm", "r": "rare", "cpMin": 2963, "cpTarget": 3362, "cAlt": "Earth Power", "tm": "Sandsear Storm needs an Elite TM \u2014 Earth Power works with a regular TM."}, {"id": 383, "name": "Groudon", "f": "Mud Shot", "c": "Precipice Blades", "r": "rare", "cpMin": 3125, "cpTarget": 3527, "cAlt": "Earthquake", "tm": "Precipice Blades needs an Elite TM \u2014 Earthquake works with a regular TM."}, {"id": 445, "name": "Garchomp", "f": "Mud Shot", "c": "Earth Power", "r": "plausible", "cpMin": 3001, "cpTarget": 3396, "cAlt": "Earthquake", "tm": "Earth Power needs an Elite TM \u2014 Earthquake works with a regular TM."}, {"id": 530, "name": "Excadrill", "f": "Mud-Slap", "c": "Scorching Sands", "r": "common", "cpMin": 2412, "cpTarget": 2780}, {"id": 464, "name": "Rhyperior", "f": "Mud-Slap", "c": "Earthquake", "r": "common", "cpMin": 2817, "cpTarget": 3200}, {"id": 473, "name": "Mamoswine", "f": "Mud-Slap", "c": "High Horsepower", "r": "common", "cpMin": 2485, "cpTarget": 2853}, {"id": 623, "name": "Golurk", "f": "Mud-Slap", "c": "Earth Power", "r": "common", "cpMin": 2111, "cpTarget": 2446}, {"id": 553, "name": "Krookodile", "f": "Mud-Slap", "c": "Earthquake", "r": "common", "cpMin": 2264, "cpTarget": 2611}, {"id": 450, "name": "Hippowdon", "f": "Sand Attack", "c": "Earth Power", "r": "common", "cpMin": 2299, "cpTarget": 2645}, {"id": 232, "name": "Donphan", "f": "Mud-Slap", "c": "Earthquake", "r": "common", "cpMin": 2242, "cpTarget": 2583}, {"id": 76, "name": "Golem", "f": "Mud-Slap", "c": "Earthquake", "r": "common", "cpMin": 2191, "cpTarget": 2528}, {"id": 260, "name": "Swampert", "f": "Mud Shot", "c": "Earthquake", "r": "common", "cpMin": 2209, "cpTarget": 2549}, {"id": 28, "name": "Sandslash", "f": "Sand Attack", "c": "Scorching Sands", "r": "common", "cpMin": 1734, "cpTarget": 2035}, {"id": 423, "name": "Gastrodon", "f": "Mud-Slap", "c": "Earth Power", "r": "common", "cpMin": 1690, "cpTarget": 1992}]}, "prefill": ["Chandelure", "Flareon", "Arcanine", "Garchomp", "Rhyperior", "Excadrill"]}, "zamazenta": {"boss": "Crowned Zamazenta", "weaknesses": ["Fire", "Fighting", "Ground"], "catchMin": 2100, "catchHundo": 2188, "catchBoost": 2735, "types": {"Fire": [{"id": 643, "name": "Reshiram", "f": "Fire Fang", "c": "Fusion Flare", "r": "rare", "cpMin": 3062, "cpTarget": 3462}, {"id": 485, "name": "Heatran", "f": "Fire Spin", "c": "Magma Storm", "r": "rare", "cpMin": 2835, "cpTarget": 3218, "cAlt": "Flamethrower", "tm": "Magma Storm needs an Elite TM \u2014 Flamethrower works with a regular TM."}, {"id": 637, "name": "Volcarona", "f": "Fire Spin", "c": "Overheat", "r": "plausible", "cpMin": 2734, "cpTarget": 3113}, {"id": 609, "name": "Chandelure", "f": "Fire Spin", "c": "Overheat", "r": "common", "cpMin": 2436, "cpTarget": 2802}, {"id": 815, "name": "Cinderace", "f": "Fire Spin", "c": "Blast Burn", "r": "common", "cpMin": 2242, "cpTarget": 2587, "cAlt": "Pyro Ball", "tm": "Blast Burn needs an Elite TM \u2014 Pyro Ball works with a regular TM."}, {"id": 146, "name": "Moltres", "f": "Fire Spin", "c": "Overheat", "r": "rare", "cpMin": 2601, "cpTarget": 2970}, {"id": 257, "name": "Blaziken", "f": "Fire Spin", "c": "Blast Burn", "r": "common", "cpMin": 2103, "cpTarget": 2441, "cAlt": "Blaze Kick", "tm": "Blast Burn needs an Elite TM \u2014 Blaze Kick works with a regular TM."}, {"id": 655, "name": "Delphox", "f": "Fire Spin", "c": "Blast Burn", "r": "common", "cpMin": 2277, "cpTarget": 2622, "cAlt": "Fire Blast", "tm": "Blast Burn needs an Elite TM \u2014 Fire Blast works with a regular TM."}, {"id": 555, "name": "Darmanitan", "f": "Fire Fang", "c": "Overheat", "r": "common", "cpMin": 2294, "cpTarget": 2662}, {"id": 6, "name": "Charizard", "f": "Fire Spin", "c": "Blast Burn", "r": "common", "cpMin": 2141, "cpTarget": 2476, "cAlt": "Overheat", "tm": "Blast Burn needs an Elite TM \u2014 Overheat works with a regular TM."}, {"id": 244, "name": "Entei", "f": "Fire Spin", "c": "Overheat", "r": "rare", "cpMin": 2606, "cpTarget": 2977}, {"id": 136, "name": "Flareon", "f": "Fire Spin", "c": "Overheat", "r": "common", "cpMin": 2249, "cpTarget": 2596}, {"id": 59, "name": "Arcanine", "f": "Fire Fang", "c": "Flamethrower", "r": "common", "cpMin": 2252, "cpTarget": 2597}, {"id": 229, "name": "Houndoom", "f": "Fire Fang", "c": "Flamethrower", "r": "common", "cpMin": 1936, "cpTarget": 2258}], "Fighting": [{"id": 647, "name": "Keldeo", "f": "Low Kick", "c": "Sacred Sword", "r": "rare", "cpMin": 2788, "cpTarget": 3170}, {"id": 639, "name": "Terrakion", "f": "Double Kick", "c": "Sacred Sword", "r": "rare", "cpMin": 2788, "cpTarget": 3170}, {"id": 448, "name": "Lucario", "f": "Force Palm", "c": "Aura Sphere", "r": "plausible", "cpMin": 1988, "cpTarget": 2317, "fAlt": "Counter"}, {"id": 257, "name": "Blaziken", "f": "Counter", "c": "Aura Sphere", "r": "common", "cpMin": 2103, "cpTarget": 2441, "cAlt": "Focus Blast", "tm": "Aura Sphere is best \u2014 Focus Blast is the regular alternative."}, {"id": 534, "name": "Conkeldurr", "f": "Force Palm", "c": "Dynamic Punch", "r": "common", "cpMin": 2496, "cpTarget": 2861}, {"id": 475, "name": "Gallade", "f": "Low Kick", "c": "Sacred Sword", "r": "common", "cpMin": 2303, "cpTarget": 2652, "cAlt": "Close Combat", "tm": "Sacred Sword is best \u2014 Close Combat is the regular alternative."}, {"id": 68, "name": "Machamp", "f": "Counter", "c": "Dynamic Punch", "r": "common", "cpMin": 2272, "cpTarget": 2620}, {"id": 297, "name": "Hariyama", "f": "Force Palm", "c": "Dynamic Punch", "r": "common", "cpMin": 2076, "cpTarget": 2425}, {"id": 286, "name": "Breloom", "f": "Force Palm", "c": "Dynamic Punch", "r": "common", "cpMin": 1927, "cpTarget": 2253}, {"id": 979, "name": "Annihilape", "f": "Counter", "c": "Close Combat", "r": "common", "cpMin": 2444, "cpTarget": 2802}, {"id": 214, "name": "Heracross", "f": "Counter", "c": "Close Combat", "r": "plausible", "cpMin": 2310, "cpTarget": 2658}, {"id": 454, "name": "Toxicroak", "f": "Counter", "c": "Dynamic Punch", "r": "common", "cpMin": 1819, "cpTarget": 2133}, {"id": 865, "name": "Sirfetch'd", "f": "Counter", "c": "Close Combat", "r": "plausible", "cpMin": 2214, "cpTarget": 2559}, {"id": 62, "name": "Poliwrath", "f": "Counter", "c": "Dynamic Punch", "r": "common", "cpMin": 1901, "cpTarget": 2216}], "Ground": [{"id": 645, "name": "Landorus (Therian)", "f": "Mud Shot", "c": "Sandsear Storm", "r": "rare", "cpMin": 2963, "cpTarget": 3362, "cAlt": "Earth Power", "tm": "Sandsear Storm needs an Elite TM \u2014 Earth Power works with a regular TM."}, {"id": 383, "name": "Groudon", "f": "Mud Shot", "c": "Precipice Blades", "r": "rare", "cpMin": 3125, "cpTarget": 3527, "cAlt": "Earthquake", "tm": "Precipice Blades needs an Elite TM \u2014 Earthquake works with a regular TM."}, {"id": 445, "name": "Garchomp", "f": "Mud Shot", "c": "Earth Power", "r": "plausible", "cpMin": 3001, "cpTarget": 3396, "cAlt": "Earthquake", "tm": "Earth Power needs an Elite TM \u2014 Earthquake works with a regular TM."}, {"id": 530, "name": "Excadrill", "f": "Mud-Slap", "c": "Scorching Sands", "r": "common", "cpMin": 2412, "cpTarget": 2780}, {"id": 464, "name": "Rhyperior", "f": "Mud-Slap", "c": "Earthquake", "r": "common", "cpMin": 2817, "cpTarget": 3200}, {"id": 473, "name": "Mamoswine", "f": "Mud-Slap", "c": "High Horsepower", "r": "common", "cpMin": 2485, "cpTarget": 2853}, {"id": 623, "name": "Golurk", "f": "Mud-Slap", "c": "Earth Power", "r": "common", "cpMin": 2111, "cpTarget": 2446}, {"id": 553, "name": "Krookodile", "f": "Mud-Slap", "c": "Earthquake", "r": "common", "cpMin": 2264, "cpTarget": 2611}, {"id": 450, "name": "Hippowdon", "f": "Sand Attack", "c": "Earth Power", "r": "common", "cpMin": 2299, "cpTarget": 2645}, {"id": 232, "name": "Donphan", "f": "Mud-Slap", "c": "Earthquake", "r": "common", "cpMin": 2242, "cpTarget": 2583}, {"id": 76, "name": "Golem", "f": "Mud-Slap", "c": "Earthquake", "r": "common", "cpMin": 2191, "cpTarget": 2528}, {"id": 260, "name": "Swampert", "f": "Mud Shot", "c": "Earthquake", "r": "common", "cpMin": 2209, "cpTarget": 2549}, {"id": 28, "name": "Sandslash", "f": "Sand Attack", "c": "Scorching Sands", "r": "common", "cpMin": 1734, "cpTarget": 2035}, {"id": 423, "name": "Gastrodon", "f": "Mud-Slap", "c": "Earth Power", "r": "common", "cpMin": 1690, "cpTarget": 1992}]}, "prefill": ["Machamp", "Conkeldurr", "Lucario", "Chandelure", "Flareon", "Garchomp"]}};
         var SPRITE = function (id) { return "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/" + id + ".png"; };
-        var CP_GUIDE = 2000;
+        /* Level-30 CP per species (GO Hub IV charts, Nov 11, 2026):
+           cpMin = level 30 at 10/10/10 IVs, cpTarget = level 30 at
+           15/15/15 IVs. The CP check uses the species' own numbers —
+           a Garchomp needs ~3,400 CP for a 5-star raid, a Gastrodon
+           ~2,000. There is no single flat number for every Pokémon. */
 
         function esc(s) {
           return String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
@@ -1733,7 +1832,8 @@
           if (!p) { p = defaultParty(bossKey); saveParty(bossKey, p); }
           return p;
         }
-        function cpMinFor(mon) { return mon.cp || CP_GUIDE; }
+        function cpMinFor(mon) { return mon.cpMin || null; }
+        function cpTargetFor(mon) { return mon.cpTarget || mon.cpMin || null; }
 
         function tmHint(mon, f, c) {
           var hints = [];
@@ -1760,9 +1860,12 @@
             var hint = tmHint(mon, e.f, e.c);
             var cpNum = parseInt(e.cp, 10);
             var status = "", statusCls = "";
+            var bossName = PARTY_DATA[bossKey].boss;
+            var cpMin = cpMinFor(mon), cpTarget = cpTargetFor(mon);
             if (e.cp !== "" && !isNaN(cpNum)) {
-              if (cpNum >= cpMinFor(mon)) { status = "\u2713 Looks ready"; statusCls = "ok"; }
-              else { status = "A bit low — power it up toward " + cpMinFor(mon).toLocaleString() + " CP"; statusCls = "low"; }
+              if (cpMin === null) { status = "CP target not listed for this Pokémon"; }
+              else if (cpNum >= cpMin) { status = "\u2713 Good for " + bossName; statusCls = "ok"; }
+              else { status = "A bit low for " + bossName + " — power it up toward " + cpTarget.toLocaleString() + " CP"; statusCls = "low"; }
             } else { status = "Enter your CP to check it"; }
             out += '<div class="party-slot" data-slot="' + s + '">' +
               '<img src="' + SPRITE(e.id) + '" alt="' + esc(e.name) + '" loading="lazy" />' +
@@ -1834,7 +1937,7 @@
               '<img src="' + SPRITE(m.id) + '" alt="' + esc(m.name) + '" loading="lazy" />' +
               '<div class="pk-info"><div class="pk-name">' + esc(m.name) +
               '<span class="rarity-dot ' + esc(m.r) + '" title="' + (m.r === 'common' ? 'Likely have' : m.r === 'plausible' ? 'Maybe have' : 'Rarer') + '"></span></div>' +
-              '<div class="pk-moves">Fast: ' + esc(m.f) + ' &middot; Charged: ' + esc(m.c) + '<br>Aim for ' + (m.cp || CP_GUIDE).toLocaleString() + '+ CP (level 30+)</div>' +
+              '<div class="pk-moves">Fast: ' + esc(m.f) + ' &middot; Charged: ' + esc(m.c) + '<br>Aim for ' + (m.cpMin ? m.cpMin.toLocaleString() + '+ CP (level 30)' : 'level 30+') + '</div>' +
               (m.tm ? '<div class="pk-tm">' + esc(m.tm) + '</div>' : '') +
               '</div>' +
               '<button type="button" class="pk-add" data-add="' + esc(m.name) + '" data-type="' + esc(type) + '"' + ((added || full) ? ' disabled' : '') + '>' + (added ? 'Added \u2713' : 'Add') + '</button>' +
@@ -1842,7 +1945,7 @@
           }).join("");
           box.innerHTML = '<h3>' + esc(type) + '-type Pok&eacute;mon you likely have</h3>' +
             '<p class="pk-sub">Best first. Tap <b>Add</b> on the ones you actually own — they join your party below. ' +
-            'CP is a guideline: aim for level 30+ (around 2,000+ CP) with the right moves.</p>' +
+            'CP is a guideline: aim for level 30+ with the right moves — each Pokémon shows its own target CP.</p>' +
             '<p class="pk-legend"><span class="rarity-dot common"></span> likely have &nbsp;<span class="rarity-dot plausible"></span> maybe &nbsp;<span class="rarity-dot rare"></span> rarer</p>' +
             rows;
           box.hidden = false;
@@ -1932,6 +2035,207 @@
       })();
     </script>
     <script>
+      /* ================= PVP — GO BATTLE LEAGUE =================
+         One 3-Pokémon team per league/cup that is live this week.
+         Great League (1,500 CP), Ultra League: Mega Edition (2,500 CP,
+         Megas allowed), 2026 GO LAIC Cup (1,500 CP, type + species bans).
+         Master League is NOT live this week (returns Nov 17) — no
+         Master builder until then. GBL rotates weekly on Tuesdays at
+         1 PM PT, so the leagues change with the Tuesday block, not daily.
+         Movesets are PvP (Trainer Battle) sets from PvPoke rankings via
+         GO Hub, updated Nov 3, 2026. CP check is a CAP check: over the
+         league cap means not eligible — the opposite of the raid check.
+         Teams are saved on this phone (localStorage, per league). */
+      (function () {
+        var PVP_DATA = {
+          "great": {"title": "Great League", "cap": 1500, "capLabel": "1,500", "list": [
+            {"id": 808, "name": "Melmetal", "f": "Thunder Shock", "c1": "Double Iron Bash", "c2": "Dynamic Punch"},
+            {"id": 334, "name": "Altaria", "f": "Dragon Breath", "c1": "Moonblast", "c2": "Flamethrower"},
+            {"id": 38, "name": "Shadow Ninetales", "f": "Ember", "c1": "Weather Ball (Fire)", "c2": "Energy Ball"},
+            {"id": 778, "name": "Mimikyu", "f": "Shadow Claw", "c1": "Shadow Sneak", "c2": "Play Rough"},
+            {"id": 845, "name": "Cramorant", "f": "Peck", "c1": "Surf", "c2": "Fly"},
+            {"id": 959, "name": "Tinkaton", "f": "Fairy Wind", "c1": "Gigaton Hammer", "c2": "Bulldoze"},
+            {"id": 334, "name": "Shadow Altaria", "f": "Dragon Breath", "c1": "Moonblast", "c2": "Flamethrower"},
+            {"id": 823, "name": "Corviknight", "f": "Sand Attack", "c1": "Air Cutter", "c2": "Iron Head"},
+            {"id": 10173, "name": "Galarian Corsola", "f": "Astonish", "c1": "Night Shade", "c2": "Power Gem"},
+            {"id": 671, "name": "Florges", "f": "Fairy Wind", "c1": "Chilling Water", "c2": "Moonblast"},
+            {"id": 195, "name": "Shadow Quagsire", "f": "Mud Shot", "c1": "Aqua Tail", "c2": "Stone Edge"},
+            {"id": 195, "name": "Quagsire", "f": "Mud Shot", "c1": "Aqua Tail", "c2": "Stone Edge"},
+            {"id": 823, "name": "Shadow Corviknight", "f": "Sand Attack", "c1": "Air Cutter", "c2": "Iron Head"},
+            {"id": 38, "name": "Ninetales", "f": "Ember", "c1": "Weather Ball (Fire)", "c2": "Energy Ball"}
+          ], "prefill": ["Melmetal", "Altaria", "Mimikyu"]},
+          "ultra-mega": {"title": "Ultra League: Mega Edition", "cap": 2500, "capLabel": "2,500", "list": [
+            {"id": 959, "name": "Tinkaton", "f": "Fairy Wind", "c1": "Gigaton Hammer", "c2": "Bulldoze"},
+            {"id": 823, "name": "Corviknight", "f": "Sand Attack", "c1": "Air Cutter", "c2": "Iron Head"},
+            {"id": 143, "name": "Shadow Snorlax", "f": "Psywave", "c1": "Body Slam", "c2": "Earthquake"},
+            {"id": 823, "name": "Shadow Corviknight", "f": "Sand Attack", "c1": "Air Cutter", "c2": "Payback"},
+            {"id": 10120, "name": "Zygarde (Complete)", "f": "Dragon Tail", "c1": "Crunch", "c2": "Bulldoze"},
+            {"id": 640, "name": "Virizion", "f": "Double Kick", "c1": "Leaf Blade", "c2": "Sacred Sword", "tm": "Sacred Sword needs an Elite TM."},
+            {"id": 778, "name": "Mimikyu", "f": "Shadow Claw", "c1": "Shadow Sneak", "c2": "Play Rough"},
+            {"id": 671, "name": "Florges", "f": "Fairy Wind", "c1": "Chilling Water", "c2": "Disarming Voice"},
+            {"id": 395, "name": "Empoleon", "f": "Metal Sound", "c1": "Hydro Cannon", "c2": "Drill Peck", "tm": "Hydro Cannon needs an Elite TM."},
+            {"id": 10171, "name": "Galarian Moltres", "f": "Sucker Punch", "c1": "Fly", "c2": "Brave Bird"},
+            {"id": 395, "name": "Shadow Empoleon", "f": "Metal Sound", "c1": "Hydro Cannon", "c2": "Drill Peck", "tm": "Hydro Cannon needs an Elite TM."},
+            {"id": 808, "name": "Melmetal", "f": "Thunder Shock", "c1": "Double Iron Bash", "c2": "Dynamic Punch"},
+            {"id": 143, "name": "Snorlax", "f": "Psywave", "c1": "Body Slam", "c2": "Earthquake"},
+            {"id": 160, "name": "Shadow Feraligatr", "f": "Shadow Claw", "c1": "Hydro Cannon", "c2": "Ice Beam", "tm": "Hydro Cannon needs an Elite TM."}
+          ], "prefill": ["Tinkaton", "Corviknight", "Melmetal"]},
+          "laic": {"title": "2026 GO LAIC Cup", "cap": 1500, "capLabel": "1,500", "list": [
+            {"id": 975, "name": "Cetitan", "f": "Powder Snow", "c1": "Icicle Spear", "c2": "Superpower"},
+            {"id": 317, "name": "Swalot", "f": "Infestation", "c1": "Sludge", "c2": "Ice Beam"},
+            {"id": 477, "name": "Shadow Dusknoir", "f": "Astonish", "c1": "Dynamic Punch", "c2": "Shadow Punch"},
+            {"id": 558, "name": "Crustle", "f": "Fury Cutter", "c1": "X-Scissor", "c2": "Rock Wrecker", "tm": "Rock Wrecker needs an Elite TM."},
+            {"id": 326, "name": "Grumpig", "f": "Psywave", "c1": "Dynamic Punch", "c2": "Shadow Ball"},
+            {"id": 365, "name": "Walrein", "f": "Powder Snow", "c1": "Icicle Spear", "c2": "Earthquake", "tm": "Icicle Spear needs an Elite TM."},
+            {"id": 221, "name": "Piloswine", "f": "Powder Snow", "c1": "Icicle Spear", "c2": "High Horsepower", "tm": "Icicle Spear needs an Elite TM."},
+            {"id": 478, "name": "Froslass", "f": "Powder Snow", "c1": "Avalanche", "c2": "Shadow Ball"},
+            {"id": 148, "name": "Shadow Dragonair", "f": "Dragon Breath", "c1": "Wrap", "c2": "Aqua Tail"},
+            {"id": 748, "name": "Toxapex", "f": "Bite", "c1": "Brine", "c2": "Sludge Wave"},
+            {"id": 372, "name": "Shadow Shelgon", "f": "Dragon Breath", "c1": "Twister", "c2": "Flamethrower"},
+            {"id": 337, "name": "Lunatone", "f": "Psywave", "c1": "Weather Ball (Ice)", "c2": "Rock Slide"},
+            {"id": 460, "name": "Shadow Abomasnow", "f": "Powder Snow", "c1": "Weather Ball (Ice)", "c2": "Energy Ball"},
+            {"id": 131, "name": "Lapras", "f": "Psywave", "c1": "Sparkling Aria", "c2": "Ice Beam"},
+            {"id": 699, "name": "Aurorus", "f": "Powder Snow", "c1": "Weather Ball (Ice)", "c2": "Meteor Beam", "tm": "Meteor Beam needs an Elite TM."}
+          ], "prefill": ["Cetitan", "Swalot", "Crustle"]}
+        };
+        var SPRITE = function (id) { return "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/" + id + ".png"; };
+        function esc(s) {
+          return String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
+        }
+        function findMon(league, name) {
+          var list = (PVP_DATA[league] && PVP_DATA[league].list) || [];
+          for (var i = 0; i < list.length; i++) if (list[i].name === name) return list[i];
+          return null;
+        }
+        function keyFor(league) { return "grillo-pvp-" + league; }
+        function loadTeam(league) {
+          try {
+            var raw = localStorage.getItem(keyFor(league));
+            if (raw) { var t = JSON.parse(raw); if (Array.isArray(t)) return t; }
+          } catch (e) {}
+          return null;
+        }
+        function saveTeam(league, team) {
+          try { localStorage.setItem(keyFor(league), JSON.stringify(team)); } catch (e) {}
+        }
+        function defaultTeam(league) {
+          return PVP_DATA[league].prefill.map(function (name) {
+            var m = findMon(league, name);
+            return m ? { id: m.id, name: m.name, f: m.f, c1: m.c1, c2: m.c2, cp: "" } : null;
+          }).filter(Boolean);
+        }
+        function getTeam(league) {
+          var t = loadTeam(league);
+          if (!t) { t = defaultTeam(league); saveTeam(league, t); }
+          return t;
+        }
+        function renderTeam(league) {
+          var grid = document.querySelector('[data-pvp-team="' + league + '"]');
+          if (!grid) return;
+          var team = getTeam(league);
+          var cap = PVP_DATA[league].cap, capLabel = PVP_DATA[league].capLabel;
+          var out = "";
+          for (var s = 0; s < 3; s++) {
+            var e = team[s];
+            if (!e) {
+              out += '<div class="party-slot empty">Empty slot<br>Tap Add a Pok&eacute;mon<br>and pick one you have</div>';
+              continue;
+            }
+            var mon = findMon(league, e.name) || { id: e.id, name: e.name, f: e.f, c1: e.c1, c2: e.c2 };
+            var cpNum = parseInt(e.cp, 10);
+            var status = "", statusCls = "";
+            if (e.cp !== "" && !isNaN(cpNum)) {
+              if (cpNum > cap) { status = "Over the " + capLabel + " CP cap — not eligible"; statusCls = "low"; }
+              else { status = "\u2713 Eligible"; statusCls = "ok"; }
+            } else { status = "Enter your CP to check it"; }
+            out += '<div class="party-slot" data-slot="' + s + '">' +
+              '<img src="' + SPRITE(e.id) + '" alt="' + esc(e.name) + '" loading="lazy" />' +
+              '<div class="ps-name">' + esc(e.name) + '</div>' +
+              '<div class="ps-moves">Fast: ' + esc(e.f) + '<br>Charged: ' + esc(e.c1) + ' + ' + esc(e.c2) + '</div>' +
+              (mon.tm ? '<div class="ps-tm">' + esc(mon.tm) + '</div>' : '') +
+              '<div class="ps-cp"><input type="number" inputmode="numeric" min="0" max="9999" placeholder="Your CP" value="' + esc(e.cp) + '" aria-label="Your ' + esc(e.name) + ' CP" data-pvp-cp="' + s + '" />' +
+              '<span class="ps-status ' + statusCls + '">' + esc(status) + '</span></div>' +
+              '<div class="ps-actions"><button type="button" data-pvp-remove="' + s + '">Remove</button></div>' +
+              '</div>';
+          }
+          grid.innerHTML = out;
+        }
+        function renderPicker(league) {
+          var box = document.querySelector('[data-pvp-picker="' + league + '"]');
+          if (!box) return;
+          var list = PVP_DATA[league].list;
+          var team = getTeam(league);
+          var inTeam = {};
+          team.forEach(function (e) { if (e) inTeam[e.name] = true; });
+          var rows = list.map(function (m) {
+            var added = !!inTeam[m.name];
+            var full = team.filter(Boolean).length >= 3;
+            return '<div class="pk-row">' +
+              '<img src="' + SPRITE(m.id) + '" alt="' + esc(m.name) + '" loading="lazy" />' +
+              '<div class="pk-info"><div class="pk-name">' + esc(m.name) + '</div>' +
+              '<div class="pk-moves">Fast: ' + esc(m.f) + ' &middot; Charged: ' + esc(m.c1) + ' + ' + esc(m.c2) + '</div>' +
+              (m.tm ? '<div class="pk-tm">' + esc(m.tm) + '</div>' : '') +
+              '</div>' +
+              '<button type="button" class="pk-add" data-pvp-add="' + esc(m.name) + '"' + ((added || full) ? ' disabled' : '') + '>' + (added ? 'Added \u2713' : 'Add') + '</button>' +
+              '</div>';
+          }).join("");
+          box.innerHTML = '<h3>Best for ' + esc(PVP_DATA[league].title) + '</h3>' +
+            '<p class="pk-sub">Best first. Tap <b>Add</b> on the ones you actually own — they join your team below. ' +
+            'Over the ' + esc(PVP_DATA[league].capLabel) + ' CP cap? Not eligible for this league.</p>' +
+            rows;
+          box.hidden = false;
+        }
+        // Wire up each league.
+        Object.keys(PVP_DATA).forEach(function (league) {
+          renderTeam(league);
+          var grid = document.querySelector('[data-pvp-team="' + league + '"]');
+          grid.addEventListener('change', function (ev) {
+            var inp = ev.target.closest('[data-pvp-cp]');
+            if (inp) {
+              var team = getTeam(league);
+              var idx = parseInt(inp.getAttribute('data-pvp-cp'), 10);
+              if (team[idx]) { team[idx].cp = inp.value; saveTeam(league, team); renderTeam(league); }
+            }
+          });
+          grid.addEventListener('click', function (ev) {
+            var rm = ev.target.closest('[data-pvp-remove]');
+            if (rm) {
+              var team = getTeam(league);
+              var idx = parseInt(rm.getAttribute('data-pvp-remove'), 10);
+              team[idx] = null;
+              saveTeam(league, team);
+              renderTeam(league);
+              var pk = document.querySelector('[data-pvp-picker="' + league + '"]');
+              if (pk && !pk.hidden) renderPicker(league);
+            }
+          });
+          var openBtn = document.querySelector('[data-pvp-open="' + league + '"]');
+          var pickerBox = document.querySelector('[data-pvp-picker="' + league + '"]');
+          openBtn.addEventListener('click', function () {
+            if (!pickerBox.hidden) { pickerBox.hidden = true; return; }
+            renderPicker(league);
+            pickerBox.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+          });
+          pickerBox.addEventListener('click', function (ev) {
+            var btn = ev.target.closest('[data-pvp-add]');
+            if (!btn || btn.disabled) return;
+            var name = btn.getAttribute('data-pvp-add');
+            var mon = findMon(league, name);
+            if (!mon) return;
+            var team = getTeam(league);
+            if (team.filter(Boolean).length >= 3) return;
+            var slot = team.indexOf(null);
+            if (slot === -1) slot = team.length;
+            team[slot] = { id: mon.id, name: mon.name, f: mon.f, c1: mon.c1, c2: mon.c2, cp: '' };
+            while (team.length < 3) team.push(null);
+            saveTeam(league, team);
+            renderTeam(league);
+            renderPicker(league);
+          });
+        });
+      })();
+    </script>
+    <script>
       /* ================= RAID HOURS =================
          Raids run roughly 5 AM - 9 PM local each day, even while a boss is
          in this week's rotation (here, through Fri Nov 13, 8 PM). Outside
@@ -1977,11 +2281,11 @@
     </script>
     <script>
       /* ================= TABS =================
-         Six tabs: Home | Upcoming | Poké Prep | Trade Board | Vivillon | Search Strings.
+         Seven tabs: Raids | PvP | Upcoming | Poké Prep | Trade Board | Vivillon | Search Strings.
          Panels stay in the DOM (display:none when inactive) so the Trade Board,
-         party builder, Vivillon, search strings, and RAID HOURS scripts keep working. */
+         party builder, PvP builders, Vivillon, search strings, and RAID HOURS scripts keep working. */
       (function () {
-        var TABS = ["raids", "upcoming", "pokeprep", "tradeboard", "vivillon", "searchstrings"];
+        var TABS = ["raids", "pvp", "upcoming", "pokeprep", "tradeboard", "vivillon", "searchstrings"];
         function showTab(name) {
           if (TABS.indexOf(name) === -1) name = "raids";
           TABS.forEach(function (t) {
