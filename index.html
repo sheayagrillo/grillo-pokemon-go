@@ -559,13 +559,11 @@
       .weak-chip[data-type="Ground"] { background: #a97e2f; }
       .weak-chip[data-type="Fighting"] { background: #b03a34; }
       .weak-chip[aria-expanded="true"] { outline: 3px solid rgba(20,35,55,.4); outline-offset: 2px; }
-      .cp-note { font-size: 13.5px; line-height: 1.55; color: var(--muted); margin: 10px 0 0; }
-      .cp-note b { color: var(--ink); }
-      .catch-gauge { margin: 12px 0 0; }
-      .catch-gauge .cg-label { font-size: 13px; font-weight: 700; color: var(--ink); }
-      .catch-gauge .cg-bar { position: relative; height: 10px; border-radius: 999px; background: #e2e8e2; margin-top: 6px; overflow: hidden; }
-      .catch-gauge .cg-fill { position: absolute; left: 0; top: 0; bottom: 0; width: 100%; background: linear-gradient(90deg, #4ade80, #14b8a6); }
-      .catch-gauge .cg-cap { display: flex; justify-content: space-between; font-size: 12px; color: var(--muted); margin-top: 4px; }
+      .cp-list { margin: 12px 0 0; }
+      .cp-list-title { font-size: 14px; font-weight: 800; color: var(--ink); margin: 0 0 4px; }
+      .cp-list ul { list-style: none; margin: 0; padding: 0; }
+      .cp-list li { font-size: 14.5px; line-height: 1.5; color: var(--ink); padding: 3px 0 3px 18px; position: relative; }
+      .cp-list li::before { content: "\2022"; position: absolute; left: 2px; color: var(--green-deep); font-weight: 800; }
       .party-title { font-size: 13px; font-weight: 800; letter-spacing: .12em; text-transform: uppercase; color: var(--muted); margin: 16px 0 8px; }
       .party-grid { display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: 10px; }
       @media (min-width: 560px) { .party-grid { grid-template-columns: repeat(3, minmax(0,1fr)); } }
@@ -609,7 +607,7 @@
 
     <nav class="tabbar" role="tablist" aria-label="Sections">
       <div class="tabbar-in">
-        <button type="button" class="tab" id="tab-home" role="tab" aria-selected="true" aria-controls="panel-home" data-tab="home">Home</button>
+        <button type="button" class="tab" id="tab-raids" role="tab" aria-selected="true" aria-controls="panel-raids" data-tab="raids">Raids</button>
         <button type="button" class="tab" id="tab-upcoming" role="tab" aria-selected="false" aria-controls="panel-upcoming" data-tab="upcoming">Upcoming</button>
         <button type="button" class="tab" id="tab-pokeprep" role="tab" aria-selected="false" aria-controls="panel-pokeprep" data-tab="pokeprep">Pok&eacute; Prep</button>
         <button type="button" class="tab" id="tab-tradeboard" role="tab" aria-selected="false" aria-controls="panel-tradeboard" data-tab="tradeboard">Trade Board</button>
@@ -617,7 +615,7 @@
         <button type="button" class="tab" id="tab-searchstrings" role="tab" aria-selected="false" aria-controls="panel-searchstrings" data-tab="searchstrings">Search Strings</button>
       </div>
     </nav>
-    <div class="tab-panel" id="panel-home" role="tabpanel" aria-labelledby="tab-home">
+    <div class="tab-panel" id="panel-raids" role="tabpanel" aria-labelledby="tab-raids">
     <header class="banner">
       <div class="banner-in">
         <img class="ball" src="ball.png" alt="Grillo Ball" />
@@ -697,8 +695,16 @@
           <p class="ti-why">A legendary wolf is in raids all week &mdash; beat it to earn Crowned Sword Energy and catch its Hero form!</p>
           <p class="ti-weak">Weak to:</p>
           <div class="weak-chips" role="group" aria-label="Weaknesses — tap a type to see Pokémon you likely have"><button type="button" class="weak-chip" data-boss="zacian" data-type="Fire" aria-expanded="false">Fire</button><button type="button" class="weak-chip" data-boss="zacian" data-type="Ground" aria-expanded="false">Ground</button></div>
-          <p class="cp-note"><b>What CP means:</b> CP is a Pok&eacute;mon&rsquo;s power level &mdash; higher hits harder and lasts longer. But type matters more: a 2,000 CP Fire-type with Fire moves beats a 3,500 CP Pok&eacute;mon of the wrong type. Aim for level 30+ (around 2,000+ CP) with the right moves.</p>
-          <div class="catch-gauge" aria-label="Catch CP"><div class="cg-label">Catch CP: 2,100&ndash;2,188 &middot; <b>2,188 is perfect</b> (2,735 weather-boosted)</div><div class="cg-bar"><div class="cg-fill"></div></div><div class="cg-cap"><span>2,100</span><span>2,188 = perfect</span></div></div>
+          <div class="cp-list" aria-label="Catch CP">
+            <p class="cp-list-title">Catch CP</p>
+            <ul>
+              <li><b>2,100&ndash;2,188</b> &mdash; the range for this raid boss</li>
+              <li><b>2,188</b> &mdash; perfect</li>
+              <li><b>2,735</b> &mdash; perfect when weather-boosted</li>
+              <li><b>Type beats CP</b> &mdash; a 2,000 CP Pok&eacute;mon of the right type with the right moves beats a 3,500 CP one of the wrong type</li>
+              <li><b>Aim for level 30+</b> &mdash; around 2,000+ CP with the right moves</li>
+            </ul>
+          </div>
           <p class="party-title">Your raid party &mdash; tap a type above, add the ones you have</p>
           <div class="party-grid" data-party="zacian"></div>
           <div class="picker" data-picker="zacian" hidden></div>
@@ -717,8 +723,16 @@
           <p class="ti-why">A legendary shield is in raids all week &mdash; beat it to earn Crowned Shield Energy and catch its Hero form!</p>
           <p class="ti-weak">Weak to:</p>
           <div class="weak-chips" role="group" aria-label="Weaknesses — tap a type to see Pokémon you likely have"><button type="button" class="weak-chip" data-boss="zamazenta" data-type="Fire" aria-expanded="false">Fire</button><button type="button" class="weak-chip" data-boss="zamazenta" data-type="Fighting" aria-expanded="false">Fighting</button><button type="button" class="weak-chip" data-boss="zamazenta" data-type="Ground" aria-expanded="false">Ground</button></div>
-          <p class="cp-note"><b>What CP means:</b> CP is a Pok&eacute;mon&rsquo;s power level &mdash; higher hits harder and lasts longer. But type matters more: a 2,000 CP Fire-type with Fire moves beats a 3,500 CP Pok&eacute;mon of the wrong type. Aim for level 30+ (around 2,000+ CP) with the right moves.</p>
-          <div class="catch-gauge" aria-label="Catch CP"><div class="cg-label">Catch CP: 2,100&ndash;2,188 &middot; <b>2,188 is perfect</b> (2,735 weather-boosted)</div><div class="cg-bar"><div class="cg-fill"></div></div><div class="cg-cap"><span>2,100</span><span>2,188 = perfect</span></div></div>
+          <div class="cp-list" aria-label="Catch CP">
+            <p class="cp-list-title">Catch CP</p>
+            <ul>
+              <li><b>2,100&ndash;2,188</b> &mdash; the range for this raid boss</li>
+              <li><b>2,188</b> &mdash; perfect</li>
+              <li><b>2,735</b> &mdash; perfect when weather-boosted</li>
+              <li><b>Type beats CP</b> &mdash; a 2,000 CP Pok&eacute;mon of the right type with the right moves beats a 3,500 CP one of the wrong type</li>
+              <li><b>Aim for level 30+</b> &mdash; around 2,000+ CP with the right moves</li>
+            </ul>
+          </div>
           <p class="party-title">Your raid party &mdash; tap a type above, add the ones you have</p>
           <div class="party-grid" data-party="zamazenta"></div>
           <div class="picker" data-picker="zamazenta" hidden></div>
@@ -1972,9 +1986,9 @@
          Panels stay in the DOM (display:none when inactive) so the Trade Board,
          party builder, Vivillon, search strings, and RAID HOURS scripts keep working. */
       (function () {
-        var TABS = ["home", "upcoming", "pokeprep", "tradeboard", "vivillon", "searchstrings"];
+        var TABS = ["raids", "upcoming", "pokeprep", "tradeboard", "vivillon", "searchstrings"];
         function showTab(name) {
-          if (TABS.indexOf(name) === -1) name = "home";
+          if (TABS.indexOf(name) === -1) name = "raids";
           TABS.forEach(function (t) {
             var tab = document.getElementById("tab-" + t);
             var panel = document.getElementById("panel-" + t);
@@ -1994,7 +2008,7 @@
         window.addEventListener("hashchange", function () {
           showTab(window.location.hash.replace("#", ""));
         });
-        showTab(window.location.hash.replace("#", "") || "home");
+        showTab(window.location.hash.replace("#", "") || "raids");
       })();
     </script>
   </body>
