@@ -137,6 +137,8 @@
         font-size: 12px; font-weight: 800; color: var(--red); letter-spacing: 0.4px;
       }
       .ti-live::before { content: ""; width: 9px; height: 9px; border-radius: 50%; background: var(--red); }
+      .ti-live.off { color: var(--muted); }
+      .ti-live.off::before { background: var(--muted); }
       .ti-why { font-weight: 600; font-size: 15.5px; line-height: 1.5; margin: 12px 0 0; }
       .ti-weak { font-size: 14px; font-weight: 700; color: var(--green-deep); margin: 8px 0 0; }
       .ctr-moves { display: block; font-size: 12.5px; font-weight: 600; color: var(--muted); line-height: 1.35; }
@@ -629,7 +631,7 @@
       </div>
 
       <!-- ============ TODAY — STACKED ============ -->
-      <div class="sec-head"><h2>Raids</h2><span class="sub">Live now &middot; through Fri Nov 13</span></div>
+      <div class="sec-head"><h2>Raids</h2><span class="sub">Live now &middot; through Fri Nov 13, 8 PM</span></div>
       <section class="today-list" aria-label="Live now">
         <article class="today-item">
           <div class="ti-head">
@@ -637,7 +639,7 @@
             <div class="ti-id">
               <h2>Crowned Zacian</h2>
               <p class="ti-kind">5-star raids</p>
-              <p class="ti-when">Live now &middot; through Fri Nov 13</p>
+              <p class="ti-when">Live now &middot; through Fri Nov 13, 8 PM</p>
             </div>
             <span class="ti-live">LIVE</span>
           </div>
@@ -657,7 +659,7 @@
             <div class="ti-id">
               <h2>Crowned Zamazenta</h2>
               <p class="ti-kind">5-star raids</p>
-              <p class="ti-when">Live now &middot; through Fri Nov 13</p>
+              <p class="ti-when">Live now &middot; through Fri Nov 13, 8 PM</p>
             </div>
             <span class="ti-live">LIVE</span>
           </div>
@@ -1815,6 +1817,44 @@
             var ed = ev.target.closest('[data-edit]');
             if (ed) { openEdit(bossKey, parseInt(ed.getAttribute('data-edit'), 10)); }
           });
+        });
+      })();
+    </script>
+    <script>
+      /* ================= RAID HOURS =================
+         Raids run roughly 5 AM - 9 PM local each day, even while a boss is
+         in this week's rotation (here, through Fri Nov 13, 8 PM). Outside
+         those hours no raid is actually running, so the card badge says
+         when they are back instead of showing LIVE all night. */
+      (function () {
+        var h = new Date().getHours();
+        var label, off, whenText, subText;
+        if (h >= 5 && h < 21) {
+          label = "LIVE"; off = false;
+          whenText = "Live now \u00B7 through Fri Nov 13, 8 PM";
+          subText = "Live now \u00B7 through Fri Nov 13, 8 PM";
+        } else if (h >= 21) {
+          label = "Back tomorrow"; off = true;
+          whenText = "Done for today \u00B7 back tomorrow \u00B7 through Fri Nov 13, 8 PM";
+          subText = "Done for today \u00B7 back tomorrow \u00B7 through Fri Nov 13, 8 PM";
+        } else {
+          label = "Back this morning"; off = true;
+          whenText = "Back this morning \u00B7 through Fri Nov 13, 8 PM";
+          subText = "Back this morning \u00B7 through Fri Nov 13, 8 PM";
+        }
+        document.querySelectorAll(".ti-live").forEach(function (el) {
+          el.textContent = label;
+          el.classList.toggle("off", off);
+        });
+        document.querySelectorAll(".ti-when").forEach(function (el) {
+          el.textContent = whenText;
+        });
+        document.querySelectorAll(".sec-head").forEach(function (head) {
+          var h2 = head.querySelector("h2");
+          if (h2 && h2.textContent.trim() === "Raids") {
+            var sub = head.querySelector(".sub");
+            if (sub) sub.textContent = subText;
+          }
         });
       })();
     </script>
