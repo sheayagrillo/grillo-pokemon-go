@@ -1827,35 +1827,41 @@
          those hours no raid is actually running, so the card badge says
          when they are back instead of showing LIVE all night. */
       (function () {
-        var h = new Date().getHours();
-        var label, off, whenText, subText;
-        if (h >= 5 && h < 21) {
-          label = "LIVE"; off = false;
-          whenText = "Live now \u00B7 through Fri Nov 13, 8 PM";
-          subText = "Live now \u00B7 through Fri Nov 13, 8 PM";
-        } else if (h >= 21) {
-          label = "Back tomorrow"; off = true;
-          whenText = "Done for today \u00B7 back tomorrow \u00B7 through Fri Nov 13, 8 PM";
-          subText = "Done for today \u00B7 back tomorrow \u00B7 through Fri Nov 13, 8 PM";
-        } else {
-          label = "Back this morning"; off = true;
-          whenText = "Back this morning \u00B7 through Fri Nov 13, 8 PM";
-          subText = "Back this morning \u00B7 through Fri Nov 13, 8 PM";
-        }
-        document.querySelectorAll(".ti-live").forEach(function (el) {
-          el.textContent = label;
-          el.classList.toggle("off", off);
-        });
-        document.querySelectorAll(".ti-when").forEach(function (el) {
-          el.textContent = whenText;
-        });
-        document.querySelectorAll(".sec-head").forEach(function (head) {
-          var h2 = head.querySelector("h2");
-          if (h2 && h2.textContent.trim() === "Raids") {
-            var sub = head.querySelector(".sub");
-            if (sub) sub.textContent = subText;
+        function updateRaidStatus() {
+          var h = new Date().getHours();
+          var label, off, whenText, subText;
+          if (h >= 5 && h < 21) {
+            label = "LIVE"; off = false;
+            whenText = "Live now \u00B7 through Fri Nov 13, 8 PM";
+            subText = "Live now \u00B7 through Fri Nov 13, 8 PM";
+          } else if (h >= 21) {
+            label = "Back tomorrow"; off = true;
+            whenText = "Done for today \u00B7 back tomorrow \u00B7 through Fri Nov 13, 8 PM";
+            subText = "Done for today \u00B7 back tomorrow \u00B7 through Fri Nov 13, 8 PM";
+          } else {
+            label = "Back this morning"; off = true;
+            whenText = "Back this morning \u00B7 through Fri Nov 13, 8 PM";
+            subText = "Back this morning \u00B7 through Fri Nov 13, 8 PM";
           }
-        });
+          document.querySelectorAll(".ti-live").forEach(function (el) {
+            el.textContent = label;
+            el.classList.toggle("off", off);
+          });
+          document.querySelectorAll(".ti-when").forEach(function (el) {
+            el.textContent = whenText;
+          });
+          document.querySelectorAll(".sec-head").forEach(function (head) {
+            var h2 = head.querySelector("h2");
+            if (h2 && h2.textContent.trim() === "Raids") {
+              var sub = head.querySelector(".sub");
+              if (sub) sub.textContent = subText;
+            }
+          });
+        }
+        updateRaidStatus();
+        // Re-check every minute so a page left open flips the badge on its
+        // own at 5 AM and 9 PM without needing a reload.
+        setInterval(updateRaidStatus, 60000);
       })();
     </script>
   </body>
