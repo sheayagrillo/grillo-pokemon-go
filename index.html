@@ -763,6 +763,10 @@
         <p class="sec-note">Great League, Ultra League: Mega Edition, and the 2026 GO LAIC Cup are live this week. Master League returns Nov 17.</p>
         <p class="sec-note">No GO Battle Thursday Nov 12 &mdash; paused for Wild Area week. Next: Thu Nov 19 + Nov 26 (4&times; Stardust, up to 10 sets).</p>
 
+        <div class="howto" style="margin-top:12px">
+          <p><b>Why these picks:</b> Rankings come from PvPoke &mdash; how each Pok&eacute;mon does against the ones other players use most. The top picks win on four things: <b>typing</b> (what they beat), <b>bulk</b> (how long they survive), <b>energy</b> (how fast their fast move charges the big moves), and <b>coverage</b> (two charged moves so nothing walls them). Best team in each league is ranked #1 first &mdash; if you don&rsquo;t have the top pick, take the next one down.</p>
+        </div>
+
         <div class="prep-card">
           <h3 class="ellipsis">Great League</h3>
           <p class="prep-dates">1,500 CP max &middot; Nov 10&ndash;17</p>
@@ -1930,7 +1934,7 @@
           var party = getParty(bossKey);
           var inParty = {};
           party.forEach(function (e) { if (e) inParty[e.name] = true; });
-          var rows = list.map(function (m) {
+          var rows = list.map(function (m, i) {
             var added = !!inParty[m.name];
             var full = party.filter(Boolean).length >= 6;
             return '<div class="pk-row">' +
@@ -2172,7 +2176,7 @@
             var full = team.filter(Boolean).length >= 3;
             return '<div class="pk-row">' +
               '<img src="' + SPRITE(m.id) + '" alt="' + esc(m.name) + '" loading="lazy" />' +
-              '<div class="pk-info"><div class="pk-name">' + esc(m.name) + '</div>' +
+              '<div class="pk-info"><div class="pk-name">#' + (i + 1) + ' ' + esc(m.name) + '</div>' +
               '<div class="pk-moves">Fast: ' + esc(m.f) + ' &middot; Charged: ' + esc(m.c1) + ' + ' + esc(m.c2) + '</div>' +
               (m.tm ? '<div class="pk-tm">' + esc(m.tm) + '</div>' : '') +
               '</div>' +
@@ -2180,7 +2184,7 @@
               '</div>';
           }).join("");
           box.innerHTML = '<h3>Best for ' + esc(PVP_DATA[league].title) + '</h3>' +
-            '<p class="pk-sub">Best first. Tap <b>Add</b> on the ones you actually own — they join your team below. ' +
+            '<p class="pk-sub">Ranked #1 first. Tap <b>Add</b> on the ones you actually own — they join your team below. Don\u2019t have the top pick? Take the next one down. ' +
             'Over the ' + esc(PVP_DATA[league].capLabel) + ' CP cap? Not eligible for this league.</p>' +
             rows;
           box.hidden = false;
