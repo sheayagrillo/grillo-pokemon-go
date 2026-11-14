@@ -185,6 +185,8 @@
         font-size: 12px; font-weight: 800; color: var(--red); letter-spacing: 0.4px;
       }
       .mb-live::before { content: ""; width: 9px; height: 9px; border-radius: 50%; background: var(--red); }
+      .mb-live.off { color: var(--muted); }
+      .mb-live.off::before { background: var(--muted); }
       .mb-when { color: var(--red-deep); font-weight: 700; font-size: 14.5px; margin: 4px 0 0; }
       @media (prefers-color-scheme: dark) { .mb-when { color: #ff8a7a; } }
       .ti-why { font-weight: 600; font-size: 15.5px; line-height: 1.5; margin: 12px 0 0; }
@@ -691,7 +693,7 @@
       </div>
 
       <!-- ============ TODAY — STACKED ============ -->
-      <div class="sec-head"><h2>Raids</h2><span class="sub">Live now &middot; through Fri Nov 13, 8 PM</span></div>
+      <div class="sec-head"><h2>Raids</h2><span class="sub">Ended Fri Nov 13, 8 PM</span></div>
       <section class="today-list" aria-label="Live now">
         <article class="today-item">
           <div class="ti-head">
@@ -699,11 +701,11 @@
             <div class="ti-id">
               <h2>Crowned Zacian</h2>
               <p class="ti-kind">5-star raids</p>
-              <p class="ti-when">Live now &middot; through Fri Nov 13, 8 PM</p>
+              <p class="ti-when">Ended &middot; Fri Nov 13, 8 PM</p>
             </div>
-            <span class="ti-live">LIVE</span>
+            <span class="ti-live off">Ended</span>
           </div>
-          <p class="ti-why">A legendary wolf is in raids all week &mdash; beat it to earn Crowned Sword Energy and catch its Hero form!</p>
+          <p class="ti-why">This raid has ended &mdash; it ran all week through Fri Nov 13, 8 PM. Beating it earned Crowned Sword Energy and a catch of its Hero form.</p>
           <p class="ti-weak">Weak to:</p>
           <div class="weak-chips" role="group" aria-label="Weaknesses — tap a type to see Pokémon you likely have"><button type="button" class="weak-chip" data-boss="zacian" data-type="Fire" aria-expanded="false">Fire</button><button type="button" class="weak-chip" data-boss="zacian" data-type="Ground" aria-expanded="false">Ground</button></div>
           <div class="cp-list" aria-label="Catch CP">
@@ -725,11 +727,11 @@
             <div class="ti-id">
               <h2>Crowned Zamazenta</h2>
               <p class="ti-kind">5-star raids</p>
-              <p class="ti-when">Live now &middot; through Fri Nov 13, 8 PM</p>
+              <p class="ti-when">Ended &middot; Fri Nov 13, 8 PM</p>
             </div>
-            <span class="ti-live">LIVE</span>
+            <span class="ti-live off">Ended</span>
           </div>
-          <p class="ti-why">A legendary shield is in raids all week &mdash; beat it to earn Crowned Shield Energy and catch its Hero form!</p>
+          <p class="ti-why">This raid has ended &mdash; it ran all week through Fri Nov 13, 8 PM. Beating it earned Crowned Shield Energy and a catch of its Hero form.</p>
           <p class="ti-weak">Weak to:</p>
           <div class="weak-chips" role="group" aria-label="Weaknesses — tap a type to see Pokémon you likely have"><button type="button" class="weak-chip" data-boss="zamazenta" data-type="Fire" aria-expanded="false">Fire</button><button type="button" class="weak-chip" data-boss="zamazenta" data-type="Fighting" aria-expanded="false">Fighting</button><button type="button" class="weak-chip" data-boss="zamazenta" data-type="Ground" aria-expanded="false">Ground</button></div>
           <div class="cp-list" aria-label="Catch CP">
@@ -751,11 +753,11 @@
             <div class="ti-id">
               <h2>Dynamax Latias</h2>
               <p class="ti-kind">5-star Max Battle</p>
-              <p class="mb-when">Today only &middot; Max Battle Hour 6&ndash;7 PM</p>
+              <p class="mb-when">Ended &middot; Fri Nov 13 &middot; Max Battle Hour 6&ndash;7 PM</p>
             </div>
-            <span class="mb-live">LIVE</span>
+            <span class="mb-live off">Ended</span>
           </div>
-          <p class="ti-why">A legendary dragon (the red Eon dragon) is at Power Spots today &mdash; beat it in a Max Battle to catch it! You need 2&ndash;4 players &mdash; these are too tough alone.</p>
+          <p class="ti-why">A legendary dragon (the red Eon dragon) was at Power Spots today &mdash; this Max Battle has ended. It took 2&ndash;4 players &mdash; these are too tough alone.</p>
           <p class="ti-weak">Weak to:</p>
           <div class="weak-chips" role="group" aria-label="Weaknesses"><span class="weak-chip" data-type="Dragon" style="cursor:default">Dragon</span><span class="weak-chip" data-type="Ice" style="cursor:default">Ice</span><span class="weak-chip" data-type="Fairy" style="cursor:default">Fairy</span><span class="weak-chip" data-type="Ghost" style="cursor:default">Ghost</span><span class="weak-chip" data-type="Dark" style="cursor:default">Dark</span><span class="weak-chip" data-type="Bug" style="cursor:default">Bug</span></div>
           <div class="cp-list" aria-label="Catch CP">
@@ -767,7 +769,7 @@
             </ul>
           </div>
           <p class="ti-detail">Bring Dragon, Ice, or Fairy Dynamax attackers &mdash; Eternatus hits hardest. Only Dynamax and Gigantamax Pok&eacute;mon can battle at Power Spots.</p>
-          <p class="ti-detail">Find it at a purple Power Spot &mdash; it costs 800 Max Particles per try, and you only spend them if you win. Even more Power Spots have Latias from 6&ndash;7 PM tonight. Latias caught today knows Mist Ball.</p></article>
+          <p class="ti-detail">Find it at a purple Power Spot &mdash; it costs 800 Max Particles per try, and you only spend them if you win. Even more Power Spots had Latias from 6&ndash;7 PM tonight. Latias caught today knows Mist Ball.</p></article>
 
         <article class="today-item">
           <div class="ti-head">
@@ -775,11 +777,11 @@
             <div class="ti-id">
               <h2>Dynamax Latios</h2>
               <p class="ti-kind">5-star Max Battle</p>
-              <p class="mb-when">Today only &middot; Max Battle Hour 6&ndash;7 PM</p>
+              <p class="mb-when">Ended &middot; Fri Nov 13 &middot; Max Battle Hour 6&ndash;7 PM</p>
             </div>
-            <span class="mb-live">LIVE</span>
+            <span class="mb-live off">Ended</span>
           </div>
-          <p class="ti-why">A legendary dragon (the blue Eon dragon) is at Power Spots today &mdash; beat it in a Max Battle to catch it! You need 2&ndash;4 players &mdash; these are too tough alone.</p>
+          <p class="ti-why">A legendary dragon (the blue Eon dragon) was at Power Spots today &mdash; this Max Battle has ended. It took 2&ndash;4 players &mdash; these are too tough alone.</p>
           <p class="ti-weak">Weak to:</p>
           <div class="weak-chips" role="group" aria-label="Weaknesses"><span class="weak-chip" data-type="Dragon" style="cursor:default">Dragon</span><span class="weak-chip" data-type="Ice" style="cursor:default">Ice</span><span class="weak-chip" data-type="Fairy" style="cursor:default">Fairy</span><span class="weak-chip" data-type="Ghost" style="cursor:default">Ghost</span><span class="weak-chip" data-type="Dark" style="cursor:default">Dark</span><span class="weak-chip" data-type="Bug" style="cursor:default">Bug</span></div>
           <div class="cp-list" aria-label="Catch CP">
@@ -791,7 +793,7 @@
             </ul>
           </div>
           <p class="ti-detail">Bring Dragon, Ice, or Fairy Dynamax attackers &mdash; Eternatus hits hardest. Only Dynamax and Gigantamax Pok&eacute;mon can battle at Power Spots.</p>
-          <p class="ti-detail">Find it at a purple Power Spot &mdash; it costs 800 Max Particles per try, and you only spend them if you win. Even more Power Spots have Latios from 6&ndash;7 PM tonight. Latios caught today knows Luster Purge.</p></article>
+          <p class="ti-detail">Find it at a purple Power Spot &mdash; it costs 800 Max Particles per try, and you only spend them if you win. Even more Power Spots had Latios from 6&ndash;7 PM tonight. Latios caught today knows Luster Purge.</p></article>
 
 
       </section>
@@ -2322,9 +2324,16 @@
          when they are back instead of showing LIVE all night. */
       (function () {
         function updateRaidStatus() {
-          var h = new Date().getHours();
+          var now = new Date();
+          var h = now.getHours();
+          var rotationEnd = new Date(2026, 10, 13, 20, 0, 0);
+          var ended = now >= rotationEnd;
           var label, off, whenText, subText;
-          if (h >= 5 && h < 21) {
+          if (ended) {
+            label = "Ended"; off = true;
+            whenText = "Ended \u00B7 Fri Nov 13, 8 PM";
+            subText = "Ended Fri Nov 13, 8 PM";
+          } else if (h >= 5 && h < 21) {
             label = "LIVE"; off = false;
             whenText = "Live now \u00B7 through Fri Nov 13, 8 PM";
             subText = "Live now \u00B7 through Fri Nov 13, 8 PM";
@@ -2343,6 +2352,12 @@
           });
           document.querySelectorAll(".ti-when").forEach(function (el) {
             el.textContent = whenText;
+          });
+          document.querySelectorAll(".mb-live").forEach(function (el) {
+            if (ended) { el.textContent = "Ended"; el.classList.add("off"); }
+          });
+          document.querySelectorAll(".mb-when").forEach(function (el) {
+            if (ended) { el.textContent = "Ended \u00B7 Fri Nov 13 \u00B7 Max Battle Hour 6\u20137 PM"; }
           });
           document.querySelectorAll(".sec-head").forEach(function (head) {
             var h2 = head.querySelector("h2");
