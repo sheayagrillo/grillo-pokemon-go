@@ -634,7 +634,7 @@
         <img class="ball" src="ball.png" alt="Grillo Ball" />
         <div>
           <h2>TODAY IN POKÉMON GO</h2>
-          <p>Wednesday, November 18, 2026</p>
+          <p>Thursday, November 19, 2026</p>
         </div>
       </div>
     </header>
@@ -693,7 +693,7 @@
       </div>
 
       <!-- ============ TODAY — STACKED ============ -->
-      <div class="sec-head"><h2>Raids</h2><span class="sub">Live now &middot; Wed Nov 18 &middot; Cresselia, Darkrai + Mega Banette</span></div>
+      <div class="sec-head"><h2>Raids</h2><span class="sub">Live now &middot; Thu Nov 19 &middot; Cresselia, Darkrai + Mega Banette</span></div>
       <section class="today-list" aria-label="Live now">
         <article class="today-item">
           <div class="ti-head">
@@ -701,11 +701,11 @@
             <div class="ti-id">
               <h2>Cresselia</h2>
               <p class="ti-kind">5-star raids</p>
-              <p class="ti-when">Live now &middot; Wed Nov 18 &middot; Nov 16&ndash;24</p>
+              <p class="ti-when">Live now &middot; Thu Nov 19 &middot; Nov 16&ndash;24</p>
             </div>
             <span class="ti-live">LIVE</span>
           </div>
-          <p class="ti-why">A moon-shaped Psychic legendary &mdash; in 5-star raids through Tue Nov 24. It can be Shiny. Raid Hour for both 5-star bosses is tonight, Wed Nov 18, 6&ndash;7 PM.</p>
+          <p class="ti-why">A moon-shaped Psychic legendary &mdash; in 5-star raids through Tue Nov 24. It can be Shiny.</p>
           <p class="ti-weak">Weak to:</p>
           <div class="weak-chips" role="group" aria-label="Weaknesses"><span class="weak-chip" data-type="Bug" style="cursor:default">Bug</span><span class="weak-chip" data-type="Ghost" style="cursor:default">Ghost</span><span class="weak-chip" data-type="Dark" style="cursor:default">Dark</span></div>
           <div class="cp-list" aria-label="Catch CP">
@@ -724,11 +724,11 @@
             <div class="ti-id">
               <h2>Darkrai</h2>
               <p class="ti-kind">5-star raids</p>
-              <p class="ti-when">Live now &middot; Wed Nov 18 &middot; Nov 16&ndash;24</p>
+              <p class="ti-when">Live now &middot; Thu Nov 19 &middot; Nov 16&ndash;24</p>
             </div>
             <span class="ti-live">LIVE</span>
           </div>
-          <p class="ti-why">A shadowy Dark-type Mythical &mdash; in 5-star raids through Tue Nov 24. It can be Shiny. Raid Hour for both 5-star bosses is tonight, Wed Nov 18, 6&ndash;7 PM.</p>
+          <p class="ti-why">A shadowy Dark-type Mythical &mdash; in 5-star raids through Tue Nov 24. It can be Shiny.</p>
           <p class="ti-weak">Weak to:</p>
           <div class="weak-chips" role="group" aria-label="Weaknesses"><span class="weak-chip" data-type="Fighting" style="cursor:default">Fighting</span><span class="weak-chip" data-type="Bug" style="cursor:default">Bug</span><span class="weak-chip" data-type="Fairy" style="cursor:default">Fairy</span></div>
           <div class="cp-list" aria-label="Catch CP">
@@ -747,7 +747,7 @@
             <div class="ti-id">
               <h2>Mega Banette</h2>
               <p class="ti-kind">Mega raids</p>
-              <p class="ti-when">Live now &middot; Wed Nov 18 &middot; Nov 16&ndash;24</p>
+              <p class="ti-when">Live now &middot; Thu Nov 19 &middot; Nov 16&ndash;24</p>
             </div>
             <span class="ti-live">LIVE</span>
           </div>
@@ -2214,7 +2214,7 @@
     <script>
       /* ================= RAID HOURS =================
          Raids run roughly 5 AM - 9 PM local each day, even while a boss is
-         in today's rotation (here, Wed Nov 18, Cresselia/Darkrai/Mega Banette, Nov 16-24). Outside
+         in today's rotation (here, Thu Nov 19, Cresselia/Darkrai/Mega Banette, Nov 16-24). Outside
          those hours no raid is actually running, so the card badge says
          when they are back instead of showing LIVE all night. */
       (function () {
@@ -2230,16 +2230,16 @@
             subText = "Ended Tue Nov 24, 9 PM";
           } else if (h >= 5 && h < 21) {
             label = "LIVE"; off = false;
-            whenText = "Live now \u00B7 Wed Nov 18 \u00B7 Nov 16\u201324";
-            subText = "Live now \u00B7 Wed Nov 18 \u00B7 Nov 16\u201324";
+            whenText = "Live now \u00B7 Thu Nov 19 \u00B7 Nov 16\u201324";
+            subText = "Live now \u00B7 Thu Nov 19 \u00B7 Nov 16\u201324";
           } else if (h >= 21) {
             label = "Back tomorrow"; off = true;
-            whenText = "Done for today \u00B7 Wed Nov 18 \u00B7 Nov 16\u201324";
-            subText = "Done for today \u00B7 Wed Nov 18 \u00B7 Nov 16\u201324";
+            whenText = "Done for today \u00B7 Thu Nov 19 \u00B7 Nov 16\u201324";
+            subText = "Done for today \u00B7 Thu Nov 19 \u00B7 Nov 16\u201324";
           } else {
             label = "Back this morning"; off = true;
-            whenText = "Back this morning \u00B7 Wed Nov 18 \u00B7 Nov 16\u201324";
-            subText = "Back this morning \u00B7 Wed Nov 18 \u00B7 Nov 16\u201324";
+            whenText = "Back this morning \u00B7 Thu Nov 19 \u00B7 Nov 16\u201324";
+            subText = "Back this morning \u00B7 Thu Nov 19 \u00B7 Nov 16\u201324";
           }
           document.querySelectorAll(".ti-live").forEach(function (el) {
             el.textContent = label;
