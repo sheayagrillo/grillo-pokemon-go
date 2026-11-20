@@ -136,6 +136,8 @@
         box-shadow: var(--shadow);
       }
       .tab-panel[hidden] { display: none; }
+      /* Keep panel tops + section heads clear of the sticky tab bar (61px) */
+      .tab-panel, .sec-head, .today-item { scroll-margin-top: 78px; }
 
       /* ---------- Today panel + More doors (nav rebuild, Nov 19) ---------- */
       .tabbar-in .tab { flex: 1 1 0; }
@@ -164,8 +166,16 @@
       .more-row .more-name { font-size: 19px; font-weight: 800; line-height: 1.25; }
       .more-row .more-desc { font-size: 14px; font-weight: 600; color: var(--muted); margin-top: 2px; }
       .more-row .more-chev { flex: 0 0 auto; font-size: 28px; font-weight: 800; color: var(--muted); line-height: 1; }
-      .ti-callout img.type-icon { width: 23px; height: 23px; vertical-align: -4px; }
-      img.mon-icon { width: 22px; height: 22px; object-fit: contain; vertical-align: -5px; margin: 0 1px; }
+      /* Type chips (readability fix, Nov 20): the SV type banner already
+         carries symbol + name together — render it at readable height as
+         a chip, never squeezed into a square or stacked above its word. */
+      .type-chip { display: inline-flex; align-items: center; flex: 0 0 auto; }
+      .type-chip img.type-icon { display: block; width: auto; height: 22px; }
+      .ti-callout .type-chip img.type-icon { height: 24px; }
+      .prep-card li .type-chip img.type-icon { height: 20px; }
+      .ti-types { display: flex; flex-wrap: wrap; gap: 6px; margin: 7px 0 0; }
+      .ti-types .type-chip img.type-icon { height: 20px; }
+      img.mon-icon { display: inline-block; width: 22px; height: 22px; object-fit: contain; vertical-align: -5px; margin: 0 1px; }
       .prep-card h3 img.mon-icon { width: 26px; height: 26px; vertical-align: -6px; }
 
       /* ---------- Poké Prep event cards ---------- */
@@ -243,7 +253,7 @@
       .ti-flags { display: flex; flex-wrap: wrap; gap: 8px; margin: 10px 0 0; }
       .flag { font-size: 13px; font-weight: 800; padding: 4px 12px; border-radius: 999px; background: var(--green-bg); color: var(--green-deep); white-space: nowrap; }
       .flag.mythic { background: #f3e8ff; color: #6b21a8; }
-      .ti-callout { font-size: clamp(20px, 4.6vw, 26px); font-weight: 800; line-height: 1.3; margin: 14px 0 0; letter-spacing: .02em; }
+      .ti-callout { display: flex; align-items: center; flex-wrap: wrap; gap: 8px 10px; font-size: clamp(20px, 4.6vw, 26px); font-weight: 800; line-height: 1.3; margin: 14px 0 0; letter-spacing: .02em; }
       .ti-meta { font-weight: 600; font-size: 15px; line-height: 1.55; margin: 10px 0 0; }
       .ti-meta b { font-weight: 800; color: var(--green-deep); }
       /* Raid card counter picture tiles + fact chips (visual pass, Nov 19) */
@@ -270,8 +280,8 @@
       .pt-flag { display: inline-block; margin-top: 3px; font-size: 9.5px; font-weight: 800; letter-spacing: 0.02em; line-height: 1.3; padding: 2px 6px; border-radius: 999px; background: #f59e0b; color: #201304; }
       .meta-flag { display: inline-block; margin-left: 6px; font-size: 11px; font-weight: 800; padding: 2px 7px; border-radius: 999px; background: #f59e0b; color: #201304; vertical-align: 1px; white-space: nowrap; }
       /* Icons-always: Pokémon icons in meta lists, type icons in text (Nov 19) */
-      .meta-list li img.meta-icon { width: 32px; height: 32px; object-fit: contain; vertical-align: -9px; margin-right: 7px; }
-      img.type-icon { width: 17px; height: 17px; object-fit: contain; vertical-align: -3px; margin: 0 1px; }
+      .meta-list li img.meta-icon { display: inline-block; width: 32px; height: 32px; object-fit: contain; vertical-align: -9px; margin-right: 7px; }
+      img.type-icon { display: inline-block; width: auto; height: 18px; vertical-align: -4px; margin: 0 2px; }
       .ti-chips { display: flex; flex-wrap: wrap; gap: 8px; margin: 14px 0 0; }
       .ti-chip { font-size: 13.5px; font-weight: 700; padding: 5px 13px; border-radius: 999px; background: var(--green-bg); color: var(--ink); white-space: nowrap; }
       .ti-chip b { font-weight: 800; color: var(--green-deep); }
@@ -849,13 +859,14 @@
             <div class="ti-id">
               <h2>Cresselia</h2>
               <p class="ti-kind">5-star raids</p>
+              <p class="ti-types"><span class="type-chip"><img class="type-icon" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/types/generation-ix/scarlet-violet/14.png" alt="Psychic"></span></p>
               <p class="ti-when">Live now &middot; Fri Nov 20 &middot; Nov 16&ndash;24</p>
             </div>
             <span class="ti-live">LIVE</span>
           </div>
-          <p class="ti-why">A moon-shaped <img class="type-icon" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/types/generation-ix/scarlet-violet/14.png" alt="Psychic"> Psychic legendary &mdash; in 5-star raids through Tue Nov 24.</p>
+          <p class="ti-why">A moon-shaped Psychic legendary &mdash; in 5-star raids through Tue Nov 24.</p>
           <div class="ti-flags"><span class="flag">&#10024; Shiny available</span></div>
-          <p class="ti-callout">Bring <img class="type-icon" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/types/generation-ix/scarlet-violet/17.png" alt="Dark"> DARK &middot; <img class="type-icon" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/types/generation-ix/scarlet-violet/8.png" alt="Ghost"> GHOST &middot; <img class="type-icon" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/types/generation-ix/scarlet-violet/7.png" alt="Bug"> BUG</p>
+          <p class="ti-callout"><span>Bring</span> <span class="type-chip"><img class="type-icon" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/types/generation-ix/scarlet-violet/17.png" alt="Dark"></span> <span class="type-chip"><img class="type-icon" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/types/generation-ix/scarlet-violet/8.png" alt="Ghost"></span> <span class="type-chip"><img class="type-icon" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/types/generation-ix/scarlet-violet/7.png" alt="Bug"></span></p>
           <div class="poke-tiles">
             <p class="pt-label">Best answers</p>
             <div class="pt-row">
@@ -890,13 +901,14 @@
             <div class="ti-id">
               <h2>Darkrai</h2>
               <p class="ti-kind">5-star raids</p>
+              <p class="ti-types"><span class="type-chip"><img class="type-icon" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/types/generation-ix/scarlet-violet/17.png" alt="Dark"></span></p>
               <p class="ti-when">Live now &middot; Fri Nov 20 &middot; Nov 16&ndash;24</p>
             </div>
             <span class="ti-live">LIVE</span>
           </div>
-          <p class="ti-why">A shadowy <img class="type-icon" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/types/generation-ix/scarlet-violet/17.png" alt="Dark"> Dark-type Mythical &mdash; in 5-star raids through Tue Nov 24.</p>
+          <p class="ti-why">A shadowy Dark-type Mythical &mdash; in 5-star raids through Tue Nov 24.</p>
           <div class="ti-flags"><span class="flag">&#10024; Shiny available</span><span class="flag mythic">Mythical &mdash; can&rsquo;t be traded</span></div>
-          <p class="ti-callout">Bring <img class="type-icon" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/types/generation-ix/scarlet-violet/2.png" alt="Fighting"> FIGHTING &middot; <img class="type-icon" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/types/generation-ix/scarlet-violet/7.png" alt="Bug"> BUG &middot; <img class="type-icon" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/types/generation-ix/scarlet-violet/18.png" alt="Fairy"> FAIRY</p>
+          <p class="ti-callout"><span>Bring</span> <span class="type-chip"><img class="type-icon" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/types/generation-ix/scarlet-violet/2.png" alt="Fighting"></span> <span class="type-chip"><img class="type-icon" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/types/generation-ix/scarlet-violet/7.png" alt="Bug"></span> <span class="type-chip"><img class="type-icon" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/types/generation-ix/scarlet-violet/18.png" alt="Fairy"></span></p>
           <div class="poke-tiles">
             <p class="pt-label">Best answers</p>
             <div class="pt-row">
@@ -932,13 +944,14 @@
             <div class="ti-id">
               <h2>Mega Banette</h2>
               <p class="ti-kind">Mega raids</p>
+              <p class="ti-types"><span class="type-chip"><img class="type-icon" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/types/generation-ix/scarlet-violet/8.png" alt="Ghost"></span></p>
               <p class="ti-when">Live now &middot; Fri Nov 20 &middot; Nov 16&ndash;24</p>
             </div>
             <span class="ti-live">LIVE</span>
           </div>
-          <p class="ti-why">A <img class="type-icon" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/types/generation-ix/scarlet-violet/8.png" alt="Ghost"> Ghost-type Mega &mdash; in Mega Raids through Tue Nov 24. Winning earns Mega Energy for Banette, and the Pok&eacute;mon you catch is a regular Banette.</p>
+          <p class="ti-why">A Ghost-type Mega &mdash; in Mega Raids through Tue Nov 24. Winning earns Mega Energy for Banette, and the Pok&eacute;mon you catch is a regular Banette.</p>
           <div class="ti-flags"><span class="flag">&#10024; Shiny available</span></div>
-          <p class="ti-callout">Bring <img class="type-icon" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/types/generation-ix/scarlet-violet/8.png" alt="Ghost"> GHOST &middot; <img class="type-icon" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/types/generation-ix/scarlet-violet/17.png" alt="Dark"> DARK</p>
+          <p class="ti-callout"><span>Bring</span> <span class="type-chip"><img class="type-icon" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/types/generation-ix/scarlet-violet/8.png" alt="Ghost"></span> <span class="type-chip"><img class="type-icon" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/types/generation-ix/scarlet-violet/17.png" alt="Dark"></span></p>
           <div class="poke-tiles">
             <p class="pt-label">Best answers</p>
             <div class="pt-row">
@@ -1010,7 +1023,7 @@
             <li><img class="meta-icon" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/488.png" alt=""><b>Cresselia</b> <span class="meta-moves">Psycho Cut &middot; Grass Knot &middot; Moonblast</span><span class="meta-flag">&#9873; Elite TM &middot; Grass Knot</span><span class="meta-note">In 5-star raids right now (through Nov 24) &mdash; the catch of the week for this league. For yours, run Moonblast + Future Sight.</span></li>
           </ul>
           <p class="ti-label">Counter it</p>
-          <p class="sec-note"><b>Tinkaton + Virizion + Empoleon.</b> Tinkaton is the league&rsquo;s #1 pick and the anchor &mdash; it beats Zygarde and Cresselia, and Bulldoze covers the <img class="type-icon" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/types/generation-ix/scarlet-violet/9.png" alt="Steel"> Steel pack. Virizion&rsquo;s Double Kick breaks both Corviknight and Snorlax. Empoleon walls that whole Steel-and-Flying pack &mdash; and its best move, Hydro Cannon, needs an Elite TM, so it carries the &#9873; flag (four of these six picks do; the flag names the move). That party starts in the builder below &mdash; swap in anything else you own from the list. <b>Swaps:</b> Shadow Empoleon does Empoleon&rsquo;s job harder and frailer, flag and all. Melmetal&rsquo;s Thunder Shock and Dynamic Punch punish Corviknight, and its Double Iron Bash is an Elite TM move too. Shadow Feraligatr spams &#9873; Hydro Cannon at Tinkaton and both Corviknight, with Ice Beam for Zygarde.</p>
+          <p class="sec-note"><b>Tinkaton + Virizion + Empoleon.</b> Tinkaton is the league&rsquo;s #1 pick and the anchor &mdash; it beats Zygarde and Cresselia, and Bulldoze covers the Steel pack. Virizion&rsquo;s Double Kick breaks both Corviknight and Snorlax. Empoleon walls that whole Steel-and-Flying pack &mdash; and its best move, Hydro Cannon, needs an Elite TM, so it carries the &#9873; flag (four of these six picks do; the flag names the move). That party starts in the builder below &mdash; swap in anything else you own from the list. <b>Swaps:</b> Shadow Empoleon does Empoleon&rsquo;s job harder and frailer, flag and all. Melmetal&rsquo;s Thunder Shock and Dynamic Punch punish Corviknight, and its Double Iron Bash is an Elite TM move too. Shadow Feraligatr spams &#9873; Hydro Cannon at Tinkaton and both Corviknight, with Ice Beam for Zygarde.</p>
           <div class="poke-tiles pvp-pool">
             <p class="pt-label">Suggested party</p>
             <div class="pt-row">
@@ -1045,7 +1058,7 @@
           </ul>
           <p class="sec-note">The whole top 10 is Megas and Primals &mdash; the best regular Pok&eacute;mon (Origin Dialga) doesn&rsquo;t show up until #18.</p>
           <p class="ti-label">Counter it</p>
-          <p class="sec-note"><b>Primal Kyogre + Mega Mewtwo Y + Mega Gyarados.</b> Kyogre is the #1 pick in the format &mdash; its Thunder zaps Gyarados, and its Avalanche drops the <img class="type-icon" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/types/generation-ix/scarlet-violet/16.png" alt="Dragon"> Dragons. Mega Mewtwo Y is right behind it, and its Psystrike needs an Elite TM &mdash; it carries the &#9873; flag. Gyarados&rsquo;s Crunch answers both Mewtwos. <b>Swaps:</b> Mega Mewtwo X is the other Mewtwo &mdash; same &#9873; Psystrike, slotted as a swap so the party isn&rsquo;t two Mewtwo formes at once. Mega Dragonite&rsquo;s Thunder Punch covers Kyogre. Mega Garchomp is the Dragon answer, but its Earth Power is an Elite TM move (&#9873;). One rule for the whole pool: only <b>one</b> Mega or Primal can be powered up in a battle &mdash; pick one from the six, and the others can still fight in their regular forms.</p>
+          <p class="sec-note"><b>Primal Kyogre + Mega Mewtwo Y + Mega Gyarados.</b> Kyogre is the #1 pick in the format &mdash; its Thunder zaps Gyarados, and its Avalanche drops the Dragons. Mega Mewtwo Y is right behind it, and its Psystrike needs an Elite TM &mdash; it carries the &#9873; flag. Gyarados&rsquo;s Crunch answers both Mewtwos. <b>Swaps:</b> Mega Mewtwo X is the other Mewtwo &mdash; same &#9873; Psystrike, slotted as a swap so the party isn&rsquo;t two Mewtwo formes at once. Mega Dragonite&rsquo;s Thunder Punch covers Kyogre. Mega Garchomp is the Dragon answer, but its Earth Power is an Elite TM move (&#9873;). One rule for the whole pool: only <b>one</b> Mega or Primal can be powered up in a battle &mdash; pick one from the six, and the others can still fight in their regular forms.</p>
           <div class="poke-tiles pvp-pool">
             <p class="pt-label">Suggested party</p>
             <div class="pt-row">
@@ -1070,7 +1083,7 @@
         <div class="prep-card">
           <h3 class="ellipsis">2026 GO LAIC Cup</h3>
           <p class="prep-dates">1,500 CP max &middot; Nov 17&ndash;24</p>
-          <p class="sec-note"><img class="type-icon" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/types/generation-ix/scarlet-violet/10.png" alt="Fire"> Fire, <img class="type-icon" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/types/generation-ix/scarlet-violet/17.png" alt="Dark"> Dark, <img class="type-icon" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/types/generation-ix/scarlet-violet/9.png" alt="Steel"> Steel, and <img class="type-icon" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/types/generation-ix/scarlet-violet/18.png" alt="Fairy"> Fairy types are not eligible. Legendary, Mythical, and Ultra Beasts are not eligible. Megas are not eligible. 14 species are banned: Chansey, Snorlax, Furret, Wobbuffet, Galarian Corsola, Kingdra, Medicham, Altaria, Dusclops, Jellicent, Araquanid, Oranguru, Annihilape, Clodsire.</p>
+          <p class="sec-note">Fire, Dark, Steel, and Fairy types are not eligible. Legendary, Mythical, and Ultra Beasts are not eligible. Megas are not eligible. 14 species are banned: Chansey, Snorlax, Furret, Wobbuffet, Galarian Corsola, Kingdra, Medicham, Altaria, Dusclops, Jellicent, Araquanid, Oranguru, Annihilape, Clodsire.</p>
           <p class="ti-label">What everyone&rsquo;s running</p>
           <ul class="meta-list">
             <li><img class="meta-icon" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/975.png" alt=""><b>Cetitan</b> <span class="meta-moves">Powder Snow &middot; Icicle Spear &middot; Superpower</span></li>
@@ -1081,7 +1094,7 @@
             <li><img class="meta-icon" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/460.png" alt=""><b>Shadow Abomasnow</b> <span class="meta-moves">Powder Snow &middot; Weather Ball (Ice) &middot; Energy Ball</span></li>
           </ul>
           <p class="ti-label">Counter it</p>
-          <p class="sec-note"><b>Shadow Dusknoir + Grumpig + Toxapex.</b> Dynamic Punch on both Dusknoir and Grumpig smashes the <img class="type-icon" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/types/generation-ix/scarlet-violet/15.png" alt="Ice"> Ice-and-<img class="type-icon" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/types/generation-ix/scarlet-violet/6.png" alt="Rock"> Rock core (Cetitan, Crustle, Aurorus, Lapras). Grumpig&rsquo;s <img class="type-icon" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/types/generation-ix/scarlet-violet/14.png" alt="Psychic"> Psychic fast move pressures Swalot, and Toxapex walls the <img class="type-icon" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/types/generation-ix/scarlet-violet/15.png" alt="Ice"> Ice attacks everyone is throwing. <b>Swaps:</b> Froslass outspeeds the <img class="type-icon" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/types/generation-ix/scarlet-violet/15.png" alt="Ice"> Ice core and its Shadow Ball scares off Dusknoir. Lapras walls every <img class="type-icon" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/types/generation-ix/scarlet-violet/15.png" alt="Ice"> Ice attack in the format &mdash; its best set runs Ice Beam, an Elite TM move (&#9873;). Shadow Walrein is the harder-hitting <img class="type-icon" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/types/generation-ix/scarlet-violet/15.png" alt="Ice"> Ice hammer, and its Icicle Spear needs an Elite TM too (&#9873;).</p>
+          <p class="sec-note"><b>Shadow Dusknoir + Grumpig + Toxapex.</b> Dynamic Punch on both Dusknoir and Grumpig smashes the Ice-and-Rock core (Cetitan, Crustle, Aurorus, Lapras). Grumpig&rsquo;s Psychic fast move pressures Swalot, and Toxapex walls the Ice attacks everyone is throwing. <b>Swaps:</b> Froslass outspeeds the Ice core and its Shadow Ball scares off Dusknoir. Lapras walls every Ice attack in the format &mdash; its best set runs Ice Beam, an Elite TM move (&#9873;). Shadow Walrein is the harder-hitting Ice hammer, and its Icicle Spear needs an Elite TM too (&#9873;).</p>
           <div class="poke-tiles pvp-pool">
             <p class="pt-label">Suggested party</p>
             <div class="pt-row">
@@ -1169,7 +1182,7 @@
               <ul>
                 <li>Every Dynamax Pokémon from before is back in Max Battles and wild spawns (no Legendaries or Mythicals).</li>
                 <li>More Power Spots are active than usual, and you get Max Particles from catches too.</li>
-                <li><img class="mon-icon" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/890.png" alt="Eternatus"> Eternatus returns Sat Nov 21, 11 AM–2 PM &mdash; Eternamax Eternatus takes over Power Spots.</li>
+                <li>Eternatus returns Sat Nov 21, 11 AM–2 PM &mdash; Eternamax Eternatus takes over Power Spots.</li>
               </ul>
             </div>
           </article>
@@ -1186,7 +1199,7 @@
               <p>Sat Nov 21, 2–5 PM local. Pawniard appears everywhere, with more shiny chances and Special Backgrounds.</p>
               <ul>
                 <li>Bonuses: 2&times; Catch Candy, 2&times; chance of Candy XL (level 31+), 1/4 hatch distance, 3-hour Incense, 1-hour Lures.</li>
-                <li>Evolve <img class="mon-icon" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/625.png" alt="Bisharp"> Bisharp into <img class="mon-icon" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/983.png" alt="Kingambit"> Kingambit to get Kowtow Cleave &mdash; evolve during the event or up to 9 PM.</li>
+                <li>Evolve Bisharp into Kingambit to get Kowtow Cleave &mdash; evolve during the event or up to 9 PM.</li>
                 <li>Kingambit shortcut: set Bisharp as your buddy, defeat 1 Dark- or Steel-type Raid Boss, then evolve (until 9 PM). After that the normal requirement comes back.</li>
                 <li>Trading until 9 PM: one extra Special Trade (2 total) and 50% less Stardust.</li>
                 <li>Optional $1.99 Special Research with Pawniard encounters, a Premium Battle Pass, and a Rare Candy XL.</li>
@@ -1226,7 +1239,7 @@
               <p>Thu Nov 26, 6–7 PM. Noibat appears more often.</p>
               <ul>
                 <li>Bonus: 2&times; Catch Candy. Feed it a Pinap berry to double it again.</li>
-                <li>Noibat evolves into <img class="mon-icon" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/715.png" alt="Noivern"> Noivern &mdash; a good one to have.</li>
+                <li>Noibat evolves into Noivern &mdash; a good one to have.</li>
               </ul>
             </div>
           </article>
@@ -1240,7 +1253,7 @@
               <span class="chev" aria-hidden="true">&#9660;</span>
             </button>
             <div class="feed-body" hidden>
-              <p>Sat Nov 28, 2–5 PM local. <img class="mon-icon" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10278.png" alt="Mega Clefable"> Mega Clefable makes its debut in Super Mega Raids &mdash; tougher than regular Mega Raids, so team up, and check the in-game map for Gyms hosting them.</p>
+              <p>Sat Nov 28, 2–5 PM local. Mega Clefable makes its debut in Super Mega Raids &mdash; tougher than regular Mega Raids, so team up, and check the in-game map for Gyms hosting them.</p>
               <ul>
                 <li>Up to <b>6 free Raid Passes</b> from spinning Gyms.</li>
                 <li>Mega Clefable can reach the new <b>Super Max</b> Mega Level, and gets <b>Moonblast+</b> while Mega Evolved.</li>
@@ -1263,10 +1276,10 @@
           <h3 class="ellipsis">Dynamax Trails + New Raids</h3>
           <p class="prep-dates">Mon Nov 16, 10 AM &ndash; Mon Nov 23, 8 PM local &middot; Raids Nov 16&ndash;24</p>
           <ul>
-            <li><b>Raid Passes &mdash; spin Gyms.</b> One free orange Raid Pass a day from spinning a Gym Photo Disc &mdash; use it before you spin for the next one. <img class="mon-icon" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/488.png" alt="Cresselia"> Cresselia, <img class="mon-icon" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/491.png" alt="Darkrai"> Darkrai (5&starf;) and <img class="mon-icon" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/354.png" alt="Mega Banette"> Mega Banette run Nov 16&ndash;24.</li>
+            <li><b>Raid Passes &mdash; spin Gyms.</b> One free orange Raid Pass a day from spinning a Gym Photo Disc &mdash; use it before you spin for the next one. Cresselia, Darkrai (5&starf;) and Mega Banette run Nov 16&ndash;24.</li>
             <li><b>Max Particles &mdash; bank up to 1,500.</b> Dynamax Trails brings back every Dynamax Pok&eacute;mon from before (no Legendaries or Mythicals) at Power Spots all week. Each Max Battle costs Max Particles only if you win &mdash; see the how-to below.</li>
-            <li><b>Counters ready:</b> <img class="type-icon" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/types/generation-ix/scarlet-violet/17.png" alt="Dark"> Dark/<img class="type-icon" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/types/generation-ix/scarlet-violet/8.png" alt="Ghost"> Ghost/<img class="type-icon" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/types/generation-ix/scarlet-violet/7.png" alt="Bug"> Bug for Cresselia, <img class="type-icon" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/types/generation-ix/scarlet-violet/2.png" alt="Fighting"> Fighting for Darkrai, <img class="type-icon" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/types/generation-ix/scarlet-violet/8.png" alt="Ghost"> Ghost/<img class="type-icon" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/types/generation-ix/scarlet-violet/17.png" alt="Dark"> Dark for Mega Banette.</li>
-            <li><b><img class="mon-icon" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/890.png" alt="Eternatus"> Eternatus returns Sat Nov 21, 11 AM&ndash;2 PM.</b> Eternamax Eternatus takes over Power Spots &mdash; you cannot catch it, but wins pay out Eternatus Candy. Needs a big lobby.</li>
+            <li><b>Counters ready:</b> <span class="type-chip"><img class="type-icon" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/types/generation-ix/scarlet-violet/17.png" alt="Dark"></span> <span class="type-chip"><img class="type-icon" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/types/generation-ix/scarlet-violet/8.png" alt="Ghost"></span> <span class="type-chip"><img class="type-icon" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/types/generation-ix/scarlet-violet/7.png" alt="Bug"></span> for Cresselia, <span class="type-chip"><img class="type-icon" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/types/generation-ix/scarlet-violet/2.png" alt="Fighting"></span> for Darkrai, <span class="type-chip"><img class="type-icon" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/types/generation-ix/scarlet-violet/8.png" alt="Ghost"></span> <span class="type-chip"><img class="type-icon" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/types/generation-ix/scarlet-violet/17.png" alt="Dark"></span> for Mega Banette.</li>
+            <li><b>Eternatus returns Sat Nov 21, 11 AM&ndash;2 PM.</b> Eternamax Eternatus takes over Power Spots &mdash; you cannot catch it, but wins pay out Eternatus Candy. Needs a big lobby.</li>
           </ul>
         </div>
 
@@ -1275,9 +1288,9 @@
           <p class="prep-dates">Sat Nov 21 &middot; 2&ndash;5 PM local</p>
           <ul>
             <li><b>Pok&eacute; Balls + Pinap Berries &mdash; stocked up before 2 PM.</b> A few hundred balls across the three of you. Pinap every Pawniard.</li>
-            <li><b>150 Pawniard Candy per <img class="mon-icon" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/983.png" alt="Kingambit"> Kingambit.</b> Pawniard &rarr; <img class="mon-icon" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/625.png" alt="Bisharp"> Bisharp 50, Bisharp &rarr; Kingambit 100 more. Evolve Bisharp 2&ndash;9 PM for Kowtow Cleave.</li>
+            <li><b>150 Pawniard Candy per Kingambit.</b> Pawniard &rarr; Bisharp 50, Bisharp &rarr; Kingambit 100 more. Evolve Bisharp 2&ndash;9 PM for Kowtow Cleave.</li>
             <li><b>Set a Bisharp as Buddy first.</b> On Nov 21, 2&ndash;9 PM, the 15-win requirement drops to 1 win.</li>
-            <li><b>Same morning: Eternamax <img class="mon-icon" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/890.png" alt="Eternatus"> Eternatus, 11 AM&ndash;2 PM.</b> Can&rsquo;t catch it, but each win gives ~100&ndash;140 Candy + 45&ndash;54 XL. Needs a big lobby.</li>
+            <li><b>Same morning: Eternamax Eternatus, 11 AM&ndash;2 PM.</b> Can&rsquo;t catch it, but each win gives ~100&ndash;140 Candy + 45&ndash;54 XL. Needs a big lobby.</li>
             <li><b>Incense + Lures &mdash; one Incense each at 2 PM</b> covers the whole event (3 hours).</li>
           </ul>
         </div>
@@ -1297,9 +1310,9 @@
           <h3 class="ellipsis">Saturday bonus &mdash; Adventure Effects</h3>
           <p class="prep-dates">Sat Nov 21 only &middot; If someone in the family has one, today is the day it earns its candy</p>
           <ul>
-            <li><b>Spacial Rend (<img class="mon-icon" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10246.png" alt="Origin Palkia"> Origin Palkia)</b> &mdash; wild Pok&eacute;mon show up from farther away, so more spawns are in reach all afternoon. 5,000 Stardust + 5 Palkia Candy per 10 minutes.</li>
-            <li><b>Sunsteel Strike / Moongeist Beam (<img class="mon-icon" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/800.png" alt="Necrozma"> Necrozma fusions)</b> &mdash; pulls in daytime (or nighttime) spawns, like an extra Incense. 3,000 Stardust + 3 Necrozma Candy per 10 minutes.</li>
-            <li><b>Roar of Time (<img class="mon-icon" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10245.png" alt="Origin Dialga"> Origin Dialga)</b> &mdash; pauses the timers on Incense, Lucky Eggs and Star Pieces, so one Star Piece stretches much further. 5,000 Stardust + 5 Dialga Candy per 6 minutes.</li>
+            <li><b>Spacial Rend (Origin Palkia)</b> &mdash; wild Pok&eacute;mon show up from farther away, so more spawns are in reach all afternoon. 5,000 Stardust + 5 Palkia Candy per 10 minutes.</li>
+            <li><b>Sunsteel Strike / Moongeist Beam (Necrozma fusions)</b> &mdash; pulls in daytime (or nighttime) spawns, like an extra Incense. 3,000 Stardust + 3 Necrozma Candy per 10 minutes.</li>
+            <li><b>Roar of Time (Origin Dialga)</b> &mdash; pauses the timers on Incense, Lucky Eggs and Star Pieces, so one Star Piece stretches much further. 5,000 Stardust + 5 Dialga Candy per 6 minutes.</li>
             <li><b>We don&rsquo;t know who has which</b> &mdash; check your own box Saturday morning. Only one effect can run at a time.</li>
           </ul>
         </div>
@@ -1309,8 +1322,8 @@
           <p class="prep-dates">The plan, saved so nobody has to re-decide it mid-event</p>
           <ul>
             <li><b>Status: waiting on an Elite Charged TM.</b> The family&rsquo;s Kyurem stay unfused until one turns up (season rewards, event boxes). Do not buy one.</li>
-            <li><b>Glaciate first &mdash; always.</b> <img class="mon-icon" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/646.png" alt="Kyurem"> Kyurem has to know Glaciate BEFORE it fuses, or the fused form never gets its special move (Ice Burn for White Kyurem, Freeze Shock for Black Kyurem). Glaciate can only be taught with an Elite Charged TM.</li>
-            <li><b>Cost per form:</b> 1,000 Fusion Energy + 30 Kyurem Candy + 30 <img class="mon-icon" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/643.png" alt="Reshiram"> Reshiram Candy (White Kyurem) or 30 <img class="mon-icon" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/644.png" alt="Zekrom"> Zekrom Candy (Black Kyurem).</li>
+            <li><b>Glaciate first &mdash; always.</b> Kyurem has to know Glaciate BEFORE it fuses, or the fused form never gets its special move (Ice Burn for White Kyurem, Freeze Shock for Black Kyurem). Glaciate can only be taught with an Elite Charged TM.</li>
+            <li><b>Cost per form:</b> 1,000 Fusion Energy + 30 Kyurem Candy + 30 Reshiram Candy (White Kyurem) or 30 Zekrom Candy (Black Kyurem).</li>
             <li><b>Budget about 10 raids of energy per form &mdash; so pick ONE form.</b> Fused forms can&rsquo;t be traded, so there is no splitting one each across accounts.</li>
             <li><b>Nothing expires.</b> The energy and the Kyurem keep &mdash; there is no deadline on this.</li>
           </ul>
@@ -1324,7 +1337,7 @@
             <li><b>Star Pieces &mdash; save at least one per player for Nov 24&ndash;30.</b> Stack with Rank 10 for the best Stardust of the month.</li>
             <li><b>Mega Energy &mdash; don&rsquo;t buy it, earn it</b> from Mega Raids, Field Research, and the GO Pass.</li>
             <li><b>Raid Passes &mdash; a few for the costumed 3&starf;s</b> (Espeon/Umbreon). One free daily pass covers one a day.</li>
-            <li><b>Same week: <img class="mon-icon" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10278.png" alt="Mega Clefable"> Mega Clefable Raid Day, Sat Nov 28, 2&ndash;5 PM.</b> Same prep as any raid day.</li>
+            <li><b>Same week: Mega Clefable Raid Day, Sat Nov 28, 2&ndash;5 PM.</b> Same prep as any raid day.</li>
           </ul>
         </div>
 
