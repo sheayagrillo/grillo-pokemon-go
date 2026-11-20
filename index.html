@@ -199,6 +199,30 @@
       }
       .ti-counters-btn { display: block; width: 100%; font-family: inherit; font-size: 13px; font-weight: 800; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); background: none; border: 0; padding: 0; margin: 12px 0 12px; cursor: pointer; text-align: left; }
       .counters[hidden] { display: none; }
+/* Raid Hour banner + raid-night strip (redesign Nov 19, 2026) */
+      .raid-hour { background: var(--green-bg); border: 1px solid var(--line); border-radius: 16px; padding: 12px 16px; margin: 0 0 14px; box-shadow: var(--shadow); }
+      .raid-hour[hidden] { display: none; }
+      .raid-hour .rh-text { font-weight: 800; font-size: 16px; line-height: 1.4; margin: 0; }
+      .raid-hour .rh-text .rh-when { color: var(--red-deep); }
+      @media (prefers-color-scheme: dark) { .raid-hour .rh-text .rh-when { color: #ff8a7a; } }
+      .raid-night { background: var(--surface); border: 1px solid var(--line); border-radius: 16px; padding: 14px 16px; margin: 0 0 14px; box-shadow: var(--shadow); font-size: 15px; line-height: 1.55; }
+      .raid-night p { margin: 0; }
+      .raid-night b { font-weight: 800; color: var(--green-deep); }
+      /* Raid card flags, counter callout, meta lines */
+      .ti-flags { display: flex; flex-wrap: wrap; gap: 8px; margin: 10px 0 0; }
+      .flag { font-size: 13px; font-weight: 800; padding: 4px 12px; border-radius: 999px; background: var(--green-bg); color: var(--green-deep); white-space: nowrap; }
+      .flag.mythic { background: #f3e8ff; color: #6b21a8; }
+      .ti-callout { font-size: clamp(20px, 4.6vw, 26px); font-weight: 800; line-height: 1.3; margin: 14px 0 0; letter-spacing: .02em; }
+      .ti-meta { font-weight: 600; font-size: 15px; line-height: 1.55; margin: 10px 0 0; }
+      .ti-meta b { font-weight: 800; color: var(--green-deep); }
+      /* PvP meta lists */
+      .meta-list { list-style: none; margin: 8px 0 0; padding: 0; display: grid; gap: 8px; }
+      .meta-list li { background: var(--surface-2); border: 1px solid var(--line); border-radius: 12px; padding: 10px 12px; font-size: 15px; line-height: 1.5; }
+      .meta-list li b { font-weight: 800; }
+      .meta-list .meta-moves { color: var(--muted); font-weight: 600; }
+      .meta-list .meta-note { display: block; color: var(--muted); font-weight: 600; font-size: 13.5px; margin-top: 2px; }
+      /* Search string note */
+      .ss .ss-note { display: block; font-size: 13px; font-weight: 600; color: var(--muted); margin-top: 6px; line-height: 1.45; }
       /* Upcoming feed — vertical card feed, tap a card to open its details */
       .feed { display: grid; gap: 14px; }
       .feed-item {
@@ -693,6 +717,16 @@
       </div>
 
       <!-- ============ TODAY — STACKED ============ -->
+            <!-- ============ RAID HOUR BANNER (JS fills the text) ============ -->
+      <div class="raid-hour" id="raid-hour" data-bosses="Cresselia + Darkrai" hidden>
+        <p class="rh-text" id="raid-hour-text"></p>
+      </div>
+
+      <!-- ============ RAID NIGHT STRIP ============ -->
+      <div class="raid-night">
+        <p><b>Raid night?</b> Start a Party before the first raid. Party Power charges as you battle &mdash; tap it and your next Charged Attack hits much harder, and it charges faster the more of your party is in the raid with you.</p>
+      </div>
+
       <div class="sec-head"><h2>Raids</h2><span class="sub">Live now &middot; Thu Nov 19 &middot; Cresselia, Darkrai + Mega Banette</span></div>
       <section class="today-list" aria-label="Live now">
         <article class="today-item">
@@ -705,18 +739,21 @@
             </div>
             <span class="ti-live">LIVE</span>
           </div>
-          <p class="ti-why">A moon-shaped Psychic legendary &mdash; in 5-star raids through Tue Nov 24. It can be Shiny.</p>
-          <p class="ti-weak">Weak to:</p>
-          <div class="weak-chips" role="group" aria-label="Weaknesses"><span class="weak-chip" data-type="Bug" style="cursor:default">Bug</span><span class="weak-chip" data-type="Ghost" style="cursor:default">Ghost</span><span class="weak-chip" data-type="Dark" style="cursor:default">Dark</span></div>
+          <p class="ti-why">A moon-shaped Psychic legendary &mdash; in 5-star raids through Tue Nov 24.</p>
+          <div class="ti-flags"><span class="flag">&#10024; Shiny available</span></div>
+          <p class="ti-callout">Bring DARK &middot; GHOST &middot; BUG</p>
           <div class="cp-list" aria-label="Catch CP">
             <p class="cp-list-title">Catch CP</p>
             <ul>
-              <li><b>1,555&ndash;1,633</b> &mdash; the range for this raid boss</li>
-              <li><b>1,633</b> &mdash; perfect</li>
-              <li><b>2,041</b> &mdash; perfect when weather-boosted</li>
+              <li><b>1,555&ndash;1,633</b> &mdash; the range you can catch</li>
+              <li><b>1,633</b> &mdash; perfect (hundo), regular</li>
+              <li><b>2,041</b> &mdash; perfect (hundo), weather-boosted (Windy)</li>
             </ul>
           </div>
-          <p class="ti-detail">Bring your strongest Dark, Ghost or Bug Pok&eacute;mon &mdash; Tyranitar, Chandelure, Gengar or Hydreigon if you have them. Team up &mdash; 5-star raids are too tough alone.</p></article>
+          <p class="ti-detail">Best answers: Mega Chandelure, Dawn Wings Necrozma, Mega Gengar. On a budget: Tyranitar, Kingambit, Hydreigon.</p>
+          <p class="ti-meta"><b>Trainers:</b> 3&ndash;5 solid trainers. It is very tanky, so the family&rsquo;s 4 accounts can do it &mdash; bring your best Dark and Ghost and expect a longer fight.</p>
+          <p class="ti-meta"><b>Pass verdict: Worth a remote.</b> Not much use as a raid attacker, but it is a star in Ultra League PvP &mdash; this is the catch of the week for that.</p>
+        </article>
 
         <article class="today-item">
           <div class="ti-head">
@@ -728,18 +765,22 @@
             </div>
             <span class="ti-live">LIVE</span>
           </div>
-          <p class="ti-why">A shadowy Dark-type Mythical &mdash; in 5-star raids through Tue Nov 24. It can be Shiny.</p>
-          <p class="ti-weak">Weak to:</p>
-          <div class="weak-chips" role="group" aria-label="Weaknesses"><span class="weak-chip" data-type="Fighting" style="cursor:default">Fighting</span><span class="weak-chip" data-type="Bug" style="cursor:default">Bug</span><span class="weak-chip" data-type="Fairy" style="cursor:default">Fairy</span></div>
+          <p class="ti-why">A shadowy Dark-type Mythical &mdash; in 5-star raids through Tue Nov 24.</p>
+          <div class="ti-flags"><span class="flag">&#10024; Shiny available</span><span class="flag mythic">Mythical &mdash; can&rsquo;t be traded</span></div>
+          <p class="ti-callout">Bring FIGHTING &middot; BUG &middot; FAIRY</p>
           <div class="cp-list" aria-label="Catch CP">
             <p class="cp-list-title">Catch CP</p>
             <ul>
-              <li><b>2,048&ndash;2,136</b> &mdash; the range for this raid boss</li>
-              <li><b>2,136</b> &mdash; perfect</li>
-              <li><b>2,671</b> &mdash; perfect when weather-boosted</li>
+              <li><b>2,048&ndash;2,136</b> &mdash; the range you can catch</li>
+              <li><b>2,136</b> &mdash; perfect (hundo), regular</li>
+              <li><b>2,671</b> &mdash; perfect (hundo), weather-boosted (Foggy)</li>
             </ul>
           </div>
-          <p class="ti-detail">Bring your strongest Fighting, Bug or Fairy Pok&eacute;mon &mdash; Machamp, Lucario, Conkeldurr or Togekiss if you have them. Team up &mdash; 5-star raids are too tough alone.</p></article>
+          <p class="ti-detail">Best answers: Mega Heracross, Mega Blaziken, Terrakion. On a budget: Lucario, Conkeldurr, Togekiss.</p>
+          <p class="ti-meta"><b>Trainers:</b> 2 top-level trainers can duo it; 3&ndash;4 solid trainers is comfortable &mdash; the family&rsquo;s 4 accounts are plenty.</p>
+          <p class="ti-meta"><b>Pass verdict: Worth a remote.</b> One of the best Dark attackers in the game &mdash; and since it can&rsquo;t be traded, every catch is final, so good IVs have to come from the raid itself.</p>
+          <p class="ti-meta"><b>Catch tip:</b> Darkrai slides off to the side of the screen and sits there. Don&rsquo;t rush it &mdash; set a small circle, throw right as its attack swoop ends, and feed it Golden Razz Berries.</p>
+        </article>
 
         <article class="today-item">
           <div class="ti-head">
@@ -751,18 +792,21 @@
             </div>
             <span class="ti-live">LIVE</span>
           </div>
-          <p class="ti-why">A Ghost-type Mega &mdash; in Mega Raids through Tue Nov 24. Winning earns Mega Energy for Banette, and the Pok&eacute;mon you catch is a regular Banette &mdash; it can be Shiny.</p>
-          <p class="ti-weak">Weak to:</p>
-          <div class="weak-chips" role="group" aria-label="Weaknesses"><span class="weak-chip" data-type="Ghost" style="cursor:default">Ghost</span><span class="weak-chip" data-type="Dark" style="cursor:default">Dark</span></div>
+          <p class="ti-why">A Ghost-type Mega &mdash; in Mega Raids through Tue Nov 24. Winning earns Mega Energy for Banette, and the Pok&eacute;mon you catch is a regular Banette.</p>
+          <div class="ti-flags"><span class="flag">&#10024; Shiny available</span></div>
+          <p class="ti-callout">Bring GHOST &middot; DARK</p>
           <div class="cp-list" aria-label="Catch CP">
             <p class="cp-list-title">Catch CP &mdash; for the Banette you catch</p>
             <ul>
-              <li><b>1,244&ndash;1,313</b> &mdash; the range for this raid boss</li>
-              <li><b>1,313</b> &mdash; perfect</li>
-              <li><b>1,642</b> &mdash; perfect when weather-boosted</li>
+              <li><b>1,244&ndash;1,313</b> &mdash; the range you can catch</li>
+              <li><b>1,313</b> &mdash; perfect (hundo), regular</li>
+              <li><b>1,642</b> &mdash; perfect (hundo), weather-boosted (Foggy)</li>
             </ul>
           </div>
-          <p class="ti-detail">Bring your strongest Ghost or Dark Pok&eacute;mon &mdash; Gengar, Chandelure, Tyranitar or Hydreigon if you have them. Mega Raids are easier than 5-star raids &mdash; 1&ndash;2 strong trainers can do it.</p></article>
+          <p class="ti-detail">Best answers: Mega Tyranitar, Mega Gengar, Mega Houndoom. On a budget: Tyranitar, Kingambit, Hydreigon.</p>
+          <p class="ti-meta"><b>Trainers:</b> Easy &mdash; one strong trainer can solo it; 2&ndash;3 makes it a breeze.</p>
+          <p class="ti-meta"><b>Pass verdict: In-person only.</b> Winning earns Mega Energy for your own Banette, and it is easy enough that a remote pass is wasted on it &mdash; save those for the 5-stars.</p>
+        </article>
 
       </section>
 
@@ -785,36 +829,68 @@
     <div class="wrap">
       <!-- ============ PVP ============ -->
       <section aria-label="PvP — Go Battle League">
-        <div class="sec-head"><h2>PvP</h2><span class="sub">Go Battle League &middot; Nov 10&ndash;17</span></div>
-        <p class="sec-note">Great League, Ultra League: Mega Edition, and the 2026 GO LAIC Cup are live this week. Master League returns Nov 17.</p>
-        <p class="sec-note">No GO Battle Thursday Nov 12 &mdash; paused for Wild Area week. Next: Thu Nov 19 + Nov 26 (4&times; Stardust, up to 10 sets).</p>
+        <div class="sec-head"><h2>PvP</h2><span class="sub">Go Battle League &middot; Nov 17&ndash;24</span></div>
+        <p class="sec-note"><b>Last refreshed: Thursday, November 19, 2026</b></p>
+        <p class="sec-note">Ultra League, Master League: Mega Edition, and the 2026 GO LAIC Cup are live this week. Win rewards pay <b>4&times; Stardust</b> all week.</p>
+        <p class="sec-note">GO Battle Thursday Nov 19 + Nov 26 &mdash; 4&times; Stardust, up to 10 sets a day.</p>
 
         <div class="howto" style="margin-top:12px">
-          <p><b>Why these picks:</b> Rankings come from PvPoke &mdash; how each Pok&eacute;mon does against the ones other players use most. The top picks win on four things: <b>typing</b> (what they beat), <b>bulk</b> (how long they survive), <b>energy</b> (how fast their fast move charges the big moves), and <b>coverage</b> (two charged moves so nothing walls them). Best team in each league is ranked #1 first &mdash; if you don&rsquo;t have the top pick, take the next one down.</p>
+          <p><b>Why these picks:</b> Rankings come from PvPoke &mdash; how each Pok&eacute;mon does against the ones other players use most. Each league shows <b>what everyone&rsquo;s running</b> first, then a <b>counter party</b> built to beat it &mdash; that counter party is what starts in the builder. Every move in the builder parties can be learned with regular TMs; nothing there needs an Elite TM.</p>
         </div>
 
         <div class="prep-card">
-          <h3 class="ellipsis">Great League</h3>
-          <p class="prep-dates">1,500 CP max &middot; Nov 10&ndash;17</p>
-          <div class="party-grid" data-pvp-team="great"></div>
-          <div style="margin-top:12px"><button type="button" class="pk-add" data-pvp-open="great">Add a Pok&eacute;mon</button></div>
-          <div class="picker" data-pvp-picker="great" hidden></div>
+          <h3 class="ellipsis">Ultra League</h3>
+          <p class="prep-dates">2,500 CP max &middot; Nov 17&ndash;24</p>
+          <p class="ti-label">What everyone&rsquo;s running</p>
+          <ul class="meta-list">
+            <li><b>Tinkaton</b> <span class="meta-moves">Fairy Wind &middot; Gigaton Hammer &middot; Bulldoze</span></li>
+            <li><b>Corviknight</b> <span class="meta-moves">Sand Attack &middot; Air Cutter &middot; Iron Head</span></li>
+            <li><b>Shadow Snorlax</b> <span class="meta-moves">Psywave &middot; Body Slam &middot; Earthquake</span></li>
+            <li><b>Shadow Corviknight</b> <span class="meta-moves">Sand Attack &middot; Air Cutter &middot; Payback</span></li>
+            <li><b>Zygarde (Complete)</b> <span class="meta-moves">Dragon Tail &middot; Crunch &middot; Bulldoze</span></li>
+            <li><b>Cresselia</b> <span class="meta-moves">Psycho Cut &middot; Grass Knot &middot; Moonblast</span><span class="meta-note">In 5-star raids right now (through Nov 24) &mdash; the catch of the week for this league. For yours, run Moonblast + Future Sight.</span></li>
+          </ul>
+          <p class="ti-label">Counter it</p>
+          <p class="sec-note"><b>Grumpig + Tinkaton + Lapras.</b> Grumpig&rsquo;s Dynamic Punch breaks the Steel pack (Tinkaton, both Corviknight, Snorlax), and its Shadow Ball answers Cresselia. Tinkaton and Lapras both beat Zygarde. That party starts in the builder below &mdash; swap in anything else you own from the list.</p>
+          <div class="party-grid" data-pvp-team="ultra"></div>
+          <div style="margin-top:12px"><button type="button" class="pk-add" data-pvp-open="ultra">Add a Pok&eacute;mon</button></div>
+          <div class="picker" data-pvp-picker="ultra" hidden></div>
         </div>
 
         <div class="prep-card">
-          <h3 class="ellipsis">Ultra League: Mega Edition</h3>
-          <p class="prep-dates">2,500 CP max &middot; Megas allowed &middot; Nov 10&ndash;17</p>
-          <p class="sec-note">Megas allowed this week &mdash; the only Mega near the top is Mega Malamar.</p>
-          <div class="party-grid" data-pvp-team="ultra-mega"></div>
-          <div style="margin-top:12px"><button type="button" class="pk-add" data-pvp-open="ultra-mega">Add a Pok&eacute;mon</button></div>
-          <div class="picker" data-pvp-picker="ultra-mega" hidden></div>
+          <h3 class="ellipsis">Master League: Mega Edition</h3>
+          <p class="prep-dates">No CP limit &middot; Megas + Primals allowed &middot; Nov 17&ndash;24</p>
+          <p class="ti-label">What everyone&rsquo;s running</p>
+          <ul class="meta-list">
+            <li><b>Primal Kyogre</b> <span class="meta-moves">Waterfall &middot; Avalanche &middot; Thunder</span></li>
+            <li><b>Mega Mewtwo Y</b> <span class="meta-moves">Psycho Cut &middot; Psystrike &middot; Thunderbolt</span></li>
+            <li><b>Mega Mewtwo X</b> <span class="meta-moves">Psycho Cut &middot; Psystrike &middot; Thunderbolt</span></li>
+            <li><b>Mega Gyarados</b> <span class="meta-moves">Dragon Breath &middot; Aqua Tail &middot; Crunch</span></li>
+            <li><b>Mega Dragonite</b> <span class="meta-moves">Dragon Breath &middot; Thunder Punch &middot; Superpower</span></li>
+          </ul>
+          <p class="sec-note">The whole top 10 is Megas and Primals &mdash; the best regular Pok&eacute;mon (Origin Dialga) doesn&rsquo;t show up until #18.</p>
+          <p class="ti-label">Counter it</p>
+          <p class="sec-note"><b>Mega Gyarados + Primal Kyogre + Mega Dragonite.</b> Gyarados&rsquo;s Crunch answers both Mewtwos. Kyogre&rsquo;s Thunder zaps Gyarados, and its Avalanche drops the Dragons. Dragonite&rsquo;s Thunder Punch covers Kyogre. Only one Mega can be active at a time &mdash; pick Gyarados or Dragonite for the Mega slot; the other still fights fine in its regular form.</p>
+          <div class="party-grid" data-pvp-team="master-mega"></div>
+          <div style="margin-top:12px"><button type="button" class="pk-add" data-pvp-open="master-mega">Add a Pok&eacute;mon</button></div>
+          <div class="picker" data-pvp-picker="master-mega" hidden></div>
         </div>
 
         <div class="prep-card">
           <h3 class="ellipsis">2026 GO LAIC Cup</h3>
-          <p class="prep-dates">1,500 CP max &middot; Nov 10&ndash;24</p>
+          <p class="prep-dates">1,500 CP max &middot; Nov 17&ndash;24</p>
           <p class="sec-note">Fire, Dark, Steel, and Fairy types are not eligible. Legendary, Mythical, and Ultra Beasts are not eligible. Megas are not eligible. 14 species are banned: Chansey, Snorlax, Furret, Wobbuffet, Galarian Corsola, Kingdra, Medicham, Altaria, Dusclops, Jellicent, Araquanid, Oranguru, Annihilape, Clodsire.</p>
-          <p class="sec-note">Best team: Cetitan + Swalot + Crustle.</p>
+          <p class="ti-label">What everyone&rsquo;s running</p>
+          <ul class="meta-list">
+            <li><b>Cetitan</b> <span class="meta-moves">Powder Snow &middot; Icicle Spear &middot; Superpower</span></li>
+            <li><b>Swalot</b> <span class="meta-moves">Infestation &middot; Sludge &middot; Ice Beam</span></li>
+            <li><b>Crustle</b> <span class="meta-moves">Fury Cutter &middot; X-Scissor &middot; Rock Wrecker</span></li>
+            <li><b>Aurorus</b> <span class="meta-moves">Powder Snow &middot; Weather Ball (Ice) &middot; Meteor Beam</span></li>
+            <li><b>Lapras</b> <span class="meta-moves">Psywave &middot; Sparkling Aria &middot; Ice Beam</span></li>
+            <li><b>Shadow Abomasnow</b> <span class="meta-moves">Powder Snow &middot; Weather Ball (Ice) &middot; Energy Ball</span></li>
+          </ul>
+          <p class="ti-label">Counter it</p>
+          <p class="sec-note"><b>Shadow Dusknoir + Grumpig + Toxapex.</b> Dynamic Punch on both Dusknoir and Grumpig smashes the Ice-and-Rock core (Cetitan, Crustle, Aurorus, Lapras). Grumpig&rsquo;s Psychic fast move pressures Swalot, and Toxapex walls the Ice attacks everyone is throwing.</p>
           <div class="party-grid" data-pvp-team="laic"></div>
           <div style="margin-top:12px"><button type="button" class="pk-add" data-pvp-open="laic">Add a Pok&eacute;mon</button></div>
           <div class="picker" data-pvp-picker="laic" hidden></div>
@@ -1001,6 +1077,40 @@
         </div>
 
         <div class="prep-card">
+          <h3 class="ellipsis">Eternatus &mdash; do NOT power it up</h3>
+          <p class="prep-dates">Read before Saturday&rsquo;s Eternamax battles &middot; Sat Nov 21, 11 AM&ndash;2 PM</p>
+          <ul>
+            <li><b>Eternatus is the most expensive Pok&eacute;mon in the game.</b> Powering it up burns candy at a rate nothing else matches.</li>
+            <li><b>Save every Eternatus Candy for its Max Moves.</b> That is where the candy actually pays off &mdash; not in power-ups.</li>
+            <li><b>Its Max Moves can only be upgraded twice,</b> so the plan is short: win candy on Saturday, bank it, spend it on Max Moves only.</li>
+            <li><b>Saturday&rsquo;s wins pay out Eternatus Candy</b> (about 100&ndash;140 a win). Bank it &mdash; don&rsquo;t spend it the same day.</li>
+          </ul>
+        </div>
+
+        <div class="prep-card">
+          <h3 class="ellipsis">Saturday bonus &mdash; Adventure Effects</h3>
+          <p class="prep-dates">Sat Nov 21 only &middot; If someone in the family has one, today is the day it earns its candy</p>
+          <ul>
+            <li><b>Spacial Rend (Origin Palkia)</b> &mdash; wild Pok&eacute;mon show up from farther away, so more spawns are in reach all afternoon. 5,000 Stardust + 5 Palkia Candy per 10 minutes.</li>
+            <li><b>Sunsteel Strike / Moongeist Beam (Necrozma fusions)</b> &mdash; pulls in daytime (or nighttime) spawns, like an extra Incense. 3,000 Stardust + 3 Necrozma Candy per 10 minutes.</li>
+            <li><b>Roar of Time (Origin Dialga)</b> &mdash; pauses the timers on Incense, Lucky Eggs and Star Pieces, so one Star Piece stretches much further. 5,000 Stardust + 5 Dialga Candy per 6 minutes.</li>
+            <li><b>We don&rsquo;t know who has which</b> &mdash; check your own box Saturday morning. Only one effect can run at a time.</li>
+          </ul>
+        </div>
+
+        <div class="prep-card">
+          <h3 class="ellipsis">Kyurem fusion &mdash; PARKED</h3>
+          <p class="prep-dates">The plan, saved so nobody has to re-decide it mid-event</p>
+          <ul>
+            <li><b>Status: waiting on an Elite Charged TM.</b> The family&rsquo;s Kyurem stay unfused until one turns up (season rewards, event boxes). Do not buy one.</li>
+            <li><b>Glaciate first &mdash; always.</b> Kyurem has to know Glaciate BEFORE it fuses, or the fused form never gets its special move (Ice Burn for White Kyurem, Freeze Shock for Black Kyurem). Glaciate can only be taught with an Elite Charged TM.</li>
+            <li><b>Cost per form:</b> 1,000 Fusion Energy + 30 Kyurem Candy + 30 Reshiram Candy (White Kyurem) or 30 Zekrom Candy (Black Kyurem).</li>
+            <li><b>Budget about 10 raids of energy per form &mdash; so pick ONE form.</b> Fused forms can&rsquo;t be traded, so there is no splitting one each across accounts.</li>
+            <li><b>Nothing expires.</b> The energy and the Kyurem keep &mdash; there is no deadline on this.</li>
+          </ul>
+        </div>
+
+        <div class="prep-card">
           <h3 class="ellipsis">Twilight Wishes</h3>
           <p class="prep-dates">Tue Nov 24, 10 AM &ndash; Mon Nov 30, 8 PM local &middot; Season finale</p>
           <ul>
@@ -1012,7 +1122,7 @@
           </ul>
         </div>
 
-        <p class="prep-note">All three are global/local-time and fully available in Rockledge &mdash; no travel. Eternatus on Sat Nov 21 needs a big lobby.</p>
+        <p class="prep-note">All of these are global/local-time and fully available in Rockledge &mdash; no travel. Eternatus on Sat Nov 21 needs a big lobby.</p>
 
         <div class="howto" style="margin-top:14px">
           <p><b>How to get Max Particles:</b> Power Spots are the purple glowing spots on the map &mdash; not the blue Pok&eacute;Stops. Tap to collect <b>100 per spot</b> (120 the first time you visit a new one). Walk <b>2 km</b>, then claim <b>300 more</b>. Collect up to <b>800 a day</b> and hold up to <b>1,500</b>. Only lost on a Max Battle win.</p>
@@ -1113,7 +1223,6 @@
           <div class="ss-list">
             <button type="button" class="ss"><span class="ss-top"><span class="ss-label">Transfer</span><span class="copy-hint">TAP TO COPY</span></span><code>!4* &amp;!shiny &amp;!shadow &amp;!legendary &amp;!mythical &amp;!lucky &amp;!favorite &amp;!background &amp;!costume &amp; 0*,1*,2* &amp;!dynamax &amp;!gigantamax</code></button>
             <button type="button" class="ss"><span class="ss-top"><span class="ss-label">League</span><span class="copy-hint">TAP TO COPY</span></span><code>0-1attack &amp; 3-4defense &amp; 3-4hp</code></button>
-            <button type="button" class="ss"><span class="ss-top"><span class="ss-label">Dynamax / Gigantamax</span><span class="copy-hint">TAP TO COPY</span></span><code>dynamax,gigantamax</code></button>
             <button type="button" class="ss"><span class="ss-top"><span class="ss-label">Sort out common Pokémon (version 1)</span><span class="copy-hint">TAP TO COPY</span></span><code>!legendary&amp;!mythical&amp;!ultrabeast&amp;!regional&amp;!shiny&amp;!costume&amp;!shadow&amp;!lucky&amp;!background</code></button>
             <button type="button" class="ss"><span class="ss-top"><span class="ss-label">Sort out common Pokémon (version 2)</span><span class="copy-hint">TAP TO COPY</span></span><code>!legendary&amp;!mythical&amp;!ultrabeast&amp;!shiny&amp;!shadow&amp;!lucky&amp;!costume&amp;!background&amp;!regional&amp;!favorite&amp;!3-4*</code></button>
             <button type="button" class="ss"><span class="ss-top"><span class="ss-label">Personal clear out</span><span class="copy-hint">TAP TO COPY</span></span><code>!keep&amp;!favorite&amp;!shadow&amp;!3*</code></button>
@@ -1121,6 +1230,7 @@
             <button type="button" class="ss"><span class="ss-top"><span class="ss-label">Box cleanup</span><span class="copy-hint">TAP TO COPY</span></span><code>0*,1*,2*&amp;!shiny&amp;!legendary&amp;!mythical&amp;!favorite&amp;!shadow&amp;!costume&amp;!dynamax&amp;!gigantamax</code></button>
             <button type="button" class="ss" data-keep-all="1"><span class="ss-top"><span class="ss-label">Duplicates</span><span class="copy-hint">TAP TO COPY</span></span><code>count2-</code></button>
             <button type="button" class="ss"><span class="ss-top"><span class="ss-label">Evolve new</span><span class="copy-hint">TAP TO COPY</span></span><code>evolve&amp;evolvenew&amp;!dynamax&amp;!gigantamax</code></button>
+            <button type="button" class="ss"><span class="ss-top"><span class="ss-label">Move search</span><span class="copy-hint">TAP TO COPY</span></span><code>@water</code><span class="ss-note">Finds anything with a Water-type move. Swap in any type or move name &mdash; @fire, @dragon, @shadow ball.</span></button>
           </div>
         </div>
 
@@ -1754,324 +1864,56 @@
     </script>
   
     <script>
-      /* ================= MY RAID PARTY =================
-         Build a raid party from the Pokemon you actually own.
-         Tap a weakness chip (Fire / Ground / Fighting) to see the Pokemon
-         of that type the family is most likely to have, best first.
-         Tap ADD on the ones you have — they join your 6-slot party, saved
-         on this phone (localStorage, per raid boss). For each one, enter
-         your CP to check it against that Pokémon's own level-30 CP
-         (each species has its own target — a Garchomp needs ~3,400 CP,
-         a Gastrodon ~2,000) and edit its moves to see which
-         TM would fix it. Movesets verified Nov 10-11, 2026 from GO Hub
-         best-per-type tables + raid guides. Level-30 CPs from GO Hub
-         IV charts, Nov 11, 2026. */
-      (function () {
-        var PARTY_DATA = {};
-        var SPRITE = function (id) { return "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/" + id + ".png"; };
-        /* Level-30 CP per species (GO Hub IV charts, Nov 11, 2026):
-           cpMin = level 30 at 10/10/10 IVs, cpTarget = level 30 at
-           15/15/15 IVs. The CP check uses the species' own numbers —
-           a Garchomp needs ~3,400 CP for a 5-star raid, a Gastrodon
-           ~2,000. There is no single flat number for every Pokémon. */
-
-        function esc(s) {
-          return String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
-        }
-        function findMon(bossKey, type, name) {
-          var list = (PARTY_DATA[bossKey] && PARTY_DATA[bossKey].types[type]) || [];
-          for (var i = 0; i < list.length; i++) if (list[i].name === name) return list[i];
-          return null;
-        }
-        function findMonAny(bossKey, name) {
-          var types = PARTY_DATA[bossKey].types;
-          for (var t in types) { var m = findMon(bossKey, t, name); if (m) return m; }
-          return null;
-        }
-        function keyFor(bossKey) { return "grillo-party-v2-" + bossKey; }
-        function loadParty(bossKey) {
-          try {
-            var raw = localStorage.getItem(keyFor(bossKey));
-            if (raw) { var p = JSON.parse(raw); if (Array.isArray(p)) return p; }
-          } catch (e) {}
-          return null;
-        }
-        function saveParty(bossKey, party) {
-          try { localStorage.setItem(keyFor(bossKey), JSON.stringify(party)); } catch (e) {}
-        }
-        function defaultParty(bossKey) {
-          return PARTY_DATA[bossKey].prefill.map(function (name) {
-            var m = findMonAny(bossKey, name);
-            return m ? { id: m.id, name: m.name, f: m.f, c: m.c, cp: "" } : null;
-          }).filter(Boolean);
-        }
-        function getParty(bossKey) {
-          var p = loadParty(bossKey);
-          if (!p) { p = defaultParty(bossKey); saveParty(bossKey, p); }
-          return p;
-        }
-        function cpMinFor(mon) { return mon.cpMin || null; }
-        function cpTargetFor(mon) { return mon.cpTarget || mon.cpMin || null; }
-
-        function tmHint(mon, f, c) {
-          var hints = [];
-          if (f && f !== mon.f) hints.push("Use a Fast TM to get " + mon.f + ".");
-          if (c && c !== mon.c) hints.push("Use a Charged TM to get " + mon.c + ".");
-          return hints.join(" ");
-        }
-
-        function renderParty(bossKey) {
-          var grid = document.querySelector('[data-party="' + bossKey + '"]');
-          if (!grid) return;
-          var party = getParty(bossKey);
-          var out = "";
-          for (var s = 0; s < 6; s++) {
-            var e = party[s];
-            if (!e) {
-              out += '<div class="party-slot empty">Empty slot<br>Tap a type above<br>and add one you have</div>';
-              continue;
-            }
-            var mon = findMonAny(bossKey, e.name) || { id: e.id, name: e.name, f: e.f, c: e.c };
-            var hint = tmHint(mon, e.f, e.c);
-            var cpNum = parseInt(e.cp, 10);
-            var status = "", statusCls = "";
-            var bossName = PARTY_DATA[bossKey].boss;
-            var cpMin = cpMinFor(mon), cpTarget = cpTargetFor(mon);
-            if (e.cp !== "" && !isNaN(cpNum)) {
-              if (cpMin === null) { status = "CP target not listed for this Pokémon"; }
-              else if (cpNum >= cpMin) { status = "\u2713 Good for " + bossName; statusCls = "ok"; }
-              else { status = "A bit low for " + bossName + " — power it up toward " + cpTarget.toLocaleString() + " CP"; statusCls = "low"; }
-            } else { status = "Enter your CP to check it"; }
-            out += '<div class="party-slot" data-slot="' + s + '">' +
-              '<img src="' + SPRITE(e.id) + '" alt="' + esc(e.name) + '" loading="lazy" />' +
-              '<div class="ps-name">' + esc(e.name) + '</div>' +
-              '<div class="ps-moves">Fast: ' + esc(e.f) + '<br>Charged: ' + esc(e.c) + '</div>' +
-              (mon.tm ? '<div class="ps-tm">' + esc(mon.tm) + '</div>' : '') +
-              (hint ? '<div class="ps-tm">' + esc(hint) + '</div>' : '') +
-              '<div class="ps-cp"><input type="number" inputmode="numeric" min="0" max="9999" placeholder="Your CP" value="' + esc(e.cp) + '" aria-label="Your ' + esc(e.name) + ' CP" data-cp="' + s + '" />' +
-              '<span class="ps-status ' + statusCls + '">' + esc(status) + '</span></div>' +
-              '<div class="ps-actions"><button type="button" data-edit="' + s + '">Edit moves</button>' +
-              '<button type="button" data-remove="' + s + '">Remove</button></div>' +
-              '<div class="ps-edit" data-editbox="' + s + '" hidden></div>' +
-              '</div>';
-          }
-          grid.innerHTML = out;
-        }
-
-        function moveOptions(mon, kind) {
-          // kind: 'f' or 'c'. Returns [{v, label}] with best first, then the
-          // regular alternative (where one exists), then "Other move".
-          var opts = [];
-          if (kind === 'f') {
-            opts.push(mon.f);
-            if (mon.fAlt && mon.fAlt !== mon.f) opts.push(mon.fAlt);
-          } else {
-            opts.push(mon.c);
-            if (mon.cAlt && mon.cAlt !== mon.c) opts.push(mon.cAlt);
-          }
-          opts.push("Other move");
-          return opts;
-        }
-
-        function openEdit(bossKey, slotIdx) {
-          var grid = document.querySelector('[data-party="' + bossKey + '"]');
-          var party = getParty(bossKey);
-          var e = party[slotIdx];
-          if (!e) return;
-          var mon = findMonAny(bossKey, e.name);
-          if (!mon) return;
-          var box = grid.querySelector('[data-editbox="' + slotIdx + '"]');
-          if (!box) return;
-          if (!box.hidden) { box.hidden = true; box.innerHTML = ""; return; }
-          function sel(kind, cur) {
-            var opts = moveOptions(mon, kind);
-            var o = '<select data-movekind="' + kind + '" data-slot="' + slotIdx + '">';
-            opts.forEach(function (v) {
-              o += '<option value="' + esc(v) + '"' + (v === cur ? ' selected' : '') + '>' + esc(v) + '</option>';
-            });
-            return o + '</select>';
-          }
-          box.innerHTML =
-            '<label>Fast move</label>' + sel('f', e.f) +
-            '<label>Charged move</label>' + sel('c', e.c) +
-            '<div class="ps-hint">' + esc(tmHint(mon, e.f, e.c) || "Best moves — no TM needed.") + '</div>';
-          box.hidden = false;
-        }
-
-        function renderPicker(bossKey, type) {
-          var box = document.querySelector('[data-picker="' + bossKey + '"]');
-          if (!box) return;
-          var list = PARTY_DATA[bossKey].types[type] || [];
-          var party = getParty(bossKey);
-          var inParty = {};
-          party.forEach(function (e) { if (e) inParty[e.name] = true; });
-          var rows = list.map(function (m) {
-            var added = !!inParty[m.name];
-            var full = party.filter(Boolean).length >= 6;
-            return '<div class="pk-row">' +
-              '<img src="' + SPRITE(m.id) + '" alt="' + esc(m.name) + '" loading="lazy" />' +
-              '<div class="pk-info"><div class="pk-name">' + esc(m.name) +
-              '<span class="rarity-dot ' + esc(m.r) + '" title="' + (m.r === 'common' ? 'Likely have' : m.r === 'plausible' ? 'Maybe have' : 'Rarer') + '"></span></div>' +
-              '<div class="pk-moves">Fast: ' + esc(m.f) + ' &middot; Charged: ' + esc(m.c) + '<br>Aim for ' + (m.cpMin ? m.cpMin.toLocaleString() + '+ CP (level 30)' : 'level 30+') + '</div>' +
-              (m.tm ? '<div class="pk-tm">' + esc(m.tm) + '</div>' : '') +
-              '</div>' +
-              '<button type="button" class="pk-add" data-add="' + esc(m.name) + '" data-type="' + esc(type) + '"' + ((added || full) ? ' disabled' : '') + '>' + (added ? 'Added \u2713' : 'Add') + '</button>' +
-              '</div>';
-          }).join("");
-          box.innerHTML = '<h3>' + esc(type) + '-type Pok&eacute;mon you likely have</h3>' +
-            '<p class="pk-sub">Best first. Tap <b>Add</b> on the ones you actually own — they join your party below. ' +
-            'CP is a guideline: aim for level 30+ with the right moves — each Pokémon shows its own target CP.</p>' +
-            '<p class="pk-legend"><span class="rarity-dot common"></span> likely have &nbsp;<span class="rarity-dot plausible"></span> maybe &nbsp;<span class="rarity-dot rare"></span> rarer</p>' +
-            rows;
-          box.hidden = false;
-        }
-
-        // Wire up each raid card.
-        Object.keys(PARTY_DATA).forEach(function (bossKey) {
-          renderParty(bossKey);
-          var partyEl = document.querySelector('[data-party="' + bossKey + '"]'); if (!partyEl) return; var card = partyEl.closest('.today-item');
-          if (!card) return;
-          // Weakness chips open the picker for that type.
-          card.querySelectorAll('.weak-chip').forEach(function (chip) {
-            chip.addEventListener('click', function () {
-              var type = chip.getAttribute('data-type');
-              var box = document.querySelector('[data-picker="' + bossKey + '"]');
-              var wasOpen = box && !box.hidden && box.getAttribute('data-open-type') === type;
-              card.querySelectorAll('.weak-chip').forEach(function (c) { c.setAttribute('aria-expanded', 'false'); });
-              if (wasOpen) { box.hidden = true; box.removeAttribute('data-open-type'); return; }
-              chip.setAttribute('aria-expanded', 'true');
-              renderPicker(bossKey, type);
-              box.setAttribute('data-open-type', type);
-              box.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-            });
-          });
-          // Picker Add buttons (delegated).
-          var pickerBox = document.querySelector('[data-picker="' + bossKey + '"]');
-          pickerBox.addEventListener('click', function (ev) {
-            var btn = ev.target.closest('[data-add]');
-            if (!btn || btn.disabled) return;
-            var name = btn.getAttribute('data-add');
-            var type = btn.getAttribute('data-type');
-            var mon = findMon(bossKey, type, name) || findMonAny(bossKey, name);
-            if (!mon) return;
-            var party = getParty(bossKey);
-            if (party.filter(Boolean).length >= 6) return;
-            var slot = party.indexOf(null);
-            if (slot === -1) slot = party.length;
-            party[slot] = { id: mon.id, name: mon.name, f: mon.f, c: mon.c, cp: '' };
-            while (party.length < 6) party.push(null);
-            saveParty(bossKey, party);
-            renderParty(bossKey);
-            renderPicker(bossKey, type);
-          });
-          // Party grid: CP input, Edit, Remove (delegated).
-          var grid = document.querySelector('[data-party="' + bossKey + '"]');
-          grid.addEventListener('change', function (ev) {
-            var inp = ev.target.closest('[data-cp]');
-            if (inp) {
-              var party = getParty(bossKey);
-              var idx = parseInt(inp.getAttribute('data-cp'), 10);
-              if (party[idx]) { party[idx].cp = inp.value; saveParty(bossKey, party); renderParty(bossKey); }
-              return;
-            }
-            var sel = ev.target.closest('select[data-movekind]');
-            if (sel) {
-              var party2 = getParty(bossKey);
-              var idx2 = parseInt(sel.getAttribute('data-slot'), 10);
-              var kind = sel.getAttribute('data-movekind');
-              if (party2[idx2]) {
-                if (kind === 'f') party2[idx2].f = sel.value; else party2[idx2].c = sel.value;
-                saveParty(bossKey, party2);
-                renderParty(bossKey);
-                openEdit(bossKey, idx2);
-              }
-            }
-          });
-          grid.addEventListener('click', function (ev) {
-            var rm = ev.target.closest('[data-remove]');
-            if (rm) {
-              var party = getParty(bossKey);
-              var idx = parseInt(rm.getAttribute('data-remove'), 10);
-              party[idx] = null;
-              saveParty(bossKey, party);
-              renderParty(bossKey);
-              // If the type picker is open, refresh it so its Add buttons
-              // reflect the freed slot right away.
-              var pk = document.querySelector('[data-picker="' + bossKey + '"]');
-              if (pk && !pk.hidden && pk.getAttribute('data-open-type')) {
-                renderPicker(bossKey, pk.getAttribute('data-open-type'));
-              }
-              return;
-            }
-            var ed = ev.target.closest('[data-edit]');
-            if (ed) { openEdit(bossKey, parseInt(ed.getAttribute('data-edit'), 10)); }
-          });
-        });
-      })();
-    </script>
-    <script>
       /* ================= PVP — GO BATTLE LEAGUE =================
-         One 3-Pokémon team per league/cup that is live this week.
-         Great League (1,500 CP), Ultra League: Mega Edition (2,500 CP,
-         Megas allowed), 2026 GO LAIC Cup (1,500 CP, type + species bans).
-         Master League is NOT live this week (returns Nov 17) — no
-         Master builder until then. GBL rotates weekly on Tuesdays at
-         1 PM PT, so the leagues change with the Tuesday block, not daily.
+         The party home: one 3-Pokémon counter party per league/cup that
+         is live this week, built to beat what everyone is running.
+         This week (Nov 17–24): Ultra League (2,500 CP), Master League:
+         Mega Edition (no CP limit, Megas + Primals allowed), 2026 GO
+         LAIC Cup (1,500 CP, type + species bans). GBL rotates weekly on
+         Tuesdays at 1 PM PT; refresh pattern is Tuesday (new rotation)
+         + Friday (settled meta) — see STRATEGY.md.
          Movesets are PvP (Trainer Battle) sets from PvPoke rankings via
-         GO Hub, updated Nov 3, 2026. CP check is a CAP check: over the
-         league cap means not eligible — the opposite of the raid check.
-         Teams are saved on this phone (localStorage, per league). */
+         GO Hub, updated Nov 19, 2026. BUILDER RULE: regular-TM moves
+         only — no Elite TM moves and no Elite TM notes anywhere in the
+         builders. CP check is a CAP check: over the league cap means
+         not eligible. Teams are saved on this phone (localStorage, per league). */
       (function () {
         var PVP_DATA = {
-          "great": {"title": "Great League", "cap": 1500, "capLabel": "1,500", "list": [
-            {"id": 808, "name": "Melmetal", "f": "Thunder Shock", "c1": "Double Iron Bash", "c2": "Dynamic Punch"},
-            {"id": 334, "name": "Altaria", "f": "Dragon Breath", "c1": "Moonblast", "c2": "Flamethrower"},
-            {"id": 38, "name": "Shadow Ninetales", "f": "Ember", "c1": "Weather Ball (Fire)", "c2": "Energy Ball"},
-            {"id": 778, "name": "Mimikyu", "f": "Shadow Claw", "c1": "Shadow Sneak", "c2": "Play Rough"},
-            {"id": 845, "name": "Cramorant", "f": "Peck", "c1": "Surf", "c2": "Fly"},
+          "ultra": {"title": "Ultra League", "cap": 2500, "capLabel": "2,500", "list": [
+            {"id": 326, "name": "Grumpig", "f": "Psywave", "c1": "Dynamic Punch", "c2": "Shadow Ball"},
             {"id": 959, "name": "Tinkaton", "f": "Fairy Wind", "c1": "Gigaton Hammer", "c2": "Bulldoze"},
-            {"id": 334, "name": "Shadow Altaria", "f": "Dragon Breath", "c1": "Moonblast", "c2": "Flamethrower"},
-            {"id": 823, "name": "Corviknight", "f": "Sand Attack", "c1": "Air Cutter", "c2": "Iron Head"},
-            {"id": 10173, "name": "Galarian Corsola", "f": "Astonish", "c1": "Night Shade", "c2": "Power Gem"},
-            {"id": 671, "name": "Florges", "f": "Fairy Wind", "c1": "Chilling Water", "c2": "Moonblast"},
-            {"id": 195, "name": "Shadow Quagsire", "f": "Mud Shot", "c1": "Aqua Tail", "c2": "Stone Edge"},
-            {"id": 195, "name": "Quagsire", "f": "Mud Shot", "c1": "Aqua Tail", "c2": "Stone Edge"},
-            {"id": 823, "name": "Shadow Corviknight", "f": "Sand Attack", "c1": "Air Cutter", "c2": "Iron Head"},
-            {"id": 38, "name": "Ninetales", "f": "Ember", "c1": "Weather Ball (Fire)", "c2": "Energy Ball"}
-          ], "prefill": ["Melmetal", "Altaria", "Mimikyu"]},
-          "ultra-mega": {"title": "Ultra League: Mega Edition", "cap": 2500, "capLabel": "2,500", "list": [
-            {"id": 959, "name": "Tinkaton", "f": "Fairy Wind", "c1": "Gigaton Hammer", "c2": "Bulldoze"},
+            {"id": 131, "name": "Lapras", "f": "Psywave", "c1": "Sparkling Aria", "c2": "Ice Beam"},
             {"id": 823, "name": "Corviknight", "f": "Sand Attack", "c1": "Air Cutter", "c2": "Iron Head"},
             {"id": 143, "name": "Shadow Snorlax", "f": "Psywave", "c1": "Body Slam", "c2": "Earthquake"},
             {"id": 823, "name": "Shadow Corviknight", "f": "Sand Attack", "c1": "Air Cutter", "c2": "Payback"},
             {"id": 10120, "name": "Zygarde (Complete)", "f": "Dragon Tail", "c1": "Crunch", "c2": "Bulldoze"},
-            {"id": 640, "name": "Virizion", "f": "Double Kick", "c1": "Leaf Blade", "c2": "Sacred Sword", "tm": "Sacred Sword needs an Elite TM."},
-            {"id": 778, "name": "Mimikyu", "f": "Shadow Claw", "c1": "Shadow Sneak", "c2": "Play Rough"},
             {"id": 671, "name": "Florges", "f": "Fairy Wind", "c1": "Chilling Water", "c2": "Disarming Voice"},
-            {"id": 395, "name": "Empoleon", "f": "Metal Sound", "c1": "Hydro Cannon", "c2": "Drill Peck", "tm": "Hydro Cannon needs an Elite TM."},
+            {"id": 778, "name": "Mimikyu", "f": "Shadow Claw", "c1": "Shadow Sneak", "c2": "Play Rough"},
             {"id": 10171, "name": "Galarian Moltres", "f": "Sucker Punch", "c1": "Fly", "c2": "Brave Bird"},
-            {"id": 395, "name": "Shadow Empoleon", "f": "Metal Sound", "c1": "Hydro Cannon", "c2": "Drill Peck", "tm": "Hydro Cannon needs an Elite TM."},
-            {"id": 808, "name": "Melmetal", "f": "Thunder Shock", "c1": "Double Iron Bash", "c2": "Dynamic Punch"},
-            {"id": 143, "name": "Snorlax", "f": "Psywave", "c1": "Body Slam", "c2": "Earthquake"},
-            {"id": 160, "name": "Shadow Feraligatr", "f": "Shadow Claw", "c1": "Hydro Cannon", "c2": "Ice Beam", "tm": "Hydro Cannon needs an Elite TM."}
-          ], "prefill": ["Tinkaton", "Corviknight", "Melmetal"]},
+            {"id": 488, "name": "Cresselia", "f": "Psycho Cut", "c1": "Moonblast", "c2": "Future Sight"}
+          ], "prefill": ["Grumpig", "Tinkaton", "Lapras"]},
+          "master-mega": {"title": "Master League: Mega Edition", "cap": 99999, "capLabel": "Master League", "list": [
+            {"id": 10041, "name": "Mega Gyarados", "f": "Dragon Breath", "c1": "Aqua Tail", "c2": "Crunch"},
+            {"id": 10077, "name": "Primal Kyogre", "f": "Waterfall", "c1": "Avalanche", "c2": "Thunder"},
+            {"id": 149, "name": "Mega Dragonite", "f": "Dragon Breath", "c1": "Thunder Punch", "c2": "Superpower"},
+            {"id": 10058, "name": "Mega Garchomp", "f": "Dragon Tail", "c1": "Earth Power", "c2": "Twister"},
+            {"id": 10089, "name": "Mega Rayquaza", "f": "Dragon Tail", "c1": "Breaking Swipe", "c2": "Dragon Ascent"},
+            {"id": 10078, "name": "Primal Groudon", "f": "Dragon Tail", "c1": "Precipice Blades", "c2": "Fire Punch"},
+            {"id": 10049, "name": "Mega Tyranitar", "f": "Bite", "c1": "Brutal Swing", "c2": "Stone Edge"}
+          ], "prefill": ["Mega Gyarados", "Primal Kyogre", "Mega Dragonite"]},
           "laic": {"title": "2026 GO LAIC Cup", "cap": 1500, "capLabel": "1,500", "list": [
+            {"id": 477, "name": "Shadow Dusknoir", "f": "Astonish", "c1": "Dynamic Punch", "c2": "Shadow Punch"},
+            {"id": 326, "name": "Grumpig", "f": "Psywave", "c1": "Dynamic Punch", "c2": "Shadow Ball"},
+            {"id": 748, "name": "Toxapex", "f": "Bite", "c1": "Brine", "c2": "Sludge Wave"},
             {"id": 975, "name": "Cetitan", "f": "Powder Snow", "c1": "Icicle Spear", "c2": "Superpower"},
             {"id": 317, "name": "Swalot", "f": "Infestation", "c1": "Sludge", "c2": "Ice Beam"},
-            {"id": 477, "name": "Shadow Dusknoir", "f": "Astonish", "c1": "Dynamic Punch", "c2": "Shadow Punch"},
-            {"id": 558, "name": "Crustle", "f": "Fury Cutter", "c1": "X-Scissor", "c2": "Rock Wrecker", "tm": "Rock Wrecker needs an Elite TM."},
-            {"id": 326, "name": "Grumpig", "f": "Psywave", "c1": "Dynamic Punch", "c2": "Shadow Ball"},
-            {"id": 365, "name": "Walrein", "f": "Powder Snow", "c1": "Icicle Spear", "c2": "Earthquake", "tm": "Icicle Spear needs an Elite TM."},
-            {"id": 221, "name": "Piloswine", "f": "Powder Snow", "c1": "Icicle Spear", "c2": "High Horsepower", "tm": "Icicle Spear needs an Elite TM."},
-            {"id": 478, "name": "Froslass", "f": "Powder Snow", "c1": "Avalanche", "c2": "Shadow Ball"},
-            {"id": 148, "name": "Shadow Dragonair", "f": "Dragon Breath", "c1": "Wrap", "c2": "Aqua Tail"},
-            {"id": 748, "name": "Toxapex", "f": "Bite", "c1": "Brine", "c2": "Sludge Wave"},
-            {"id": 372, "name": "Shadow Shelgon", "f": "Dragon Breath", "c1": "Twister", "c2": "Flamethrower"},
-            {"id": 337, "name": "Lunatone", "f": "Psywave", "c1": "Weather Ball (Ice)", "c2": "Rock Slide"},
             {"id": 460, "name": "Shadow Abomasnow", "f": "Powder Snow", "c1": "Weather Ball (Ice)", "c2": "Energy Ball"},
             {"id": 131, "name": "Lapras", "f": "Psywave", "c1": "Sparkling Aria", "c2": "Ice Beam"},
-            {"id": 699, "name": "Aurorus", "f": "Powder Snow", "c1": "Weather Ball (Ice)", "c2": "Meteor Beam", "tm": "Meteor Beam needs an Elite TM."}
-          ], "prefill": ["Cetitan", "Swalot", "Crustle"]}
+            {"id": 478, "name": "Froslass", "f": "Powder Snow", "c1": "Avalanche", "c2": "Shadow Ball"},
+            {"id": 148, "name": "Shadow Dragonair", "f": "Dragon Breath", "c1": "Wrap", "c2": "Aqua Tail"},
+            {"id": 372, "name": "Shadow Shelgon", "f": "Dragon Breath", "c1": "Twister", "c2": "Flamethrower"},
+            {"id": 337, "name": "Lunatone", "f": "Psywave", "c1": "Weather Ball (Ice)", "c2": "Rock Slide"}
+          ], "prefill": ["Shadow Dusknoir", "Grumpig", "Toxapex"]}
         };
         var SPRITE = function (id) { return "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/" + id + ".png"; };
         function esc(s) {
@@ -2127,7 +1969,6 @@
               '<img src="' + SPRITE(e.id) + '" alt="' + esc(e.name) + '" loading="lazy" />' +
               '<div class="ps-name">' + esc(e.name) + '</div>' +
               '<div class="ps-moves">Fast: ' + esc(e.f) + '<br>Charged: ' + esc(e.c1) + ' + ' + esc(e.c2) + '</div>' +
-              (mon.tm ? '<div class="ps-tm">' + esc(mon.tm) + '</div>' : '') +
               '<div class="ps-cp"><input type="number" inputmode="numeric" min="0" max="9999" placeholder="Your CP" value="' + esc(e.cp) + '" aria-label="Your ' + esc(e.name) + ' CP" data-pvp-cp="' + s + '" />' +
               '<span class="ps-status ' + statusCls + '">' + esc(status) + '</span></div>' +
               '<div class="ps-actions"><button type="button" data-pvp-remove="' + s + '">Remove</button></div>' +
@@ -2149,14 +1990,13 @@
               '<img src="' + SPRITE(m.id) + '" alt="' + esc(m.name) + '" loading="lazy" />' +
               '<div class="pk-info"><div class="pk-name">#' + (i + 1) + ' ' + esc(m.name) + '</div>' +
               '<div class="pk-moves">Fast: ' + esc(m.f) + ' &middot; Charged: ' + esc(m.c1) + ' + ' + esc(m.c2) + '</div>' +
-              (m.tm ? '<div class="pk-tm">' + esc(m.tm) + '</div>' : '') +
               '</div>' +
               '<button type="button" class="pk-add" data-pvp-add="' + esc(m.name) + '"' + ((added || full) ? ' disabled' : '') + '>' + (added ? 'Added \u2713' : 'Add') + '</button>' +
               '</div>';
           }).join("");
           box.innerHTML = '<h3>Best for ' + esc(PVP_DATA[league].title) + '</h3>' +
-            '<p class="pk-sub">Ranked #1 first. Tap <b>Add</b> on the ones you actually own — they join your team below. Don\u2019t have the top pick? Take the next one down. ' +
-            'Over the ' + esc(PVP_DATA[league].capLabel) + ' CP cap? Not eligible for this league.</p>' +
+            '<p class="pk-sub">Counter party first, then the rest of the meta. Tap <b>Add</b> on the ones you actually own — they join your team below. Don\u2019t have the top pick? Take the next one down. ' +
+            'Over the cap for this league? Not eligible.</p>' +
             rows;
           box.hidden = false;
         }
@@ -2266,6 +2106,44 @@
         // Re-check every minute so a page left open flips the badge on its
         // own at 5 AM and 9 PM without needing a reload.
         setInterval(updateRaidStatus, 60000);
+      })();
+    </script>
+    <script>
+      /* ================= RAID HOUR BANNER =================
+         Raid Hour is every Wednesday, 6:00-7:00 PM local. On Wednesdays
+         the banner answers "what time is Raid Hour tonight" at a glance;
+         other days it shows the next one. Boss names come from the
+         data-bosses attribute on the banner element in the Raids panel —
+         the daily update keeps that current with the 5-star bosses. */
+      (function () {
+        var el = document.getElementById("raid-hour");
+        if (!el) return;
+        var text = document.getElementById("raid-hour-text");
+        var days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+        var months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+        function fmt(d) { return days[d.getDay()] + " " + months[d.getMonth()] + " " + d.getDate(); }
+        function nextWed(from) {
+          var d = new Date(from.getFullYear(), from.getMonth(), from.getDate());
+          var add = (3 - d.getDay() + 7) % 7;
+          if (add === 0) add = 7;
+          d.setDate(d.getDate() + add);
+          return d;
+        }
+        function update() {
+          var now = new Date();
+          var bosses = el.getAttribute("data-bosses") || "";
+          var h = now.getHours();
+          if (now.getDay() === 3 && h < 18) {
+            text.innerHTML = "Raid Hour tonight \u00B7 <span class=\"rh-when\">6:00\u20137:00 PM</span>" + (bosses ? " \u00B7 " + bosses : "");
+          } else if (now.getDay() === 3 && h < 19) {
+            text.innerHTML = "Raid Hour is ON now \u00B7 until <span class=\"rh-when\">7:00 PM</span>" + (bosses ? " \u00B7 " + bosses : "");
+          } else {
+            text.textContent = "Next Raid Hour: " + fmt(nextWed(now)) + " \u00B7 6:00\u20137:00 PM";
+          }
+          el.hidden = false;
+        }
+        update();
+        setInterval(update, 60000);
       })();
     </script>
     <script>
