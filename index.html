@@ -215,6 +215,23 @@
       .ti-callout { font-size: clamp(20px, 4.6vw, 26px); font-weight: 800; line-height: 1.3; margin: 14px 0 0; letter-spacing: .02em; }
       .ti-meta { font-weight: 600; font-size: 15px; line-height: 1.55; margin: 10px 0 0; }
       .ti-meta b { font-weight: 800; color: var(--green-deep); }
+      /* Raid card counter picture tiles + fact chips (visual pass, Nov 19) */
+      .poke-tiles { margin: 12px 0 0; }
+      .poke-tiles .pt-label { font-size: 12px; font-weight: 800; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); margin: 0 0 6px; }
+      .poke-tiles .pt-row { display: flex; flex-wrap: wrap; gap: 10px; }
+      .poke-tile { flex: 0 0 auto; width: 84px; text-align: center; }
+      .poke-tile .pt-img { display: grid; place-items: center; width: 84px; height: 84px; border-radius: 16px; background: radial-gradient(closest-side, rgba(74, 222, 128, 0.20), transparent); }
+      .poke-tile img { width: 76px; height: 76px; object-fit: contain; filter: brightness(1.12) saturate(1.15) drop-shadow(0 4px 7px rgba(20, 35, 55, 0.16)); }
+      .poke-tile .pt-name { display: block; font-size: 12.5px; font-weight: 700; line-height: 1.25; margin-top: 2px; overflow-wrap: break-word; }
+      .poke-tiles.budget { margin-top: 10px; }
+      .poke-tiles.budget .poke-tile { width: 68px; }
+      .poke-tiles.budget .poke-tile .pt-img { width: 68px; height: 68px; border-radius: 14px; background: radial-gradient(closest-side, rgba(120, 140, 125, 0.14), transparent); }
+      .poke-tiles.budget .poke-tile img { width: 60px; height: 60px; filter: saturate(0.92) drop-shadow(0 3px 5px rgba(20, 35, 55, 0.14)); }
+      .poke-tiles.budget .pt-name { font-size: 12px; font-weight: 600; color: var(--muted); }
+      .ti-chips { display: flex; flex-wrap: wrap; gap: 8px; margin: 14px 0 0; }
+      .ti-chip { font-size: 13.5px; font-weight: 700; padding: 5px 13px; border-radius: 999px; background: var(--green-bg); color: var(--ink); white-space: nowrap; }
+      .ti-chip b { font-weight: 800; color: var(--green-deep); }
+      .ti-note { font-weight: 600; font-size: 14.5px; line-height: 1.5; color: var(--muted); margin: 10px 0 0; }
       /* PvP meta lists */
       .meta-list { list-style: none; margin: 8px 0 0; padding: 0; display: grid; gap: 8px; }
       .meta-list li { background: var(--surface-2); border: 1px solid var(--line); border-radius: 12px; padding: 10px 12px; font-size: 15px; line-height: 1.5; }
@@ -742,6 +759,22 @@
           <p class="ti-why">A moon-shaped Psychic legendary &mdash; in 5-star raids through Tue Nov 24.</p>
           <div class="ti-flags"><span class="flag">&#10024; Shiny available</span></div>
           <p class="ti-callout">Bring DARK &middot; GHOST &middot; BUG</p>
+          <div class="poke-tiles">
+            <p class="pt-label">Best answers</p>
+            <div class="pt-row">
+              <span class="poke-tile"><span class="pt-img"><img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10291.png" alt="Mega Chandelure"></span><span class="pt-name">Mega Chandelure</span></span>
+              <span class="poke-tile"><span class="pt-img"><img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10156.png" alt="Dawn Wings Necrozma"></span><span class="pt-name">Dawn Wings Necrozma</span></span>
+              <span class="poke-tile"><span class="pt-img"><img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10038.png" alt="Mega Gengar"></span><span class="pt-name">Mega Gengar</span></span>
+            </div>
+          </div>
+          <div class="poke-tiles budget">
+            <p class="pt-label">On a budget</p>
+            <div class="pt-row">
+              <span class="poke-tile"><span class="pt-img"><img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/248.png" alt="Tyranitar"></span><span class="pt-name">Tyranitar</span></span>
+              <span class="poke-tile"><span class="pt-img"><img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/983.png" alt="Kingambit"></span><span class="pt-name">Kingambit</span></span>
+              <span class="poke-tile"><span class="pt-img"><img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/635.png" alt="Hydreigon"></span><span class="pt-name">Hydreigon</span></span>
+            </div>
+          </div>
           <div class="cp-list" aria-label="Catch CP">
             <p class="cp-list-title">Catch CP</p>
             <ul>
@@ -750,9 +783,8 @@
               <li><b>2,041</b> &mdash; perfect (hundo), weather-boosted (Windy)</li>
             </ul>
           </div>
-          <p class="ti-detail">Best answers: Mega Chandelure, Dawn Wings Necrozma, Mega Gengar. On a budget: Tyranitar, Kingambit, Hydreigon.</p>
-          <p class="ti-meta"><b>Trainers:</b> 3&ndash;5 solid trainers. It is very tanky, so the family&rsquo;s 4 accounts can do it &mdash; bring your best Dark and Ghost and expect a longer fight.</p>
-          <p class="ti-meta"><b>Pass verdict: Worth a remote.</b> Not much use as a raid attacker, but it is a star in Ultra League PvP &mdash; this is the catch of the week for that.</p>
+          <div class="ti-chips"><span class="ti-chip"><b>Trainers</b> &middot; 3&ndash;5 solid</span><span class="ti-chip"><b>Pass</b> &middot; Worth a remote</span></div>
+          <p class="ti-note">Very tanky &mdash; the family&rsquo;s 4 accounts can do it, and it&rsquo;s the catch of the week for Ultra League.</p>
         </article>
 
         <article class="today-item">
@@ -768,6 +800,22 @@
           <p class="ti-why">A shadowy Dark-type Mythical &mdash; in 5-star raids through Tue Nov 24.</p>
           <div class="ti-flags"><span class="flag">&#10024; Shiny available</span><span class="flag mythic">Mythical &mdash; can&rsquo;t be traded</span></div>
           <p class="ti-callout">Bring FIGHTING &middot; BUG &middot; FAIRY</p>
+          <div class="poke-tiles">
+            <p class="pt-label">Best answers</p>
+            <div class="pt-row">
+              <span class="poke-tile"><span class="pt-img"><img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10047.png" alt="Mega Heracross"></span><span class="pt-name">Mega Heracross</span></span>
+              <span class="poke-tile"><span class="pt-img"><img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10050.png" alt="Mega Blaziken"></span><span class="pt-name">Mega Blaziken</span></span>
+              <span class="poke-tile"><span class="pt-img"><img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/639.png" alt="Terrakion"></span><span class="pt-name">Terrakion</span></span>
+            </div>
+          </div>
+          <div class="poke-tiles budget">
+            <p class="pt-label">On a budget</p>
+            <div class="pt-row">
+              <span class="poke-tile"><span class="pt-img"><img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/448.png" alt="Lucario"></span><span class="pt-name">Lucario</span></span>
+              <span class="poke-tile"><span class="pt-img"><img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/534.png" alt="Conkeldurr"></span><span class="pt-name">Conkeldurr</span></span>
+              <span class="poke-tile"><span class="pt-img"><img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/468.png" alt="Togekiss"></span><span class="pt-name">Togekiss</span></span>
+            </div>
+          </div>
           <div class="cp-list" aria-label="Catch CP">
             <p class="cp-list-title">Catch CP</p>
             <ul>
@@ -776,9 +824,8 @@
               <li><b>2,671</b> &mdash; perfect (hundo), weather-boosted (Foggy)</li>
             </ul>
           </div>
-          <p class="ti-detail">Best answers: Mega Heracross, Mega Blaziken, Terrakion. On a budget: Lucario, Conkeldurr, Togekiss.</p>
-          <p class="ti-meta"><b>Trainers:</b> 2 top-level trainers can duo it; 3&ndash;4 solid trainers is comfortable &mdash; the family&rsquo;s 4 accounts are plenty.</p>
-          <p class="ti-meta"><b>Pass verdict: Worth a remote.</b> One of the best Dark attackers in the game &mdash; and since it can&rsquo;t be traded, every catch is final, so good IVs have to come from the raid itself.</p>
+          <div class="ti-chips"><span class="ti-chip"><b>Trainers</b> &middot; 3&ndash;4 solid</span><span class="ti-chip"><b>Pass</b> &middot; Worth a remote</span></div>
+          <p class="ti-note">The family&rsquo;s 4 accounts are plenty.</p>
           <p class="ti-meta"><b>Catch tip:</b> Darkrai slides off to the side of the screen and sits there. Don&rsquo;t rush it &mdash; set a small circle, throw right as its attack swoop ends, and feed it Golden Razz Berries.</p>
         </article>
 
@@ -795,6 +842,22 @@
           <p class="ti-why">A Ghost-type Mega &mdash; in Mega Raids through Tue Nov 24. Winning earns Mega Energy for Banette, and the Pok&eacute;mon you catch is a regular Banette.</p>
           <div class="ti-flags"><span class="flag">&#10024; Shiny available</span></div>
           <p class="ti-callout">Bring GHOST &middot; DARK</p>
+          <div class="poke-tiles">
+            <p class="pt-label">Best answers</p>
+            <div class="pt-row">
+              <span class="poke-tile"><span class="pt-img"><img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10049.png" alt="Mega Tyranitar"></span><span class="pt-name">Mega Tyranitar</span></span>
+              <span class="poke-tile"><span class="pt-img"><img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10038.png" alt="Mega Gengar"></span><span class="pt-name">Mega Gengar</span></span>
+              <span class="poke-tile"><span class="pt-img"><img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10048.png" alt="Mega Houndoom"></span><span class="pt-name">Mega Houndoom</span></span>
+            </div>
+          </div>
+          <div class="poke-tiles budget">
+            <p class="pt-label">On a budget</p>
+            <div class="pt-row">
+              <span class="poke-tile"><span class="pt-img"><img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/248.png" alt="Tyranitar"></span><span class="pt-name">Tyranitar</span></span>
+              <span class="poke-tile"><span class="pt-img"><img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/983.png" alt="Kingambit"></span><span class="pt-name">Kingambit</span></span>
+              <span class="poke-tile"><span class="pt-img"><img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/635.png" alt="Hydreigon"></span><span class="pt-name">Hydreigon</span></span>
+            </div>
+          </div>
           <div class="cp-list" aria-label="Catch CP">
             <p class="cp-list-title">Catch CP &mdash; for the Banette you catch</p>
             <ul>
@@ -803,9 +866,8 @@
               <li><b>1,642</b> &mdash; perfect (hundo), weather-boosted (Foggy)</li>
             </ul>
           </div>
-          <p class="ti-detail">Best answers: Mega Tyranitar, Mega Gengar, Mega Houndoom. On a budget: Tyranitar, Kingambit, Hydreigon.</p>
-          <p class="ti-meta"><b>Trainers:</b> Easy &mdash; one strong trainer can solo it; 2&ndash;3 makes it a breeze.</p>
-          <p class="ti-meta"><b>Pass verdict: In-person only.</b> Winning earns Mega Energy for your own Banette, and it is easy enough that a remote pass is wasted on it &mdash; save those for the 5-stars.</p>
+          <div class="ti-chips"><span class="ti-chip"><b>Trainers</b> &middot; 1 strong can solo</span><span class="ti-chip"><b>Pass</b> &middot; In-person only</span></div>
+          <p class="ti-note">Winning earns Mega Energy for your own Banette &mdash; save remote passes for the 5-stars.</p>
         </article>
 
       </section>
