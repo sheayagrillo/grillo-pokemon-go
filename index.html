@@ -198,6 +198,28 @@
       .prep-card .prep-dates { color: var(--green-deep); font-weight: 800; font-size: 14.5px; margin-top: 2px; }
       .prep-card ul { margin: 12px 0 0 20px; font-size: 15.5px; line-height: 1.55; }
       .prep-card li { margin: 6px 0; }
+      /* Icon-led prep rows (Nov 20): picture first, text beside it.
+         Checklist rows lead with the picture of what they name —
+         the no-icons-in-prose rule is for sentences, not rows. */
+      .prep-card ul.prep-rows { margin: 14px 0 0; padding: 0; list-style: none; }
+      .prep-card li.prep-row { display: flex; gap: 12px; align-items: flex-start; margin: 13px 0; }
+      .prep-ic { flex: 0 0 auto; display: flex; align-items: center; gap: 4px; }
+      .prep-ic img { display: block; width: 44px; height: 44px; object-fit: contain; filter: brightness(1.14) saturate(1.18) drop-shadow(0 3px 5px rgba(20, 35, 55, 0.16)); }
+      .prep-ic.pair img { width: 40px; height: 40px; }
+      .prep-ic.trio img { width: 34px; height: 34px; }
+      .prep-tx { flex: 1 1 auto; min-width: 0; }
+      .prep-chip { display: inline-flex; align-items: center; justify-content: center; min-height: 44px; max-width: 96px; padding: 6px 9px; border-radius: 10px; background: var(--green-bg); color: var(--green-deep); font-size: 12.5px; font-weight: 800; line-height: 1.25; text-align: center; }
+      .prep-card li.prep-chain-item { margin: 13px 0; }
+      .chain-lead { margin: 0; }
+      .chain-note { margin: 0; }
+      .prep-chain { display: flex; align-items: flex-start; justify-content: center; gap: 2px; margin: 8px 0 10px; }
+      .prep-chain figure { margin: 0; text-align: center; }
+      .prep-chain figure img { display: block; width: 84px; height: 84px; max-width: 23vw; object-fit: contain; margin: 0 auto; filter: brightness(1.14) saturate(1.18) drop-shadow(0 3px 5px rgba(20, 35, 55, 0.16)); }
+      .prep-chain figcaption { font-size: 13px; font-weight: 700; margin-top: 3px; }
+      .chain-step { display: flex; flex-direction: column; align-items: center; gap: 3px; padding-top: 24px; min-width: 46px; }
+      .chain-arrow { font-size: 22px; font-weight: 800; color: var(--green-deep); line-height: 1; }
+      .chain-cost { display: inline-flex; align-items: center; gap: 3px; font-size: 13px; font-weight: 800; color: var(--green-deep); white-space: nowrap; }
+      .chain-cost img { width: 15px; height: 15px; }
       .prep-card b { font-weight: 800; color: var(--green-deep); }
       .prep-note { color: var(--muted); font-size: 14.5px; font-weight: 600; line-height: 1.55; margin: 4px 0 0; }
 
@@ -1328,69 +1350,69 @@
         <div class="prep-card">
           <h3 class="ellipsis">Dynamax Trails + New Raids</h3>
           <p class="prep-dates">Mon Nov 16, 10 AM &ndash; Mon Nov 23, 8 PM local &middot; Raids Nov 16&ndash;24</p>
-          <ul>
-            <li><b>Raid Passes &mdash; spin Gyms.</b> One free orange Raid Pass a day from spinning a Gym Photo Disc &mdash; use it before you spin for the next one. Cresselia, Darkrai (5&starf;) and Mega Banette run Nov 16&ndash;24.</li>
-            <li><b>Max Particles &mdash; bank up to 1,500.</b> Dynamax Trails brings back every Dynamax Pok&eacute;mon from before (no Legendaries or Mythicals) at Power Spots all week. Each Max Battle costs Max Particles only if you win &mdash; see the how-to below.</li>
-            <li><b>Counters ready:</b> <span class="type-chip"><img class="type-icon" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/types/generation-ix/scarlet-violet/17.png" alt="Dark"></span> <span class="type-chip"><img class="type-icon" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/types/generation-ix/scarlet-violet/8.png" alt="Ghost"></span> <span class="type-chip"><img class="type-icon" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/types/generation-ix/scarlet-violet/7.png" alt="Bug"></span> for Cresselia, <span class="type-chip"><img class="type-icon" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/types/generation-ix/scarlet-violet/2.png" alt="Fighting"></span> for Darkrai, <span class="type-chip"><img class="type-icon" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/types/generation-ix/scarlet-violet/8.png" alt="Ghost"></span> <span class="type-chip"><img class="type-icon" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/types/generation-ix/scarlet-violet/17.png" alt="Dark"></span> for Mega Banette.</li>
-            <li><b>Eternatus returns Sat Nov 21, 11 AM&ndash;2 PM.</b> Eternamax Eternatus takes over Power Spots &mdash; you cannot catch it, but wins pay out Eternatus Candy. Needs a big lobby.</li>
+          <ul class="prep-rows">
+            <li class="prep-row"><span class="prep-ic"><span class="prep-chip">Raid Pass</span></span><span class="prep-tx"><b>Raid Passes &mdash; spin Gyms.</b> One free orange Raid Pass a day from spinning a Gym Photo Disc &mdash; use it before you spin for the next one. Cresselia, Darkrai (5&starf;) and Mega Banette run Nov 16&ndash;24.</span></li>
+            <li class="prep-row"><span class="prep-ic"><span class="prep-chip">Max Particles</span></span><span class="prep-tx"><b>Max Particles &mdash; bank up to 1,500.</b> Dynamax Trails brings back every Dynamax Pok&eacute;mon from before (no Legendaries or Mythicals) at Power Spots all week. Each Max Battle costs Max Particles only if you win &mdash; see the how-to below.</span></li>
+            <li class="prep-row"><span class="prep-ic trio"><img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/488.png" alt="Cresselia"><img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/491.png" alt="Darkrai"><img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10056.png" alt="Mega Banette"></span><span class="prep-tx"><b>Counters ready:</b> <span class="type-chip"><img class="type-icon" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/types/generation-ix/scarlet-violet/17.png" alt="Dark"></span> <span class="type-chip"><img class="type-icon" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/types/generation-ix/scarlet-violet/8.png" alt="Ghost"></span> <span class="type-chip"><img class="type-icon" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/types/generation-ix/scarlet-violet/7.png" alt="Bug"></span> for Cresselia, <span class="type-chip"><img class="type-icon" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/types/generation-ix/scarlet-violet/2.png" alt="Fighting"></span> for Darkrai, <span class="type-chip"><img class="type-icon" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/types/generation-ix/scarlet-violet/8.png" alt="Ghost"></span> <span class="type-chip"><img class="type-icon" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/types/generation-ix/scarlet-violet/17.png" alt="Dark"></span> for Mega Banette.</span></li>
+            <li class="prep-row"><span class="prep-ic"><img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10190.png" alt="Eternamax Eternatus"></span><span class="prep-tx"><b>Eternatus returns Sat Nov 21, 11 AM&ndash;2 PM.</b> Eternamax Eternatus takes over Power Spots &mdash; you cannot catch it, but wins pay out Eternatus Candy. Needs a big lobby.</span></li>
           </ul>
         </div>
 
         <div class="prep-card">
           <h3 class="ellipsis"><img class="mon-icon" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/624.png" alt="Pawniard"> Pawniard Community Day</h3>
           <p class="prep-dates">Sat Nov 21 &middot; 2&ndash;5 PM local</p>
-          <ul>
-            <li><b>Pok&eacute; Balls + Pinap Berries &mdash; stocked up before 2 PM.</b> A few hundred balls across the three of you. Pinap every Pawniard.</li>
-            <li><b>150 Pawniard Candy per Kingambit.</b> Pawniard &rarr; Bisharp 50, Bisharp &rarr; Kingambit 100 more. Evolve Bisharp 2&ndash;9 PM for Kowtow Cleave.</li>
-            <li><b>Set a Bisharp as Buddy first.</b> On Nov 21, 2&ndash;9 PM, the 15-win requirement drops to 1 win.</li>
-            <li><b>Same morning: Eternamax Eternatus, 11 AM&ndash;2 PM.</b> Can&rsquo;t catch it, but each win gives ~100&ndash;140 Candy + 45&ndash;54 XL. Needs a big lobby.</li>
-            <li><b>Incense + Lures &mdash; one Incense each at 2 PM</b> covers the whole event (3 hours).</li>
+          <ul class="prep-rows">
+            <li class="prep-row"><span class="prep-ic pair"><img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/poke-ball.png" alt="Pok&eacute; Ball"><img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/pinap-berry.png" alt="Pinap Berry"></span><span class="prep-tx"><b>Pok&eacute; Balls + Pinap Berries &mdash; stocked up before 2 PM.</b> A few hundred balls across the three of you. Pinap every Pawniard.</span></li>
+            <li class="prep-chain-item"><p class="chain-lead"><b>150 Pawniard Candy per Kingambit.</b></p><div class="prep-chain"><figure><img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/624.png" alt="Pawniard"><figcaption>Pawniard</figcaption></figure><div class="chain-step"><span class="chain-arrow">&rarr;</span><span class="chain-cost"><img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/rare-candy.png" alt="">50</span></div><figure><img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/625.png" alt="Bisharp"><figcaption>Bisharp</figcaption></figure><div class="chain-step"><span class="chain-arrow">&rarr;</span><span class="chain-cost"><img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/rare-candy.png" alt="">100 more</span></div><figure><img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/983.png" alt="Kingambit"><figcaption>Kingambit</figcaption></figure></div><p class="chain-note">Evolve Bisharp 2&ndash;9 PM for Kowtow Cleave.</p></li>
+            <li class="prep-row"><span class="prep-ic"><img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/625.png" alt="Bisharp"></span><span class="prep-tx"><b>Set a Bisharp as Buddy first.</b> On Nov 21, 2&ndash;9 PM, the 15-win requirement drops to 1 win.</span></li>
+            <li class="prep-row"><span class="prep-ic"><img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10190.png" alt="Eternamax Eternatus"></span><span class="prep-tx"><b>Same morning: Eternamax Eternatus, 11 AM&ndash;2 PM.</b> Can&rsquo;t catch it, but each win gives ~100&ndash;140 Candy + 45&ndash;54 XL. Needs a big lobby.</span></li>
+            <li class="prep-row"><span class="prep-ic pair"><img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/luck-incense.png" alt="Incense"><img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/lure.png" alt="Lure"></span><span class="prep-tx"><b>Incense + Lures &mdash; one Incense each at 2 PM</b> covers the whole event (3 hours).</span></li>
           </ul>
         </div>
 
         <div class="prep-card">
           <h3 class="ellipsis"><img class="mon-icon" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/890.png" alt="Eternatus"> Eternatus &mdash; do NOT power it up</h3>
           <p class="prep-dates">Read before Saturday&rsquo;s Eternamax battles &middot; Sat Nov 21, 11 AM&ndash;2 PM</p>
-          <ul>
-            <li><b>Eternatus is the most expensive Pok&eacute;mon in the game.</b> Powering it up burns candy at a rate nothing else matches.</li>
-            <li><b>Save every Eternatus Candy for its Max Moves.</b> That is where the candy actually pays off &mdash; not in power-ups.</li>
-            <li><b>Its Max Moves can only be upgraded twice,</b> so the plan is short: win candy on Saturday, bank it, spend it on Max Moves only.</li>
-            <li><b>Saturday&rsquo;s wins pay out Eternatus Candy</b> (about 100&ndash;140 a win). Bank it &mdash; don&rsquo;t spend it the same day.</li>
+          <ul class="prep-rows">
+            <li class="prep-row"><span class="prep-ic"><img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/890.png" alt="Eternatus"></span><span class="prep-tx"><b>Eternatus is the most expensive Pok&eacute;mon in the game.</b> Powering it up burns candy at a rate nothing else matches.</span></li>
+            <li class="prep-row"><span class="prep-ic"><img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/rare-candy.png" alt="Candy"></span><span class="prep-tx"><b>Save every Eternatus Candy for its Max Moves.</b> That is where the candy actually pays off &mdash; not in power-ups.</span></li>
+            <li class="prep-row"><span class="prep-ic"><img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/890.png" alt="Eternatus"></span><span class="prep-tx"><b>Its Max Moves can only be upgraded twice,</b> so the plan is short: win candy on Saturday, bank it, spend it on Max Moves only.</span></li>
+            <li class="prep-row"><span class="prep-ic"><img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/rare-candy.png" alt="Candy"></span><span class="prep-tx"><b>Saturday&rsquo;s wins pay out Eternatus Candy</b> (about 100&ndash;140 a win). Bank it &mdash; don&rsquo;t spend it the same day.</span></li>
           </ul>
         </div>
 
         <div class="prep-card">
           <h3 class="ellipsis">Saturday bonus &mdash; Adventure Effects</h3>
           <p class="prep-dates">Sat Nov 21 only &middot; If someone in the family has one, today is the day it earns its candy</p>
-          <ul>
-            <li><b>Spacial Rend (Origin Palkia)</b> &mdash; wild Pok&eacute;mon show up from farther away, so more spawns are in reach all afternoon. 5,000 Stardust + 5 Palkia Candy per 10 minutes.</li>
-            <li><b>Sunsteel Strike / Moongeist Beam (Necrozma fusions)</b> &mdash; pulls in daytime (or nighttime) spawns, like an extra Incense. 3,000 Stardust + 3 Necrozma Candy per 10 minutes.</li>
-            <li><b>Roar of Time (Origin Dialga)</b> &mdash; pauses the timers on Incense, Lucky Eggs and Star Pieces, so one Star Piece stretches much further. 5,000 Stardust + 5 Dialga Candy per 6 minutes.</li>
-            <li><b>We don&rsquo;t know who has which</b> &mdash; check your own box Saturday morning. Only one effect can run at a time.</li>
+          <ul class="prep-rows">
+            <li class="prep-row"><span class="prep-ic"><img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10246.png" alt="Origin Palkia"></span><span class="prep-tx"><b>Spacial Rend (Origin Palkia)</b> &mdash; wild Pok&eacute;mon show up from farther away, so more spawns are in reach all afternoon. 5,000 Stardust + 5 Palkia Candy per 10 minutes.</span></li>
+            <li class="prep-row"><span class="prep-ic"><img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/800.png" alt="Necrozma"></span><span class="prep-tx"><b>Sunsteel Strike / Moongeist Beam (Necrozma fusions)</b> &mdash; pulls in daytime (or nighttime) spawns, like an extra Incense. 3,000 Stardust + 3 Necrozma Candy per 10 minutes.</span></li>
+            <li class="prep-row"><span class="prep-ic"><img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10245.png" alt="Origin Dialga"></span><span class="prep-tx"><b>Roar of Time (Origin Dialga)</b> &mdash; pauses the timers on Incense, Lucky Eggs and Star Pieces, so one Star Piece stretches much further. 5,000 Stardust + 5 Dialga Candy per 6 minutes.</span></li>
+            <li class="prep-row"><span class="prep-ic"><span class="prep-chip">Your Box</span></span><span class="prep-tx"><b>We don&rsquo;t know who has which</b> &mdash; check your own box Saturday morning. Only one effect can run at a time.</span></li>
           </ul>
         </div>
 
         <div class="prep-card">
           <h3 class="ellipsis">Kyurem fusion &mdash; PARKED</h3>
           <p class="prep-dates">The plan, saved so nobody has to re-decide it mid-event</p>
-          <ul>
-            <li><b>Status: waiting on an Elite Charged TM.</b> The family&rsquo;s Kyurem stay unfused until one turns up (season rewards, event boxes). Do not buy one.</li>
-            <li><b>Glaciate first &mdash; always.</b> Kyurem has to know Glaciate BEFORE it fuses, or the fused form never gets its special move (Ice Burn for White Kyurem, Freeze Shock for Black Kyurem). Glaciate can only be taught with an Elite Charged TM.</li>
-            <li><b>Cost per form:</b> 1,000 Fusion Energy + 30 Kyurem Candy + 30 Reshiram Candy (White Kyurem) or 30 Zekrom Candy (Black Kyurem).</li>
-            <li><b>Budget about 10 raids of energy per form &mdash; so pick ONE form.</b> Fused forms can&rsquo;t be traded, so there is no splitting one each across accounts.</li>
-            <li><b>Nothing expires.</b> The energy and the Kyurem keep &mdash; there is no deadline on this.</li>
+          <ul class="prep-rows">
+            <li class="prep-row"><span class="prep-ic"><img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/646.png" alt="Kyurem"></span><span class="prep-tx"><b>Status: waiting on an Elite Charged TM.</b> The family&rsquo;s Kyurem stay unfused until one turns up (season rewards, event boxes). Do not buy one.</span></li>
+            <li class="prep-row"><span class="prep-ic pair"><img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10023.png" alt="White Kyurem"><img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10022.png" alt="Black Kyurem"></span><span class="prep-tx"><b>Glaciate first &mdash; always.</b> Kyurem has to know Glaciate BEFORE it fuses, or the fused form never gets its special move (Ice Burn for White Kyurem, Freeze Shock for Black Kyurem). Glaciate can only be taught with an Elite Charged TM.</span></li>
+            <li class="prep-row"><span class="prep-ic pair"><img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/643.png" alt="Reshiram"><img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/644.png" alt="Zekrom"></span><span class="prep-tx"><b>Cost per form:</b> 1,000 Fusion Energy + 30 Kyurem Candy + 30 Reshiram Candy (White Kyurem) or 30 Zekrom Candy (Black Kyurem).</span></li>
+            <li class="prep-row"><span class="prep-ic"><img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/646.png" alt="Kyurem"></span><span class="prep-tx"><b>Budget about 10 raids of energy per form &mdash; so pick ONE form.</b> Fused forms can&rsquo;t be traded, so there is no splitting one each across accounts.</span></li>
+            <li class="prep-row"><span class="prep-ic"><img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/646.png" alt="Kyurem"></span><span class="prep-tx"><b>Nothing expires.</b> The energy and the Kyurem keep &mdash; there is no deadline on this.</span></li>
           </ul>
         </div>
 
         <div class="prep-card">
           <h3 class="ellipsis">Twilight Wishes</h3>
           <p class="prep-dates">Tue Nov 24, 10 AM &ndash; Mon Nov 30, 8 PM local &middot; Season finale</p>
-          <ul>
-            <li><b>Save Lucky-trade candidates for this week.</b> The free GO Pass gives increased Lucky chance (Rank 1) and 2&times; Stardust (Rank 10). Claim rewards by Wed Dec 2, 8 PM.</li>
-            <li><b>Star Pieces &mdash; save at least one per player for Nov 24&ndash;30.</b> Stack with Rank 10 for the best Stardust of the month.</li>
-            <li><b>Mega Energy &mdash; don&rsquo;t buy it, earn it</b> from Mega Raids, Field Research, and the GO Pass.</li>
-            <li><b>Raid Passes &mdash; a few for the costumed 3&starf;s</b> (Espeon/Umbreon). One free daily pass covers one a day.</li>
-            <li><b>Same week: Mega Clefable Raid Day, Sat Nov 28, 2&ndash;5 PM.</b> Same prep as any raid day.</li>
+          <ul class="prep-rows">
+            <li class="prep-row"><span class="prep-ic"><span class="prep-chip">GO Pass</span></span><span class="prep-tx"><b>Save Lucky-trade candidates for this week.</b> The free GO Pass gives increased Lucky chance (Rank 1) and 2&times; Stardust (Rank 10). Claim rewards by Wed Dec 2, 8 PM.</span></li>
+            <li class="prep-row"><span class="prep-ic"><img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/star-piece.png" alt="Star Piece"></span><span class="prep-tx"><b>Star Pieces &mdash; save at least one per player for Nov 24&ndash;30.</b> Stack with Rank 10 for the best Stardust of the month.</span></li>
+            <li class="prep-row"><span class="prep-ic"><span class="prep-chip">Mega Energy</span></span><span class="prep-tx"><b>Mega Energy &mdash; don&rsquo;t buy it, earn it</b> from Mega Raids, Field Research, and the GO Pass.</span></li>
+            <li class="prep-row"><span class="prep-ic pair"><img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/196.png" alt="Espeon"><img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/197.png" alt="Umbreon"></span><span class="prep-tx"><b>Raid Passes &mdash; a few for the costumed 3&starf;s</b> (Espeon/Umbreon). One free daily pass covers one a day.</span></li>
+            <li class="prep-row"><span class="prep-ic"><img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10278.png" alt="Mega Clefable"></span><span class="prep-tx"><b>Same week: Mega Clefable Raid Day, Sat Nov 28, 2&ndash;5 PM.</b> Same prep as any raid day.</span></li>
           </ul>
         </div>
 
