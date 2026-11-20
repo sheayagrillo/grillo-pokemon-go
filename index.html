@@ -93,6 +93,14 @@
       .howto { background: var(--surface); border: 1px solid var(--line); border-radius: 20px; padding: 14px 16px; box-shadow: var(--shadow); margin: 0; font-size: 15px; line-height: 1.55; }
       .howto p { margin: 4px 0; }
       .howto b { font-weight: 800; color: var(--green-deep); }
+      /* PvP "Why these picks" — collapsible explainer, collapsed by default */
+      .why-card { padding: 0; overflow: hidden; }
+      .why-head { display: flex; align-items: center; justify-content: space-between; gap: 12px; width: 100%; padding: 14px 16px; background: none; border: 0; cursor: pointer; font: inherit; color: inherit; text-align: left; }
+      .why-title { font-size: 16px; font-weight: 800; color: var(--green-deep); }
+      .why-head .chev { flex: 0 0 auto; font-size: 13px; color: var(--muted); transition: transform 0.2s; }
+      .why-card.open .why-head .chev { transform: rotate(180deg); }
+      .why-body { padding: 0 16px 14px; }
+      .why-body[hidden] { display: none; }
       .guide-btn { display: block; width: 100%; font-family: inherit; font-size: 17px; font-weight: 800; color: #fff; background: var(--grad); border: 0; border-radius: 999px; padding: 15px 20px; margin: 6px 0 16px; cursor: pointer; box-shadow: var(--shadow); }
       .guide-btn:active { transform: scale(0.98); }
       .guide-panel { background: var(--surface); border: 1px solid var(--line); border-radius: 20px; padding: 18px 18px 6px; box-shadow: var(--shadow); margin: 0 0 16px; }
@@ -171,7 +179,6 @@
          a chip, never squeezed into a square or stacked above its word. */
       .type-chip { display: inline-flex; align-items: center; flex: 0 0 auto; }
       .type-chip img.type-icon { display: block; width: auto; height: 22px; }
-      .ti-callout .type-chip img.type-icon { height: 24px; }
       .prep-card li .type-chip img.type-icon { height: 20px; }
       .ti-types { display: flex; flex-wrap: wrap; gap: 6px; margin: 7px 0 0; }
       .ti-types .type-chip img.type-icon { height: 20px; }
@@ -253,7 +260,6 @@
       .ti-flags { display: flex; flex-wrap: wrap; gap: 8px; margin: 10px 0 0; }
       .flag { font-size: 13px; font-weight: 800; padding: 4px 12px; border-radius: 999px; background: var(--green-bg); color: var(--green-deep); white-space: nowrap; }
       .flag.mythic { background: #f3e8ff; color: #6b21a8; }
-      .ti-callout { display: flex; align-items: center; flex-wrap: wrap; gap: 8px 10px; font-size: clamp(20px, 4.6vw, 26px); font-weight: 800; line-height: 1.3; margin: 14px 0 0; letter-spacing: .02em; }
       .ti-meta { font-weight: 600; font-size: 15px; line-height: 1.55; margin: 10px 0 0; }
       .ti-meta b { font-weight: 800; color: var(--green-deep); }
       /* Raid card counter picture tiles + fact chips (visual pass, Nov 19) */
@@ -264,6 +270,9 @@
       .poke-tile .pt-img { display: grid; place-items: center; width: 100%; height: 158px; border-radius: 20px; background: radial-gradient(closest-side, rgba(74, 222, 128, 0.20), transparent); }
       .poke-tile img { width: 150px; height: 150px; max-width: 100%; object-fit: contain; filter: brightness(1.12) saturate(1.15) drop-shadow(0 4px 7px rgba(20, 35, 55, 0.16)); }
       .poke-tile .pt-name { display: block; font-size: 15px; font-weight: 800; line-height: 1.25; margin-top: 4px; overflow-wrap: break-word; }
+      .pt-take { font-size: 17px; font-weight: 800; letter-spacing: .02em; margin: 14px 0 0; }
+      .poke-tiles .poke-tile .pt-type { display: block; margin-top: 3px; line-height: 0; }
+      .poke-tiles .poke-tile .pt-type img.type-icon { height: 18px; width: auto; filter: none; }
       .poke-tiles.budget { margin-top: 10px; }
       .poke-tiles.budget .poke-tile { width: auto; }
       .poke-tiles.budget .poke-tile .pt-img { width: 100%; height: 140px; border-radius: 18px; background: radial-gradient(closest-side, rgba(120, 140, 125, 0.14), transparent); }
@@ -868,21 +877,20 @@
           </div>
           <p class="ti-why">A moon-shaped Psychic legendary &mdash; in 5-star raids through Tue Nov 24.</p>
           <div class="ti-flags"><span class="flag">&#10024; Shiny available</span></div>
-          <p class="ti-callout"><span>Bring</span> <span class="type-chip"><img class="type-icon" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/types/generation-ix/scarlet-violet/17.png" alt="Dark"></span> <span class="type-chip"><img class="type-icon" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/types/generation-ix/scarlet-violet/8.png" alt="Ghost"></span> <span class="type-chip"><img class="type-icon" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/types/generation-ix/scarlet-violet/7.png" alt="Bug"></span></p>
+          <p class="pt-take">Take</p>
           <div class="poke-tiles">
             <p class="pt-label">Best answers</p>
             <div class="pt-row">
-              <span class="poke-tile"><span class="pt-img"><img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10291.png" alt="Mega Chandelure"></span><span class="pt-name">Mega Chandelure</span></span>
-              <span class="poke-tile"><span class="pt-img"><img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10156.png" alt="Dawn Wings Necrozma"></span><span class="pt-name">Dawn Wings Necrozma</span></span>
-              <span class="poke-tile"><span class="pt-img"><img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10038.png" alt="Mega Gengar"></span><span class="pt-name">Mega Gengar</span></span>
+              <span class="poke-tile"><span class="pt-img"><img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10291.png" alt="Mega Chandelure"></span><span class="pt-name">Mega Chandelure</span><span class="pt-type"><img class="type-icon" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/types/generation-ix/scarlet-violet/8.png" alt="Ghost"></span></span>
+              <span class="poke-tile"><span class="pt-img"><img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10156.png" alt="Dawn Wings Necrozma"></span><span class="pt-name">Dawn Wings Necrozma</span><span class="pt-type"><img class="type-icon" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/types/generation-ix/scarlet-violet/8.png" alt="Ghost"></span></span>
+              <span class="poke-tile"><span class="pt-img"><img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10038.png" alt="Mega Gengar"></span><span class="pt-name">Mega Gengar</span><span class="pt-type"><img class="type-icon" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/types/generation-ix/scarlet-violet/8.png" alt="Ghost"></span></span>
             </div>
           </div>
           <div class="poke-tiles budget">
-            <p class="pt-label">On a budget</p>
             <div class="pt-row">
-              <span class="poke-tile"><span class="pt-img"><img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/248.png" alt="Tyranitar"></span><span class="pt-name">Tyranitar</span></span>
-              <span class="poke-tile"><span class="pt-img"><img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/983.png" alt="Kingambit"></span><span class="pt-name">Kingambit</span></span>
-              <span class="poke-tile"><span class="pt-img"><img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/635.png" alt="Hydreigon"></span><span class="pt-name">Hydreigon</span></span>
+              <span class="poke-tile"><span class="pt-img"><img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/248.png" alt="Tyranitar"></span><span class="pt-name">Tyranitar</span><span class="pt-type"><img class="type-icon" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/types/generation-ix/scarlet-violet/17.png" alt="Dark"></span></span>
+              <span class="poke-tile"><span class="pt-img"><img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/983.png" alt="Kingambit"></span><span class="pt-name">Kingambit</span><span class="pt-type"><img class="type-icon" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/types/generation-ix/scarlet-violet/17.png" alt="Dark"></span></span>
+              <span class="poke-tile"><span class="pt-img"><img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/635.png" alt="Hydreigon"></span><span class="pt-name">Hydreigon</span><span class="pt-type"><img class="type-icon" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/types/generation-ix/scarlet-violet/17.png" alt="Dark"></span></span>
             </div>
           </div>
           <div class="cp-list" aria-label="Catch CP">
@@ -910,21 +918,20 @@
           </div>
           <p class="ti-why">A shadowy Dark-type Mythical &mdash; in 5-star raids through Tue Nov 24.</p>
           <div class="ti-flags"><span class="flag">&#10024; Shiny available</span><span class="flag mythic">Mythical &mdash; can&rsquo;t be traded</span></div>
-          <p class="ti-callout"><span>Bring</span> <span class="type-chip"><img class="type-icon" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/types/generation-ix/scarlet-violet/2.png" alt="Fighting"></span> <span class="type-chip"><img class="type-icon" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/types/generation-ix/scarlet-violet/7.png" alt="Bug"></span> <span class="type-chip"><img class="type-icon" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/types/generation-ix/scarlet-violet/18.png" alt="Fairy"></span></p>
+          <p class="pt-take">Take</p>
           <div class="poke-tiles">
             <p class="pt-label">Best answers</p>
             <div class="pt-row">
-              <span class="poke-tile"><span class="pt-img"><img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10047.png" alt="Mega Heracross"></span><span class="pt-name">Mega Heracross</span></span>
-              <span class="poke-tile"><span class="pt-img"><img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10050.png" alt="Mega Blaziken"></span><span class="pt-name">Mega Blaziken</span></span>
-              <span class="poke-tile"><span class="pt-img"><img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/639.png" alt="Terrakion"></span><span class="pt-name">Terrakion</span></span>
+              <span class="poke-tile"><span class="pt-img"><img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10047.png" alt="Mega Heracross"></span><span class="pt-name">Mega Heracross</span><span class="pt-type"><img class="type-icon" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/types/generation-ix/scarlet-violet/2.png" alt="Fighting"></span></span>
+              <span class="poke-tile"><span class="pt-img"><img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10050.png" alt="Mega Blaziken"></span><span class="pt-name">Mega Blaziken</span><span class="pt-type"><img class="type-icon" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/types/generation-ix/scarlet-violet/2.png" alt="Fighting"></span></span>
+              <span class="poke-tile"><span class="pt-img"><img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/639.png" alt="Terrakion"></span><span class="pt-name">Terrakion</span><span class="pt-type"><img class="type-icon" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/types/generation-ix/scarlet-violet/2.png" alt="Fighting"></span></span>
             </div>
           </div>
           <div class="poke-tiles budget">
-            <p class="pt-label">On a budget</p>
             <div class="pt-row">
-              <span class="poke-tile"><span class="pt-img"><img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/448.png" alt="Lucario"></span><span class="pt-name">Lucario</span></span>
-              <span class="poke-tile"><span class="pt-img"><img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/534.png" alt="Conkeldurr"></span><span class="pt-name">Conkeldurr</span></span>
-              <span class="poke-tile"><span class="pt-img"><img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/468.png" alt="Togekiss"></span><span class="pt-name">Togekiss</span></span>
+              <span class="poke-tile"><span class="pt-img"><img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/448.png" alt="Lucario"></span><span class="pt-name">Lucario</span><span class="pt-type"><img class="type-icon" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/types/generation-ix/scarlet-violet/2.png" alt="Fighting"></span></span>
+              <span class="poke-tile"><span class="pt-img"><img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/534.png" alt="Conkeldurr"></span><span class="pt-name">Conkeldurr</span><span class="pt-type"><img class="type-icon" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/types/generation-ix/scarlet-violet/2.png" alt="Fighting"></span></span>
+              <span class="poke-tile"><span class="pt-img"><img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/468.png" alt="Togekiss"></span><span class="pt-name">Togekiss</span><span class="pt-type"><img class="type-icon" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/types/generation-ix/scarlet-violet/18.png" alt="Fairy"></span></span>
             </div>
           </div>
           <div class="cp-list" aria-label="Catch CP">
@@ -953,21 +960,20 @@
           </div>
           <p class="ti-why">A Ghost-type Mega &mdash; in Mega Raids through Tue Nov 24. Winning earns Mega Energy for Banette, and the Pok&eacute;mon you catch is a regular Banette.</p>
           <div class="ti-flags"><span class="flag">&#10024; Shiny available</span></div>
-          <p class="ti-callout"><span>Bring</span> <span class="type-chip"><img class="type-icon" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/types/generation-ix/scarlet-violet/8.png" alt="Ghost"></span> <span class="type-chip"><img class="type-icon" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/types/generation-ix/scarlet-violet/17.png" alt="Dark"></span></p>
+          <p class="pt-take">Take</p>
           <div class="poke-tiles">
             <p class="pt-label">Best answers</p>
             <div class="pt-row">
-              <span class="poke-tile"><span class="pt-img"><img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10049.png" alt="Mega Tyranitar"></span><span class="pt-name">Mega Tyranitar</span></span>
-              <span class="poke-tile"><span class="pt-img"><img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10038.png" alt="Mega Gengar"></span><span class="pt-name">Mega Gengar</span></span>
-              <span class="poke-tile"><span class="pt-img"><img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10048.png" alt="Mega Houndoom"></span><span class="pt-name">Mega Houndoom</span></span>
+              <span class="poke-tile"><span class="pt-img"><img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10049.png" alt="Mega Tyranitar"></span><span class="pt-name">Mega Tyranitar</span><span class="pt-type"><img class="type-icon" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/types/generation-ix/scarlet-violet/17.png" alt="Dark"></span></span>
+              <span class="poke-tile"><span class="pt-img"><img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10038.png" alt="Mega Gengar"></span><span class="pt-name">Mega Gengar</span><span class="pt-type"><img class="type-icon" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/types/generation-ix/scarlet-violet/8.png" alt="Ghost"></span></span>
+              <span class="poke-tile"><span class="pt-img"><img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10048.png" alt="Mega Houndoom"></span><span class="pt-name">Mega Houndoom</span><span class="pt-type"><img class="type-icon" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/types/generation-ix/scarlet-violet/17.png" alt="Dark"></span></span>
             </div>
           </div>
           <div class="poke-tiles budget">
-            <p class="pt-label">On a budget</p>
             <div class="pt-row">
-              <span class="poke-tile"><span class="pt-img"><img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/248.png" alt="Tyranitar"></span><span class="pt-name">Tyranitar</span></span>
-              <span class="poke-tile"><span class="pt-img"><img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/983.png" alt="Kingambit"></span><span class="pt-name">Kingambit</span></span>
-              <span class="poke-tile"><span class="pt-img"><img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/635.png" alt="Hydreigon"></span><span class="pt-name">Hydreigon</span></span>
+              <span class="poke-tile"><span class="pt-img"><img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/248.png" alt="Tyranitar"></span><span class="pt-name">Tyranitar</span><span class="pt-type"><img class="type-icon" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/types/generation-ix/scarlet-violet/17.png" alt="Dark"></span></span>
+              <span class="poke-tile"><span class="pt-img"><img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/983.png" alt="Kingambit"></span><span class="pt-name">Kingambit</span><span class="pt-type"><img class="type-icon" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/types/generation-ix/scarlet-violet/17.png" alt="Dark"></span></span>
+              <span class="poke-tile"><span class="pt-img"><img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/635.png" alt="Hydreigon"></span><span class="pt-name">Hydreigon</span><span class="pt-type"><img class="type-icon" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/types/generation-ix/scarlet-violet/17.png" alt="Dark"></span></span>
             </div>
           </div>
           <div class="cp-list" aria-label="Catch CP">
@@ -1008,8 +1014,11 @@
         <p class="sec-note">Ultra League, Master League: Mega Edition, and the 2026 GO LAIC Cup are live this week. Win rewards pay <b>4&times; Stardust</b> all week.</p>
         <p class="sec-note">Next GO Battle Thursday: Nov 26 &mdash; 4&times; Stardust, up to 10 sets a day.</p>
 
-        <div class="howto" style="margin-top:12px">
+        <div class="howto why-card" style="margin-top:12px">
+          <button type="button" class="why-head" aria-expanded="false"><span class="why-title">Why these picks</span><span class="chev" aria-hidden="true">&#9660;</span></button>
+          <div class="why-body" hidden>
           <p><b>Why these picks:</b> Rankings come from PvPoke &mdash; how each Pok&eacute;mon does against the ones other players use most. Each league shows <b>what everyone&rsquo;s running</b> first, then a <b>counter party</b> built to beat it &mdash; that counter party is what starts in the builder, with <b>3 swaps</b> behind it: six counter options in all, so you can mix different combinations of three. Some of the strongest picks need an <b>Elite TM</b> for their very best move &mdash; those carry a <b>&#9873; flag</b> naming the move, so you can see the cost before you build. The best picks stay on the board, flags and all.</p>
+          </div>
         </div>
 
         <div class="prep-card">
@@ -2134,6 +2143,20 @@
           body.hidden = !opening;
           btn.setAttribute("aria-expanded", opening ? "true" : "false");
           item.classList.toggle("open", opening);
+        });
+      });
+      // PvP "Why these picks": header toggles the explainer body (collapsed by default).
+      document.querySelectorAll(".why-card").forEach(function (card) {
+        var btn = card.querySelector(".why-head");
+        var body = card.querySelector(".why-body");
+        if (!btn || !body) return;
+        body.hidden = true;
+        btn.setAttribute("aria-expanded", "false");
+        btn.addEventListener("click", function () {
+          var opening = body.hidden;
+          body.hidden = !opening;
+          btn.setAttribute("aria-expanded", opening ? "true" : "false");
+          card.classList.toggle("open", opening);
         });
       });
       })();
