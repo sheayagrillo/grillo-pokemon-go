@@ -137,6 +137,37 @@
       }
       .tab-panel[hidden] { display: none; }
 
+      /* ---------- Today panel + More doors (nav rebuild, Nov 19) ---------- */
+      .tabbar-in .tab { flex: 1 1 0; }
+      .tonight { background: var(--surface); border: 1px solid var(--line); border-radius: 20px; padding: 16px 18px; box-shadow: var(--shadow); margin: 0 0 6px; }
+      .tonight .tonight-title { font-size: 13px; font-weight: 800; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); margin: 0 0 6px; }
+      .tonight .tonight-text { font-size: 17px; font-weight: 700; line-height: 1.45; margin: 0; }
+      .mini-raids { display: flex; flex-direction: column; gap: 10px; margin-top: 14px; }
+      .mini-raid { display: flex; align-items: center; gap: 12px; background: var(--surface); border: 1px solid var(--line); border-radius: 18px; padding: 10px 14px; box-shadow: var(--shadow); text-decoration: none; color: var(--ink); }
+      .mini-raid .mr-sprite { flex: 0 0 auto; width: 64px; height: 64px; display: grid; place-items: center; background: radial-gradient(closest-side, rgba(74, 222, 128, 0.22), transparent); border-radius: 14px; }
+      .mini-raid .mr-sprite img { width: 60px; height: 60px; object-fit: contain; filter: brightness(1.14) saturate(1.18) drop-shadow(0 4px 7px rgba(20, 35, 55, 0.16)); }
+      .mini-raid .mr-id { flex: 1 1 auto; min-width: 0; display: flex; flex-direction: column; }
+      .mini-raid .mr-name { font-size: 17px; font-weight: 800; line-height: 1.25; }
+      .mini-raid .mr-kind { font-size: 13.5px; font-weight: 600; color: var(--muted); margin-top: 2px; }
+      .live-list { display: flex; flex-direction: column; gap: 10px; margin-top: 14px; }
+      .live-row { display: flex; align-items: center; gap: 10px; background: var(--surface); border: 1px solid var(--line); border-radius: 16px; padding: 12px 14px; box-shadow: var(--shadow); text-decoration: none; color: var(--ink); }
+      .live-row .live-dot { flex: 0 0 auto; width: 9px; height: 9px; border-radius: 50%; background: var(--red); }
+      .live-row .live-name { font-weight: 800; font-size: 15.5px; }
+      .live-row .live-fact { color: var(--muted); font-weight: 600; font-size: 14px; margin-left: auto; text-align: right; }
+      .playday { background: var(--green-bg); border: 1px solid var(--line); border-radius: 16px; padding: 14px 16px; margin: 18px 0 0; box-shadow: var(--shadow); font-size: 15.5px; line-height: 1.5; }
+      .playday[hidden] { display: none; }
+      .playday p { margin: 0; }
+      .more-list { display: flex; flex-direction: column; gap: 12px; margin-top: 14px; }
+      .more-row { display: flex; align-items: center; gap: 14px; background: var(--surface); border: 1px solid var(--line); border-radius: 20px; padding: 16px 18px; box-shadow: var(--shadow); text-decoration: none; color: var(--ink); min-height: 76px; }
+      .more-row .more-ic { flex: 0 0 auto; font-size: 30px; line-height: 1; width: 44px; text-align: center; }
+      .more-row .more-txt { flex: 1 1 auto; min-width: 0; display: flex; flex-direction: column; }
+      .more-row .more-name { font-size: 19px; font-weight: 800; line-height: 1.25; }
+      .more-row .more-desc { font-size: 14px; font-weight: 600; color: var(--muted); margin-top: 2px; }
+      .more-row .more-chev { flex: 0 0 auto; font-size: 28px; font-weight: 800; color: var(--muted); line-height: 1; }
+      .ti-callout img.type-icon { width: 23px; height: 23px; vertical-align: -4px; }
+      img.mon-icon { width: 22px; height: 22px; object-fit: contain; vertical-align: -5px; margin: 0 1px; }
+      .prep-card h3 img.mon-icon { width: 26px; height: 26px; vertical-align: -6px; }
+
       /* ---------- Poké Prep event cards ---------- */
       .prep-card {
         background: var(--surface); border: 1px solid var(--line); border-radius: 20px;
@@ -228,6 +259,19 @@
       .poke-tiles.budget .poke-tile .pt-img { width: 68px; height: 68px; border-radius: 14px; background: radial-gradient(closest-side, rgba(120, 140, 125, 0.14), transparent); }
       .poke-tiles.budget .poke-tile img { width: 60px; height: 60px; filter: saturate(0.92) drop-shadow(0 3px 5px rgba(20, 35, 55, 0.14)); }
       .poke-tiles.budget .pt-name { font-size: 12px; font-weight: 600; color: var(--muted); }
+      /* PvP counter pool tiles: PARTY / SWAP badges (Nov 19) */
+      .pvp-pool .poke-tile .pt-img { position: relative; margin: 0 auto; }
+      .pt-badge { position: absolute; top: -7px; right: -7px; z-index: 1; font-size: 9.5px; font-weight: 800; letter-spacing: 0.06em; padding: 2.5px 7px; border-radius: 999px; background: var(--green-deep); color: #fff; box-shadow: 0 2px 5px rgba(20, 35, 55, 0.25); }
+      .poke-tiles.budget .pt-badge { background: #8a97a3; }
+      .pvp-pool .poke-tile { width: 100px; }
+      .poke-tiles.budget.pvp-pool .poke-tile { width: 88px; }
+      .pt-moves { display: block; font-size: 10.5px; font-weight: 600; line-height: 1.35; color: var(--muted); margin-top: 2px; overflow-wrap: break-word; }
+      .poke-tiles.budget .pt-moves { font-size: 10px; }
+      .pt-flag { display: inline-block; margin-top: 3px; font-size: 9.5px; font-weight: 800; letter-spacing: 0.02em; line-height: 1.3; padding: 2px 6px; border-radius: 999px; background: #f59e0b; color: #201304; }
+      .meta-flag { display: inline-block; margin-left: 6px; font-size: 11px; font-weight: 800; padding: 2px 7px; border-radius: 999px; background: #f59e0b; color: #201304; vertical-align: 1px; white-space: nowrap; }
+      /* Icons-always: Pokémon icons in meta lists, type icons in text (Nov 19) */
+      .meta-list li img.meta-icon { width: 32px; height: 32px; object-fit: contain; vertical-align: -9px; margin-right: 7px; }
+      img.type-icon { width: 17px; height: 17px; object-fit: contain; vertical-align: -3px; margin: 0 1px; }
       .ti-chips { display: flex; flex-wrap: wrap; gap: 8px; margin: 14px 0 0; }
       .ti-chip { font-size: 13.5px; font-weight: 700; padding: 5px 13px; border-radius: 999px; background: var(--green-bg); color: var(--ink); white-space: nowrap; }
       .ti-chip b { font-weight: 800; color: var(--green-deep); }
@@ -458,14 +502,26 @@
       /* ---------- Trade board ---------- */
       .tb-intro { font-weight: 600; font-size: 15.5px; color: var(--muted); margin: 0 0 14px; }
       .tb-matches {
-        background: var(--surface); border: 1px solid var(--line); border-radius: 16px;
+        background: #ffffff; color: #26332a; border: 1px solid var(--line); border-radius: 16px;
         padding: 13px 15px; box-shadow: var(--shadow); margin-bottom: 16px;
         font-weight: 600; font-size: 15px;
       }
-      .tb-matches.has { background: var(--green-bg); border-color: color-mix(in srgb, var(--green) 30%, var(--line)); }
-      .tb-match-line { display: block; padding: 3px 0; }
-      .tb-match-line b { font-weight: 800; }
-      .tb-matches .tb-none { color: var(--muted); }
+      .tb-matches.has { background: #ffffff; border-color: color-mix(in srgb, var(--green) 30%, var(--line)); }
+      .tb-matches .tb-matches-title { font-size: 12.5px; font-weight: 800; letter-spacing: 0.14em; text-transform: uppercase; color: #6d7d70; margin: 0 0 8px; }
+      .tb-match-row { display: flex; align-items: center; gap: 10px; padding: 8px 0; flex-wrap: wrap; }
+      .tb-match-row + .tb-match-row { border-top: 1px solid #eef3ee; }
+      .tb-match-who { display: inline-flex; align-items: center; gap: 7px; font-weight: 800; font-size: 15px; min-width: 0; }
+      .tb-avatar {
+        flex: 0 0 auto; width: 40px; height: 40px; border-radius: 50%;
+        display: grid; place-items: center; background: #ffffff;
+        font-size: 17px; font-weight: 800; border: 3px solid var(--pc, #999); color: var(--pc, #999);
+      }
+      .tb-match-mon { display: inline-flex; align-items: center; gap: 6px; font-weight: 800; font-size: 15px; }
+      .tb-match-mon img { width: 52px; height: 52px; object-fit: contain; filter: brightness(1.14) saturate(1.18); }
+      .tb-match-mon .tb-ball { width: 52px; height: 52px; display: grid; place-items: center; }
+      .tb-match-mon .tb-ball svg { width: 38px; height: 38px; }
+      .tb-match-arrow { font-weight: 800; color: #6d7d70; font-size: 17px; flex: 0 0 auto; }
+      .tb-matches .tb-none { color: #6d7d70; }
       .tb-picker {
         background: var(--surface); border: 1px solid var(--line); border-radius: 20px;
         padding: 18px; box-shadow: var(--shadow); margin-bottom: 16px;
@@ -570,40 +626,41 @@
       @media (min-width: 640px) { .tb-grid { grid-template-columns: repeat(2, 1fr); } }
       @media (min-width: 960px) { .tb-grid { grid-template-columns: repeat(3, 1fr); } }
       .tb-person {
-        background: var(--surface); border: 1px solid var(--line); border-radius: 20px;
+        background: #ffffff; color: #26332a; border: 1px solid var(--line); border-radius: 20px;
         padding: 18px; box-shadow: var(--shadow); min-width: 0;
       }
-      .tb-person h3 { font-size: 20px; font-weight: 800; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+      .tb-person-head { display: flex; align-items: center; gap: 10px; min-width: 0; }
+      .tb-person h3 { font-size: 20px; font-weight: 800; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; color: var(--pc, #26332a); }
       .tb-col-label {
         display: flex; align-items: center; gap: 10px; margin-top: 14px; font-size: 12.5px; font-weight: 800; letter-spacing: 0.14em;
-        text-transform: uppercase; color: var(--muted);
+        text-transform: uppercase; color: #6d7d70;
       }
-      .tb-col-label::after { content: ""; flex: 1; height: 1px; background: var(--line); }
-      .tb-entries { list-style: none; margin: 8px 0 0; padding: 0; display: grid; gap: 8px; }
-      .tb-entry {
-        display: flex; align-items: center; gap: 10px; min-height: 72px;
-        background: var(--surface-2); border: 1px solid var(--line); border-radius: 12px; padding: 4px 10px 4px 4px;
-        min-width: 0;
+      .tb-col-label::after { content: ""; flex: 1; height: 1px; background: #e3ece3; }
+      /* Have / Want picture tiles (redesign Nov 19) */
+      .tb-tiles { display: flex; flex-wrap: wrap; gap: 12px 10px; margin-top: 10px; }
+      .tb-tile { position: relative; flex: 0 0 auto; width: 84px; text-align: center; }
+      .tb-tile .tb-tile-img {
+        display: grid; place-items: center; width: 84px; height: 84px; border-radius: 50%;
+        background: radial-gradient(closest-side, rgba(74, 222, 128, 0.18), transparent);
+        box-shadow: inset 0 0 0 2px #e3ece3;
       }
-      .tb-entry.has-match { border-color: color-mix(in srgb, var(--green) 45%, var(--line)); background: var(--green-bg); }
-      .tb-entry img {
-        width: 64px; height: 64px; object-fit: contain; flex: 0 0 auto;
-        filter: brightness(1.14) saturate(1.18);
+      .tb-tile.has-match .tb-tile-img { box-shadow: 0 0 0 4px var(--ring, #22a06b); }
+      .tb-tile img { width: 72px; height: 72px; object-fit: contain; filter: brightness(1.14) saturate(1.18); }
+      .tb-tile .tb-ball { width: 72px; height: 72px; display: grid; place-items: center; }
+      .tb-tile .tb-ball svg { width: 50px; height: 50px; }
+      .tb-tile .tb-tname { display: block; font-size: 12.5px; font-weight: 700; line-height: 1.25; margin-top: 3px; overflow-wrap: break-word; }
+      .tb-tile .tb-tpartner { display: block; font-size: 11.5px; font-weight: 800; line-height: 1.3; margin-top: 1px; overflow-wrap: break-word; }
+      .tb-tile .tb-remove {
+        position: absolute; top: -4px; right: -2px; width: 24px; height: 24px; border-radius: 50%;
+        border: 1px solid #e3ece3; background: #ffffff; color: #b91c1c; font-size: 15px; font-weight: 800;
+        line-height: 1; padding: 0; cursor: pointer; display: grid; place-items: center; box-shadow: var(--shadow);
       }
-      .tb-entry .tb-ball { width: 64px; height: 64px; flex: 0 0 auto; display: grid; place-items: center; }
-      .tb-entry .tb-ball svg { width: 44px; height: 44px; }
-      .tb-entry .tb-remove { border: 0; background: none; color: #b91c1c; font-size: 20px; font-weight: 800; line-height: 1; padding: 8px 6px; cursor: pointer; flex: 0 0 auto; }
-      .tb-etxt { min-width: 0; flex: 1 1 auto; display: flex; flex-direction: column; gap: 1px; }
-      .tb-ename { font-weight: 800; font-size: 15.5px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-      .tb-ematch { font-weight: 700; font-size: 13px; color: var(--green-deep); overflow-wrap: break-word; }
-      .tb-tags { margin-left: auto; display: flex; gap: 6px; flex: 0 0 auto; }
+      .tb-tags { display: flex; gap: 6px; justify-content: center; margin-top: 3px; }
       .tb-tag {
         font-size: 11.5px; font-weight: 800; letter-spacing: 0.03em; padding: 3px 8px; border-radius: 999px; white-space: nowrap;
       }
-      .tb-tag.lucky { background: color-mix(in srgb, var(--yellow) 30%, var(--surface)); color: #6b5a00; }
-      @media (prefers-color-scheme: dark) { .tb-tag.lucky { color: var(--yellow); } }
-      .tb-tag.match { background: var(--green-bg); color: var(--green-deep); }
-      .tb-empty { color: var(--muted); font-weight: 600; font-size: 14.5px; padding: 10px 2px; }
+      .tb-tag.lucky { background: color-mix(in srgb, var(--yellow) 30%, #ffffff); color: #6b5a00; }
+      .tb-empty { color: #6d7d70; font-weight: 600; font-size: 14.5px; padding: 10px 2px; }
     
       /* ---- My Raid Party builder ---- */
       .weak-chips { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; margin: 10px 0 0; font-size: 14px; font-weight: 700; color: var(--green-deep); }
@@ -648,6 +705,7 @@
       .pk-row .pk-name { font-weight: 800; font-size: 15px; }
       .pk-row .pk-moves { font-size: 12.5px; color: var(--muted); line-height: 1.45; }
       .pk-row .pk-tm { font-size: 12px; color: #b45309; font-weight: 700; line-height: 1.4; }
+      .pk-row .pk-flag { font-size: 12px; color: #b45309; font-weight: 800; line-height: 1.4; }
       .pk-add { font: inherit; font-size: 13px; font-weight: 800; padding: 7px 12px; border-radius: 999px; border: 0; background: #22c55e; color: #fff; cursor: pointer; flex: 0 0 auto; }
       .pk-add[disabled] { background: #cbd5cb; cursor: default; }
       .rarity-dot { display: inline-block; width: 9px; height: 9px; border-radius: 50%; margin-left: 6px; vertical-align: 1px; }
@@ -660,16 +718,13 @@
 
     <nav class="tabbar" role="tablist" aria-label="Sections">
       <div class="tabbar-in">
-        <button type="button" class="tab" id="tab-raids" role="tab" aria-selected="true" aria-controls="panel-raids" data-tab="raids">Raids</button>
+        <button type="button" class="tab" id="tab-today" role="tab" aria-selected="true" aria-controls="panel-today" data-tab="today">Today</button>
+        <button type="button" class="tab" id="tab-raids" role="tab" aria-selected="false" aria-controls="panel-raids" data-tab="raids">Raids</button>
         <button type="button" class="tab" id="tab-pvp" role="tab" aria-selected="false" aria-controls="panel-pvp" data-tab="pvp">PvP</button>
-        <button type="button" class="tab" id="tab-upcoming" role="tab" aria-selected="false" aria-controls="panel-upcoming" data-tab="upcoming">Upcoming</button>
-        <button type="button" class="tab" id="tab-pokeprep" role="tab" aria-selected="false" aria-controls="panel-pokeprep" data-tab="pokeprep">Pok&eacute; Prep</button>
-        <button type="button" class="tab" id="tab-tradeboard" role="tab" aria-selected="false" aria-controls="panel-tradeboard" data-tab="tradeboard">Trade Board</button>
-        <button type="button" class="tab" id="tab-vivillon" role="tab" aria-selected="false" aria-controls="panel-vivillon" data-tab="vivillon">Vivillon</button>
-        <button type="button" class="tab" id="tab-searchstrings" role="tab" aria-selected="false" aria-controls="panel-searchstrings" data-tab="searchstrings">Search Strings</button>
+        <button type="button" class="tab" id="tab-more" role="tab" aria-selected="false" aria-controls="panel-more" data-tab="more">More</button>
       </div>
     </nav>
-    <div class="tab-panel" id="panel-raids" role="tabpanel" aria-labelledby="tab-raids">
+    <div class="tab-panel" id="panel-today" role="tabpanel" aria-labelledby="tab-today">
     <header class="banner">
       <div class="banner-in">
         <img class="ball" src="ball.png" alt="Grillo Ball" />
@@ -679,6 +734,53 @@
         </div>
       </div>
     </header>
+    <div class="wrap">
+      <!-- ============ RAID HOUR BANNER (JS fills the text) ============ -->
+      <div class="raid-hour" id="raid-hour" data-bosses="Cresselia + Darkrai" hidden>
+        <p class="rh-text" id="raid-hour-text"></p>
+      </div>
+
+      <!-- ============ TONIGHT (JS fills the line) ============ -->
+      <div class="tonight">
+        <p class="tonight-title">Tonight</p>
+        <p class="tonight-text" id="tonight-text"></p>
+      </div>
+
+      <!-- ============ IN RAIDS NOW — mini cards; tap one for the full card on Raids ============ -->
+      <div class="sec-head"><h2>In raids now</h2><span class="sub">Tap a boss for counters + catch CP</span></div>
+      <div class="mini-raids">
+        <a class="mini-raid" href="#raids">
+          <span class="mr-sprite"><img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/488.png" alt="Cresselia"></span>
+          <span class="mr-id"><span class="mr-name">Cresselia</span><span class="mr-kind">5-star raids &middot; through Tue Nov 24</span></span>
+          <span class="ti-chip"><b>Pass</b> &middot; Worth a remote</span>
+        </a>
+        <a class="mini-raid" href="#raids">
+          <span class="mr-sprite"><img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/491.png" alt="Darkrai"></span>
+          <span class="mr-id"><span class="mr-name">Darkrai</span><span class="mr-kind">5-star raids &middot; through Tue Nov 24</span></span>
+          <span class="ti-chip"><b>Pass</b> &middot; Worth a remote</span>
+        </a>
+        <a class="mini-raid" href="#raids">
+          <span class="mr-sprite"><img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/354.png" alt="Mega Banette"></span>
+          <span class="mr-id"><span class="mr-name">Mega Banette</span><span class="mr-kind">Mega raids &middot; through Tue Nov 24</span></span>
+          <span class="ti-chip"><b>Pass</b> &middot; In-person only</span>
+        </a>
+      </div>
+
+      <!-- ============ LIVE TODAY — mirrors the Upcoming items active today ============ -->
+      <div class="sec-head"><h2>Live today</h2><span class="sub">Thu Nov 19</span></div>
+      <div class="live-list">
+        <a class="live-row" href="#upcoming"><span class="live-dot" aria-hidden="true"></span><span class="live-name">Dynamax Trails</span><span class="live-fact">Max Battles &middot; through Mon Nov 23</span></a>
+        <a class="live-row" href="#upcoming"><span class="live-dot" aria-hidden="true"></span><span class="live-name">Minior Showers: Leonids</span><span class="live-fact">Last night tonight &middot; 5&ndash;9 PM</span></a>
+        <a class="live-row" href="#upcoming"><span class="live-dot" aria-hidden="true"></span><span class="live-name">Spotlight Hour &mdash; Galar starters</span><span class="live-fact">Tonight &middot; 6&ndash;7 PM</span></a>
+      </div>
+
+      <!-- ============ SATURDAY PLAY DAY (JS reveals it on Saturdays) ============ -->
+      <div class="playday" id="playday" hidden>
+        <p><b>Saturday play day!</b> Before you head out, open <a href="#pokeprep">Pok&eacute; Prep</a> &mdash; today&rsquo;s Adventure Effects and event prep live there.</p>
+      </div>
+    </div>
+    </div>
+    <div class="tab-panel" id="panel-raids" role="tabpanel" aria-labelledby="tab-raids" hidden>
     <div class="wrap">
       <h1 class="headline">What&rsquo;s going on in Pok&eacute;mon today?</h1>
 
@@ -734,10 +836,7 @@
       </div>
 
       <!-- ============ TODAY — STACKED ============ -->
-            <!-- ============ RAID HOUR BANNER (JS fills the text) ============ -->
-      <div class="raid-hour" id="raid-hour" data-bosses="Cresselia + Darkrai" hidden>
-        <p class="rh-text" id="raid-hour-text"></p>
-      </div>
+      <!-- (The Raid Hour banner moved to the Today panel in the nav rebuild.) -->
 
       <!-- ============ RAID NIGHT STRIP ============ -->
       <div class="raid-night">
@@ -756,9 +855,9 @@
             </div>
             <span class="ti-live">LIVE</span>
           </div>
-          <p class="ti-why">A moon-shaped Psychic legendary &mdash; in 5-star raids through Tue Nov 24.</p>
+          <p class="ti-why">A moon-shaped <img class="type-icon" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/types/generation-ix/scarlet-violet/14.png" alt="Psychic"> Psychic legendary &mdash; in 5-star raids through Tue Nov 24.</p>
           <div class="ti-flags"><span class="flag">&#10024; Shiny available</span></div>
-          <p class="ti-callout">Bring DARK &middot; GHOST &middot; BUG</p>
+          <p class="ti-callout">Bring <img class="type-icon" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/types/generation-ix/scarlet-violet/17.png" alt="Dark"> DARK &middot; <img class="type-icon" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/types/generation-ix/scarlet-violet/8.png" alt="Ghost"> GHOST &middot; <img class="type-icon" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/types/generation-ix/scarlet-violet/7.png" alt="Bug"> BUG</p>
           <div class="poke-tiles">
             <p class="pt-label">Best answers</p>
             <div class="pt-row">
@@ -797,9 +896,9 @@
             </div>
             <span class="ti-live">LIVE</span>
           </div>
-          <p class="ti-why">A shadowy Dark-type Mythical &mdash; in 5-star raids through Tue Nov 24.</p>
+          <p class="ti-why">A shadowy <img class="type-icon" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/types/generation-ix/scarlet-violet/17.png" alt="Dark"> Dark-type Mythical &mdash; in 5-star raids through Tue Nov 24.</p>
           <div class="ti-flags"><span class="flag">&#10024; Shiny available</span><span class="flag mythic">Mythical &mdash; can&rsquo;t be traded</span></div>
-          <p class="ti-callout">Bring FIGHTING &middot; BUG &middot; FAIRY</p>
+          <p class="ti-callout">Bring <img class="type-icon" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/types/generation-ix/scarlet-violet/2.png" alt="Fighting"> FIGHTING &middot; <img class="type-icon" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/types/generation-ix/scarlet-violet/7.png" alt="Bug"> BUG &middot; <img class="type-icon" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/types/generation-ix/scarlet-violet/18.png" alt="Fairy"> FAIRY</p>
           <div class="poke-tiles">
             <p class="pt-label">Best answers</p>
             <div class="pt-row">
@@ -839,9 +938,9 @@
             </div>
             <span class="ti-live">LIVE</span>
           </div>
-          <p class="ti-why">A Ghost-type Mega &mdash; in Mega Raids through Tue Nov 24. Winning earns Mega Energy for Banette, and the Pok&eacute;mon you catch is a regular Banette.</p>
+          <p class="ti-why">A <img class="type-icon" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/types/generation-ix/scarlet-violet/8.png" alt="Ghost"> Ghost-type Mega &mdash; in Mega Raids through Tue Nov 24. Winning earns Mega Energy for Banette, and the Pok&eacute;mon you catch is a regular Banette.</p>
           <div class="ti-flags"><span class="flag">&#10024; Shiny available</span></div>
-          <p class="ti-callout">Bring GHOST &middot; DARK</p>
+          <p class="ti-callout">Bring <img class="type-icon" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/types/generation-ix/scarlet-violet/8.png" alt="Ghost"> GHOST &middot; <img class="type-icon" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/types/generation-ix/scarlet-violet/17.png" alt="Dark"> DARK</p>
           <div class="poke-tiles">
             <p class="pt-label">Best answers</p>
             <div class="pt-row">
@@ -897,7 +996,7 @@
         <p class="sec-note">GO Battle Thursday Nov 19 + Nov 26 &mdash; 4&times; Stardust, up to 10 sets a day.</p>
 
         <div class="howto" style="margin-top:12px">
-          <p><b>Why these picks:</b> Rankings come from PvPoke &mdash; how each Pok&eacute;mon does against the ones other players use most. Each league shows <b>what everyone&rsquo;s running</b> first, then a <b>counter party</b> built to beat it &mdash; that counter party is what starts in the builder. Every move in the builder parties can be learned with regular TMs; nothing there needs an Elite TM.</p>
+          <p><b>Why these picks:</b> Rankings come from PvPoke &mdash; how each Pok&eacute;mon does against the ones other players use most. Each league shows <b>what everyone&rsquo;s running</b> first, then a <b>counter party</b> built to beat it &mdash; that counter party is what starts in the builder, with <b>3 swaps</b> behind it: six counter options in all, so you can mix different combinations of three. Some of the strongest picks need an <b>Elite TM</b> for their very best move &mdash; those carry a <b>&#9873; flag</b> naming the move, so you can see the cost before you build. The best picks stay on the board, flags and all.</p>
         </div>
 
         <div class="prep-card">
@@ -905,15 +1004,31 @@
           <p class="prep-dates">2,500 CP max &middot; Nov 17&ndash;24</p>
           <p class="ti-label">What everyone&rsquo;s running</p>
           <ul class="meta-list">
-            <li><b>Tinkaton</b> <span class="meta-moves">Fairy Wind &middot; Gigaton Hammer &middot; Bulldoze</span></li>
-            <li><b>Corviknight</b> <span class="meta-moves">Sand Attack &middot; Air Cutter &middot; Iron Head</span></li>
-            <li><b>Shadow Snorlax</b> <span class="meta-moves">Psywave &middot; Body Slam &middot; Earthquake</span></li>
-            <li><b>Shadow Corviknight</b> <span class="meta-moves">Sand Attack &middot; Air Cutter &middot; Payback</span></li>
-            <li><b>Zygarde (Complete)</b> <span class="meta-moves">Dragon Tail &middot; Crunch &middot; Bulldoze</span></li>
-            <li><b>Cresselia</b> <span class="meta-moves">Psycho Cut &middot; Grass Knot &middot; Moonblast</span><span class="meta-note">In 5-star raids right now (through Nov 24) &mdash; the catch of the week for this league. For yours, run Moonblast + Future Sight.</span></li>
+            <li><img class="meta-icon" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/959.png" alt=""><b>Tinkaton</b> <span class="meta-moves">Fairy Wind &middot; Gigaton Hammer &middot; Bulldoze</span></li>
+            <li><img class="meta-icon" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/823.png" alt=""><b>Corviknight</b> <span class="meta-moves">Sand Attack &middot; Air Cutter &middot; Iron Head</span></li>
+            <li><img class="meta-icon" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/143.png" alt=""><b>Shadow Snorlax</b> <span class="meta-moves">Psywave &middot; Body Slam &middot; Earthquake</span></li>
+            <li><img class="meta-icon" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/823.png" alt=""><b>Shadow Corviknight</b> <span class="meta-moves">Sand Attack &middot; Air Cutter &middot; Payback</span></li>
+            <li><img class="meta-icon" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10120.png" alt=""><b>Zygarde (Complete)</b> <span class="meta-moves">Dragon Tail &middot; Crunch &middot; Bulldoze</span></li>
+            <li><img class="meta-icon" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/488.png" alt=""><b>Cresselia</b> <span class="meta-moves">Psycho Cut &middot; Grass Knot &middot; Moonblast</span><span class="meta-flag">&#9873; Elite TM &middot; Grass Knot</span><span class="meta-note">In 5-star raids right now (through Nov 24) &mdash; the catch of the week for this league. For yours, run Moonblast + Future Sight.</span></li>
           </ul>
           <p class="ti-label">Counter it</p>
-          <p class="sec-note"><b>Grumpig + Tinkaton + Lapras.</b> Grumpig&rsquo;s Dynamic Punch breaks the Steel pack (Tinkaton, both Corviknight, Snorlax), and its Shadow Ball answers Cresselia. Tinkaton and Lapras both beat Zygarde. That party starts in the builder below &mdash; swap in anything else you own from the list.</p>
+          <p class="sec-note"><b>Tinkaton + Virizion + Empoleon.</b> Tinkaton is the league&rsquo;s #1 pick and the anchor &mdash; it beats Zygarde and Cresselia, and Bulldoze covers the <img class="type-icon" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/types/generation-ix/scarlet-violet/9.png" alt="Steel"> Steel pack. Virizion&rsquo;s Double Kick breaks both Corviknight and Snorlax. Empoleon walls that whole Steel-and-Flying pack &mdash; and its best move, Hydro Cannon, needs an Elite TM, so it carries the &#9873; flag (four of these six picks do; the flag names the move). That party starts in the builder below &mdash; swap in anything else you own from the list. <b>Swaps:</b> Shadow Empoleon does Empoleon&rsquo;s job harder and frailer, flag and all. Melmetal&rsquo;s Thunder Shock and Dynamic Punch punish Corviknight, and its Double Iron Bash is an Elite TM move too. Shadow Feraligatr spams &#9873; Hydro Cannon at Tinkaton and both Corviknight, with Ice Beam for Zygarde.</p>
+          <div class="poke-tiles pvp-pool">
+            <p class="pt-label">Suggested party</p>
+            <div class="pt-row">
+              <span class="poke-tile"><span class="pt-img"><img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/959.png" alt="Tinkaton"><span class="pt-badge">PARTY</span></span><span class="pt-name">Tinkaton</span><span class="pt-moves">Fairy Wind &middot; Gigaton Hammer / Bulldoze</span></span>
+              <span class="poke-tile"><span class="pt-img"><img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/640.png" alt="Virizion"><span class="pt-badge">PARTY</span></span><span class="pt-name">Virizion</span><span class="pt-moves">Double Kick &middot; Leaf Blade / Sacred Sword</span></span>
+              <span class="poke-tile"><span class="pt-img"><img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/395.png" alt="Empoleon"><span class="pt-badge">PARTY</span></span><span class="pt-name">Empoleon</span><span class="pt-moves">Metal Sound &middot; &#9873; Hydro Cannon / Drill Peck</span><span class="pt-flag">&#9873; Elite TM &middot; Hydro Cannon</span></span>
+            </div>
+          </div>
+          <div class="poke-tiles budget pvp-pool">
+            <p class="pt-label">Swaps &mdash; try these in the mix</p>
+            <div class="pt-row">
+              <span class="poke-tile"><span class="pt-img"><img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/395.png" alt="Shadow Empoleon"><span class="pt-badge">SWAP</span></span><span class="pt-name">Shadow Empoleon</span><span class="pt-moves">Metal Sound &middot; &#9873; Hydro Cannon / Drill Peck</span><span class="pt-flag">&#9873; Elite TM &middot; Hydro Cannon</span></span>
+              <span class="poke-tile"><span class="pt-img"><img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/809.png" alt="Melmetal"><span class="pt-badge">SWAP</span></span><span class="pt-name">Melmetal</span><span class="pt-moves">Thunder Shock &middot; &#9873; Double Iron Bash / Dynamic Punch</span><span class="pt-flag">&#9873; Elite TM &middot; Double Iron Bash</span></span>
+              <span class="poke-tile"><span class="pt-img"><img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/160.png" alt="Shadow Feraligatr"><span class="pt-badge">SWAP</span></span><span class="pt-name">Shadow Feraligatr</span><span class="pt-moves">Shadow Claw &middot; &#9873; Hydro Cannon / Ice Beam</span><span class="pt-flag">&#9873; Elite TM &middot; Hydro Cannon</span></span>
+            </div>
+          </div>
           <div class="party-grid" data-pvp-team="ultra"></div>
           <div style="margin-top:12px"><button type="button" class="pk-add" data-pvp-open="ultra">Add a Pok&eacute;mon</button></div>
           <div class="picker" data-pvp-picker="ultra" hidden></div>
@@ -924,15 +1039,31 @@
           <p class="prep-dates">No CP limit &middot; Megas + Primals allowed &middot; Nov 17&ndash;24</p>
           <p class="ti-label">What everyone&rsquo;s running</p>
           <ul class="meta-list">
-            <li><b>Primal Kyogre</b> <span class="meta-moves">Waterfall &middot; Avalanche &middot; Thunder</span></li>
-            <li><b>Mega Mewtwo Y</b> <span class="meta-moves">Psycho Cut &middot; Psystrike &middot; Thunderbolt</span></li>
-            <li><b>Mega Mewtwo X</b> <span class="meta-moves">Psycho Cut &middot; Psystrike &middot; Thunderbolt</span></li>
-            <li><b>Mega Gyarados</b> <span class="meta-moves">Dragon Breath &middot; Aqua Tail &middot; Crunch</span></li>
-            <li><b>Mega Dragonite</b> <span class="meta-moves">Dragon Breath &middot; Thunder Punch &middot; Superpower</span></li>
+            <li><img class="meta-icon" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10077.png" alt=""><b>Primal Kyogre</b> <span class="meta-moves">Waterfall &middot; Avalanche &middot; Thunder</span></li>
+            <li><img class="meta-icon" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10044.png" alt=""><b>Mega Mewtwo Y</b> <span class="meta-moves">Psycho Cut &middot; Psystrike &middot; Thunderbolt</span><span class="meta-flag">&#9873; Elite TM &middot; Psystrike</span></li>
+            <li><img class="meta-icon" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10043.png" alt=""><b>Mega Mewtwo X</b> <span class="meta-moves">Psycho Cut &middot; Psystrike &middot; Thunderbolt</span><span class="meta-flag">&#9873; Elite TM &middot; Psystrike</span></li>
+            <li><img class="meta-icon" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10041.png" alt=""><b>Mega Gyarados</b> <span class="meta-moves">Dragon Breath &middot; Aqua Tail &middot; Crunch</span></li>
+            <li><img class="meta-icon" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/149.png" alt=""><b>Mega Dragonite</b> <span class="meta-moves">Dragon Breath &middot; Thunder Punch &middot; Superpower</span></li>
           </ul>
           <p class="sec-note">The whole top 10 is Megas and Primals &mdash; the best regular Pok&eacute;mon (Origin Dialga) doesn&rsquo;t show up until #18.</p>
           <p class="ti-label">Counter it</p>
-          <p class="sec-note"><b>Mega Gyarados + Primal Kyogre + Mega Dragonite.</b> Gyarados&rsquo;s Crunch answers both Mewtwos. Kyogre&rsquo;s Thunder zaps Gyarados, and its Avalanche drops the Dragons. Dragonite&rsquo;s Thunder Punch covers Kyogre. Only one Mega can be active at a time &mdash; pick Gyarados or Dragonite for the Mega slot; the other still fights fine in its regular form.</p>
+          <p class="sec-note"><b>Primal Kyogre + Mega Mewtwo Y + Mega Gyarados.</b> Kyogre is the #1 pick in the format &mdash; its Thunder zaps Gyarados, and its Avalanche drops the <img class="type-icon" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/types/generation-ix/scarlet-violet/16.png" alt="Dragon"> Dragons. Mega Mewtwo Y is right behind it, and its Psystrike needs an Elite TM &mdash; it carries the &#9873; flag. Gyarados&rsquo;s Crunch answers both Mewtwos. <b>Swaps:</b> Mega Mewtwo X is the other Mewtwo &mdash; same &#9873; Psystrike, slotted as a swap so the party isn&rsquo;t two Mewtwo formes at once. Mega Dragonite&rsquo;s Thunder Punch covers Kyogre. Mega Garchomp is the Dragon answer, but its Earth Power is an Elite TM move (&#9873;). One rule for the whole pool: only <b>one</b> Mega or Primal can be powered up in a battle &mdash; pick one from the six, and the others can still fight in their regular forms.</p>
+          <div class="poke-tiles pvp-pool">
+            <p class="pt-label">Suggested party</p>
+            <div class="pt-row">
+              <span class="poke-tile"><span class="pt-img"><img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10077.png" alt="Primal Kyogre"><span class="pt-badge">PARTY</span></span><span class="pt-name">Primal Kyogre</span><span class="pt-moves">Waterfall &middot; Avalanche / Thunder</span></span>
+              <span class="poke-tile"><span class="pt-img"><img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10044.png" alt="Mega Mewtwo Y"><span class="pt-badge">PARTY</span></span><span class="pt-name">Mega Mewtwo Y</span><span class="pt-moves">Psycho Cut &middot; &#9873; Psystrike / Thunderbolt</span><span class="pt-flag">&#9873; Elite TM &middot; Psystrike</span></span>
+              <span class="poke-tile"><span class="pt-img"><img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10041.png" alt="Mega Gyarados"><span class="pt-badge">PARTY</span></span><span class="pt-name">Mega Gyarados</span><span class="pt-moves">Dragon Breath &middot; Aqua Tail / Crunch</span></span>
+            </div>
+          </div>
+          <div class="poke-tiles budget pvp-pool">
+            <p class="pt-label">Swaps &mdash; try these in the mix</p>
+            <div class="pt-row">
+              <span class="poke-tile"><span class="pt-img"><img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10043.png" alt="Mega Mewtwo X"><span class="pt-badge">SWAP</span></span><span class="pt-name">Mega Mewtwo X</span><span class="pt-moves">Psycho Cut &middot; &#9873; Psystrike / Thunderbolt</span><span class="pt-flag">&#9873; Elite TM &middot; Psystrike</span></span>
+              <span class="poke-tile"><span class="pt-img"><img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/149.png" alt="Mega Dragonite"><span class="pt-badge">SWAP</span></span><span class="pt-name">Mega Dragonite</span><span class="pt-moves">Dragon Breath &middot; Thunder Punch / Superpower</span></span>
+              <span class="poke-tile"><span class="pt-img"><img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10058.png" alt="Mega Garchomp"><span class="pt-badge">SWAP</span></span><span class="pt-name">Mega Garchomp</span><span class="pt-moves">Dragon Tail &middot; &#9873; Earth Power / Twister</span><span class="pt-flag">&#9873; Elite TM &middot; Earth Power</span></span>
+            </div>
+          </div>
           <div class="party-grid" data-pvp-team="master-mega"></div>
           <div style="margin-top:12px"><button type="button" class="pk-add" data-pvp-open="master-mega">Add a Pok&eacute;mon</button></div>
           <div class="picker" data-pvp-picker="master-mega" hidden></div>
@@ -941,18 +1072,34 @@
         <div class="prep-card">
           <h3 class="ellipsis">2026 GO LAIC Cup</h3>
           <p class="prep-dates">1,500 CP max &middot; Nov 17&ndash;24</p>
-          <p class="sec-note">Fire, Dark, Steel, and Fairy types are not eligible. Legendary, Mythical, and Ultra Beasts are not eligible. Megas are not eligible. 14 species are banned: Chansey, Snorlax, Furret, Wobbuffet, Galarian Corsola, Kingdra, Medicham, Altaria, Dusclops, Jellicent, Araquanid, Oranguru, Annihilape, Clodsire.</p>
+          <p class="sec-note"><img class="type-icon" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/types/generation-ix/scarlet-violet/10.png" alt="Fire"> Fire, <img class="type-icon" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/types/generation-ix/scarlet-violet/17.png" alt="Dark"> Dark, <img class="type-icon" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/types/generation-ix/scarlet-violet/9.png" alt="Steel"> Steel, and <img class="type-icon" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/types/generation-ix/scarlet-violet/18.png" alt="Fairy"> Fairy types are not eligible. Legendary, Mythical, and Ultra Beasts are not eligible. Megas are not eligible. 14 species are banned: Chansey, Snorlax, Furret, Wobbuffet, Galarian Corsola, Kingdra, Medicham, Altaria, Dusclops, Jellicent, Araquanid, Oranguru, Annihilape, Clodsire.</p>
           <p class="ti-label">What everyone&rsquo;s running</p>
           <ul class="meta-list">
-            <li><b>Cetitan</b> <span class="meta-moves">Powder Snow &middot; Icicle Spear &middot; Superpower</span></li>
-            <li><b>Swalot</b> <span class="meta-moves">Infestation &middot; Sludge &middot; Ice Beam</span></li>
-            <li><b>Crustle</b> <span class="meta-moves">Fury Cutter &middot; X-Scissor &middot; Rock Wrecker</span></li>
-            <li><b>Aurorus</b> <span class="meta-moves">Powder Snow &middot; Weather Ball (Ice) &middot; Meteor Beam</span></li>
-            <li><b>Lapras</b> <span class="meta-moves">Psywave &middot; Sparkling Aria &middot; Ice Beam</span></li>
-            <li><b>Shadow Abomasnow</b> <span class="meta-moves">Powder Snow &middot; Weather Ball (Ice) &middot; Energy Ball</span></li>
+            <li><img class="meta-icon" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/975.png" alt=""><b>Cetitan</b> <span class="meta-moves">Powder Snow &middot; Icicle Spear &middot; Superpower</span></li>
+            <li><img class="meta-icon" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/317.png" alt=""><b>Swalot</b> <span class="meta-moves">Infestation &middot; Sludge &middot; Ice Beam</span></li>
+            <li><img class="meta-icon" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/558.png" alt=""><b>Crustle</b> <span class="meta-moves">Fury Cutter &middot; X-Scissor &middot; Rock Wrecker</span></li>
+            <li><img class="meta-icon" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/699.png" alt=""><b>Aurorus</b> <span class="meta-moves">Powder Snow &middot; Weather Ball (Ice) &middot; Meteor Beam</span></li>
+            <li><img class="meta-icon" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/131.png" alt=""><b>Lapras</b> <span class="meta-moves">Psywave &middot; Sparkling Aria &middot; Ice Beam</span><span class="meta-flag">&#9873; Elite TM &middot; Ice Beam</span></li>
+            <li><img class="meta-icon" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/460.png" alt=""><b>Shadow Abomasnow</b> <span class="meta-moves">Powder Snow &middot; Weather Ball (Ice) &middot; Energy Ball</span></li>
           </ul>
           <p class="ti-label">Counter it</p>
-          <p class="sec-note"><b>Shadow Dusknoir + Grumpig + Toxapex.</b> Dynamic Punch on both Dusknoir and Grumpig smashes the Ice-and-Rock core (Cetitan, Crustle, Aurorus, Lapras). Grumpig&rsquo;s Psychic fast move pressures Swalot, and Toxapex walls the Ice attacks everyone is throwing.</p>
+          <p class="sec-note"><b>Shadow Dusknoir + Grumpig + Toxapex.</b> Dynamic Punch on both Dusknoir and Grumpig smashes the <img class="type-icon" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/types/generation-ix/scarlet-violet/15.png" alt="Ice"> Ice-and-<img class="type-icon" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/types/generation-ix/scarlet-violet/6.png" alt="Rock"> Rock core (Cetitan, Crustle, Aurorus, Lapras). Grumpig&rsquo;s <img class="type-icon" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/types/generation-ix/scarlet-violet/14.png" alt="Psychic"> Psychic fast move pressures Swalot, and Toxapex walls the <img class="type-icon" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/types/generation-ix/scarlet-violet/15.png" alt="Ice"> Ice attacks everyone is throwing. <b>Swaps:</b> Froslass outspeeds the <img class="type-icon" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/types/generation-ix/scarlet-violet/15.png" alt="Ice"> Ice core and its Shadow Ball scares off Dusknoir. Lapras walls every <img class="type-icon" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/types/generation-ix/scarlet-violet/15.png" alt="Ice"> Ice attack in the format &mdash; its best set runs Ice Beam, an Elite TM move (&#9873;). Shadow Walrein is the harder-hitting <img class="type-icon" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/types/generation-ix/scarlet-violet/15.png" alt="Ice"> Ice hammer, and its Icicle Spear needs an Elite TM too (&#9873;).</p>
+          <div class="poke-tiles pvp-pool">
+            <p class="pt-label">Suggested party</p>
+            <div class="pt-row">
+              <span class="poke-tile"><span class="pt-img"><img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/477.png" alt="Shadow Dusknoir"><span class="pt-badge">PARTY</span></span><span class="pt-name">Shadow Dusknoir</span><span class="pt-moves">Astonish &middot; Dynamic Punch / Shadow Punch</span></span>
+              <span class="poke-tile"><span class="pt-img"><img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/326.png" alt="Grumpig"><span class="pt-badge">PARTY</span></span><span class="pt-name">Grumpig</span><span class="pt-moves">Psywave &middot; Dynamic Punch / Shadow Ball</span></span>
+              <span class="poke-tile"><span class="pt-img"><img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/748.png" alt="Toxapex"><span class="pt-badge">PARTY</span></span><span class="pt-name">Toxapex</span><span class="pt-moves">Bite &middot; Brine / Sludge Wave</span></span>
+            </div>
+          </div>
+          <div class="poke-tiles budget pvp-pool">
+            <p class="pt-label">Swaps &mdash; try these in the mix</p>
+            <div class="pt-row">
+              <span class="poke-tile"><span class="pt-img"><img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/478.png" alt="Froslass"><span class="pt-badge">SWAP</span></span><span class="pt-name">Froslass</span><span class="pt-moves">Powder Snow &middot; Avalanche / Shadow Ball</span></span>
+              <span class="poke-tile"><span class="pt-img"><img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/131.png" alt="Lapras"><span class="pt-badge">SWAP</span></span><span class="pt-name">Lapras</span><span class="pt-moves">Psywave &middot; Sparkling Aria / &#9873; Ice Beam</span><span class="pt-flag">&#9873; Elite TM &middot; Ice Beam</span></span>
+              <span class="poke-tile"><span class="pt-img"><img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/365.png" alt="Shadow Walrein"><span class="pt-badge">SWAP</span></span><span class="pt-name">Shadow Walrein</span><span class="pt-moves">Powder Snow &middot; &#9873; Icicle Spear / Earthquake</span><span class="pt-flag">&#9873; Elite TM &middot; Icicle Spear</span></span>
+            </div>
+          </div>
           <div class="party-grid" data-pvp-team="laic"></div>
           <div style="margin-top:12px"><button type="button" class="pk-add" data-pvp-open="laic">Add a Pok&eacute;mon</button></div>
           <div class="picker" data-pvp-picker="laic" hidden></div>
@@ -962,7 +1109,42 @@
       </section>
     </div>
     </div>
-    <div class="tab-panel" id="panel-upcoming" role="tabpanel" aria-labelledby="tab-upcoming" hidden>
+    <div class="tab-panel" id="panel-more" role="tabpanel" aria-labelledby="tab-more" hidden>
+    <div class="wrap">
+      <!-- ============ MORE — big doors to the rest of the app ============ -->
+      <section aria-label="More sections">
+        <div class="sec-head"><h2>More</h2><span class="sub">Everything else in the app</span></div>
+        <div class="more-list">
+          <a class="more-row" href="#upcoming">
+            <span class="more-ic" aria-hidden="true">📅</span>
+            <span class="more-txt"><span class="more-name">Upcoming</span><span class="more-desc">What&rsquo;s coming &middot; Nov 16&ndash;30</span></span>
+            <span class="more-chev" aria-hidden="true">&rsaquo;</span>
+          </a>
+          <a class="more-row" href="#pokeprep">
+            <span class="more-ic" aria-hidden="true">🎒</span>
+            <span class="more-txt"><span class="more-name">Pok&eacute; Prep</span><span class="more-desc">Get ready for the next events</span></span>
+            <span class="more-chev" aria-hidden="true">&rsaquo;</span>
+          </a>
+          <a class="more-row" href="#tradeboard">
+            <span class="more-ic" aria-hidden="true">🔄</span>
+            <span class="more-txt"><span class="more-name">Trade Board</span><span class="more-desc">Who wants what &mdash; family trades</span></span>
+            <span class="more-chev" aria-hidden="true">&rsaquo;</span>
+          </a>
+          <a class="more-row" href="#vivillon">
+            <span class="more-ic" aria-hidden="true">🦋</span>
+            <span class="more-txt"><span class="more-name">Vivillon</span><span class="more-desc">Friend codes by pattern</span></span>
+            <span class="more-chev" aria-hidden="true">&rsaquo;</span>
+          </a>
+          <a class="more-row" href="#searchstrings">
+            <span class="more-ic" aria-hidden="true">🔍</span>
+            <span class="more-txt"><span class="more-name">Search Strings</span><span class="more-desc">Copy-paste box searches</span></span>
+            <span class="more-chev" aria-hidden="true">&rsaquo;</span>
+          </a>
+        </div>
+      </section>
+    </div>
+    </div>
+    <div class="tab-panel" id="panel-upcoming" role="tabpanel" aria-labelledby="tab-more" hidden>
     <div class="wrap">
       <!-- ============ UPCOMING ============ -->
       <section aria-label="Upcoming, November 16 to 30">
@@ -1008,7 +1190,7 @@
               <ul>
                 <li>Every Dynamax Pokémon from before is back in Max Battles and wild spawns (no Legendaries or Mythicals).</li>
                 <li>More Power Spots are active than usual, and you get Max Particles from catches too.</li>
-                <li>Eternatus returns Sat Nov 21, 11 AM–2 PM &mdash; Eternamax Eternatus takes over Power Spots.</li>
+                <li><img class="mon-icon" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/890.png" alt="Eternatus"> Eternatus returns Sat Nov 21, 11 AM–2 PM &mdash; Eternamax Eternatus takes over Power Spots.</li>
               </ul>
             </div>
           </article>
@@ -1042,7 +1224,7 @@
               <p>Sat Nov 21, 2–5 PM local. Pawniard appears everywhere, with more shiny chances and Special Backgrounds.</p>
               <ul>
                 <li>Bonuses: 2&times; Catch Candy, 2&times; chance of Candy XL (level 31+), 1/4 hatch distance, 3-hour Incense, 1-hour Lures.</li>
-                <li>Evolve Bisharp into Kingambit to get Kowtow Cleave &mdash; evolve during the event or up to 9 PM.</li>
+                <li>Evolve <img class="mon-icon" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/625.png" alt="Bisharp"> Bisharp into <img class="mon-icon" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/983.png" alt="Kingambit"> Kingambit to get Kowtow Cleave &mdash; evolve during the event or up to 9 PM.</li>
                 <li>Kingambit shortcut: set Bisharp as your buddy, defeat 1 Dark- or Steel-type Raid Boss, then evolve (until 9 PM). After that the normal requirement comes back.</li>
                 <li>Trading until 9 PM: one extra Special Trade (2 total) and 50% less Stardust.</li>
                 <li>Optional $1.99 Special Research with Pawniard encounters, a Premium Battle Pass, and a Rare Candy XL.</li>
@@ -1082,7 +1264,7 @@
               <p>Thu Nov 26, 6–7 PM. Noibat appears more often.</p>
               <ul>
                 <li>Bonus: 2&times; Catch Candy. Feed it a Pinap berry to double it again.</li>
-                <li>Noibat evolves into Noivern &mdash; a good one to have.</li>
+                <li>Noibat evolves into <img class="mon-icon" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/715.png" alt="Noivern"> Noivern &mdash; a good one to have.</li>
               </ul>
             </div>
           </article>
@@ -1096,7 +1278,7 @@
               <span class="chev" aria-hidden="true">&#9660;</span>
             </button>
             <div class="feed-body" hidden>
-              <p>Sat Nov 28, 2–5 PM local. Mega Clefable makes its debut in Super Mega Raids &mdash; tougher than regular Mega Raids, so team up, and check the in-game map for Gyms hosting them.</p>
+              <p>Sat Nov 28, 2–5 PM local. <img class="mon-icon" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10278.png" alt="Mega Clefable"> Mega Clefable makes its debut in Super Mega Raids &mdash; tougher than regular Mega Raids, so team up, and check the in-game map for Gyms hosting them.</p>
               <ul>
                 <li>Up to <b>6 free Raid Passes</b> from spinning Gyms.</li>
                 <li>Mega Clefable can reach the new <b>Super Max</b> Mega Level, and gets <b>Moonblast+</b> while Mega Evolved.</li>
@@ -1108,7 +1290,7 @@
       </section>
     </div>
     </div>
-    <div class="tab-panel" id="panel-pokeprep" role="tabpanel" aria-labelledby="tab-pokeprep" hidden>
+    <div class="tab-panel" id="panel-pokeprep" role="tabpanel" aria-labelledby="tab-more" hidden>
     <div class="wrap">
       <!-- ============ POKÉ PREP ============ -->
       <section aria-label="Poké Prep">
@@ -1119,27 +1301,27 @@
           <h3 class="ellipsis">Dynamax Trails + New Raids</h3>
           <p class="prep-dates">Mon Nov 16, 10 AM &ndash; Mon Nov 23, 8 PM local &middot; Raids Nov 16&ndash;24</p>
           <ul>
-            <li><b>Raid Passes &mdash; spin Gyms.</b> One free orange Raid Pass a day from spinning a Gym Photo Disc &mdash; use it before you spin for the next one. Cresselia, Darkrai (5&starf;) and Mega Banette run Nov 16&ndash;24.</li>
+            <li><b>Raid Passes &mdash; spin Gyms.</b> One free orange Raid Pass a day from spinning a Gym Photo Disc &mdash; use it before you spin for the next one. <img class="mon-icon" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/488.png" alt="Cresselia"> Cresselia, <img class="mon-icon" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/491.png" alt="Darkrai"> Darkrai (5&starf;) and <img class="mon-icon" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/354.png" alt="Mega Banette"> Mega Banette run Nov 16&ndash;24.</li>
             <li><b>Max Particles &mdash; bank up to 1,500.</b> Dynamax Trails brings back every Dynamax Pok&eacute;mon from before (no Legendaries or Mythicals) at Power Spots all week. Each Max Battle costs Max Particles only if you win &mdash; see the how-to below.</li>
-            <li><b>Counters ready:</b> Dark/Ghost/Bug for Cresselia, Fighting for Darkrai, Ghost/Dark for Mega Banette.</li>
-            <li><b>Eternatus returns Sat Nov 21, 11 AM&ndash;2 PM.</b> Eternamax Eternatus takes over Power Spots &mdash; you cannot catch it, but wins pay out Eternatus Candy. Needs a big lobby.</li>
+            <li><b>Counters ready:</b> <img class="type-icon" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/types/generation-ix/scarlet-violet/17.png" alt="Dark"> Dark/<img class="type-icon" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/types/generation-ix/scarlet-violet/8.png" alt="Ghost"> Ghost/<img class="type-icon" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/types/generation-ix/scarlet-violet/7.png" alt="Bug"> Bug for Cresselia, <img class="type-icon" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/types/generation-ix/scarlet-violet/2.png" alt="Fighting"> Fighting for Darkrai, <img class="type-icon" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/types/generation-ix/scarlet-violet/8.png" alt="Ghost"> Ghost/<img class="type-icon" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/types/generation-ix/scarlet-violet/17.png" alt="Dark"> Dark for Mega Banette.</li>
+            <li><b><img class="mon-icon" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/890.png" alt="Eternatus"> Eternatus returns Sat Nov 21, 11 AM&ndash;2 PM.</b> Eternamax Eternatus takes over Power Spots &mdash; you cannot catch it, but wins pay out Eternatus Candy. Needs a big lobby.</li>
           </ul>
         </div>
 
         <div class="prep-card">
-          <h3 class="ellipsis">Pawniard Community Day</h3>
+          <h3 class="ellipsis"><img class="mon-icon" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/624.png" alt="Pawniard"> Pawniard Community Day</h3>
           <p class="prep-dates">Sat Nov 21 &middot; 2&ndash;5 PM local</p>
           <ul>
             <li><b>Pok&eacute; Balls + Pinap Berries &mdash; stocked up before 2 PM.</b> A few hundred balls across the three of you. Pinap every Pawniard.</li>
-            <li><b>150 Pawniard Candy per Kingambit.</b> Pawniard &rarr; Bisharp 50, Bisharp &rarr; Kingambit 100 more. Evolve Bisharp 2&ndash;9 PM for Kowtow Cleave.</li>
+            <li><b>150 Pawniard Candy per <img class="mon-icon" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/983.png" alt="Kingambit"> Kingambit.</b> Pawniard &rarr; <img class="mon-icon" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/625.png" alt="Bisharp"> Bisharp 50, Bisharp &rarr; Kingambit 100 more. Evolve Bisharp 2&ndash;9 PM for Kowtow Cleave.</li>
             <li><b>Set a Bisharp as Buddy first.</b> On Nov 21, 2&ndash;9 PM, the 15-win requirement drops to 1 win.</li>
-            <li><b>Same morning: Eternamax Eternatus, 11 AM&ndash;2 PM.</b> Can&rsquo;t catch it, but each win gives ~100&ndash;140 Candy + 45&ndash;54 XL. Needs a big lobby.</li>
+            <li><b>Same morning: Eternamax <img class="mon-icon" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/890.png" alt="Eternatus"> Eternatus, 11 AM&ndash;2 PM.</b> Can&rsquo;t catch it, but each win gives ~100&ndash;140 Candy + 45&ndash;54 XL. Needs a big lobby.</li>
             <li><b>Incense + Lures &mdash; one Incense each at 2 PM</b> covers the whole event (3 hours).</li>
           </ul>
         </div>
 
         <div class="prep-card">
-          <h3 class="ellipsis">Eternatus &mdash; do NOT power it up</h3>
+          <h3 class="ellipsis"><img class="mon-icon" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/890.png" alt="Eternatus"> Eternatus &mdash; do NOT power it up</h3>
           <p class="prep-dates">Read before Saturday&rsquo;s Eternamax battles &middot; Sat Nov 21, 11 AM&ndash;2 PM</p>
           <ul>
             <li><b>Eternatus is the most expensive Pok&eacute;mon in the game.</b> Powering it up burns candy at a rate nothing else matches.</li>
@@ -1153,9 +1335,9 @@
           <h3 class="ellipsis">Saturday bonus &mdash; Adventure Effects</h3>
           <p class="prep-dates">Sat Nov 21 only &middot; If someone in the family has one, today is the day it earns its candy</p>
           <ul>
-            <li><b>Spacial Rend (Origin Palkia)</b> &mdash; wild Pok&eacute;mon show up from farther away, so more spawns are in reach all afternoon. 5,000 Stardust + 5 Palkia Candy per 10 minutes.</li>
-            <li><b>Sunsteel Strike / Moongeist Beam (Necrozma fusions)</b> &mdash; pulls in daytime (or nighttime) spawns, like an extra Incense. 3,000 Stardust + 3 Necrozma Candy per 10 minutes.</li>
-            <li><b>Roar of Time (Origin Dialga)</b> &mdash; pauses the timers on Incense, Lucky Eggs and Star Pieces, so one Star Piece stretches much further. 5,000 Stardust + 5 Dialga Candy per 6 minutes.</li>
+            <li><b>Spacial Rend (<img class="mon-icon" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10246.png" alt="Origin Palkia"> Origin Palkia)</b> &mdash; wild Pok&eacute;mon show up from farther away, so more spawns are in reach all afternoon. 5,000 Stardust + 5 Palkia Candy per 10 minutes.</li>
+            <li><b>Sunsteel Strike / Moongeist Beam (<img class="mon-icon" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/800.png" alt="Necrozma"> Necrozma fusions)</b> &mdash; pulls in daytime (or nighttime) spawns, like an extra Incense. 3,000 Stardust + 3 Necrozma Candy per 10 minutes.</li>
+            <li><b>Roar of Time (<img class="mon-icon" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10245.png" alt="Origin Dialga"> Origin Dialga)</b> &mdash; pauses the timers on Incense, Lucky Eggs and Star Pieces, so one Star Piece stretches much further. 5,000 Stardust + 5 Dialga Candy per 6 minutes.</li>
             <li><b>We don&rsquo;t know who has which</b> &mdash; check your own box Saturday morning. Only one effect can run at a time.</li>
           </ul>
         </div>
@@ -1165,8 +1347,8 @@
           <p class="prep-dates">The plan, saved so nobody has to re-decide it mid-event</p>
           <ul>
             <li><b>Status: waiting on an Elite Charged TM.</b> The family&rsquo;s Kyurem stay unfused until one turns up (season rewards, event boxes). Do not buy one.</li>
-            <li><b>Glaciate first &mdash; always.</b> Kyurem has to know Glaciate BEFORE it fuses, or the fused form never gets its special move (Ice Burn for White Kyurem, Freeze Shock for Black Kyurem). Glaciate can only be taught with an Elite Charged TM.</li>
-            <li><b>Cost per form:</b> 1,000 Fusion Energy + 30 Kyurem Candy + 30 Reshiram Candy (White Kyurem) or 30 Zekrom Candy (Black Kyurem).</li>
+            <li><b>Glaciate first &mdash; always.</b> <img class="mon-icon" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/646.png" alt="Kyurem"> Kyurem has to know Glaciate BEFORE it fuses, or the fused form never gets its special move (Ice Burn for White Kyurem, Freeze Shock for Black Kyurem). Glaciate can only be taught with an Elite Charged TM.</li>
+            <li><b>Cost per form:</b> 1,000 Fusion Energy + 30 Kyurem Candy + 30 <img class="mon-icon" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/643.png" alt="Reshiram"> Reshiram Candy (White Kyurem) or 30 <img class="mon-icon" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/644.png" alt="Zekrom"> Zekrom Candy (Black Kyurem).</li>
             <li><b>Budget about 10 raids of energy per form &mdash; so pick ONE form.</b> Fused forms can&rsquo;t be traded, so there is no splitting one each across accounts.</li>
             <li><b>Nothing expires.</b> The energy and the Kyurem keep &mdash; there is no deadline on this.</li>
           </ul>
@@ -1180,7 +1362,7 @@
             <li><b>Star Pieces &mdash; save at least one per player for Nov 24&ndash;30.</b> Stack with Rank 10 for the best Stardust of the month.</li>
             <li><b>Mega Energy &mdash; don&rsquo;t buy it, earn it</b> from Mega Raids, Field Research, and the GO Pass.</li>
             <li><b>Raid Passes &mdash; a few for the costumed 3&starf;s</b> (Espeon/Umbreon). One free daily pass covers one a day.</li>
-            <li><b>Same week: Mega Clefable Raid Day, Sat Nov 28, 2&ndash;5 PM.</b> Same prep as any raid day.</li>
+            <li><b>Same week: <img class="mon-icon" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10278.png" alt="Mega Clefable"> Mega Clefable Raid Day, Sat Nov 28, 2&ndash;5 PM.</b> Same prep as any raid day.</li>
           </ul>
         </div>
 
@@ -1192,13 +1374,13 @@
       </section>
     </div>
     </div>
-    <div class="tab-panel" id="panel-tradeboard" role="tabpanel" aria-labelledby="tab-tradeboard" hidden>
+    <div class="tab-panel" id="panel-tradeboard" role="tabpanel" aria-labelledby="tab-more" hidden>
     <div class="wrap">
       <!-- ============ TRADE BOARD ============ -->
       <section aria-label="Trade board">
-        <div class="sec-head"><h2>Trade Board</h2><span class="sub">Wants &amp; give aways</span></div>
+        <div class="sec-head"><h2>Trade Board</h2><span class="sub">Have &amp; want</span></div>
 
-        <p class="tb-intro">List what you want and what you can give away. When someone&rsquo;s want matches someone else&rsquo;s give away, it shows up as a trade match.</p>
+        <p class="tb-intro">Everyone lists what they <b>have</b> and what they <b>want</b>. When someone&rsquo;s want matches someone else&rsquo;s have, the trade lights up as a match &mdash; on both cards, and at the top of the board.</p>
 
         <div class="tb-matches" id="tb-matches" role="status"></div>
 
@@ -1212,7 +1394,7 @@
             <button type="button" class="tb-chip" data-chip="mythical" aria-pressed="false">Mythical</button>
             <button type="button" class="tb-chip" data-chip="starters" aria-pressed="false">Starters</button>
           </div>
-          <p class="tb-picker-hint">Tap a Pok&eacute;mon to tell the family what you want.</p>
+          <p class="tb-picker-hint">Tap a Pok&eacute;mon to add a Want or a Have for someone.</p>
           <div class="tb-list" id="tb-list" role="listbox" aria-label="Pokédex"></div>
           <p class="tb-picker-status" id="tb-status">Loading the Pok&eacute;dex&hellip;</p>
         </div>
@@ -1243,7 +1425,7 @@
             <div class="tb-sheet-options" id="tb-sheet-options">
               <button type="button" class="tb-opt" data-opt="want">I want this</button>
               <button type="button" class="tb-opt" data-opt="lucky">I want a Lucky trade</button>
-              <button type="button" class="tb-opt" data-opt="give">I can give this away</button>
+              <button type="button" class="tb-opt" data-opt="have">I have this &mdash; I can give it</button>
             </div>
             <div class="tb-sheet-done" id="tb-sheet-done" hidden>
               <div class="tb-queue" id="tb-queue"></div>
@@ -1260,7 +1442,7 @@
       </section>
     </div>
     </div>
-    <div class="tab-panel" id="panel-vivillon" role="tabpanel" aria-labelledby="tab-vivillon" hidden>
+    <div class="tab-panel" id="panel-vivillon" role="tabpanel" aria-labelledby="tab-more" hidden>
     <div class="wrap">
       <!-- ============ VIVILLON ============ -->
       <section aria-label="Vivillon">
@@ -1274,7 +1456,7 @@
       </section>
     </div>
     </div>
-    <div class="tab-panel" id="panel-searchstrings" role="tabpanel" aria-labelledby="tab-searchstrings" hidden>
+    <div class="tab-panel" id="panel-searchstrings" role="tabpanel" aria-labelledby="tab-more" hidden>
     <div class="wrap">
       <!-- ============ SEARCH STRINGS ============ -->
       <section aria-label="Search strings">
@@ -1310,29 +1492,49 @@
     <script>
       /* ================= TRADE BOARD =================
          TRADE BOARD DATA — Sheaya updates this.
-         Add a Pokémon to a person's "wants" or "giveaways" by name
-         (exactly as in the Pokédex, e.g. "Giratina", "Machamp").
+         Each person has TWO lists: "wants" (hunting) and "have"
+         (can give). Add a Pokémon by name (exactly as in the
+         Pokédex, e.g. "Giratina", "Machamp").
          On a want, add lucky: true to flag "I want a Lucky of this one":
              wants: [ { name: "Giratina", lucky: true }, { name: "Machamp" } ]
-         Give aways are just names:
-             giveaways: [ { name: "Dratini" }, { name: "Larvitar" } ]
+         Haves are just names:
+             have: [ { name: "Dratini" }, { name: "Larvitar" } ]
          Matching is automatic: when one person's want is another
-         person's give away (same Pokémon name), both get a TRADE MATCH.
-         The board is shared — it lives in GitHub, so everyone sees the
-         same list. The picker builds the exact entry (with who it is for);
-         send it in the family chat and Sheaya adds it to the shared board. */
+         person's have (same Pokémon name; a Lucky want matches any
+         have of that species), the trade lights up in the Matches
+         section and both tiles get a ring in the PARTNER's color.
+         Person colors live in PERSON_COLORS below (kept out of this
+         data block so the form hook's parser keeps matching it).
+         The board is shared — it lives in GitHub, so everyone sees
+         the same list. Submissions arrive through the Google Form
+         hook (Send all, below), never by editing this file by hand. */
       (function () {
         var TRADE_BOARD = {
           people: [
-            { name: "Brandon", wants: [], giveaways: [] },
-            { name: "Sheaya", wants: [{ name: "Misdreavus", lucky: true }], giveaways: [] },
-            { name: "Donovan", wants: [{ name: "Kommo-o" }, { name: "Articuno", lucky: true }, { name: "Articuno" }, { name: "Tyranitar" }, { name: "Salamence" }, { name: "Zamazenta", lucky: true }, { name: "Lucario" }], giveaways: [] },
-            { name: "Bentley", wants: [{ name: "Pichu" }], giveaways: [] },
-            { name: "Anna", wants: [], giveaways: [] },
-            { name: "Billy", wants: [], giveaways: [] },
-            { name: "Sophia", wants: [], giveaways: [] }
+            { name: "Brandon", wants: [], have: [] },
+            { name: "Sheaya", wants: [{ name: "Misdreavus", lucky: true }], have: [] },
+            { name: "Donovan", wants: [{ name: "Kommo-o" }, { name: "Articuno", lucky: true }, { name: "Articuno" }, { name: "Tyranitar" }, { name: "Salamence" }, { name: "Zamazenta", lucky: true }, { name: "Lucario" }], have: [] },
+            { name: "Bentley", wants: [{ name: "Pichu" }], have: [] },
+            { name: "Anna", wants: [], have: [] },
+            { name: "Billy", wants: [], have: [] },
+            { name: "Sophia", wants: [], have: [] }
           ]
         };
+
+        /* Person colors — name, avatar ring, and card accent.
+           Sheaya purple, Donovan green, Brandon red are hers;
+           Bentley blue, Anna rose, Billy orange, Sophia teal are
+           placeholders until she picks their favorites. */
+        var PERSON_COLORS = {
+          "Brandon": "#dc2626",
+          "Sheaya": "#7c3aed",
+          "Donovan": "#16a34a",
+          "Bentley": "#2563eb",
+          "Anna": "#db2777",
+          "Billy": "#ea580c",
+          "Sophia": "#0d9488"
+        };
+        function personColor(name) { return PERSON_COLORS[name] || "#6d7d70"; }
 
         var DEX_URL = "https://pokeapi.co/api/v2/pokemon-species?limit=1025";
         var SPRITE = function (id) { return "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/" + id + ".png"; };
@@ -1373,7 +1575,7 @@
         function computeMatches() {
           var givers = {};   /* normalized name -> [person names] */
           TRADE_BOARD.people.forEach(function (p) {
-            p.giveaways.forEach(function (g) {
+            p.have.forEach(function (g) {
               var k = norm(g.name);
               if (!k) return;
               (givers[k] = givers[k] || []).push(p.name);
@@ -1407,27 +1609,40 @@
           return '<span class="tb-ball">' + BALL_SVG + '</span>';
         }
 
-        function entryHTML(item, isWant, matchMap, personName) {
+        function avatarHTML(name) {
+          var c = personColor(name);
+          return '<span class="tb-avatar" style="--pc:' + c + '" aria-hidden="true">' + esc(name.charAt(0)) + '</span>';
+        }
+
+        /* One Have/Want tile: picture + name underneath. When the
+           tile is part of a match, its circle gets a ring in the
+           PARTNER's color and the partner's name goes under it —
+           the ring color tells you who the trade is with. */
+        function tileHTML(item, isWant, matchMap, personName) {
           var k = norm(item.name);
           var partners = matchMap[personName + "|" + k] || [];
           var hasMatch = partners.length > 0;
           var tags = "";
-          if (isWant && item.lucky) tags += '<span class="tb-tag lucky">\u2605 WANT LUCKY</span>';
-          if (hasMatch) tags += '<span class="tb-tag match">TRADE MATCH</span>';
-          var sub = hasMatch
-            ? '<span class="tb-ematch">Trade match: ' + esc(partners.join(", ")) + '</span>'
-            : "";
+          if (isWant && item.lucky) tags += '<span class="tb-tag lucky">\u2605 LUCKY</span>';
+          var partnerLine = "";
+          var ringStyle = "";
+          if (hasMatch) {
+            var pc = personColor(partners[0]);
+            ringStyle = ' style="--ring:' + pc + '"';
+            partnerLine = '<span class="tb-tpartner" style="color:' + pc + '">Match: ' + esc(partners.join(", ")) + '</span>';
+          }
           /* Removal flows through the same form + hook as additions, so the
              shared board stays the single source of truth — tapping ×
              queues a removal, it is only removed after Send all + Submit. */
           var dexId = (dexByKey[k] && dexByKey[k].id) || "";
-          var rmType = isWant ? (item.lucky ? "remove-lucky" : "remove-want") : "remove-give";
-          return '<li class="tb-entry' + (hasMatch ? ' has-match' : '') + '">' +
-            spriteFor(item.name) +
-            '<span class="tb-etxt"><span class="tb-ename">' + esc(item.name) + '</span>' + sub + '</span>' +
+          var rmType = isWant ? (item.lucky ? "remove-lucky" : "remove-want") : "remove-have";
+          return '<div class="tb-tile' + (hasMatch ? ' has-match' : '') + '"' + ringStyle + '>' +
+            '<span class="tb-tile-img">' + spriteFor(item.name) + '</span>' +
+            '<span class="tb-tname">' + esc(item.name) + '</span>' +
+            partnerLine +
             (tags ? '<span class="tb-tags">' + tags + '</span>' : '') +
             '<button type="button" class="tb-remove" data-tb-remove data-who="' + esc(personName) + '" data-name="' + esc(item.name) + '" data-id="' + dexId + '" data-opt="' + rmType + '" aria-label="Remove ' + esc(item.name) + ' from ' + esc(personName) + '’s board">\u00d7</button>' +
-            '</li>';
+            '</div>';
         }
 
         function renderBoard() {
@@ -1435,34 +1650,42 @@
           var box = document.getElementById("tb-matches");
           if (m.matches.length) {
             box.classList.add("has");
-            box.innerHTML = m.matches.map(function (x) {
-              var lucky = x.lucky ? " a Lucky " : " ";
-              return '<span class="tb-match-line"><b>' + esc(x.wanter) + '</b> wants' + lucky + '<b>' + esc(x.name) + '</b> &mdash; <b>' + esc(x.giver) + '</b> can give it away.</span>';
+            box.innerHTML = '<p class="tb-matches-title">Matches &mdash; ready to trade</p>' + m.matches.map(function (x) {
+              var lucky = x.lucky ? ' <span class="tb-tag lucky">\u2605 LUCKY</span>' : '';
+              return '<div class="tb-match-row">' +
+                '<span class="tb-match-who">' + avatarHTML(x.giver) + esc(x.giver) + '</span>' +
+                '<span class="tb-match-arrow">&rarr;</span>' +
+                '<span class="tb-match-mon">' + spriteFor(x.name) + esc(x.name) + lucky + '</span>' +
+                '<span class="tb-match-arrow">&rarr;</span>' +
+                '<span class="tb-match-who">' + avatarHTML(x.wanter) + esc(x.wanter) + '</span>' +
+                '</div>';
             }).join("");
           } else {
             box.classList.remove("has");
-            box.innerHTML = '<span class="tb-none">No trade matches yet. Add a want and a give away to see matches here.</span>';
+            box.innerHTML = '<span class="tb-none">No matches yet &mdash; matches light up when someone lists what they HAVE.</span>';
           }
 
           var grid = document.getElementById("tb-grid");
           // Only show a person's card once they have at least one thing
-          // on the board (a want or a give away). Empty cards stay hidden.
+          // on the board (a want or a have). Empty cards stay hidden.
           var shown = TRADE_BOARD.people.filter(function (p) {
-            return p.wants.length > 0 || p.giveaways.length > 0;
+            return p.wants.length > 0 || p.have.length > 0;
           });
           if (!shown.length) {
-            grid.innerHTML = '<div class="tb-empty">Nothing on the board yet. Tap a Pok\u00e9mon above to add a want or a give away.</div>';
+            grid.innerHTML = '<div class="tb-empty">Nothing on the board yet. Tap a Pok\u00e9mon above to add a Want or a Have.</div>';
           } else {
             grid.innerHTML = shown.map(function (p) {
+              var c = personColor(p.name);
+              var have = p.have.length
+                ? '<div class="tb-tiles">' + p.have.map(function (g) { return tileHTML(g, false, m.giveMatch, p.name); }).join("") + '</div>'
+                : '<div class="tb-empty">Nothing listed yet.</div>';
               var wants = p.wants.length
-                ? '<ul class="tb-entries">' + p.wants.map(function (w) { return entryHTML(w, true, m.wantMatch, p.name); }).join("") + '</ul>'
+                ? '<div class="tb-tiles">' + p.wants.map(function (w) { return tileHTML(w, true, m.wantMatch, p.name); }).join("") + '</div>'
                 : '<div class="tb-empty">Nothing listed yet.</div>';
-              var gives = p.giveaways.length
-                ? '<ul class="tb-entries">' + p.giveaways.map(function (g) { return entryHTML(g, false, m.giveMatch, p.name); }).join("") + '</ul>'
-                : '<div class="tb-empty">Nothing listed yet.</div>';
-              return '<div class="tb-person"><h3>' + esc(p.name) + '</h3>' +
-                '<span class="tb-col-label">Wants</span>' + wants +
-                '<span class="tb-col-label">Give Aways</span>' + gives +
+              return '<div class="tb-person" style="--pc:' + c + '">' +
+                '<div class="tb-person-head">' + avatarHTML(p.name) + '<h3>' + esc(p.name) + '</h3></div>' +
+                '<span class="tb-col-label">Have &mdash; can give</span>' + have +
+                '<span class="tb-col-label">Want</span>' + wants +
                 '</div>';
             }).join("");
           }
@@ -1644,12 +1867,25 @@
 
         function messageFor(opt, who, name) {
           if (opt === "lucky") return who + " wants a Lucky " + name + "!";
-          if (opt === "give") return who + " can give away a " + name + "!";
+          if (opt === "have") return who + " has a " + name + " — can give it!";
           if (opt === "remove-lucky") return "Remove " + who + "’s Lucky " + name + " want";
           if (opt === "remove-want") return "Remove " + who + "’s " + name + " want";
-          if (opt === "remove-give") return "Remove " + who + "’s " + name + " give away";
+          if (opt === "remove-have") return "Remove " + who + "’s " + name + " have";
           return who + " wants a " + name + "!";
         }
+
+        /* Form Type values: the Have/Want distinction rides inside
+           the Type field of the existing "Who, Pokémon, Dex #, Type"
+           line, so the Google Form and its hook stay unchanged in
+           shape. The hook maps these to board updates. */
+        var FORM_TYPE = {
+          "want": "Want",
+          "lucky": "Want \u00b7 Lucky",
+          "have": "Have",
+          "remove-want": "Remove \u00b7 Want",
+          "remove-lucky": "Remove \u00b7 Want \u00b7 Lucky",
+          "remove-have": "Remove \u00b7 Have"
+        };
 
         /* The sheet note says whether the queued entries will be added
            to or removed from the shared Trade Board after Submit. */
@@ -1685,7 +1921,7 @@
         sendMsgBtn.addEventListener("click", function () {
           if (!queue.length) return;
           var lines = queue.map(function (entry) {
-            return entry.who + ", " + entry.name + ", " + entry.id + ", " + entry.opt;
+            return entry.who + ", " + entry.name + ", " + entry.id + ", " + (FORM_TYPE[entry.opt] || entry.opt);
           }).join("\n");
           var url = FORM_URL + "?usp=pp_url&entry." + FORM_ENTRY + "=" + encodeURIComponent(lines);
           window.open(url, "_blank");
@@ -1698,9 +1934,10 @@
 
         /* ---- Remove a board entry: queue a removal, same form flow ----
            The × on a board entry does NOT remove it on this phone only —
-           it queues a remove-want / remove-lucky / remove-give line, and
-           Send all opens the form pre-filled with it. After Submit the
-           hook deletes exactly that entry from the shared board. */
+           it queues a Remove · Want / Remove · Want · Lucky /
+           Remove · Have line, and Send all opens the form pre-filled
+           with it. After Submit the hook deletes exactly that entry
+           from the shared board. */
         document.getElementById("tb-grid").addEventListener("click", function (ev) {
           var btn = ev.target.closest("[data-tb-remove]");
           if (!btn) return;
@@ -1927,24 +2164,35 @@
   
     <script>
       /* ================= PVP — GO BATTLE LEAGUE =================
-         The party home: one 3-Pokémon counter party per league/cup that
-         is live this week, built to beat what everyone is running.
+         The party home: one 6-Pokémon counter pool per league/cup that
+         is live this week — a suggested party of 3 (the builder prefill)
+         plus 3 swaps — built to beat what everyone is running.
          This week (Nov 17–24): Ultra League (2,500 CP), Master League:
          Mega Edition (no CP limit, Megas + Primals allowed), 2026 GO
          LAIC Cup (1,500 CP, type + species bans). GBL rotates weekly on
          Tuesdays at 1 PM PT; refresh pattern is Tuesday (new rotation)
          + Friday (settled meta) — see STRATEGY.md.
          Movesets are PvP (Trainer Battle) sets from PvPoke rankings via
-         GO Hub, updated Nov 19, 2026. BUILDER RULE: regular-TM moves
-         only — no Elite TM moves and no Elite TM notes anywhere in the
-         builders. CP check is a CAP check: over the league cap means
+         GO Hub, updated Nov 19, 2026. BUILDER RULE (revised Nov 19):
+         pools are ranked by strength INCLUDING Elite TM picks — an
+         entry whose best set needs an Elite TM carries an "elite"
+         field naming the move, rendered as a flag in the picker and
+         a mark in the team slots. CP check is a CAP check: over the league cap means
          not eligible. Teams are saved on this phone (localStorage, per league). */
       (function () {
         var PVP_DATA = {
           "ultra": {"title": "Ultra League", "cap": 2500, "capLabel": "2,500", "list": [
-            {"id": 326, "name": "Grumpig", "f": "Psywave", "c1": "Dynamic Punch", "c2": "Shadow Ball"},
             {"id": 959, "name": "Tinkaton", "f": "Fairy Wind", "c1": "Gigaton Hammer", "c2": "Bulldoze"},
-            {"id": 131, "name": "Lapras", "f": "Psywave", "c1": "Sparkling Aria", "c2": "Ice Beam"},
+            {"id": 640, "name": "Virizion", "f": "Double Kick", "c1": "Leaf Blade", "c2": "Sacred Sword"},
+            {"id": 395, "name": "Empoleon", "f": "Metal Sound", "c1": "Hydro Cannon", "c2": "Drill Peck", "elite": "Hydro Cannon"},
+            {"id": 395, "name": "Shadow Empoleon", "f": "Metal Sound", "c1": "Hydro Cannon", "c2": "Drill Peck", "elite": "Hydro Cannon"},
+            {"id": 809, "name": "Melmetal", "f": "Thunder Shock", "c1": "Double Iron Bash", "c2": "Dynamic Punch", "elite": "Double Iron Bash"},
+            {"id": 160, "name": "Shadow Feraligatr", "f": "Shadow Claw", "c1": "Hydro Cannon", "c2": "Ice Beam", "elite": "Hydro Cannon"},
+            {"id": 160, "name": "Feraligatr", "f": "Shadow Claw", "c1": "Hydro Cannon", "c2": "Ice Beam", "elite": "Hydro Cannon"},
+            {"id": 326, "name": "Grumpig", "f": "Psywave", "c1": "Dynamic Punch", "c2": "Shadow Ball"},
+            {"id": 131, "name": "Lapras", "f": "Psywave", "c1": "Sparkling Aria", "c2": "Ice Beam", "elite": "Ice Beam"},
+            {"id": 487, "name": "Giratina (Altered)", "f": "Dragon Breath", "c1": "Ancient Power", "c2": "Shadow Force", "elite": "Shadow Force"},
+            {"id": 593, "name": "Jellicent", "f": "Hex", "c1": "Surf", "c2": "Shadow Ball"},
             {"id": 823, "name": "Corviknight", "f": "Sand Attack", "c1": "Air Cutter", "c2": "Iron Head"},
             {"id": 143, "name": "Shadow Snorlax", "f": "Psywave", "c1": "Body Slam", "c2": "Earthquake"},
             {"id": 823, "name": "Shadow Corviknight", "f": "Sand Attack", "c1": "Air Cutter", "c2": "Payback"},
@@ -1952,29 +2200,40 @@
             {"id": 671, "name": "Florges", "f": "Fairy Wind", "c1": "Chilling Water", "c2": "Disarming Voice"},
             {"id": 778, "name": "Mimikyu", "f": "Shadow Claw", "c1": "Shadow Sneak", "c2": "Play Rough"},
             {"id": 10171, "name": "Galarian Moltres", "f": "Sucker Punch", "c1": "Fly", "c2": "Brave Bird"},
-            {"id": 488, "name": "Cresselia", "f": "Psycho Cut", "c1": "Moonblast", "c2": "Future Sight"}
-          ], "prefill": ["Grumpig", "Tinkaton", "Lapras"]},
+            {"id": 488, "name": "Cresselia", "f": "Psycho Cut", "c1": "Grass Knot", "c2": "Moonblast", "elite": "Grass Knot"}
+          ], "prefill": ["Tinkaton", "Virizion", "Empoleon"]},
           "master-mega": {"title": "Master League: Mega Edition", "cap": 99999, "capLabel": "Master League", "list": [
-            {"id": 10041, "name": "Mega Gyarados", "f": "Dragon Breath", "c1": "Aqua Tail", "c2": "Crunch"},
             {"id": 10077, "name": "Primal Kyogre", "f": "Waterfall", "c1": "Avalanche", "c2": "Thunder"},
+            {"id": 10044, "name": "Mega Mewtwo Y", "f": "Psycho Cut", "c1": "Psystrike", "c2": "Thunderbolt", "elite": "Psystrike"},
+            {"id": 10041, "name": "Mega Gyarados", "f": "Dragon Breath", "c1": "Aqua Tail", "c2": "Crunch"},
+            {"id": 10043, "name": "Mega Mewtwo X", "f": "Psycho Cut", "c1": "Psystrike", "c2": "Thunderbolt", "elite": "Psystrike"},
             {"id": 149, "name": "Mega Dragonite", "f": "Dragon Breath", "c1": "Thunder Punch", "c2": "Superpower"},
-            {"id": 10058, "name": "Mega Garchomp", "f": "Dragon Tail", "c1": "Earth Power", "c2": "Twister"},
+            {"id": 10058, "name": "Mega Garchomp", "f": "Dragon Tail", "c1": "Earth Power", "c2": "Twister", "elite": "Earth Power"},
             {"id": 10089, "name": "Mega Rayquaza", "f": "Dragon Tail", "c1": "Breaking Swipe", "c2": "Dragon Ascent"},
-            {"id": 10078, "name": "Primal Groudon", "f": "Dragon Tail", "c1": "Precipice Blades", "c2": "Fire Punch"},
-            {"id": 10049, "name": "Mega Tyranitar", "f": "Bite", "c1": "Brutal Swing", "c2": "Stone Edge"}
-          ], "prefill": ["Mega Gyarados", "Primal Kyogre", "Mega Dragonite"]},
+            {"id": 10078, "name": "Primal Groudon", "f": "Dragon Tail", "c1": "Precipice Blades", "c2": "Fire Punch", "elite": "Precipice Blades"},
+            {"id": 10049, "name": "Mega Tyranitar", "f": "Dragon Breath", "c1": "Brutal Swing", "c2": "Stone Edge"},
+            {"id": 10292, "name": "Mega Chesnaught", "f": "Low Kick", "c1": "Thunder Punch", "c2": "Superpower"},
+            {"id": 10076, "name": "Mega Metagross", "f": "Shadow Claw", "c1": "Meteor Mash", "c2": "Earthquake", "elite": "Meteor Mash"},
+            {"id": 10063, "name": "Mega Latios", "f": "Dragon Breath", "c1": "Aura Sphere", "c2": "Luster Purge", "elite": "Luster Purge"},
+            {"id": 10293, "name": "Mega Delphox", "f": "Scratch", "c1": "Blast Burn", "c2": "Psyshock", "elite": "Blast Burn"},
+            {"id": 10064, "name": "Mega Swampert", "f": "Mud Shot", "c1": "Hydro Cannon", "c2": "Earthquake", "elite": "Hydro Cannon"},
+            {"id": 10245, "name": "Origin Dialga", "f": "Dragon Breath", "c1": "Roar of Time", "c2": "Iron Head", "elite": "Roar of Time"},
+            {"id": 10246, "name": "Origin Palkia", "f": "Dragon Breath", "c1": "Aqua Tail", "c2": "Spacial Rend", "elite": "Spacial Rend"}
+          ], "prefill": ["Primal Kyogre", "Mega Mewtwo Y", "Mega Gyarados"]},
           "laic": {"title": "2026 GO LAIC Cup", "cap": 1500, "capLabel": "1,500", "list": [
             {"id": 477, "name": "Shadow Dusknoir", "f": "Astonish", "c1": "Dynamic Punch", "c2": "Shadow Punch"},
             {"id": 326, "name": "Grumpig", "f": "Psywave", "c1": "Dynamic Punch", "c2": "Shadow Ball"},
             {"id": 748, "name": "Toxapex", "f": "Bite", "c1": "Brine", "c2": "Sludge Wave"},
+            {"id": 478, "name": "Froslass", "f": "Powder Snow", "c1": "Avalanche", "c2": "Shadow Ball"},
+            {"id": 131, "name": "Lapras", "f": "Psywave", "c1": "Sparkling Aria", "c2": "Ice Beam", "elite": "Ice Beam"},
+            {"id": 365, "name": "Shadow Walrein", "f": "Powder Snow", "c1": "Icicle Spear", "c2": "Earthquake", "elite": "Icicle Spear"},
             {"id": 975, "name": "Cetitan", "f": "Powder Snow", "c1": "Icicle Spear", "c2": "Superpower"},
             {"id": 317, "name": "Swalot", "f": "Infestation", "c1": "Sludge", "c2": "Ice Beam"},
             {"id": 460, "name": "Shadow Abomasnow", "f": "Powder Snow", "c1": "Weather Ball (Ice)", "c2": "Energy Ball"},
-            {"id": 131, "name": "Lapras", "f": "Psywave", "c1": "Sparkling Aria", "c2": "Ice Beam"},
-            {"id": 478, "name": "Froslass", "f": "Powder Snow", "c1": "Avalanche", "c2": "Shadow Ball"},
             {"id": 148, "name": "Shadow Dragonair", "f": "Dragon Breath", "c1": "Wrap", "c2": "Aqua Tail"},
             {"id": 372, "name": "Shadow Shelgon", "f": "Dragon Breath", "c1": "Twister", "c2": "Flamethrower"},
-            {"id": 337, "name": "Lunatone", "f": "Psywave", "c1": "Weather Ball (Ice)", "c2": "Rock Slide"}
+            {"id": 337, "name": "Lunatone", "f": "Psywave", "c1": "Weather Ball (Ice)", "c2": "Rock Slide"},
+            {"id": 288, "name": "Shadow Vigoroth", "f": "Counter", "c1": "Body Slam", "c2": "Bulldoze"}
           ], "prefill": ["Shadow Dusknoir", "Grumpig", "Toxapex"]}
         };
         var SPRITE = function (id) { return "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/" + id + ".png"; };
@@ -1985,6 +2244,9 @@
           var list = (PVP_DATA[league] && PVP_DATA[league].list) || [];
           for (var i = 0; i < list.length; i++) if (list[i].name === name) return list[i];
           return null;
+        }
+        function markE(move, mon) {
+          return (mon && mon.elite && move === mon.elite) ? "\u2691 " + move : move;
         }
         function keyFor(league) { return "grillo-pvp-" + league; }
         function loadTeam(league) {
@@ -2030,7 +2292,7 @@
             out += '<div class="party-slot" data-slot="' + s + '">' +
               '<img src="' + SPRITE(e.id) + '" alt="' + esc(e.name) + '" loading="lazy" />' +
               '<div class="ps-name">' + esc(e.name) + '</div>' +
-              '<div class="ps-moves">Fast: ' + esc(e.f) + '<br>Charged: ' + esc(e.c1) + ' + ' + esc(e.c2) + '</div>' +
+              '<div class="ps-moves">Fast: ' + esc(markE(e.f, mon)) + '<br>Charged: ' + esc(markE(e.c1, mon)) + ' + ' + esc(markE(e.c2, mon)) + '</div>' +
               '<div class="ps-cp"><input type="number" inputmode="numeric" min="0" max="9999" placeholder="Your CP" value="' + esc(e.cp) + '" aria-label="Your ' + esc(e.name) + ' CP" data-pvp-cp="' + s + '" />' +
               '<span class="ps-status ' + statusCls + '">' + esc(status) + '</span></div>' +
               '<div class="ps-actions"><button type="button" data-pvp-remove="' + s + '">Remove</button></div>' +
@@ -2051,13 +2313,14 @@
             return '<div class="pk-row">' +
               '<img src="' + SPRITE(m.id) + '" alt="' + esc(m.name) + '" loading="lazy" />' +
               '<div class="pk-info"><div class="pk-name">#' + (i + 1) + ' ' + esc(m.name) + '</div>' +
-              '<div class="pk-moves">Fast: ' + esc(m.f) + ' &middot; Charged: ' + esc(m.c1) + ' + ' + esc(m.c2) + '</div>' +
+              '<div class="pk-moves">Fast: ' + esc(markE(m.f, m)) + ' &middot; Charged: ' + esc(markE(m.c1, m)) + ' + ' + esc(markE(m.c2, m)) + '</div>' +
+              (m.elite ? '<div class="pk-flag">\u2691 Elite TM &middot; ' + esc(m.elite) + '</div>' : '') +
               '</div>' +
               '<button type="button" class="pk-add" data-pvp-add="' + esc(m.name) + '"' + ((added || full) ? ' disabled' : '') + '>' + (added ? 'Added \u2713' : 'Add') + '</button>' +
               '</div>';
           }).join("");
           box.innerHTML = '<h3>Best for ' + esc(PVP_DATA[league].title) + '</h3>' +
-            '<p class="pk-sub">Counter party first, then the rest of the meta. Tap <b>Add</b> on the ones you actually own — they join your team below. Don\u2019t have the top pick? Take the next one down. ' +
+            '<p class="pk-sub">Counter pool first — the suggested party, then 3 swaps — then the rest of the meta. Tap <b>Add</b> on the ones you actually own — they join your team below. Don\u2019t have the top pick? Take the next one down. ' +
             'Over the cap for this league? Not eligible.</p>' +
             rows;
           box.hidden = false;
@@ -2175,7 +2438,7 @@
          Raid Hour is every Wednesday, 6:00-7:00 PM local. On Wednesdays
          the banner answers "what time is Raid Hour tonight" at a glance;
          other days it shows the next one. Boss names come from the
-         data-bosses attribute on the banner element in the Raids panel —
+         data-bosses attribute on the banner element on the Today panel —
          the daily update keeps that current with the 5-star bosses. */
       (function () {
         var el = document.getElementById("raid-hour");
@@ -2209,34 +2472,66 @@
       })();
     </script>
     <script>
-      /* ================= TABS =================
-         Seven tabs: Raids | PvP | Upcoming | Poké Prep | Trade Board | Vivillon | Search Strings.
-         Panels stay in the DOM (display:none when inactive) so the Trade Board,
-         party builder, PvP builders, Vivillon, search strings, and RAID HOURS scripts keep working. */
+      /* ================= TODAY PANEL =================
+         Fills the Tonight line from the same facts the Raid Hour banner
+         uses (the bosses come from #raid-hour's data-bosses attribute),
+         and reveals the Saturday play-day block on Saturdays. */
       (function () {
-        var TABS = ["raids", "pvp", "upcoming", "pokeprep", "tradeboard", "vivillon", "searchstrings"];
+        var t = document.getElementById("tonight-text");
+        if (t) {
+          var day = new Date().getDay();
+          var rh = document.getElementById("raid-hour");
+          var bosses = rh ? (rh.getAttribute("data-bosses") || "") : "";
+          if (day === 3) {
+            t.innerHTML = "Raid Hour &middot; <b>6:00&ndash;7:00 PM</b>" + (bosses ? " &middot; " + bosses : "");
+          } else if (day === 2) {
+            t.textContent = "Spotlight Hour \u00b7 6:00\u20137:00 PM \u2014 see Upcoming for tonight's Pok\u00e9mon.";
+          } else {
+            t.textContent = "No evening event tonight. Next Raid Hour is Wednesday, 6:00\u20137:00 PM.";
+          }
+        }
+        var pd = document.getElementById("playday");
+        if (pd && new Date().getDay() === 6) pd.hidden = false;
+      })();
+    </script>
+    <script>
+      /* ================= TABS =================
+         Four doors in the tab bar: Today | Raids | PvP | More. The More
+         panel links onward to Upcoming, Poké Prep, Trade Board, Vivillon
+         and Search Strings. All nine panels stay in the DOM (display:none
+         when inactive) so the Trade Board, party builder, PvP builders,
+         Vivillon, search strings, and RAID HOURS scripts keep working.
+         Deep links (#upcoming, #tradeboard, ...) still land on the right
+         panel, with the More door highlighted. Today is the default. */
+      (function () {
+        var TABS = ["today", "raids", "pvp", "more", "upcoming", "pokeprep", "tradeboard", "vivillon", "searchstrings"];
+        var DOORS = ["today", "raids", "pvp", "more"];
+        var DOOR = { today: "today", raids: "raids", pvp: "pvp", more: "more",
+                     upcoming: "more", pokeprep: "more", tradeboard: "more",
+                     vivillon: "more", searchstrings: "more" };
         function showTab(name) {
-          if (TABS.indexOf(name) === -1) name = "raids";
+          if (TABS.indexOf(name) === -1) name = "today";
           TABS.forEach(function (t) {
-            var tab = document.getElementById("tab-" + t);
             var panel = document.getElementById("panel-" + t);
-            var on = (t === name);
-            if (tab) tab.setAttribute("aria-selected", on ? "true" : "false");
-            if (panel) panel.hidden = !on;
+            if (panel) panel.hidden = (t !== name);
+          });
+          DOORS.forEach(function (d) {
+            var tab = document.getElementById("tab-" + d);
+            if (tab) tab.setAttribute("aria-selected", DOOR[name] === d ? "true" : "false");
           });
           if (window.location.hash !== "#" + name) {
             history.replaceState(null, "", "#" + name);
           }
           window.scrollTo(0, 0);
         }
-        TABS.forEach(function (t) {
-          var tab = document.getElementById("tab-" + t);
-          if (tab) tab.addEventListener("click", function () { showTab(t); });
+        DOORS.forEach(function (d) {
+          var tab = document.getElementById("tab-" + d);
+          if (tab) tab.addEventListener("click", function () { showTab(d); });
         });
         window.addEventListener("hashchange", function () {
           showTab(window.location.hash.replace("#", ""));
         });
-        showTab(window.location.hash.replace("#", "") || "raids");
+        showTab(window.location.hash.replace("#", "") || "today");
       })();
     </script>
   </body>
