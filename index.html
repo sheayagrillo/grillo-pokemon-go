@@ -812,7 +812,7 @@
         <img class="ball" src="ball.png" alt="Grillo Ball" />
         <div>
           <h2>TODAY IN POKÉMON GO</h2>
-          <p>Sunday, November 22, 2026</p>
+          <p>Monday, November 23, 2026</p>
         </div>
       </div>
     </header>
@@ -849,9 +849,10 @@
       </div>
 
       <!-- ============ LIVE TODAY — mirrors the Upcoming items active today ============ -->
-      <div class="sec-head"><h2>Live today</h2><span class="sub">Sun Nov 22</span></div>
+      <div class="sec-head"><h2>Live today</h2><span class="sub">Mon Nov 23</span></div>
       <div class="live-list">
         <a class="live-row" href="#upcoming"><span class="live-dot" aria-hidden="true"></span><span class="live-name">Dynamax Trails</span><span class="live-fact">Max Battles &middot; through Mon Nov 23</span></a>
+        <a class="live-row" href="#upcoming"><span class="live-dot" aria-hidden="true"></span><span class="live-name">Max Monday &mdash; Dynamax Espurr</span><span class="live-fact">Max Battles &middot; today, 6 AM&ndash;9 PM</span></a>
       </div>
 
       <!-- ============ SATURDAY PLAY DAY (JS reveals it on Saturdays) ============ -->
@@ -923,7 +924,7 @@
         <p><b>Raid night?</b> Start a Party before the first raid. Party Power charges as you battle &mdash; tap it and your next Charged Attack hits much harder, and it charges faster the more of your party is in the raid with you.</p>
       </div>
 
-      <div class="sec-head"><h2>Raids</h2><span class="sub">Live now &middot; Sun Nov 22 &middot; Cresselia, Darkrai + Mega Banette</span></div>
+      <div class="sec-head"><h2>Raids</h2><span class="sub">Live now &middot; Mon Nov 23 &middot; Cresselia, Darkrai + Mega Banette</span></div>
       <section class="today-list" aria-label="Live now">
         <article class="today-item">
           <div class="ti-head">
@@ -932,7 +933,7 @@
               <h2>Cresselia</h2>
               <p class="ti-kind">5-star raids</p>
               <p class="ti-types"><span class="type-chip"><img class="type-icon" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/types/generation-ix/scarlet-violet/14.png" alt="Psychic"></span></p>
-              <p class="ti-when">Live now &middot; Sun Nov 22 &middot; Nov 16&ndash;24</p>
+              <p class="ti-when">Live now &middot; Mon Nov 23 &middot; Nov 16&ndash;24</p>
             </div>
             <span class="ti-live">LIVE</span>
           </div>
@@ -973,7 +974,7 @@
               <h2>Darkrai</h2>
               <p class="ti-kind">5-star raids</p>
               <p class="ti-types"><span class="type-chip"><img class="type-icon" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/types/generation-ix/scarlet-violet/17.png" alt="Dark"></span></p>
-              <p class="ti-when">Live now &middot; Sun Nov 22 &middot; Nov 16&ndash;24</p>
+              <p class="ti-when">Live now &middot; Mon Nov 23 &middot; Nov 16&ndash;24</p>
             </div>
             <span class="ti-live">LIVE</span>
           </div>
@@ -1015,7 +1016,7 @@
               <h2>Mega Banette</h2>
               <p class="ti-kind">Mega raids</p>
               <p class="ti-types"><span class="type-chip"><img class="type-icon" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/types/generation-ix/scarlet-violet/8.png" alt="Ghost"></span></p>
-              <p class="ti-when">Live now &middot; Sun Nov 22 &middot; Nov 16&ndash;24</p>
+              <p class="ti-when">Live now &middot; Mon Nov 23 &middot; Nov 16&ndash;24</p>
             </div>
             <span class="ti-live">LIVE</span>
           </div>
@@ -2419,7 +2420,7 @@
     <script>
       /* ================= RAID HOURS =================
          Raids run roughly 5 AM - 9 PM local each day, even while a boss is
-         in today's rotation (here, Sun Nov 22, Cresselia/Darkrai/Mega Banette, Nov 16-24). Outside
+         in today's rotation (here, Mon Nov 23, Cresselia/Darkrai/Mega Banette, Nov 16-24). Outside
          those hours no raid is actually running, so the card badge says
          when they are back instead of showing LIVE all night. */
       (function () {
@@ -2435,16 +2436,16 @@
             subText = "Ended Tue Nov 24, 9 PM";
           } else if (h >= 5 && h < 21) {
             label = "LIVE"; off = false;
-            whenText = "Live now \u00B7 Sun Nov 22 \u00B7 Nov 16\u201324";
-            subText = "Live now \u00B7 Sun Nov 22 \u00B7 Nov 16\u201324";
+            whenText = "Live now \u00B7 Mon Nov 23 \u00B7 Nov 16\u201324";
+            subText = "Live now \u00B7 Mon Nov 23 \u00B7 Nov 16\u201324";
           } else if (h >= 21) {
             label = "Back tomorrow"; off = true;
-            whenText = "Done for today \u00B7 Sun Nov 22 \u00B7 Nov 16\u201324";
-            subText = "Done for today \u00B7 Sun Nov 22 \u00B7 Nov 16\u201324";
+            whenText = "Done for today \u00B7 Mon Nov 23 \u00B7 Nov 16\u201324";
+            subText = "Done for today \u00B7 Mon Nov 23 \u00B7 Nov 16\u201324";
           } else {
             label = "Back this morning"; off = true;
-            whenText = "Back this morning \u00B7 Sun Nov 22 \u00B7 Nov 16\u201324";
-            subText = "Back this morning \u00B7 Sun Nov 22 \u00B7 Nov 16\u201324";
+            whenText = "Back this morning \u00B7 Mon Nov 23 \u00B7 Nov 16\u201324";
+            subText = "Back this morning \u00B7 Mon Nov 23 \u00B7 Nov 16\u201324";
           }
           document.querySelectorAll(".ti-live").forEach(function (el) {
             el.textContent = label;
